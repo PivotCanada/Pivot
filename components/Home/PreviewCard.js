@@ -12,7 +12,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 // Components
 import Modal from "../Profile/Modal";
-import Carousel from "./Carousel";
 
 const format = (text) => {
   let arr = text.split(" ");

@@ -30,8 +30,7 @@ function BusinessWebsite({
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      minHeight: "100vh",
-      width: "100vw",
+      minHeight: "80vh",
       overflow: "scroll",
     },
     textField: {

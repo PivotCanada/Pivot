@@ -31,6 +31,7 @@ function Form() {
   } = useForm(
     {
       email: "",
+      password: "",
       firstname: "",
       lastname: "",
       business: "",
@@ -120,7 +121,7 @@ function Form() {
       );
     case 7:
       return (
-        <Achievements
+        <Goals
           values={values}
           handleChange={handleChange}
           handleDirectChange={handleDirectChange}
@@ -144,7 +145,7 @@ function Form() {
       );
     case 9:
       return (
-        <Wish
+        <Achievements
           values={values}
           handleChange={handleChange}
           handleDirectChange={handleDirectChange}
@@ -156,7 +157,7 @@ function Form() {
       );
     case 10:
       return (
-        <Goals
+        <Wish
           values={values}
           handleChange={handleChange}
           handleDirectChange={handleDirectChange}

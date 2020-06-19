@@ -6,7 +6,6 @@ import AddIcon from "@material-ui/icons/Add";
 import { Button, ButtonGroup } from "@material-ui/core";
 // Components
 import MobileCard from "./MobileCard";
-import Carousel from "./Carousel";
 import PreviewCard from "./PreviewCard";
 import Search from "./Search";
 import PostCard from "../Post/Main/Card";

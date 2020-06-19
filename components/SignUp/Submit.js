@@ -1,19 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState, useContext } from "react";
+import Router from "next/router";
 // Validation
 import { validateDetails } from "../../utils/validation/validateDetails";
 import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 // Components
-import Location from "./Location";
-import Industry from "./Industry";
-import Years from "./Years";
-import Website from "./Website";
-import Navigation from "./Navigation";
+// Contexts
+import { UserContext } from "../../contexts/UserContext";
+import { ModalContext } from "../../contexts/ModalContext";
+// Utils
+import { authenticate } from "../../utils/authentication/authenticate";
+import { signup } from "./utils/signup";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "100vh",
-    width: "100vw",
+    minHeight: "80vh",
     overflow: "scroll",
   },
   textField: {
@@ -68,30 +65,92 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Submit({
-  values,
-  handleChange,
-  handleDirectChange,
-  step,
-  setStep,
-  handleErrors,
-  errors,
-}) {
-  useEffect(() => {}, [errors]);
+function Submit({ values, submitting, setSubmitting }) {
+  const { setUser, setAuthenticated, setToken } = useContext(UserContext);
+  const { setShowLogin, setShowOnboard } = useContext(ModalContext);
+  const [error, setError] = useState({ value: false, message: "" });
+  const data = {
+    email: values.email,
+    password: values.password,
+    firstname: values.firstname,
+    lastname: values.lastname,
+    business: values.business,
+    industry: values.industry,
+    location: values.location,
+    years: values.years,
+    hasSite: values.hasSite,
+    website: values.website,
+    achievements: values.achievements,
+    goals: values.goals,
+    challenges: values.challenges,
+    wish: values.wish,
+  };
+
+  useEffect(() => {
+    setSubmitting(true);
+    // NOTE : reroute to `/home` upon sucessful login
+    // TODO : configure functionality here for `persisted state` later on ...
+    signup(data).then((response) => {
+      console.log(response);
+      // NOTE : check that response is successful
+      if (response.status === "success") {
+        authenticate({
+          email: data.email,
+          password: data.password,
+        }).then((response) => {
+          if (response.status === "success") {
+            // NOTE : set `token`, `user`, `authenticated` state, in UserContext, upon sucessful login
+            setToken(response.data.token);
+            setUser(response.data.user);
+            setAuthenticated(true);
+            setShowOnboard(false);
+            setShowLogin(false);
+            console.log(response.data);
+            Router.push("/");
+          } else {
+            console.log(response);
+            setError({ value: true, message: response.message });
+            setToken(null);
+            setAuthenticated(false);
+            setSubmitting(false);
+          }
+        });
+      } else {
+        console.log(response);
+        setError({ value: true, message: response.message });
+        setSubmitting(false);
+      }
+    });
+  }, []);
+
   const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <div className={classes.innerWrapper}>
-        <h1 className={classes.header}>Thank You, {values.firstname}</h1>
-        <p className={classes.text}>We will be sending you an email soon at</p>
-        <p className={classes.email}>{values.email}</p>
-        <p className={classes.text}>
-          to make contact to learn more about {values.business}!
-        </p>
+  if (submitting) {
+    return (
+      <div className={classes.root}>
+        <div className={classes.innerWrapper}>
+          <h1 className={classes.header}>Loading</h1>
+          <p className={classes.text}>Just a Second!</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
+  if (error.value) {
+    return (
+      <div className={classes.root}>
+        <div className={classes.innerWrapper}>
+          <h1 className={classes.header}>Error</h1>
+          <p className={classes.text}>
+            Something went slightly wrong, we will reach out to you by email
+            shortly!
+          </p>
+        </div>
+      </div>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default Submit;

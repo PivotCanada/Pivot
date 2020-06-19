@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import Page from "../components/Page";
 import Main from "../components/Home/Main";
 import LoginModal from "../components/Login/Modal";
-import SignUpModal from "../components/SignUpV2/Modal";
+import SignUpModal from "../components/SignUp/Modal";
 import CreateModal from "../components/Post/Create/Modal";
 import EditModal from "../components/Edit/Modal";
 import DeleteModal from "../components/Delete/Modal";

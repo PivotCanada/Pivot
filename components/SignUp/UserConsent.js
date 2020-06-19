@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 // Validation
 import { validateCredentials } from "../../utils/validation/validateCredentials";
 import { formatEmail } from "../../utils/validation/formatting";
@@ -9,13 +9,15 @@ import { TextField, Button, IconButton } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 // Components
 import Navigation from "./Navigation";
+//Contexts
+import { ModalContext } from "../../contexts/ModalContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    minHeight: "100vh",
+    height: "80vh",
     alignItems: "center",
   },
   textField: {
@@ -55,6 +57,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     marginTop: 10,
   },
+
+  loginButton: {
+    color: "blue",
+    textTransform: "none",
+    marginLeft: 5,
+  },
 }));
 
 function UserCredentials({
@@ -64,6 +72,7 @@ function UserCredentials({
   handleErrors,
   errors,
 }) {
+  const { setShowOnboard } = useContext(ModalContext);
   const classes = useStyles();
 
   return (
@@ -79,6 +88,17 @@ function UserCredentials({
       <p className={classes.text}>
         We will be reviewing your data, before reaching out to you. We will keep
         it safe. By moving forward, you agree to our terms.
+      </p>
+      <p>
+        Already have an account?
+        <Button
+          onClick={() => {
+            setShowOnboard(false);
+          }}
+          className={classes.loginButton}
+        >
+          Sign In
+        </Button>
       </p>
       <div className={classes.innerWrapper}></div>
       <div className={classes.buttonContainer}>

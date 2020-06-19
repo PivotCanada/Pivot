@@ -9,7 +9,6 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 // Components
 import MobileCard from "./MobileCard";
-import Carousel from "./Carousel";
 import Search from "./Search";
 import PostCard from "../Post/Main/Card";
 import Posts from "./Posts";
@@ -215,16 +214,6 @@ const Main = () => {
             {contentDisplay === "posts" ? (
               <Posts display={display} posts={posts} />
             ) : null}
-
-            {/* {posts.map((post) => {
-            return <PostCard display={display} key={post._id} post={post} />;
-          })} */}
-
-            {/* {contentDisplay === "search" ? (
-            <Search setDisplay={setDisplay} />
-          ) : null} */}
-
-            {/* <Search setDisplay={setDisplay} /> */}
 
             {contentDisplay === "stories" ? (
               <Stories display={display} content={content} />

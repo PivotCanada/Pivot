@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 // Validation
-import { validateCredentials } from "../../utils/validation/validateCredentials";
+import { validateCredentials } from "../../utils/validation/validateCredentialsV2";
 import { formatEmail } from "../../utils/validation/formatting";
 import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    minHeight: "100vh",
+    minHeight: "80vh",
     alignItems: "center",
   },
   textField: {
@@ -88,7 +88,7 @@ function UserCredentials({
           helperText={errors.email}
           // variant="outlined"
         />
-        {/* <TextField
+        <TextField
           className={classes.textField}
           type="password"
           name="password"
@@ -97,8 +97,8 @@ function UserCredentials({
           onChange={(e) => handleChange(e)}
           error={errors.password ? true : false}
           helperText={errors.password}
-          variant="outlined"
-        /> */}
+          // variant="outlined"
+        />
         <TextField
           className={classes.textField}
           name="firstname"
@@ -119,6 +119,7 @@ function UserCredentials({
           helperText={errors.lastname}
           // variant="outlined"
         />
+
         {/* <TextField
           className={classes.textField}
           name="role"

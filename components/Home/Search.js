@@ -5,14 +5,10 @@ import CloseIcon from "@material-ui/icons/Close";
 import { IconButton, InputAdornment } from "@material-ui/core";
 import { searchUsers } from "./utils/searchUsers";
 import { Button, ButtonGroup } from "@material-ui/core";
-import Link from "next/link";
-import Carousel from "./Carousel";
+
 import PreviewCard from "./PreviewCard";
-import Stories from "./Stories";
+
 import { ClickAwayListener } from "@material-ui/core";
-import Chip from "@material-ui/core/Chip";
-import PublicIcon from "@material-ui/icons/Public";
-import RoomIcon from "@material-ui/icons/Room";
 
 function Search({ setDisplay, display }) {
   const [search, setSearch] = useState("");
