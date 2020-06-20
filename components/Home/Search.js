@@ -6,7 +6,7 @@ import { IconButton, InputAdornment } from "@material-ui/core";
 import { searchUsers } from "./utils/searchUsers";
 import { Button, ButtonGroup } from "@material-ui/core";
 
-import PreviewCard from "./PreviewCard";
+import PreviewCard from "../Profile/PreviewCard";
 
 import { ClickAwayListener } from "@material-ui/core";
 

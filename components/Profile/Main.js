@@ -12,7 +12,7 @@ import Following from "./Following";
 import PostCard from "../Post/Main/Card";
 import CreatePost from "../Post/Create/MainProfile";
 
-import Posts from "../Home/Posts";
+import Posts from "../Post/Container";
 
 import { useRef, useEffect, useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 // Components
-import Page from "../components/Page";
+import Page from "../components/UI/General/Page";
 import Main from "../components/Home/Main";
 import LoginModal from "../components/Login/Modal";
 import SignUpModal from "../components/SignUp/Modal";
