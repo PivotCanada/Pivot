@@ -1,22 +1,22 @@
-import Container from "@material-ui/core/Container";
+import { useRef, useEffect, useState, useContext } from "react";
+// Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, ButtonGroup } from "@material-ui/core";
 import PublicIcon from "@material-ui/icons/Public";
 import RoomIcon from "@material-ui/icons/Room";
 import StoreIcon from "@material-ui/icons/Store";
 import Chip from "@material-ui/core/Chip";
-import Follow from "./Follow";
-import Followers from "./Followers";
-import Following from "./Following";
-
+// Components
+import ButtonGroup from "./ButtonGroup";
+import Follow from "./Overview/Follow";
+import Followers from "./Overview/Followers";
+import Following from "./Overview/Following";
 import PostCard from "../Post/Main/Card";
 import CreatePost from "../Post/Create/MainProfile";
-
 import Posts from "../Post/Container";
-
-import { useRef, useEffect, useState, useContext } from "react";
+import Overview from "./Overview/Main";
+// Contexts
 import { UserContext } from "../../contexts/UserContext";
-
+// Utils
 import { fetchUserPosts } from "./utils/fetchUserPosts";
 
 const useStyles = makeStyles((theme) => ({
@@ -222,14 +222,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     margin: 0,
   },
-  buttonGroup: {
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-  },
 }));
 
-function Article({ story }) {
+function Main({ story }) {
   const overviewRef = useRef(null);
   const classes = useStyles();
   const { user } = useContext(UserContext);
@@ -253,105 +248,15 @@ function Article({ story }) {
 
   return (
     <div className={classes.container}>
-      <div className={classes.overview}>
-        <div className={classes.imageContainer}>
-          <img
-            className={classes.image}
-            src={story.photo ? story.photo : def}
-          />
-        </div>
-        <div className={classes.followBoxWrapper}>
-          <div className={classes.followBox}>
-            <p className={classes.followBoxText}>{story.following.length}</p>
-            <p className={classes.followBoxHeader}>following</p>
-          </div>
-          <div className={classes.followBox}>
-            <p className={classes.followBoxText}>{posts.length}</p>
-            <p className={classes.followBoxHeader}>posts</p>
-          </div>
-          <div className={classes.followBox}>
-            <p className={classes.followBoxText}>{story.followed_by.length}</p>
-            <p className={classes.followBoxHeader}>followers</p>
-          </div>
-        </div>
-        <Follow profile={story} />
-
-        <div className={classes.innerWrapper}>
-          <h2 className={classes.author}>
-            {story.firstname} {story.lastname}
-          </h2>
-          <h2 className={classes.date}>
-            Entreprenuer, Engineer. Building the next genration of electric
-            motors.
-          </h2>
-        </div>
-        <div className={classes.chipArray}>
-          <Chip
-            icon={<RoomIcon />}
-            label={story.location}
-            className={classes.chip}
-          />
-          <a
-            style={{ textDecoration: "none" }}
-            href={"https://" + story.website}
-            target="_blank"
-          >
-            <Chip
-              icon={<PublicIcon />}
-              label={story.website}
-              className={classes.chip}
-            />
-            <Chip
-              icon={<StoreIcon />}
-              label={story.industry}
-              className={classes.chip}
-            />
-          </a>
-          {/* <Chip label={story.industry} className={classes.chip} /> */}
-        </div>
-
-        <Following profile={story} />
-        <Followers profile={story} />
-      </div>
+      <Overview story={story} posts={posts} />
       <div className={classes.article}>
-        <div className={classes.buttonGroup}>
-          <ButtonGroup
-            color="primary"
-            aria-label="outlined secondary button group"
-          >
-            <Button
-              style={{ textTransform: "none" }}
-              onClick={() => setContent("story")}
-            >
-              Story
-            </Button>
-            <Button
-              style={{ textTransform: "none" }}
-              onClick={() => setContent("posts")}
-            >
-              Posts
-            </Button>
-            <Button
-              style={{ textTransform: "none" }}
-              onClick={() => setContent("likes")}
-            >
-              Likes
-            </Button>
-            <Button
-              style={{ textTransform: "none" }}
-              onClick={() => setContent("contacts")}
-            >
-              Contacts
-            </Button>
-          </ButtonGroup>
-        </div>
+        <ButtonGroup setContent={setContent} />
 
         {user !== null && user._id === story._id ? <CreatePost /> : null}
 
         {content === "story" ? (
           <div className={classes.body}>
             <h1 className={classes.title}>Story</h1>
-            {/* <h1 className={classes.storyTitle}>{story.business}</h1> */}
             <h2 className={classes.subheader}>Our Challenges</h2>
             <p className={classes.text}>{story.challenges}</p>
             <h2 className={classes.subheader}>Our Wish</h2>
@@ -395,4 +300,4 @@ function Article({ story }) {
   );
 }
 
-export default Article;
+export default Main;

@@ -1,26 +1,26 @@
-import React, { Component } from 'react'
-import Page from '../components/Page'
+import React, { Component } from "react";
+import Page from "../components/UI/General/Page";
 
-import * as gtag from '../lib/gtag'
+import * as gtag from "../lib/gtag";
 
 export default class Contact extends Component {
-  state = { message: '' }
+  state = { message: "" };
 
   handleInput = (e) => {
-    this.setState({ message: e.target.value })
-  }
+    this.setState({ message: e.target.value });
+  };
 
   handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     gtag.event({
-      action: 'submit_form',
-      category: 'Contact',
+      action: "submit_form",
+      category: "Contact",
       label: this.state.message,
-    })
+    });
 
-    this.setState({ message: '' })
-  }
+    this.setState({ message: "" });
+  };
 
   render() {
     return (
@@ -34,6 +34,6 @@ export default class Contact extends Component {
           <button type="submit">submit</button>
         </form>
       </Page>
-    )
+    );
   }
 }

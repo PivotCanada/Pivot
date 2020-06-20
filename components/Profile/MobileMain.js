@@ -5,9 +5,7 @@ import PublicIcon from "@material-ui/icons/Public";
 import RoomIcon from "@material-ui/icons/Room";
 import StoreIcon from "@material-ui/icons/Store";
 import Chip from "@material-ui/core/Chip";
-import Follow from "./Follow";
-import Followers from "./Followers";
-import Following from "./Following";
+import Follow from "./Overview/Follow";
 
 import PostCard from "../Post/Main/Card";
 
@@ -371,8 +369,8 @@ function Article({ story }) {
           <div className={classes.body}>
             <h1 className={classes.title}>Contacts</h1>
             <div className={classes.bodyContacts}>
-              <Following profile={story} />
-              <Followers profile={story} />
+              {/* <Following profile={story} />
+              <Followers profile={story} /> */}
             </div>
           </div>
         ) : null}
