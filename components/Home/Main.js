@@ -1,16 +1,14 @@
 import { useEffect, useContext, useState } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
 // Components
 import Search from "./Search";
 import Content from "./Content";
 import ButtonGroup from "./ButtonGroup";
 import FloatingActionButton from "./FloatingActionButton";
+import Snackbar from "../UI/General/Snackbar";
 // Contexts
 import { UserContext } from "../../contexts/UserContext";
-import { ModalContext } from "../../contexts/ModalContext";
 // Hooks
 import useWitdh from "../../hooks/useWidth";
 import useValidate from "../../hooks/useValidate";
@@ -38,21 +36,18 @@ const useStyles = makeStyles(() => ({
 
 const Main = () => {
   const classes = useStyles();
-  const [openSnack, setOpenSnack] = useState(false);
+  const [open, setOpen] = useState(false);
   const [display, setDisplay] = useState(true);
   const [content, setContent] = useState("stories");
   const { width, setWidth } = useWitdh();
   const { user, setUser, setAuthenticated, setLoading } = useContext(
     UserContext
   );
-
   const { validateSession } = useValidate(
     setUser,
     setAuthenticated,
     setLoading
   );
-
-  // TODO : Replace with HOC ( I really mean Hook! ) functionality ...
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -63,22 +58,14 @@ const Main = () => {
       validateSession();
     }
     if (user) {
-      setOpenSnack(true);
+      setOpen(true);
     }
   }, [user]);
 
   if (width > 950) {
     return (
       <div className={classes.root}>
-        <Snackbar open={openSnack} autoHideDuration={3000} onClose={() => {}}>
-          <MuiAlert
-            elevation={6}
-            variant="filled"
-            onClose={() => setOpenSnack(false)}
-          >
-            Action Succesful
-          </MuiAlert>
-        </Snackbar>
+        <Snackbar open={open} setOpen={setOpen} message={"Success"} />
         <div className={classes.innerWrapper}>
           <Search setDisplay={setDisplay} display={display} />
           <ButtonGroup display={display} setContent={setContent} />
@@ -90,11 +77,7 @@ const Main = () => {
   } else {
     return (
       <div className={classes.root}>
-        <div className={classes.innerWrapper}>
-          {/* {content.map((user) => {
-            return <MobileCard key={user._id} story={user} />;
-          })} */}
-        </div>
+        <div className={classes.innerWrapper}></div>
       </div>
     );
   }
