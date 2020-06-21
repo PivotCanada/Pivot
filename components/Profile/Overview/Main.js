@@ -1,10 +1,5 @@
-import { useRef, useEffect, useState, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import PublicIcon from "@material-ui/icons/Public";
-import RoomIcon from "@material-ui/icons/Room";
-import StoreIcon from "@material-ui/icons/Store";
-import Chip from "@material-ui/core/Chip";
 // Components
 import Follow from "./Follow";
 import UserList from "./UserList";

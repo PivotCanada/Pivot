@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 // Validation
 import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
@@ -20,27 +19,57 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navigation({ values, setStep, handleErrors, errors, validation }) {
+function Navigation({ values, setStep, handleErrors, validation, direction }) {
   const classes = useStyles();
 
-  return (
-    <div className={classes.buttonContainer}>
-      <IconButton
-        onClick={() => {
-          setStep((s) => s - 1);
-        }}
-      >
-        <ArrowBackIcon className={classes.arrow} />
-      </IconButton>
-      <IconButton
-        onClick={(e) => {
-          incrementForm(e, values, handleErrors, validation, setStep);
-        }}
-      >
-        <ArrowForwardIcon className={classes.arrow} />
-      </IconButton>
-    </div>
-  );
+  switch (direction) {
+    case "back":
+      return (
+        <div className={classes.buttonContainer}>
+          <IconButton
+            onClick={() => {
+              setStep((s) => s - 1);
+            }}
+          >
+            <ArrowBackIcon className={classes.arrow} />
+          </IconButton>
+        </div>
+      );
+
+    case "front":
+      return (
+        <div className={classes.buttonContainer}>
+          <IconButton
+            onClick={(e) => {
+              incrementForm(e, values, handleErrors, validation, setStep);
+            }}
+          >
+            <ArrowForwardIcon className={classes.arrow} />
+          </IconButton>
+        </div>
+      );
+
+    default:
+      return (
+        <div className={classes.buttonContainer}>
+          <IconButton
+            onClick={() => {
+              setStep((s) => s - 1);
+            }}
+          >
+            <ArrowBackIcon className={classes.arrow} />
+          </IconButton>
+
+          <IconButton
+            onClick={(e) => {
+              incrementForm(e, values, handleErrors, validation, setStep);
+            }}
+          >
+            <ArrowForwardIcon className={classes.arrow} />
+          </IconButton>
+        </div>
+      );
+  }
 }
 
 export default Navigation;

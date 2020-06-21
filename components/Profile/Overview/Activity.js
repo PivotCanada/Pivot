@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Activity({ profile, posts }) {
+const Activity = ({ profile, posts }) => {
   const classes = useStyles();
 
   return (
@@ -51,6 +51,6 @@ function Activity({ profile, posts }) {
       </div>
     </div>
   );
-}
+};
 
 export default Activity;

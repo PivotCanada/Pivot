@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
-import Modal from "../Modal";
+import Modal from "../Core/Modal";
 import Image from "../Overview/Image";
 import Details from "../Overview/Details";
 // Utils

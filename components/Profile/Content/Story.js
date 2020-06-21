@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Noto Sans, sans-serif",
     fontWeight: 700,
     fontSize: 16,
-    width: "80%",
     margin: 0,
   },
 }));

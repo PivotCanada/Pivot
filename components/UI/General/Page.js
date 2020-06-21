@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 // Components
 import AppBar from "./AppBar";
-import ProfileModal from "../../Profile/Modal";
+import ProfileModal from "../../Profile/Core/Modal";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";

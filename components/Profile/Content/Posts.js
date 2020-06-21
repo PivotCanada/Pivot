@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Posts({ posts }) {
+function Posts({ posts, header }) {
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>
-      <h1 className={classes.header}>Posts</h1>
+      <h1 className={classes.header}>{header}</h1>
       <Container callback={false} data={posts} profile={true} />
     </div>
   );

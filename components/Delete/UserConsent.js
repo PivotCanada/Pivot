@@ -13,25 +13,14 @@ import Navigation from "./Navigation";
 import { ModalContext } from "../../contexts/ModalContext";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  wrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     minHeight: "100vh",
     alignItems: "center",
   },
-  textField: {
-    width: "17rem",
-    margin: 15,
-    flexGrow: 1,
-    flexShrink: 1,
-  },
-  innerWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    overflow: "scroll",
-  },
+
   header: {
     textAlign: "center",
     margin: 0,
@@ -57,40 +46,19 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     marginTop: 10,
   },
-
-  loginButton: {
-    color: "blue",
-    textTransform: "none",
-    marginLeft: 5,
-  },
 }));
 
-function UserCredentials({
-  values,
-  handleChange,
-  setStep,
-  handleErrors,
-  errors,
-}) {
-  const { setShowOnboard } = useContext(ModalContext);
+function UserCredentials({ setStep }) {
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      //   onSubmit={(e) => {
-      //     e.preventDefault();
-      //     values.email = formatEmail(values.email);
-      //     incrementForm(e, values, handleErrors, validateCredentials, setStep);
-      //   }}
-    >
+    <form className={classes.wrapper}>
       <h1 className={classes.header}>There's No Going Back!</h1>
       <p className={classes.text}>
         Deleting your account will erase your story, and remove all connection
         you have.
       </p>
 
-      <div className={classes.innerWrapper}></div>
       <div className={classes.buttonContainer}>
         <Button
           variant="contained"

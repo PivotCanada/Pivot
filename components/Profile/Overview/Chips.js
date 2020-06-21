@@ -1,4 +1,3 @@
-import { useRef, useEffect, useState, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Chips({ profile }) {
+const Chips = ({ profile }) => {
   const classes = useStyles();
 
   return (
@@ -59,6 +58,6 @@ function Chips({ profile }) {
       </a>
     </div>
   );
-}
+};
 
 export default Chips;
