@@ -1,0 +1,58 @@
+import { useState, useEffect, useContext } from "react";
+// Material UI
+import { makeStyles } from "@material-ui/core/styles";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { Fab } from "@material-ui/core";
+// Components
+
+// Contexts
+import { UserContext } from "../../../../contexts/UserContext";
+// Utils
+import { checkFavourited, addLike, removeLike } from "./utils/general";
+
+const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    display: "flex",
+    justifyContent: "space-between",
+    width: 95,
+    marginTop: 25,
+  },
+}));
+
+const Main = ({ post, setOpen }) => {
+  const classes = useStyles();
+  const { user } = useContext(UserContext);
+  const [fav, setFav] = useState(checkFavourited(user, post));
+  const author = post.author;
+
+  return (
+    <div className={classes.wrapper}>
+      {fav ? (
+        <Fab
+          size="small"
+          color="primary"
+          onClick={() => removeLike(user, setFav, post)}
+        >
+          <FavoriteIcon />
+        </Fab>
+      ) : (
+        <Fab
+          size="small"
+          color="primary"
+          onClick={() => (user ? addLike(user, setFav, post) : () => {})}
+        >
+          <FavoriteBorderIcon />
+        </Fab>
+      )}
+      {user && user._id === author._id ? (
+        <Fab size="small" color="primary" onClick={() => setOpen(true)}>
+          <MoreHorizIcon />
+        </Fab>
+      ) : null}
+    </div>
+  );
+};
+
+export default Main;

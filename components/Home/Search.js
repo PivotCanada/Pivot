@@ -82,12 +82,12 @@ function Search({ setDisplay, display }) {
 
   const setPlaceholder = () => {
     if (filter === "location") {
-      return "Search by Location";
+      return "Search";
     }
     if (filter === "industry") {
       return "Seach by Industry";
     } else {
-      return "search";
+      return "Search";
     }
   };
 

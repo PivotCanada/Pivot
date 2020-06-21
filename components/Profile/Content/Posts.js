@@ -1,7 +1,7 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
-import Container from "../../Post/Container";
+import Container from "../../Post/Core/Container";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {

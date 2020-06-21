@@ -2,7 +2,7 @@ import { useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
-import Posts from "../../Post/Container";
+import Posts from "../../Post/Core/Container";
 import Profiles from "../../Profile/Core/Container";
 import Create from "../../Post/Create/MainProfile";
 // Contexts

@@ -36,7 +36,7 @@ const Main = ({ story }) => {
   const classes = useStyles();
   const { user } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
-  const [content, setContent] = useState("posts");
+  const [content, setContent] = useState("story");
 
   const fetchPosts = async (id) => {
     await fetchUserPosts(id).then((response) => {
