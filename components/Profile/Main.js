@@ -8,12 +8,12 @@ import Chip from "@material-ui/core/Chip";
 // Components
 import ButtonGroup from "./ButtonGroup";
 import Follow from "./Overview/Follow";
-import Followers from "./Overview/Followers";
-import Following from "./Overview/Following";
+
 import PostCard from "../Post/Main/Card";
 import CreatePost from "../Post/Create/MainProfile";
 import Posts from "../Post/Container";
 import Overview from "./Overview/Main";
+import Content from "./Content/Main";
 // Contexts
 import { UserContext } from "../../contexts/UserContext";
 // Utils
@@ -225,13 +225,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Main({ story }) {
-  const overviewRef = useRef(null);
   const classes = useStyles();
   const { user } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState("posts");
-  const def =
-    "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
+  const identical = user !== null && user._id === story._id;
 
   const fetchPosts = async (id) => {
     await fetchUserPosts(story._id).then((response) => {
@@ -248,53 +246,12 @@ function Main({ story }) {
 
   return (
     <div className={classes.container}>
-      <Overview story={story} posts={posts} />
+      <Overview story={story} posts={posts.length} />
       <div className={classes.article}>
         <ButtonGroup setContent={setContent} />
+        {identical ? <CreatePost /> : null}
 
-        {user !== null && user._id === story._id ? <CreatePost /> : null}
-
-        {content === "story" ? (
-          <div className={classes.body}>
-            <h1 className={classes.title}>Story</h1>
-            <h2 className={classes.subheader}>Our Challenges</h2>
-            <p className={classes.text}>{story.challenges}</p>
-            <h2 className={classes.subheader}>Our Wish</h2>
-            <p className={classes.text}>{story.wish}</p>
-            <h2 className={classes.subheader}>Our Achievements</h2>
-            <p className={classes.text}>{story.achievements}</p>
-            <h2 className={classes.subheader}>Our Goals</h2>
-            <p className={classes.text}>{story.goals}</p>
-          </div>
-        ) : null}
-
-        {content === "posts" ? (
-          <div className={classes.bodyPost}>
-            <h1 className={classes.title}>Posts</h1>
-            {posts.map((post) => {
-              return <PostCard key={post._id} post={post} display={true} />;
-            })}
-          </div>
-        ) : null}
-
-        {content === "likes" ? (
-          <div className={classes.bodyPost}>
-            <h1 className={classes.title}>Likes</h1>
-            {story.likes.map((post) => {
-              return <PostCard key={post._id} post={post} display={true} />;
-            })}
-          </div>
-        ) : null}
-
-        {content === "contacts" ? (
-          <div className={classes.body}>
-            <h1 className={classes.title}>Contacts</h1>
-            <div className={classes.bodyContacts}>
-              <Following profile={story} />
-              <Followers profile={story} />
-            </div>
-          </div>
-        ) : null}
+        <Content story={story} content={content} />
       </div>
     </div>
   );

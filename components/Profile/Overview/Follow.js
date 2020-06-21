@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import { UserContext } from "../../../contexts/UserContext";
-import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 
 // TODO : Refactor ...
@@ -84,6 +83,8 @@ const Follow = ({ profile }) => {
     return await req.json();
   };
 
+  // FIX THIS
+
   const followed_by = async (user, profile, followed) => {
     let url = "";
 
@@ -115,8 +116,6 @@ const Follow = ({ profile }) => {
 
     return await req.json();
   };
-
-  //   console.log(checkFollowed(user, profile));
 
   useEffect(() => {
     checkFollowed(user, profile);

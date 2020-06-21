@@ -3,37 +3,41 @@ import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Card from "./Main/Card";
-// Utils
-// Hooks
 
-const useStyles = makeStyles(() => ({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    minHeight: "100vh",
-    marginTop: 40,
-    marginBottom: 75,
-    width: "90vw",
-    overflowX: "hidden",
-  },
-}));
+const Main = ({ callback, data, profile }) => {
+  const useStyles = makeStyles(() => ({
+    root: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: profile ? "start" : "center",
+      minHeight: "100vh",
+      marginTop: profile ? 0 : 40,
+      marginBottom: 75,
+      width: profile ? "100%" : "90vw",
+    },
+  }));
 
-const Main = ({ display, callback }) => {
   const classes = useStyles();
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    callback().then((response) => {
-      console.log(response);
-      setPosts(response.data);
-    });
-  }, []);
+    if (callback) {
+      callback().then((response) => {
+        console.log(response);
+        setPosts(response.data);
+      });
+    } else {
+      console.log(data);
+      setPosts(data);
+    }
+  }, [data]);
+
+  useEffect(() => {}, [posts]);
 
   return (
     <div className={classes.root}>
       {posts.map((post) => {
-        return <Card display={display} key={post._id} post={post} />;
+        return <Card key={post._id} post={post} />;
       })}
     </div>
   );

@@ -45,7 +45,7 @@ const format = (text) => {
 function Preview({ post, display }) {
   const useStyles = makeStyles((theme) => ({
     card: {
-      display: display ? "flex" : "none",
+      display: "flex",
       flexDirection: "column",
       borderRadius: 3,
       border: "1px solid #cccccc",
