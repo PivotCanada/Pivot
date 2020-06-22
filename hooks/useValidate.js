@@ -9,7 +9,6 @@ function useValidate(setUser, setAuthenticated, setLoading) {
     let token = Cookie.get("token");
     if (token !== undefined) {
       await validateToken(token).then(async (response) => {
-        console.log(response);
         status = response.status;
         if (status === "success") {
           await fetchUser(response.data.userId).then((response) => {

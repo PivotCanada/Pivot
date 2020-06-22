@@ -10,6 +10,7 @@ import * as gtag from "../lib/gtag";
 // Context
 import { ModalStore } from "../contexts/ModalContext";
 import { UserStore } from "../contexts/UserContext";
+import { LanguageStore } from "../contexts/LanguageContext";
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -24,15 +25,17 @@ const MyApp = ({ Component, pageProps }) => {
 
   return (
     <React.Fragment>
-      <UserStore>
+      <LanguageStore>
         <ModalStore>
-          <ThemeProvider theme={theme}>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <Component {...pageProps} />
-          </ThemeProvider>
+          <UserStore>
+            <ThemeProvider theme={theme}>
+              {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+              <CssBaseline />
+              <Component {...pageProps} />
+            </ThemeProvider>
+          </UserStore>
         </ModalStore>
-      </UserStore>
+      </LanguageStore>
     </React.Fragment>
   );
 };

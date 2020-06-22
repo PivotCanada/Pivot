@@ -65,10 +65,6 @@ export default function TransitionsModal({ open, setOpen, post }) {
 
   useEffect(() => {}, [open]);
 
-  useEffect(() => {
-    console.log(window.scrollY);
-  }, []);
-
   return (
     <Dialog
       scroll="body"

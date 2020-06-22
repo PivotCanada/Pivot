@@ -10,7 +10,25 @@ import Card from "../Profile/Core/Card";
 
 import { ClickAwayListener } from "@material-ui/core";
 
+// Hooks
+import useLanguage from "../../hooks/useLanguage";
+
 function Search({ setDisplay, display }) {
+  const { keys, truthy } = useLanguage({
+    search: {
+      english: "Search",
+      french: "Chercher",
+    },
+    industry: {
+      english: "Industry",
+      french: "Industrie",
+    },
+    location: {
+      english: "Location",
+      french: "Emplacement",
+    },
+  });
+
   const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [filter, setFilter] = useState("location");
@@ -82,7 +100,7 @@ function Search({ setDisplay, display }) {
 
   const setPlaceholder = () => {
     if (filter === "location") {
-      return "Search";
+      return keys.search;
     }
     if (filter === "industry") {
       return "Seach by Industry";
@@ -134,7 +152,7 @@ function Search({ setDisplay, display }) {
           size="medium"
           value={search}
           className={classes.search}
-          placeholder={setPlaceholder()}
+          placeholder={truthy(keys.search)}
           id="input-with-icon-textfield"
           onClick={() => {
             setFull(true);
@@ -155,13 +173,13 @@ function Search({ setDisplay, display }) {
             style={{ textTransform: "none" }}
             onClick={() => setFilter("location")}
           >
-            Location
+            {truthy(keys.location)}
           </Button>
           <Button
             style={{ textTransform: "none" }}
             onClick={() => setFilter("industry")}
           >
-            Industry
+            {truthy(keys.industry)}
           </Button>
         </ButtonGroup>
         {/* <div className={classes.chipArray}>

@@ -1,11 +1,23 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, ButtonGroup } from "@material-ui/core";
+// Hooks
+import useLanguage from "../../../hooks/useLanguage";
 
 const useStyles = makeStyles(() => ({}));
 
 const Main = ({ display, setContent }) => {
   const classes = useStyles();
+  const { keys, truthy } = useLanguage({
+    posts: {
+      english: "Posts",
+      french: "des Postes",
+    },
+    stories: {
+      english: "Stories",
+      french: "des Histoires",
+    },
+  });
 
   return (
     <ButtonGroup
@@ -17,13 +29,13 @@ const Main = ({ display, setContent }) => {
         style={{ textTransform: "none" }}
         onClick={() => setContent("stories")}
       >
-        Stories
+        {truthy(keys.stories)}
       </Button>
       <Button
         style={{ textTransform: "none" }}
         onClick={() => setContent("posts")}
       >
-        Posts
+        {truthy(keys.posts)}
       </Button>
     </ButtonGroup>
   );

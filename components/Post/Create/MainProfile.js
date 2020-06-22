@@ -125,7 +125,7 @@ const Main = () => {
           <div className={classes.inputWrapper}>
             <TextField
               multiline
-              maxRows={4}
+              maxrows={4}
               className={classes.textField}
               type="text"
               label="What's on your mind?"

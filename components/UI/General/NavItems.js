@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Link from "next/link";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,6 +8,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 import { UserContext } from "../../../contexts/UserContext";
+// Hooks
+import useLanguage from "../../../hooks/useLanguage";
 
 const useStyles = makeStyles(() => ({
   wrapper: {
@@ -50,14 +52,36 @@ const NavItems = ({ setOpen }) => {
   const { setShowOnboard, setShowLogin, setShowProfile } = useContext(
     ModalContext
   );
+  const { keys, truthy, changeLanguage } = useLanguage({
+    language: {
+      english: "Français",
+      french: "English",
+    },
+    discover: {
+      english: "Discover",
+      french: "Decouvrir",
+    },
+    journey: {
+      english: "My Journey",
+      french: "Mon Histoire",
+    },
+    actionCall: {
+      english: "Get Started",
+      french: "Debut",
+    },
+  });
 
   return (
     <div
-      style={{ width: authenticated ? 250 : 300 }}
+      style={{ width: authenticated ? 300 : 350 }}
       className={classes.wrapper}
     >
+      <h3 onClick={() => changeLanguage()} className={classes.link}>
+        {truthy(keys.language)}
+      </h3>
+
       <Link href={"/"}>
-        <h3 className={classes.link}>Discover</h3>
+        <h3 className={classes.link}>{keys.discover}</h3>
       </Link>
 
       <h3
@@ -71,7 +95,7 @@ const NavItems = ({ setOpen }) => {
         }}
         className={classes.link}
       >
-        My Journey
+        {truthy(keys.journey)}
       </h3>
 
       {authenticated ? (
@@ -94,7 +118,7 @@ const NavItems = ({ setOpen }) => {
           variant="contained"
           color="primary"
         >
-          Get Started
+          {truthy(keys.actionCall)}
         </Button>
       )}
     </div>

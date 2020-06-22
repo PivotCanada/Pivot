@@ -16,6 +16,8 @@ import PostAddIcon from "@material-ui/icons/PostAdd";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
+// Hooks
+import useLanguage from "../../../hooks/useLanguage";
 
 const useStyles = makeStyles({
   list: {
@@ -31,6 +33,28 @@ const DrawerList = ({ anchor, toggleDrawer }) => {
   const { setShowEdit, setShowDelete, setShowCreate } = useContext(
     ModalContext
   );
+  const { keys, truthy } = useLanguage({
+    home: {
+      english: "Home",
+      french: "Maison",
+    },
+    create: {
+      english: "Create",
+      french: "Créer",
+    },
+    edit: {
+      english: "Edit Account",
+      french: "Modifier le Compte",
+    },
+    delete: {
+      english: "Delete Account",
+      french: "Supprimer le Compte",
+    },
+    logout: {
+      english: "Logout",
+      french: "Se Déconnecter",
+    },
+  });
 
   return (
     <div
@@ -47,33 +71,33 @@ const DrawerList = ({ anchor, toggleDrawer }) => {
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>
-            <ListItemText primary={"Home"} />
+            <ListItemText primary={truthy(keys.home)} />
           </ListItem>
         </Link>
         <ListItem button onClick={() => setShowCreate(true)}>
           <ListItemIcon>
             <PostAddIcon />
           </ListItemIcon>
-          <ListItemText primary={"Create"} />
+          <ListItemText primary={truthy(keys.create)} />
         </ListItem>
         <ListItem button onClick={() => setShowEdit(true)}>
           <ListItemIcon>
             <EditIcon />
           </ListItemIcon>
-          <ListItemText primary={"Edit Account"} />
+          <ListItemText primary={truthy(keys.edit)} />
         </ListItem>
         <ListItem button onClick={() => setShowDelete(true)}>
           <ListItemIcon>
             <DeleteForeverIcon />
           </ListItemIcon>
-          <ListItemText primary={"Delete Account"} />
+          <ListItemText primary={truthy(keys.delete)} />
         </ListItem>
         <Link href={"/logout"}>
           <ListItem button>
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary={"Logout"} />
+            <ListItemText primary={truthy(keys.logout)} />
           </ListItem>
         </Link>
       </List>

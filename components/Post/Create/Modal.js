@@ -68,10 +68,6 @@ export default function TransitionsModal(props) {
 
   useEffect(() => {}, [showCreate]);
 
-  useEffect(() => {
-    console.log(window.scrollY);
-  }, []);
-
   return (
     <Dialog
       scroll="body"

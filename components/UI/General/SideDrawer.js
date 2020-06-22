@@ -4,7 +4,7 @@ import List from "./List";
 // Material UI
 import Drawer from "@material-ui/core/Drawer";
 
-const TemporaryDrawer = ({ open, setOpen, anchor }) => {
+const SideDrawer = ({ open, setOpen, anchor }) => {
   const toggleDrawer = (value) => (event) => {
     if (
       event &&
@@ -27,4 +27,4 @@ const TemporaryDrawer = ({ open, setOpen, anchor }) => {
   );
 };
 
-export default TemporaryDrawer;
+export default SideDrawer;
