@@ -47,7 +47,7 @@ export default function ButtonAppBar() {
       <AppBar className={classes.appBar}>
         <SideDrawer open={open} setOpen={setOpen} anchor={"right"} />
         <Toolbar className={classes.toolbar}>
-          <Link href="/">
+          <Link href="/landing">
             <img
               className={classes.icon}
               src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"

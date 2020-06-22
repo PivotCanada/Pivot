@@ -57,6 +57,10 @@ const NavItems = ({ setOpen }) => {
       english: "Français",
       french: "English",
     },
+    about: {
+      english: "About",
+      french: "à Propos",
+    },
     discover: {
       english: "Discover",
       french: "Decouvrir",
@@ -73,7 +77,7 @@ const NavItems = ({ setOpen }) => {
 
   return (
     <div
-      style={{ width: authenticated ? 300 : 350 }}
+      style={{ width: authenticated ? 350 : 400 }}
       className={classes.wrapper}
     >
       <h3 onClick={() => changeLanguage()} className={classes.link}>
@@ -82,6 +86,10 @@ const NavItems = ({ setOpen }) => {
 
       <Link href={"/"}>
         <h3 className={classes.link}>{keys.discover}</h3>
+      </Link>
+
+      <Link href={"/about"}>
+        <h3 className={classes.link}>{keys.about}</h3>
       </Link>
 
       <h3

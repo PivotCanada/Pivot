@@ -6,7 +6,7 @@ import useLanguage from "../../../hooks/useLanguage";
 
 const useStyles = makeStyles(() => ({}));
 
-const Main = ({ display, setContent }) => {
+const Main = ({ setDisplaySearch, display, setContent }) => {
   const classes = useStyles();
   const { keys, truthy } = useLanguage({
     posts: {
@@ -27,13 +27,19 @@ const Main = ({ display, setContent }) => {
     >
       <Button
         style={{ textTransform: "none" }}
-        onClick={() => setContent("stories")}
+        onClick={() => {
+          setContent("stories");
+          setDisplaySearch(true);
+        }}
       >
         {truthy(keys.stories)}
       </Button>
       <Button
         style={{ textTransform: "none" }}
-        onClick={() => setContent("posts")}
+        onClick={() => {
+          setContent("posts");
+          setDisplaySearch(false);
+        }}
       >
         {truthy(keys.posts)}
       </Button>

@@ -13,7 +13,7 @@ import { ClickAwayListener } from "@material-ui/core";
 // Hooks
 import useLanguage from "../../hooks/useLanguage";
 
-function Search({ setDisplay, display }) {
+function Search({ displaySearch, setDisplay, display }) {
   const { keys, truthy } = useLanguage({
     search: {
       english: "Search",
@@ -139,50 +139,51 @@ function Search({ setDisplay, display }) {
     setResults([]);
   }, [full]);
 
-  return (
-    <div className={classes.container}>
-      {/* <ClickAwayListener
+  if (displaySearch) {
+    return (
+      <div className={classes.container}>
+        {/* <ClickAwayListener
         onClickAway={() => {
           setFull(false);
           setDisplay(true);
         }}
       > */}
-      <div className={classes.searchContainer}>
-        <TextField
-          size="medium"
-          value={search}
-          className={classes.search}
-          placeholder={truthy(keys.search)}
-          id="input-with-icon-textfield"
-          onClick={() => {
-            setFull(true);
-            setDisplay(false);
-          }}
-          onChange={(e) => {
-            setSearch(e.target.value);
-            setDisplay(false);
-            setFull(true);
-          }}
-        />
-        <ButtonGroup
-          style={{ display: display ? "none" : "block" }}
-          color="primary"
-          aria-label="outlined secondary button group"
-        >
-          <Button
-            style={{ textTransform: "none" }}
-            onClick={() => setFilter("location")}
+        <div className={classes.searchContainer}>
+          <TextField
+            size="medium"
+            value={search}
+            className={classes.search}
+            placeholder={truthy(keys.search)}
+            id="input-with-icon-textfield"
+            onClick={() => {
+              setFull(true);
+              setDisplay(false);
+            }}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setDisplay(false);
+              setFull(true);
+            }}
+          />
+          <ButtonGroup
+            style={{ display: display ? "none" : "block" }}
+            color="primary"
+            aria-label="outlined secondary button group"
           >
-            {truthy(keys.location)}
-          </Button>
-          <Button
-            style={{ textTransform: "none" }}
-            onClick={() => setFilter("industry")}
-          >
-            {truthy(keys.industry)}
-          </Button>
-        </ButtonGroup>
-        {/* <div className={classes.chipArray}>
+            <Button
+              style={{ textTransform: "none" }}
+              onClick={() => setFilter("location")}
+            >
+              {truthy(keys.location)}
+            </Button>
+            <Button
+              style={{ textTransform: "none" }}
+              onClick={() => setFilter("industry")}
+            >
+              {truthy(keys.industry)}
+            </Button>
+          </ButtonGroup>
+          {/* <div className={classes.chipArray}>
           <Chip
             onClick={() => setFilter("location")}
             icon={<RoomIcon />}
@@ -197,26 +198,29 @@ function Search({ setDisplay, display }) {
             className={classes.chip}
           />
         </div> */}
+        </div>
+        {/* </ClickAwayListener> */}
+
+        {full ? (
+          <IconButton
+            className={classes.iconButton}
+            onClick={() => {
+              setFull(false);
+              setDisplay(true);
+            }}
+          >
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+
+        {results.map((user) => {
+          return <Card display={display} key={user._id} story={user} />;
+        })}
       </div>
-      {/* </ClickAwayListener> */}
-
-      {full ? (
-        <IconButton
-          className={classes.iconButton}
-          onClick={() => {
-            setFull(false);
-            setDisplay(true);
-          }}
-        >
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-
-      {results.map((user) => {
-        return <Card display={display} key={user._id} story={user} />;
-      })}
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 }
 
 export default Search;

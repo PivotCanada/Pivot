@@ -38,6 +38,9 @@ const useStyles = makeStyles(() => ({
 
 const Main = () => {
   const classes = useStyles();
+  // Get rid of this
+  const [displaySearch, setDisplaySearch] = useState(true);
+  // Get rid of this
   const [open, setOpen] = useState(false);
   const [display, setDisplay] = useState(true);
   const [content, setContent] = useState("stories");
@@ -76,8 +79,16 @@ const Main = () => {
     <div className={classes.root}>
       <Snackbar open={open} setOpen={setOpen} message={"Success"} />
       <div className={classes.innerWrapper}>
-        <Search setDisplay={setDisplay} display={display} />
-        <ButtonGroup display={display} setContent={setContent} />
+        <Search
+          displaySearch={displaySearch}
+          setDisplay={setDisplay}
+          display={display}
+        />
+        <ButtonGroup
+          setDisplaySearch={setDisplaySearch}
+          display={display}
+          setContent={setContent}
+        />
         <Content
           display={display}
           content={content}
