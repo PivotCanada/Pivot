@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     padding: 0,
     width: "100%",
-    height: "100%",
   },
   header: {
     margin: 0,
@@ -23,10 +22,11 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     display: "flex",
+    flexWrap: "wrap",
   },
 }));
 
-const UserList = ({ users, title }) => {
+const UserList = ({ users, title, width }) => {
   const classes = useStyles();
   const empty = users.length === 0;
 
@@ -36,7 +36,10 @@ const UserList = ({ users, title }) => {
     return (
       <div className={classes.wrapper}>
         <h3 className={classes.header}>{title}</h3>
-        <div className={classes.container}>
+        <div
+          className={classes.container}
+          style={{ width: width ? "100%" : width }}
+        >
           {users.map((user) => {
             return <Card key={user._id} user={user} />;
           })}

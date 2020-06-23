@@ -35,12 +35,20 @@ const useStyles = makeStyles((theme) => ({
 const Main = ({ story }) => {
   const classes = useStyles();
   const { user } = useContext(UserContext);
+  const identical = sameUser(user, story);
   const [posts, setPosts] = useState([]);
-  const [content, setContent] = useState("story");
+  const [content, setContent] = useState("");
 
-  const fetchPosts = async (id) => {
-    await fetchUserPosts(id).then((response) => {
-      console.log(response);
+  const initialContent = () => {
+    if (identical) {
+      setContent("posts");
+    } else {
+      setContent("story");
+    }
+  };
+
+  const fetchPosts = async () => {
+    await fetchUserPosts(story._id).then((response) => {
       if (response.status === "success") {
         setPosts(response.data);
       }
@@ -48,7 +56,8 @@ const Main = ({ story }) => {
   };
 
   useEffect(() => {
-    fetchPosts(story._id);
+    fetchPosts();
+    initialContent();
   }, []);
 
   return (
@@ -56,7 +65,7 @@ const Main = ({ story }) => {
       <Overview story={story} posts={posts.length} />
       <div className={classes.container}>
         <ButtonGroup setContent={setContent} />
-        {sameUser(user, story) ? <CreatePost /> : null}
+        {identical ? <CreatePost /> : null}
         <Content story={story} content={content} posts={posts} />
       </div>
     </div>

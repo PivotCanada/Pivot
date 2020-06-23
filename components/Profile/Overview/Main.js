@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
@@ -23,6 +24,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Main({ story, posts }) {
   const classes = useStyles();
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+
+  const format = () => {
+    setFollowers(story.followed_by.slice(0, 6));
+    setFollowing(story.following.slice(0, 6));
+  };
+
+  useEffect(() => {
+    format();
+  }, [story]);
 
   return (
     <div className={classes.wrapper}>
@@ -31,8 +43,8 @@ function Main({ story, posts }) {
       <Follow profile={story} />
       <Details profile={story} />
       <Chips profile={story} />
-      <UserList users={story.followed_by} title={"followers"} />
-      <UserList users={story.following} title={"following"} />
+      <UserList users={followers} title={"followers"} width={250} />
+      <UserList users={following} title={"following"} width={250} />
     </div>
   );
 }
