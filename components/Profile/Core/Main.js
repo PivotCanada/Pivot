@@ -11,6 +11,7 @@ import { UserContext } from "../../../contexts/UserContext";
 // Utils
 import { fetchUserPosts } from "../utils/fetchUserPosts";
 import { sameUser } from "../utils/sameUser";
+import { fetchUserLikes } from "../utils/fetchUserLikes";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -37,6 +38,7 @@ const Main = ({ story }) => {
   const { user } = useContext(UserContext);
   const identical = sameUser(user, story);
   const [posts, setPosts] = useState([]);
+  const [likes, setLikes] = useState([]);
   const [content, setContent] = useState("");
 
   const initialContent = () => {
@@ -45,6 +47,10 @@ const Main = ({ story }) => {
     } else {
       setContent("story");
     }
+  };
+
+  const fetchLikes = async () => {
+    setLikes(await fetchUserLikes(user.likes));
   };
 
   const fetchPosts = async () => {
@@ -57,6 +63,7 @@ const Main = ({ story }) => {
 
   useEffect(() => {
     fetchPosts();
+    fetchLikes();
     initialContent();
   }, []);
 
@@ -66,7 +73,7 @@ const Main = ({ story }) => {
       <div className={classes.container}>
         <ButtonGroup setContent={setContent} />
         {identical ? <CreatePost /> : null}
-        <Content story={story} content={content} posts={posts} />
+        <Content story={story} content={content} posts={posts} likes={likes} />
       </div>
     </div>
   );

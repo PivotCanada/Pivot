@@ -10,7 +10,7 @@ import { Fab } from "@material-ui/core";
 // Contexts
 import { UserContext } from "../../../../contexts/UserContext";
 // Utils
-import { checkFavourited, addLike, removeLike } from "./utils/general";
+import { checkFavourited, like, removeLike } from "./utils/general";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -41,7 +41,7 @@ const Main = ({ post, setOpen }) => {
         <Fab
           size="small"
           color="primary"
-          onClick={() => (user ? addLike(user, setFav, post) : () => {})}
+          onClick={() => (user ? like(user, setFav, post) : () => {})}
         >
           <FavoriteBorderIcon />
         </Fab>
