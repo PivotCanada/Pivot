@@ -16,8 +16,8 @@ const Follow = ({ profile }) => {
 
   // TODO : Fix this shittt ...
 
-  console.log(authenticated);
-  console.log(sameUser);
+  // console.log(authenticated);
+  // console.log(sameUser);
 
   //   console.log(profile);
   //   console.log(user);
@@ -34,16 +34,16 @@ const Follow = ({ profile }) => {
   };
 
   const onSubmit = async (user, profile, followed) => {
-    console.log(followed);
+    // console.log(followed);
     setFollowed((f) => !f);
 
     await follow(user, profile, followed).then(async (response) => {
-      console.log(response);
+      // console.log(response);
       if (response.status === "success") {
         // TODO : FIX THIS !!!
         setUser(response.data);
         followed_by(user, profile, followed).then(async (response) => {
-          console.log(response);
+          // console.log(response);
           if (response.status === "success") {
           }
         });

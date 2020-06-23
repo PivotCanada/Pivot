@@ -50,7 +50,7 @@ const Main = ({ story }) => {
   };
 
   const fetchLikes = async () => {
-    setLikes(await fetchUserLikes(user.likes));
+    setLikes(await fetchUserLikes(story.likes));
   };
 
   const fetchPosts = async () => {
@@ -66,6 +66,8 @@ const Main = ({ story }) => {
     fetchLikes();
     initialContent();
   }, []);
+
+  console.log(likes);
 
   return (
     <div className={classes.wrapper}>

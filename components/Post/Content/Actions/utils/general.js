@@ -1,4 +1,4 @@
-import { unlike } from "../../../utils/unlike";
+// import { unlike } from "../../../utils/unlike";
 import { editPost } from "../../../utils/editPost";
 // import { like } from "../../../utils/like";
 
@@ -36,48 +36,45 @@ export const checkFavourited = (user, post) => {
   return value;
 };
 
-export const removeLike = async (user, setFav, post) => {
-  let id = post._id;
-
-  let arr = post.likes.filter((like) => {
-    like.user_id !== user._id;
-  });
-
-  let update = {
-    text: post.text,
-    author: post.author,
-    tags: post.tags,
-    likes: arr,
-  };
-
-  let data = {
-    post: post,
-  };
-
-  await editPost(update, id).then(async (response) => {
-    console.log(response);
-    if (response.status === "success") {
-      await unlike(data, user._id).then((response) => {
-        console.log(response);
-        if (response.status === "success") {
-          setFav(false);
-        }
-      });
-    } else {
-    }
-  });
-};
-
 export const like = async (user, setFavourite, post) => {
-  await editPost({ likes: [...post.likes, user] }, post._id).then(
+  await editPost({ likes: [...post.likes, user._id] }, post._id).then(
     async (response) => {
       console.log(response);
       if (response.status === "success") {
-        editUser({ likes: [...user.likes, post._id] }, user._id);
-        setFavourite(true);
+        await editUser({ likes: [...user.likes, post._id] }, user._id).then(
+          (response) => {
+            console.log(response);
+            if (response.status === "success") {
+              setFavourite(true);
+            }
+          }
+        );
       } else {
         return;
       }
     }
   );
+};
+
+const remove = async (list, remove) => {
+  let filtered = list.filter((i) => i !== remove);
+  return filtered;
+};
+
+export const unlike = async (user, setFavourite, post) => {
+  let filtered = await remove(post.likes, user._id);
+  await editPost({ likes: filtered }, post._id).then(async (response) => {
+    console.log(response);
+    if (response.status === "success") {
+      let filtered = await remove(user.likes, post._id);
+      await editUser({ likes: filtered }, user._id).then((response) => {
+        console.log(response);
+        if (response.status === "success") {
+          setFavourite(false);
+        }
+      });
+    } else {
+      return;
+    }
+  });
 };

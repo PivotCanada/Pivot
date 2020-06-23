@@ -10,7 +10,7 @@ import { Fab } from "@material-ui/core";
 // Contexts
 import { UserContext } from "../../../../contexts/UserContext";
 // Utils
-import { checkFavourited, like, removeLike } from "./utils/general";
+import { checkFavourited, like, unlike } from "./utils/general";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -33,7 +33,7 @@ const Main = ({ post, setOpen }) => {
         <Fab
           size="small"
           color="primary"
-          onClick={() => removeLike(user, setFav, post)}
+          onClick={async () => await unlike(user, setFav, post)}
         >
           <FavoriteIcon />
         </Fab>
@@ -41,7 +41,9 @@ const Main = ({ post, setOpen }) => {
         <Fab
           size="small"
           color="primary"
-          onClick={() => (user ? like(user, setFav, post) : () => {})}
+          onClick={async () =>
+            await (user ? like(user, setFav, post) : () => {})
+          }
         >
           <FavoriteBorderIcon />
         </Fab>
