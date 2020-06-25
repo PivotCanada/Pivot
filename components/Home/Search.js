@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import CloseIcon from "@material-ui/icons/Close";
@@ -10,10 +10,13 @@ import Card from "../Profile/Core/Card";
 
 import { ClickAwayListener } from "@material-ui/core";
 
+// Contexts
+import { SearchContext } from "../../contexts/SearchContext";
+
 // Hooks
 import useLanguage from "../../hooks/useLanguage";
 
-function Search({ displaySearch, setDisplay, display }) {
+function Search({ displaySearch }) {
   const { keys, truthy } = useLanguage({
     search: {
       english: "Search",
@@ -29,10 +32,11 @@ function Search({ displaySearch, setDisplay, display }) {
     },
   });
 
-  const [search, setSearch] = useState("");
   const [results, setResults] = useState([]);
   const [filter, setFilter] = useState("location");
-  const [full, setFull] = useState(false);
+  const { search, setSearch, display, setDisplay, full, setFull } = useContext(
+    SearchContext
+  );
 
   // TODO : Show close button only when there are results
 
@@ -108,6 +112,8 @@ function Search({ displaySearch, setDisplay, display }) {
       return "Search";
     }
   };
+
+  useEffect(() => {}, [search]);
 
   useEffect(() => {
     if (search.trim() !== "" && search.trim().length > 1) {

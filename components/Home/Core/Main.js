@@ -9,6 +9,7 @@ import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
+import { SearchContext } from "../../../contexts/SearchContext";
 // Utils
 import { fetchAllUsers } from "../utils/fetchAllUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
@@ -40,11 +41,11 @@ const Main = () => {
   const [displaySearch, setDisplaySearch] = useState(true);
   // Get rid of this
   const [open, setOpen] = useState(false);
-  const [display, setDisplay] = useState(true);
   const [content, setContent] = useState("stories");
   const [profiles, setProfiles] = useState([]);
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
+  const { display, setDisplay } = useContext(SearchContext);
 
   const remove = (list, item) => {
     if (item) {

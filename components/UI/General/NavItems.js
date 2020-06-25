@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 // Components
 import ProfileLink from "./ProfileLink";
+import Search from "./Search";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 import { UserContext } from "../../../contexts/UserContext";
@@ -80,19 +81,21 @@ const NavItems = ({ setOpen }) => {
       style={{ width: authenticated ? 350 : 400 }}
       className={classes.wrapper}
     >
-      <h3 onClick={() => changeLanguage()} className={classes.link}>
+      {/* <h3 onClick={() => changeLanguage()} className={classes.link}>
         {truthy(keys.language)}
-      </h3>
+      </h3> */}
 
-      <Link href={"/"}>
+      {/* <Link href={"/"}>
         <h3 className={classes.link}>{keys.discover}</h3>
       </Link>
 
       <Link href={"/about"}>
         <h3 className={classes.link}>{keys.about}</h3>
-      </Link>
+      </Link> */}
 
-      <ProfileLink keys={keys} />
+      {/* <ProfileLink keys={keys} /> */}
+
+      <Search />
 
       {authenticated ? (
         <IconButton
