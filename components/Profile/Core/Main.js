@@ -12,6 +12,8 @@ import { UserContext } from "../../../contexts/UserContext";
 import { fetchUserPosts } from "../utils/fetchUserPosts";
 import { sameUser } from "../utils/sameUser";
 import { fetchUserLikes } from "../utils/fetchUserLikes";
+// Stores
+import { ProfileStore } from "../Contexts/ProfileContext";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -27,36 +29,28 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "start",
-    alignItems: "start",
+    alignItems: "center",
     width: "50%",
     marginLeft: "7%",
   },
 }));
 
-const Main = ({ story }) => {
+const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   const classes = useStyles();
   const { user } = useContext(UserContext);
   const identical = sameUser(user, story);
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState([]);
-  const [content, setContent] = useState("");
-
-  const initialContent = () => {
-    if (identical) {
-      setContent("posts");
-    } else {
-      setContent("story");
-    }
-  };
+  const [content, setContent] = useState(initialContent);
 
   const fetchLikes = async () => {
-    setLikes(await fetchUserLikes(story.likes));
+    setLikes(await (await fetchUserLikes(story.likes)).reverse());
   };
 
   const fetchPosts = async () => {
     await fetchUserPosts(story._id).then((response) => {
       if (response.status === "success") {
-        setPosts(response.data);
+        setPosts(response.data.reverse());
       }
     });
   };
@@ -64,21 +58,29 @@ const Main = ({ story }) => {
   useEffect(() => {
     fetchPosts();
     fetchLikes();
-    initialContent();
-  }, []);
+  }, [identical]);
 
-  console.log(likes);
-
-  return (
-    <div className={classes.wrapper}>
-      <Overview story={story} posts={posts.length} />
-      <div className={classes.container}>
-        <ButtonGroup setContent={setContent} />
-        {identical ? <CreatePost /> : null}
-        <Content story={story} content={content} posts={posts} likes={likes} />
+  if (story) {
+    return (
+      <div className={classes.wrapper}>
+        <Overview story={story} posts={posts.length} />
+        <div className={classes.container}>
+          <ButtonGroup setContent={setContent} />
+          {identical ? <CreatePost fetchPosts={fetchPosts} /> : null}
+          <Content
+            story={story}
+            content={content}
+            // TODO : Optimize
+            fetchLikes={fetchLikes}
+            fetchPosts={fetchPosts}
+            pageOpen={pageOpen}
+            posts={posts}
+            likes={likes}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Main;

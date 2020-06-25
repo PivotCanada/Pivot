@@ -8,11 +8,12 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "space-evenly",
     marginRight: "auto",
     marginTop: 60,
     marginBottom: 75,
-    maxWidth: 750,
+    width: "65vw",
+    flexWrap: "wrap",
   },
 }));
 

@@ -9,8 +9,6 @@ import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
-// Hooks
-import useValidate from "../../../hooks/useValidate";
 // Utils
 import { fetchAllUsers } from "../utils/fetchAllUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
@@ -46,28 +44,27 @@ const Main = () => {
   const [content, setContent] = useState("stories");
   const [profiles, setProfiles] = useState([]);
   const [posts, setPosts] = useState([]);
-  const { user, setUser, setAuthenticated, setLoading } = useContext(
-    UserContext
-  );
-  const { validateSession } = useValidate(
-    setUser,
-    setAuthenticated,
-    setLoading
-  );
+  const { user } = useContext(UserContext);
+
+  const remove = (list, item) => {
+    if (item) {
+      list = list.filter((i) => i._id !== item._id);
+    }
+    return list;
+  };
 
   useEffect(() => {
-    if (!user) {
-      validateSession();
-    }
     if (user) {
       setOpen(true);
     }
 
     fetchAllUsers().then((response) => {
       if (response.status === "success") {
-        setProfiles(response.data);
+        const users = remove(response.data, user);
+        setProfiles(users);
       }
     });
+
     fetchAllPosts().then((response) => {
       if (response.status === "success") {
         setPosts(response.data.reverse());

@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Main = () => {
+const Main = ({ fetchPosts }) => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
@@ -80,8 +80,9 @@ const Main = () => {
     await createPost(post).then((response) => {
       console.log(response);
       if (response.status === "success") {
+        // fetchPosts();
         setLoading(false);
-        Router.reload();
+        Router.push(`/profiles/${user._id}`);
       } else {
         setLoading(false);
       }

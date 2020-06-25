@@ -183,14 +183,16 @@ function LoginForm() {
               authenticate(values).then((response) => {
                 console.log(response);
                 if (response.status === "success") {
+                  const user = response.data.user;
+                  const token = response.data.token;
                   // NOTE : set `token`, `user`, `authenticated` state, in UserContext, upon sucessful login
-                  setToken(response.data.token);
-                  setUser(response.data.user);
+                  setToken(token);
+                  setUser(user);
                   setAuthenticated(true);
                   setShowOnboard(false);
                   setShowLogin(false);
                   //   setLoading(false);
-                  Router.push("/");
+                  Router.push(`/profiles/${user._id}`);
                   setError({
                     value: false,
                     message: "",

@@ -12,7 +12,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
 import EditIcon from "@material-ui/icons/Edit";
-import PostAddIcon from "@material-ui/icons/PostAdd";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -37,10 +36,6 @@ const DrawerList = ({ anchor, toggleDrawer }) => {
     home: {
       english: "Home",
       french: "Maison",
-    },
-    create: {
-      english: "Create",
-      french: "Créer",
     },
     edit: {
       english: "Edit Account",
@@ -74,12 +69,6 @@ const DrawerList = ({ anchor, toggleDrawer }) => {
             <ListItemText primary={truthy(keys.home)} />
           </ListItem>
         </Link>
-        <ListItem button onClick={() => setShowCreate(true)}>
-          <ListItemIcon>
-            <PostAddIcon />
-          </ListItemIcon>
-          <ListItemText primary={truthy(keys.create)} />
-        </ListItem>
         <ListItem button onClick={() => setShowEdit(true)}>
           <ListItemIcon>
             <EditIcon />

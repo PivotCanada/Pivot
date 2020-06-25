@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UserList = ({ users, title, width }) => {
+const UserList = ({ users, title, width, pageOpen }) => {
   const classes = useStyles();
   const empty = users.length === 0;
 
@@ -41,7 +41,7 @@ const UserList = ({ users, title, width }) => {
           style={{ width: width ? "100%" : width }}
         >
           {users.map((user) => {
-            return <Card key={user._id} user={user} />;
+            return <Card key={user._id} user={user} pageOpen={pageOpen} />;
           })}
         </div>
       </div>

@@ -21,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// TODO : FIX
+
 const Main = ({ post, setOpen }) => {
   const classes = useStyles();
   const { user } = useContext(UserContext);
@@ -33,7 +35,7 @@ const Main = ({ post, setOpen }) => {
         <Fab
           size="small"
           color="primary"
-          onClick={async () => await unlike(user, setFav, post)}
+          onClick={() => unlike(user, setFav, post)}
         >
           <FavoriteIcon />
         </Fab>
@@ -41,9 +43,7 @@ const Main = ({ post, setOpen }) => {
         <Fab
           size="small"
           color="primary"
-          onClick={async () =>
-            await (user ? like(user, setFav, post) : () => {})
-          }
+          onClick={() => (user ? like(user, setFav, post) : () => {})}
         >
           <FavoriteBorderIcon />
         </Fab>

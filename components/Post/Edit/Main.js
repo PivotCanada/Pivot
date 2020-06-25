@@ -133,7 +133,7 @@ const Main = ({ handleClose, post }) => {
       console.log(response);
       if (response.status === "success") {
         setLoading(false);
-        Router.reload();
+        Router.push(`/profiles/${user._id}`);
       } else {
         setLoading(false);
       }
@@ -149,7 +149,7 @@ const Main = ({ handleClose, post }) => {
       console.log(response);
       if (response.status === "success") {
         setLoading(false);
-        Router.reload();
+        Router.push(`/profiles/${user._id}`);
       } else {
         setLoading(false);
       }

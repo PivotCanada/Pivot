@@ -9,7 +9,7 @@ const Main = ({ callback, data, profile }) => {
     root: {
       display: "flex",
       flexDirection: "column",
-      alignItems: profile ? "start" : "center",
+      alignItems: "center",
       minHeight: "100vh",
       marginTop: profile ? 0 : 40,
       marginBottom: 75,

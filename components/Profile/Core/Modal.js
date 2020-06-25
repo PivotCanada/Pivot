@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
@@ -9,10 +9,12 @@ import CloseIcon from "@material-ui/icons/Close";
 import Main from "./Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
+import { ProfileStore } from "../Contexts/ProfileContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 // Utils
 import { sameUser } from "../utils/sameUser";
+import fetchUser from "../../../utils/general/fetchUser";
 
 const useStyles = makeStyles((theme) => ({
   dialog: {
@@ -53,10 +55,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Modal = ({ open, setOpen, story }) => {
+const Modal = ({ open, setOpen, story, fetch = false }) => {
   const { user } = useContext(UserContext);
   const { width, setWidth } = useWidth();
+  const [profile, setProfile] = useState();
   const classes = useStyles();
+
+  const initializeUser = async (fetch) => {
+    if (fetch) {
+      await fetchUser(fetch).then((response) => {
+        if (response.status === "success") {
+          setProfile(response.data);
+        }
+      });
+    } else {
+      setProfile(story);
+    }
+  };
+
+  useEffect(() => {
+    initializeUser(fetch);
+  }, [story, fetch]);
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -66,26 +85,37 @@ const Modal = ({ open, setOpen, story }) => {
     setOpen(false);
   };
 
-  return (
-    <Dialog
-      scroll="paper"
-      open={open}
-      fullWidth={true}
-      className={classes.dialog}
-      maxWidth={"lg"}
-      onClose={handleClose}
-    >
-      <DialogActions className={classes.dialogActions}>
-        <h2 className={classes.header}>
-          {sameUser(user, story) ? "My Journey: " : null} {story.business}
-        </h2>
-        <IconButton className={classes.close} onClick={handleClose}>
-          <CloseIcon />
-        </IconButton>
-      </DialogActions>
-      {width > 800 ? <Main story={story} /> : null}
-    </Dialog>
-  );
+  if (profile) {
+    return (
+      <ProfileStore
+        initializeUser={initializeUser}
+        open={open}
+        setOpen={setOpen}
+      >
+        <Dialog
+          scroll="paper"
+          open={open}
+          fullWidth={true}
+          className={classes.dialog}
+          maxWidth={"lg"}
+          onClose={handleClose}
+        >
+          <DialogActions className={classes.dialogActions}>
+            <h2 className={classes.header}>
+              {sameUser(user, profile) ? "My Journey: " : null}{" "}
+              {profile.business}
+            </h2>
+            <IconButton className={classes.close} onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </DialogActions>
+          {width > 800 ? <Main story={profile} /> : null}
+        </Dialog>
+      </ProfileStore>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Modal;

@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
+// Components
+import ProfileLink from "./ProfileLink";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 import { UserContext } from "../../../contexts/UserContext";
@@ -49,9 +51,7 @@ const useStyles = makeStyles(() => ({
 const NavItems = ({ setOpen }) => {
   const classes = useStyles();
   const { authenticated } = useContext(UserContext);
-  const { setShowOnboard, setShowLogin, setShowProfile } = useContext(
-    ModalContext
-  );
+  const { setShowOnboard, setShowLogin } = useContext(ModalContext);
   const { keys, truthy, changeLanguage } = useLanguage({
     language: {
       english: "Français",
@@ -92,19 +92,7 @@ const NavItems = ({ setOpen }) => {
         <h3 className={classes.link}>{keys.about}</h3>
       </Link>
 
-      <h3
-        onClick={() => {
-          if (authenticated) {
-            setShowProfile(true);
-          } else {
-            setShowOnboard(true);
-            setShowLogin(true);
-          }
-        }}
-        className={classes.link}
-      >
-        {truthy(keys.journey)}
-      </h3>
+      <ProfileLink keys={keys} />
 
       {authenticated ? (
         <IconButton

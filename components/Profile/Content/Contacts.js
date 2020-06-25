@@ -25,14 +25,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Contacts({ story }) {
+function Contacts({ story, pageOpen }) {
   const classes = useStyles();
 
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.header}>Contacts</h1>
-      <UserList users={story.followed_by} title={"followers"} />
-      <UserList users={story.following} title={"following"} />
+      <UserList
+        pageOpen={pageOpen}
+        users={story.followed_by}
+        title={"followers"}
+      />
+      <UserList
+        pageOpen={pageOpen}
+        users={story.following}
+        title={"following"}
+      />
     </div>
   );
 }

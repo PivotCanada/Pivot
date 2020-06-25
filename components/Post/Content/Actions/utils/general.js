@@ -1,23 +1,4 @@
-// import { unlike } from "../../../utils/unlike";
-import { editPost } from "../../../utils/editPost";
-// import { like } from "../../../utils/like";
-
-export const editUser = async (data, id) => {
-  // NOTE : `credentials` input is an object containing user email & user password from form data
-  // TODO : Standardize fetch requests, with appropriate headers, etc ...
-
-  const res = await fetch(`http://localhost:5000/api/users/${id}`, {
-    method: "PUT",
-    mode: "cors", // no-cors, *cors, same-origin,
-    // headers field seems to be essential ?
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-
-  return await res.json();
-};
+import { likeAction } from "../../../utils/likeAction";
 
 export const checkFavourited = (user, post) => {
   let value = false;
@@ -37,44 +18,56 @@ export const checkFavourited = (user, post) => {
 };
 
 export const like = async (user, setFavourite, post) => {
-  await editPost({ likes: [...post.likes, user._id] }, post._id).then(
-    async (response) => {
-      console.log(response);
-      if (response.status === "success") {
-        await editUser({ likes: [...user.likes, post._id] }, user._id).then(
-          (response) => {
+  try {
+    await likeAction({ user_id: user._id }, post._id, "posts", "like").then(
+      async (response) => {
+        console.log(response);
+        if (response.status === "success") {
+          await likeAction(
+            { post_id: post._id },
+            user._id,
+            "users",
+            "like"
+          ).then((response) => {
             console.log(response);
             if (response.status === "success") {
               setFavourite(true);
             }
-          }
-        );
-      } else {
-        return;
+          });
+        }
       }
-    }
-  );
+    );
+  } catch (error) {
+    return error;
+  }
+};
+
+export const unlike = async (user, setFavourite, post) => {
+  try {
+    await likeAction({ user_id: user._id }, post._id, "posts", "unlike").then(
+      async (response) => {
+        console.log(response);
+        if (response.status === "success") {
+          await likeAction(
+            { post_id: post._id },
+            user._id,
+            "users",
+            "unlike"
+          ).then((response) => {
+            console.log(response);
+            if (response.status === "success") {
+              setFavourite(false);
+            }
+          });
+        }
+      }
+    );
+  } catch (error) {
+    return error;
+  }
 };
 
 const remove = async (list, remove) => {
   let filtered = list.filter((i) => i !== remove);
   return filtered;
-};
-
-export const unlike = async (user, setFavourite, post) => {
-  let filtered = await remove(post.likes, user._id);
-  await editPost({ likes: filtered }, post._id).then(async (response) => {
-    console.log(response);
-    if (response.status === "success") {
-      let filtered = await remove(user.likes, post._id);
-      await editUser({ likes: filtered }, user._id).then((response) => {
-        console.log(response);
-        if (response.status === "success") {
-          setFavourite(false);
-        }
-      });
-    } else {
-      return;
-    }
-  });
 };

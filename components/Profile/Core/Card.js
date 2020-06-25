@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // Material UI
 import Card from "@material-ui/core/Card";
 import Chip from "@material-ui/core/Chip";
@@ -6,29 +6,11 @@ import CardContent from "@material-ui/core/CardContent";
 import { makeStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
 import RoomIcon from "@material-ui/icons/Room";
-
 // Components
 import Modal from "./Modal";
-
-const format = (text) => {
-  let arr = text.split(" ");
-  let format = "";
-
-  if (arr.length > 45) {
-    let i = 0;
-    while (i < 45) {
-      if (i === 44) {
-        format += arr[i] + "...";
-        ++i;
-      } else {
-        format += arr[i] + " ";
-        ++i;
-      }
-    }
-  }
-
-  return format;
-};
+import Image from "./Image";
+// Stores
+import { ProfileStore } from "../Contexts/ProfileContext";
 
 function Preview({ story }) {
   const useStyles = makeStyles((theme) => ({
@@ -162,23 +144,17 @@ function Preview({ story }) {
     },
     arrowIcon: {},
   }));
-
-  const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const classes = useStyles();
   const def =
     "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
 
   if (story !== null) {
     return (
       <Card className={classes.card}>
-        <Modal open={open} setOpen={setOpen} story={story} />
+        <Modal story={story} open={open} setOpen={setOpen} />
         <CardContent className={classes.innerWrapper}>
-          <div onClick={() => setOpen(true)} className={classes.imageContainer}>
-            <img
-              className={classes.image}
-              src={story.photo ? story.photo : def}
-            />
-          </div>
+          <Image story={story} setOpen={setOpen} />
           <div className={classes.content}>
             <div className={classes.contentInnerWrapper}>
               <div className={classes.details}>
