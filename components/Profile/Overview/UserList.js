@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     margin: 0,
     padding: 0,
+    minHeight: "100%",
     width: "100%",
   },
   header: {

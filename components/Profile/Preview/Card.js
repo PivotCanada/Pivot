@@ -20,6 +20,8 @@ function Preview({ user, pageOpen }) {
       boxShadow: "0px, 0px",
       marginBottom: 25,
       marginRight: 25,
+      minHeight: "100%",
+      height: "100%",
     },
 
     wrapper: {
@@ -35,6 +37,7 @@ function Preview({ user, pageOpen }) {
         cursor: "pointer",
       },
       minHeight: "100%",
+      height: "100%",
     },
   }));
 

@@ -22,20 +22,20 @@ const Profile = ({ user }) => {
   );
 };
 
-export async function getStaticPaths() {
-  let res = await fetch("https://pivotinfo.herokuapp.com/api/users/all");
-  res = await res.json();
-  const users = res.data;
+// export async function getStaticPaths() {
+//   let res = await fetch("https://pivotinfo.herokuapp.com/api/users/all");
+//   res = await res.json();
+//   const users = res.data;
 
-  const paths = users.map((user) => ({
-    params: { id: user._id },
-  }));
+//   const paths = users.map((user) => ({
+//     params: { id: user._id },
+//   }));
 
-  return { paths: paths, fallback: false };
-}
+//   return { paths: paths, fallback: false };
+// }
 
 // This also gets called at build time
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   let res = await fetch(
     `https://pivotinfo.herokuapp.com/api/users/${params.id}`
   );

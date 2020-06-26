@@ -7,12 +7,16 @@ function Image({ image, size }) {
       display: "flex",
       width: size,
       height: size,
+      maxWidth: size,
+      maxHeight: size,
       alignItems: "center",
     },
     image: {
       borderRadius: "50%",
-      width: "100%",
-      height: "100%",
+      maxWidth: "100%",
+      maxHeight: "100%",
+      minWidth: "100%",
+      minHeight: "100%",
       objectFit: "cover",
     },
   }));

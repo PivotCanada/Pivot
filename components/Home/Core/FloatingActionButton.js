@@ -35,7 +35,7 @@ const Main = () => {
     setWidth(window.innerWidth);
   }, []);
 
-  return user ? (
+  return (
     <Fab
       onClick={() => {
         setDisplay((d) => !d);
@@ -52,7 +52,7 @@ const Main = () => {
         <SearchIcon className={classes.addIcon} />
       )}
     </Fab>
-  ) : null;
+  );
 };
 
 export default Main;
