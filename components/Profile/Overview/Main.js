@@ -22,7 +22,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Main({ story, posts }) {
+function Main({ width, story, posts }) {
+  const useStyles = makeStyles((theme) => ({
+    wrapper: {
+      width: 250,
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      height: "100%",
+      margin: 0,
+      padding: 0,
+      marginLeft: width < 600 ? 0 : "5%",
+    },
+  }));
+
   const classes = useStyles();
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
@@ -43,8 +56,12 @@ function Main({ story, posts }) {
       <Follow profile={story} />
       <Details profile={story} />
       <Chips profile={story} />
-      <UserList users={followers} title={"followers"} width={250} />
-      <UserList users={following} title={"following"} width={250} />
+      {width > 600 ? (
+        <UserList users={followers} title={"followers"} width={250} />
+      ) : null}
+      {width > 600 ? (
+        <UserList users={following} title={"following"} width={250} />
+      ) : null}
     </div>
   );
 }

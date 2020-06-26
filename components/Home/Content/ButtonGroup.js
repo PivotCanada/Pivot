@@ -29,7 +29,7 @@ const Main = ({ setDisplaySearch, display, setContent }) => {
         style={{ textTransform: "none" }}
         onClick={() => {
           setContent("stories");
-          setDisplaySearch(true);
+          // setDisplaySearch(true);
         }}
       >
         {truthy(keys.stories)}
@@ -38,7 +38,7 @@ const Main = ({ setDisplaySearch, display, setContent }) => {
         style={{ textTransform: "none" }}
         onClick={() => {
           setContent("posts");
-          setDisplaySearch(false);
+          // setDisplaySearch(true);
         }}
       >
         {truthy(keys.posts)}

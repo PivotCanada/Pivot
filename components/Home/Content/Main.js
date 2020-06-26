@@ -30,7 +30,7 @@ const Main = ({ content, display, profiles, posts }) => {
     case "posts":
       return (
         <div className={classes.wrapper}>
-          {authenticated ? <Create /> : null}
+          {authenticated && display ? <Create /> : null}
           <Posts display={display} data={posts} />
         </div>
       );

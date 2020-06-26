@@ -89,7 +89,7 @@ export default function TransitionsModal(props) {
           <CloseIcon />
         </IconButton>
       </DialogActions>
-      <Form />
+      <Form handleClose={handleClose} />
     </Dialog>
   );
 }

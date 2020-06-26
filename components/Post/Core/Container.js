@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Card from "./Card";
 
-const Main = ({ callback, data, profile }) => {
+const Main = ({ display = true, callback, data, profile }) => {
   const useStyles = makeStyles(() => ({
     root: {
       display: "flex",
@@ -32,14 +32,17 @@ const Main = ({ callback, data, profile }) => {
   }, [data]);
 
   useEffect(() => {}, [posts]);
-
-  return (
-    <div className={classes.root}>
-      {posts.map((post) => {
-        return <Card key={post._id} post={post} />;
-      })}
-    </div>
-  );
+  if (display) {
+    return (
+      <div className={classes.root}>
+        {posts.map((post) => {
+          return <Card key={post._id} post={post} />;
+        })}
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Main;

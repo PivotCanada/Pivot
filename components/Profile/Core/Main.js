@@ -14,28 +14,33 @@ import { sameUser } from "../utils/sameUser";
 import { fetchUserLikes } from "../utils/fetchUserLikes";
 // Stores
 import { ProfileStore } from "../Contexts/ProfileContext";
-
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    display: "flex",
-    flexDirection: "row",
-    width: "100%",
-    height: "100%",
-    marginTop: 25,
-  },
-
-  container: {
-    right: 0,
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "start",
-    alignItems: "center",
-    width: "50%",
-    marginLeft: "7%",
-  },
-}));
+// Hooks
+import useWidth from "../../../hooks/useWidth";
 
 const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
+  const { width, setWidth } = useWidth();
+
+  const useStyles = makeStyles((theme) => ({
+    wrapper: {
+      display: "flex",
+      flexDirection: width < 600 ? "column" : "row",
+      alignItems: width < 600 ? "center" : "start",
+      width: "100%",
+      height: "100%",
+      marginTop: 25,
+    },
+
+    container: {
+      right: 0,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "start",
+      alignItems: "center",
+      width: width < 600 ? "90%" : "50%",
+      marginLeft: width < 600 ? 0 : "7%",
+    },
+  }));
+
   const classes = useStyles();
   const { user } = useContext(UserContext);
   const identical = sameUser(user, story);
@@ -56,6 +61,10 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   };
 
   useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
     fetchPosts();
     fetchLikes();
   }, [identical]);
@@ -63,7 +72,7 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   if (story) {
     return (
       <div className={classes.wrapper}>
-        <Overview story={story} posts={posts.length} />
+        <Overview width={width} story={story} posts={posts.length} />
         <div className={classes.container}>
           <ButtonGroup setContent={setContent} />
           {identical ? <CreatePost fetchPosts={fetchPosts} /> : null}

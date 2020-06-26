@@ -6,62 +6,64 @@ import Button from "@material-ui/core/Button";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-evenly",
-    backgroundColor: "white",
-    borderRadius: 10,
-    margin: 0,
-    padding: 0,
-  },
-  header: {
-    textAlign: "left",
-    margin: 0,
-    width: "100%",
-    fontSize: 38,
-    fontWeight: 700,
-    fontFamily: "Noto Sans, sans serif",
-  },
-  link: {
-    textAlign: "left",
-    margin: 0,
-    marginRight: 35,
-    fontSize: 16,
-    fontWeight: 700,
-    color: "blue",
-    fontFamily: "Noto Sans, sans serif",
-    "&:hover": {
-      opacity: 0.6,
-      cursor: "pointer",
+const ActionCall = ({ width, header, text, buttonText, about, discover }) => {
+  const useStyles = makeStyles((theme) => ({
+    wrapper: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "space-evenly",
+      backgroundColor: "white",
+      borderRadius: 10,
+      margin: 0,
+      padding: 0,
+      width: "100%",
     },
-  },
-  text: {
-    marginTop: 15,
-    textAlign: "left",
-    width: 550,
-    fontWeight: 300,
-    fontSize: 22,
-    fontFamily: "Open Sans, sans erif",
-  },
+    header: {
+      textAlign: "left",
+      margin: 0,
+      textAlign: "center",
+      fontSize: 38,
+      fontWeight: 700,
+      fontFamily: "Noto Sans, sans serif",
+    },
+    link: {
+      textAlign: "center",
+      margin: 0,
 
-  button: {
-    marginTop: 5,
-    marginBottom: 60,
-    textTransform: "none",
-    fontWeight: 700,
-    width: 300,
-    paddingTop: 15,
-    paddingBottom: 15,
-    paddingLeft: 25,
-    paddingRight: 25,
-    fontSize: 18,
-    fontFamily: "Open Sans, sans serif",
-  },
-}));
+      fontSize: 16,
+      fontWeight: 700,
+      color: "blue",
+      fontFamily: "Noto Sans, sans serif",
+      "&:hover": {
+        opacity: 0.6,
+        cursor: "pointer",
+      },
+    },
+    text: {
+      marginTop: 15,
+      width: width < 600 ? "90%" : 550,
+      textAlign: "center",
+      fontWeight: 300,
+      fontSize: 22,
+      fontFamily: "Open Sans, sans erif",
+    },
 
-const ActionCall = ({ header, text, buttonText, about, discover }) => {
+    button: {
+      marginTop: 5,
+      marginBottom: 60,
+      textTransform: "none",
+      fontWeight: 700,
+      width: 300,
+      paddingTop: 15,
+      paddingBottom: 15,
+      paddingLeft: 25,
+      paddingRight: 25,
+      fontSize: 18,
+      fontFamily: "Open Sans, sans serif",
+    },
+  }));
+
   const classes = useStyles();
   const { setShowOnboard, setShowLogin } = useContext(ModalContext);
 
@@ -80,7 +82,9 @@ const ActionCall = ({ header, text, buttonText, about, discover }) => {
       >
         {buttonText}
       </Button>
-      <div style={{ display: "flex" }}>
+      <div
+        style={{ display: "flex", width: 200, justifyContent: "space-between" }}
+      >
         <Link href={"/about"}>
           <h1 className={classes.link}>{about}</h1>
         </Link>

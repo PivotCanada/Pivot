@@ -75,8 +75,8 @@ function Search({ displaySearch }) {
       width: 50,
       height: 50,
       alignSelf: "center",
-      marginTop: 20,
-      marginBottom: 20,
+      marginTop: 0,
+      marginBottom: 30,
     },
     chip: {
       marginRight: theme.spacing(1),
@@ -161,6 +161,7 @@ function Search({ displaySearch }) {
             className={classes.search}
             placeholder={truthy(keys.search)}
             id="input-with-icon-textfield"
+            style={{ display: !display ? "flex" : "none" }}
             onClick={() => {
               setFull(true);
               setDisplay(false);
@@ -171,7 +172,7 @@ function Search({ displaySearch }) {
               setFull(true);
             }}
           />
-          <ButtonGroup
+          {/* <ButtonGroup
             style={{ display: display ? "none" : "block" }}
             color="primary"
             aria-label="outlined secondary button group"
@@ -188,7 +189,7 @@ function Search({ displaySearch }) {
             >
               {truthy(keys.industry)}
             </Button>
-          </ButtonGroup>
+          </ButtonGroup> */}
           {/* <div className={classes.chipArray}>
           <Chip
             onClick={() => setFilter("location")}

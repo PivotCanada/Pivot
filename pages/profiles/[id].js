@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Page from "../../components/UI/General/Page";
 import Main from "../../components/Profile/Core/Main";
 import Modal from "../../components/Profile/Core/Modal";
+import LoginModal from "../../components/Login/Modal";
+import SignUpModal from "../../components/SignUp/Modal";
 // Stores
 import { ProfileStore } from "../../components/Profile/Contexts/ProfileContext";
 
@@ -13,6 +15,8 @@ const Profile = ({ user }) => {
   return (
     <Page>
       <Modal story={null} open={open} setOpen={setOpen} />
+      <LoginModal />
+      <SignUpModal />
       <Main pageOpen={setOpen} story={user} initialContent={"posts"} />
     </Page>
   );

@@ -23,7 +23,7 @@ const industries = [
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    width: 225,
+    width: 200,
     margin: 0,
   },
 }));

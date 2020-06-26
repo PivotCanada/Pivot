@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import Router from "next/router";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Contexts
@@ -31,7 +32,13 @@ function Image({ story, setOpen }) {
     "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
 
   return (
-    <div onClick={() => setOpen(true)} className={classes.imageContainer}>
+    <div
+      onClick={() => {
+        Router.push(`/profiles/${story._id}`);
+        // setOpen(true);
+      }}
+      className={classes.imageContainer}
+    >
       <img className={classes.image} src={story.photo ? story.photo : def} />
     </div>
   );

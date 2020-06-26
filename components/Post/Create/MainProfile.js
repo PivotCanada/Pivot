@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     minHeight: 75,
-
     border: "1px solid #e0e0e0",
     borderRadius: 5,
     padding: 20,
@@ -63,11 +62,12 @@ const useStyles = makeStyles((theme) => ({
   innerinnerWrapper: {
     display: "flex",
     marginTop: 10,
+    flexWrap: "wrap",
 
     justifyContent: "space-between",
     backgroundColor: "white",
 
-    width: "100%",
+    width: "80%",
   },
   button: {
     textTransform: "none",
@@ -110,7 +110,7 @@ const Main = () => {
       console.log(response);
       if (response.status === "success") {
         setLoading(false);
-        Router.reload();
+        Router.push(`/profiles/${user._id}`);
       } else {
         setLoading(false);
       }

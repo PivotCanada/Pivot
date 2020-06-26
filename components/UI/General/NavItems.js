@@ -13,45 +13,51 @@ import { ModalContext } from "../../../contexts/ModalContext";
 import { UserContext } from "../../../contexts/UserContext";
 // Hooks
 import useLanguage from "../../../hooks/useLanguage";
-
-const useStyles = makeStyles(() => ({
-  wrapper: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  link: {
-    color: "black",
-    fontFamily: "Open Sans, sans serif",
-    fontWeight: 700,
-    fontSize: 11,
-    textAlign: "center",
-    "&:hover": {
-      opacity: 0.5,
-      cursor: "pointer",
-    },
-  },
-  button: {
-    textTransform: "none",
-    paddingTop: 5,
-    paddingBottom: 5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    fontSize: 14,
-    fontWeight: 700,
-    fontSize: 12,
-    fontFamily: "Open Sans, sans serif",
-  },
-  menuButton: {
-    color: "black",
-    marginTop: 2,
-  },
-}));
+import useWidth from "../../../hooks/useWidth";
 
 const NavItems = ({ setOpen }) => {
-  const classes = useStyles();
+  const { width, setWidth } = useWidth();
   const { authenticated } = useContext(UserContext);
+
+  const useStyles = makeStyles(() => ({
+    wrapper: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+
+    link: {
+      display: width < 600 ? "none" : "flex",
+      color: "black",
+      fontFamily: "Open Sans, sans serif",
+      fontWeight: 700,
+      fontSize: 11,
+      textAlign: "center",
+      "&:hover": {
+        opacity: 0.5,
+        cursor: "pointer",
+      },
+      marginRight: 20,
+    },
+    button: {
+      textTransform: "none",
+      paddingTop: 5,
+      paddingBottom: 5,
+      paddingLeft: 10,
+      paddingRight: 10,
+      fontSize: 14,
+      fontWeight: 700,
+      fontSize: 12,
+      fontFamily: "Open Sans, sans serif",
+    },
+    menuButton: {
+      color: "black",
+      marginTop: 2,
+    },
+  }));
+
+  const classes = useStyles();
+
   const { setShowOnboard, setShowLogin } = useContext(ModalContext);
   const { keys, truthy, changeLanguage } = useLanguage({
     language: {
@@ -76,27 +82,23 @@ const NavItems = ({ setOpen }) => {
     },
   });
 
-  return (
-    <div
-      style={{ width: authenticated ? 350 : 400 }}
-      className={classes.wrapper}
-    >
-      {/* <h3 onClick={() => changeLanguage()} className={classes.link}>
-        {truthy(keys.language)}
-      </h3> */}
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
 
-      {/* <Link href={"/"}>
+  return (
+    <div className={classes.wrapper}>
+      <h3 onClick={() => changeLanguage()} className={classes.link}>
+        {truthy(keys.language)}
+      </h3>
+      <Link href={"/"}>
         <h3 className={classes.link}>{keys.discover}</h3>
       </Link>
-
       <Link href={"/about"}>
         <h3 className={classes.link}>{keys.about}</h3>
-      </Link> */}
-
-      {/* <ProfileLink keys={keys} /> */}
-
-      <Search />
-
+      </Link>
+      <ProfileLink width={width} keys={keys} />
+      {/* <Search /> */}
       {authenticated ? (
         <IconButton
           onClick={() => setOpen(true)}

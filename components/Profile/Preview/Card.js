@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from "react";
+import Router from "next/router";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
@@ -55,14 +56,15 @@ function Preview({ user, pageOpen }) {
 
   return (
     <div className={classes.card}>
-      <Modal open={open} setOpen={setOpen} fetch={user._id} />
+      {/* <Modal open={open} setOpen={setOpen} fetch={user._id} /> */}
 
       <div
         onClick={async () => {
+          Router.push(`/profiles/${user._id}`);
           // if (initializeUser) {
           //   await initializeUser(user._id);
           // } else {
-          setOpen(true);
+          // setOpen(true);
           // }
         }}
         className={classes.wrapper}

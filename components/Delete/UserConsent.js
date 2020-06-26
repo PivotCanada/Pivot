@@ -44,11 +44,17 @@ const useStyles = makeStyles((theme) => ({
 
   buttonContainer: {
     display: "flex",
+    flexDirection: "column",
     marginTop: 10,
+  },
+  cancelButton: {
+    marginBottom: 15,
+    backgroundColor: "red",
+    color: "white",
   },
 }));
 
-function UserCredentials({ setStep }) {
+function UserCredentials({ handleClose, setStep }) {
   const classes = useStyles();
 
   return (
@@ -62,8 +68,17 @@ function UserCredentials({ setStep }) {
       <div className={classes.buttonContainer}>
         <Button
           variant="contained"
+          className={classes.cancelButton}
+          onClick={() => {
+            handleClose();
+          }}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
           color="primary"
-          onClick={(e) => {
+          onClick={() => {
             setStep((s) => s + 1);
           }}
         >

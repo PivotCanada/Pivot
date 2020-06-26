@@ -13,6 +13,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import HomeIcon from "@material-ui/icons/Home";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+//Components
+import MobileList from "./MobileList";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 // Hooks
@@ -61,6 +63,7 @@ const DrawerList = ({ anchor, toggleDrawer }) => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
+        <MobileList />
         <Link href={"/"}>
           <ListItem button>
             <ListItemIcon>
@@ -90,7 +93,6 @@ const DrawerList = ({ anchor, toggleDrawer }) => {
           </ListItem>
         </Link>
       </List>
-      <Divider />
     </div>
   );
 };

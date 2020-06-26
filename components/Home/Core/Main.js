@@ -20,10 +20,9 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
     minHeight: "100vh",
-    marginTop: 150,
+    marginTop: 0,
     marginBottom: 75,
     width: "100vw",
-    overflowX: "hidden",
   },
   innerWrapper: {
     display: "flex",

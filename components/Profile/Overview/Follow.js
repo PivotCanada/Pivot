@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState, useCallback } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 import { Button } from "@material-ui/core";
+import Router from "next/router";
 
 // TODO : Refactor ...
 
@@ -34,16 +35,16 @@ const Follow = ({ profile }) => {
   };
 
   const onSubmit = async (user, profile, followed) => {
-    // console.log(followed);
+    console.log(followed);
     setFollowed((f) => !f);
 
     await follow(user, profile, followed).then(async (response) => {
-      // console.log(response);
+      console.log(response);
       if (response.status === "success") {
         // TODO : FIX THIS !!!
-        setUser(response.data);
+        // setUser(response.data);
         followed_by(user, profile, followed).then(async (response) => {
-          // console.log(response);
+          console.log(response);
           if (response.status === "success") {
           }
         });

@@ -41,12 +41,12 @@ const Details = ({ profile, small }) => {
       <h2 className={classes.name}>
         {profile.firstname} {profile.lastname}
       </h2>
-      {small ? null : (
+      {/* {small ? null : (
         <h2 className={classes.bio}>
           Entreprenuer, Engineer. Building the next genration of electric
           motors.
         </h2>
-      )}
+      )} */}
     </div>
   );
 };
