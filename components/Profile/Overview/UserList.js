@@ -31,6 +31,8 @@ const UserList = ({ users, title, width, pageOpen }) => {
   const classes = useStyles();
   const empty = users.length === 0;
 
+  console.log(users);
+
   if (empty) {
     return null;
   } else {

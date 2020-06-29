@@ -8,6 +8,8 @@ import Activity from "./Activity";
 import Image from "./Image";
 import Chips from "./Chips";
 import Details from "./Details";
+// Utils
+import fetchUser from "../../../utils/general/fetchUser";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -45,8 +47,23 @@ function Main({ width, story, posts }) {
     setFollowing(story.following.slice(0, 6));
   };
 
+  const fetchUsers = async (user_ids, setFunction) => {
+    let list = [];
+
+    for (var id of user_ids) {
+      await fetchUser(id).then((response) => {
+        if (response.status === "success") {
+          list.push(response.data);
+        }
+      });
+    }
+    setFunction(list);
+  };
+
   useEffect(() => {
     format();
+    fetchUsers(story.followed_by.slice(0, 6), setFollowers);
+    fetchUsers(story.following.slice(0, 6), setFollowing);
   }, [story]);
 
   return (
@@ -56,6 +73,7 @@ function Main({ width, story, posts }) {
       <Follow profile={story} />
       <Details profile={story} />
       <Chips profile={story} />
+
       {width > 600 ? (
         <UserList users={followers} title={"followers"} width={250} />
       ) : null}
