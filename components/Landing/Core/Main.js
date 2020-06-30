@@ -1,9 +1,12 @@
 import { useContext, useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
+// Components
+import Carousel from "../../UI/Carousel/Main";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 import ActionCall from "../Content/ActionCall";
+
 // Hooks
 import useLanguage from "../../../hooks/useLanguage";
 import useWidth from "../../../hooks/useWidth";
@@ -74,18 +77,19 @@ const Main = () => {
   }, []);
 
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.container}>
-        <ActionCall
-          width={width}
-          header={keys.header}
-          text={keys.text}
-          buttonText={truthy(keys.buttonText)}
-          about={keys.about}
-          discover={keys.discover}
-        />
-      </div>
-    </div>
+    <Carousel direction={"Y"} />
+    // <div className={classes.wrapper}>
+    //   {/* <div className={classes.container}>
+    //     <ActionCall
+    //       width={width}
+    //       header={keys.header}
+    //       text={keys.text}
+    //       buttonText={truthy(keys.buttonText)}
+    //       about={keys.about}
+    //       discover={keys.discover}
+    //     />
+    //   </div> */}
+    // </div>
   );
 };
 

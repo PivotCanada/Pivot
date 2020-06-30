@@ -9,7 +9,7 @@ import Image from "./Image";
 import Chips from "./Chips";
 import Details from "./Details";
 // Utils
-import fetchUser from "../../../utils/general/fetchUser";
+import fetchUsers from "../utils/fetchUsers";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -42,26 +42,7 @@ function Main({ width, story, posts }) {
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
 
-  const format = () => {
-    setFollowers(story.followed_by.slice(0, 6));
-    setFollowing(story.following.slice(0, 6));
-  };
-
-  const fetchUsers = async (user_ids, setFunction) => {
-    let list = [];
-
-    for (var id of user_ids) {
-      await fetchUser(id).then((response) => {
-        if (response.status === "success") {
-          list.push(response.data);
-        }
-      });
-    }
-    setFunction(list);
-  };
-
   useEffect(() => {
-    format();
     fetchUsers(story.followed_by.slice(0, 6), setFollowers);
     fetchUsers(story.following.slice(0, 6), setFollowing);
   }, [story]);

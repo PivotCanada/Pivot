@@ -44,9 +44,9 @@ const Follow = (user, profile, setLoading) => {
     let url = "";
 
     if (followed) {
-      url = `http://localhost:5000/api/users/unfollow/${user._id}`;
+      url = `https://pivotinfo.herokuapp.com/api/users/unfollow/${user._id}`;
     } else {
-      url = `http://localhost:5000/api/users/follow/${user._id}`;
+      url = `https://pivotinfo.herokuapp.com/api/users/follow/${user._id}`;
     }
 
     const req = await fetch(url, {
@@ -67,9 +67,9 @@ const Follow = (user, profile, setLoading) => {
     let url = "";
 
     if (followed) {
-      url = `http://localhost:5000/api/users/unfollowed/${profile._id}`;
+      url = `https://pivotinfo.herokuapp.com/api/users/unfollowed/${profile._id}`;
     } else {
-      url = `http://localhost:5000/api/users/followed/${profile._id}`;
+      url = `https://pivotinfo.herokuapp.com/api/users/followed/${profile._id}`;
     }
 
     const req = await fetch(url, {

@@ -37,7 +37,7 @@ const NavItems = ({ setOpen }) => {
         opacity: 0.5,
         cursor: "pointer",
       },
-      marginRight: 20,
+      marginRight: 25,
     },
     button: {
       textTransform: "none",
@@ -73,12 +73,8 @@ const NavItems = ({ setOpen }) => {
       french: "Decouvrir",
     },
     journey: {
-      english: "My Journey",
-      french: "Mon Histoire",
-    },
-    actionCall: {
-      english: "Get Started",
-      french: "Debut",
+      english: "Continue My Journey",
+      french: "Continue Mon Voyage",
     },
   });
 
@@ -88,6 +84,7 @@ const NavItems = ({ setOpen }) => {
 
   return (
     <div className={classes.wrapper}>
+      <ProfileLink width={width} keys={keys} />
       <h3 onClick={() => changeLanguage()} className={classes.link}>
         {truthy(keys.language)}
       </h3>
@@ -97,7 +94,6 @@ const NavItems = ({ setOpen }) => {
       <Link href={"/about"}>
         <h3 className={classes.link}>{keys.about}</h3>
       </Link>
-      <ProfileLink width={width} keys={keys} />
       {/* <Search /> */}
       {authenticated ? (
         <IconButton
@@ -113,13 +109,12 @@ const NavItems = ({ setOpen }) => {
         <Button
           className={classes.button}
           onClick={() => {
-            setShowOnboard(true);
             setShowLogin(true);
           }}
           variant="contained"
           color="primary"
         >
-          {truthy(keys.actionCall)}
+          {truthy(keys.journey)}
         </Button>
       )}
     </div>
