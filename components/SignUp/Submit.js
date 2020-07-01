@@ -9,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 // Contexts
 import { UserContext } from "../../contexts/UserContext";
 import { ModalContext } from "../../contexts/ModalContext";
+import { CarouselContext } from "../UI/Carousel/contexts/CarouselContext";
 // Utils
 import { authenticate } from "../../utils/authentication/authenticate";
 import { signup } from "./utils/signup";
@@ -68,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
 function Submit({ values, submitting, setSubmitting }) {
   const { setUser, setAuthenticated, setToken } = useContext(UserContext);
   const { setShowLogin, setShowOnboard } = useContext(ModalContext);
+  const { lastElement, index } = useContext(CarouselContext);
   const [error, setError] = useState({ value: false, message: "" });
   const data = {
     email: values.email,
@@ -86,7 +88,7 @@ function Submit({ values, submitting, setSubmitting }) {
     wish: values.wish,
   };
 
-  useEffect(() => {
+  const onSumbit = () => {
     setSubmitting(true);
     // NOTE : reroute to `/home` upon sucessful login
     // TODO : configure functionality here for `persisted state` later on ...
@@ -121,7 +123,17 @@ function Submit({ values, submitting, setSubmitting }) {
         setSubmitting(false);
       }
     });
-  }, []);
+  };
+
+  useEffect(() => {
+    console.log(lastElement());
+
+    if (lastElement()) {
+      onSumbit();
+    } else {
+      console.log("not yet");
+    }
+  }, [index]);
 
   const classes = useStyles();
 
@@ -141,10 +153,7 @@ function Submit({ values, submitting, setSubmitting }) {
       <div className={classes.root}>
         <div className={classes.innerWrapper}>
           <h1 className={classes.header}>Error</h1>
-          <p className={classes.text}>
-            Something went slightly wrong, we will reach out to you by email
-            shortly!
-          </p>
+          <p className={classes.text}>{error.message}</p>
         </div>
       </div>
     );

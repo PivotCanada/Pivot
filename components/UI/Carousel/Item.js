@@ -6,11 +6,17 @@ import useWidth from "../../../hooks/useWidth";
 import { Button } from "@material-ui/core";
 
 // Contexts
+import { CarouselContext } from "./contexts/CarouselContext";
 
-const Main = ({ index, changeSlide, image, direction }) => {
+const Main = ({ image, children }) => {
+  const { changeSlide, index, direction } = useContext(CarouselContext);
+
   const useStyles = makeStyles((theme) => ({
     Wrapper: {
+      display: "flex",
       minHeight: "100%",
+      alignItems: "center",
+      justifyContent: "center",
       flexGrow: 1,
       flexShrink: 1,
       flexBasis: 1,
@@ -26,12 +32,13 @@ const Main = ({ index, changeSlide, image, direction }) => {
 
   return (
     <div className={classes.Wrapper}>
-      <Button variant="contained" onClick={() => changeSlide(1)}>
+      {children}
+      {/* <Button variant="contained" onClick={() => changeSlide(1)}>
         Next
       </Button>
       <Button variant="contained" onClick={() => changeSlide(-1)}>
         Prev
-      </Button>
+      </Button> */}
     </div>
   );
 };

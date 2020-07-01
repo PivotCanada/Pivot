@@ -1,18 +1,19 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Item from "./Item";
+// Contexts
+import { CarouselStore } from "./contexts/CarouselContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 
-const Main = ({ data, direction }) => {
-  const [index, setIndex] = useState(0);
+const Main = ({ direction, children }) => {
+  const [elements, setElements] = useState(0);
   const { width, setWidth, changing } = useWidth();
 
   const useStyles = makeStyles((theme) => ({
     Wrapper: {
-      border: "1px solid black",
       height: "80vh",
       overflowY: "hidden",
     },
@@ -26,29 +27,23 @@ const Main = ({ data, direction }) => {
 
   const classes = useStyles();
 
-  const mod = (n, m) => ((n % m) + m) % m;
-
-  const changeSlide = (n) => {
-    setIndex((i) => mod(i + n, 3));
+  const handleElements = () => {
+    let n = React.Children.count(children);
+    return n;
   };
 
   useEffect(() => {
     setWidth(window.innerWidth);
-  }, [index]);
+  }, []);
+
+  useEffect(() => {
+    setElements(handleElements());
+  }, [children]);
 
   return (
-    <div className={classes.Wrapper}>
-      {images.map((image) => {
-        return (
-          <Item
-            index={index}
-            changeSlide={changeSlide}
-            image={image}
-            direction={direction}
-          />
-        );
-      })}
-    </div>
+    <CarouselStore direction={direction} elements={elements}>
+      <div className={classes.Wrapper}>{children}</div>;
+    </CarouselStore>
   );
 };
 

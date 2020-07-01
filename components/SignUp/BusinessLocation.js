@@ -92,9 +92,7 @@ function BusinessDetails({
         />
 
         <Navigation
-          errors={errors}
           values={values}
-          setStep={setStep}
           handleErrors={handleErrors}
           validation={validateLocation}
         />

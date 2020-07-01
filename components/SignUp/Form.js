@@ -13,6 +13,9 @@ import Challenges from "./Challenges";
 import Wish from "./Wish";
 import Review from "./Review";
 
+import Carousel from "../UI/Carousel/Main";
+import Item from "../UI/Carousel/Item";
+
 // import UserLocation from "./UserLocation";
 // import UserTags from "./UserTags";
 
@@ -50,9 +53,9 @@ function Form() {
     () => {}
   );
 
-  switch (step) {
-    case 1:
-      return (
+  return (
+    <Carousel direction={"Y"}>
+      <Item>
         <UserConsent
           values={values}
           handleChange={handleChange}
@@ -60,55 +63,43 @@ function Form() {
           handleErrors={handleErrors}
           setStep={setStep}
         />
-      );
-    case 2:
-      return (
+      </Item>
+      <Item>
         <UserCredentials
           values={values}
           handleChange={handleChange}
           errors={errors}
           handleErrors={handleErrors}
-          setStep={setStep}
         />
-      );
-    case 3:
-      return (
+      </Item>
+      <Item>
         <BusinessDetails
           values={values}
           handleChange={handleChange}
           handleDirectChange={handleDirectChange}
           errors={errors}
           handleErrors={handleErrors}
-          step={step}
-          setStep={setStep}
         />
-      );
-    case 4:
-      return (
+      </Item>
+      <Item>
         <BusinessIndustry
           values={values}
           handleChange={handleChange}
           handleDirectChange={handleDirectChange}
           errors={errors}
           handleErrors={handleErrors}
-          step={step}
-          setStep={setStep}
         />
-      );
-    case 5:
-      return (
+      </Item>
+      <Item>
         <BusinessLocation
           values={values}
           handleChange={handleChange}
           handleDirectChange={handleDirectChange}
           errors={errors}
           handleErrors={handleErrors}
-          step={step}
-          setStep={setStep}
         />
-      );
-    case 6:
-      return (
+      </Item>
+      <Item>
         <BusinessWebsite
           values={values}
           handleChange={handleChange}
@@ -118,9 +109,8 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      );
-    case 7:
-      return (
+      </Item>
+      <Item>
         <Goals
           values={values}
           handleChange={handleChange}
@@ -130,9 +120,8 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      );
-    case 8:
-      return (
+      </Item>
+      <Item>
         <Challenges
           values={values}
           handleChange={handleChange}
@@ -142,9 +131,8 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      );
-    case 9:
-      return (
+      </Item>
+      <Item>
         <Achievements
           values={values}
           handleChange={handleChange}
@@ -154,9 +142,8 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      );
-    case 10:
-      return (
+      </Item>
+      <Item>
         <Wish
           values={values}
           handleChange={handleChange}
@@ -166,28 +153,23 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      );
-    case 11:
-      return (
+      </Item>
+      <Item>
         <Review
           values={values}
-          handleChange={handleChange}
-          handleDirectChange={handleDirectChange}
-          errors={errors}
-          handleErrors={handleErrors}
-          step={step}
-          setStep={setStep}
+          submitting={submitting}
+          setSubmitting={setSubmitting}
         />
-      );
-    case 12:
-      return (
+      </Item>
+      <Item>
         <Submit
           values={values}
           submitting={submitting}
           setSubmitting={setSubmitting}
         />
-      );
-  }
+      </Item>
+    </Carousel>
+  );
 }
 
 export default Form;

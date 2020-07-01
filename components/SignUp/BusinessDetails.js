@@ -7,10 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
 
 // Components
-import Location from "./Location";
-import Industry from "./Industry";
-import Years from "./Years";
-import Website from "./Website";
 import Navigation from "./Navigation";
 
 const useStyles = makeStyles((theme) => ({
@@ -19,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "80vh",
     overflow: "scroll",
   },
   textField: {
@@ -62,18 +57,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BusinessDetails({
-  values,
-  handleChange,
-  handleDirectChange,
-  step,
-  setStep,
-  handleErrors,
-  errors,
-}) {
+function BusinessDetails({ values, handleChange, handleErrors, errors }) {
   useEffect(() => {}, [errors]);
-
-  const Ref = useRef(null);
 
   const classes = useStyles();
 
@@ -107,17 +92,9 @@ function BusinessDetails({
           error={errors.years ? true : false}
           helperText={errors.years}
         />
-        {/* <Years handleChange={handleChange} errors={errors} values={values} /> */}
 
-        {/* <Website
-          handleChange={handleDirectChange}
-          errors={errors}
-          values={values}
-        /> */}
         <Navigation
-          errors={errors}
           values={values}
-          setStep={setStep}
           handleErrors={handleErrors}
           validation={validateDetails}
         />

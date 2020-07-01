@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext } from "react";
 // Validation
 import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
@@ -9,8 +9,10 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 // Components
 
+import { CarouselContext } from "../UI/Carousel/contexts/CarouselContext";
+
 const useStyles = makeStyles((theme) => ({
-  buttonContainer: {
+  wrapper: {
     display: "flex",
     margin: 0,
     marginTop: 25,
@@ -20,27 +22,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navigation({ values, setStep, handleErrors, errors, validation }) {
+const Navigation = ({
+  values = {},
+  handleErrors,
+  validation,
+  type = "both",
+}) => {
+  const displayPrevious = () => type === "both" || type === "previous";
+  const displayNext = () => type === "both" || type === "next";
+
+  // TODO : Need to handle format
+
+  const next = async () => {
+    let valid = true;
+    if (validation) {
+      valid = await incrementForm(values, handleErrors, validation);
+    }
+    if (valid) changeSlide(1);
+  };
+
+  const previous = () => changeSlide(-1);
+
+  const { changeSlide } = useContext(CarouselContext);
   const classes = useStyles();
 
   return (
-    <div className={classes.buttonContainer}>
-      <IconButton
-        onClick={() => {
-          setStep((s) => s - 1);
-        }}
-      >
-        <ArrowBackIcon className={classes.arrow} />
-      </IconButton>
-      <IconButton
-        onClick={(e) => {
-          incrementForm(e, values, handleErrors, validation, setStep);
-        }}
-      >
-        <ArrowForwardIcon className={classes.arrow} />
-      </IconButton>
+    <div className={classes.wrapper}>
+      {displayPrevious() ? (
+        <IconButton onClick={previous}>
+          <ArrowBackIcon className={classes.arrow} />
+        </IconButton>
+      ) : null}
+      {displayNext() ? (
+        <IconButton onClick={next}>
+          <ArrowForwardIcon className={classes.arrow} />
+        </IconButton>
+      ) : null}
     </div>
   );
-}
+};
 
 export default Navigation;

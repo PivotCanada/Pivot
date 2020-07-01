@@ -11,13 +11,14 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import Navigation from "./Navigation";
 //Contexts
 import { ModalContext } from "../../contexts/ModalContext";
+import { CarouselContext } from "../UI/Carousel/contexts/CarouselContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    height: "80vh",
+
     alignItems: "center",
   },
   textField: {
@@ -73,6 +74,7 @@ function UserCredentials({
   errors,
 }) {
   const { setShowOnboard } = useContext(ModalContext);
+  const { changeSlide } = useContext(CarouselContext);
   const classes = useStyles();
 
   return (
@@ -100,16 +102,7 @@ function UserCredentials({
           Sign In
         </Button>
       </p>
-      <div className={classes.innerWrapper}></div>
-      <div className={classes.buttonContainer}>
-        <IconButton
-          onClick={(e) => {
-            setStep((s) => s + 1);
-          }}
-        >
-          <ArrowForwardIcon className={classes.arrow} />
-        </IconButton>
-      </div>
+      <Navigation type="next" />
     </form>
   );
 }

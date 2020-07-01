@@ -106,16 +106,18 @@ const NavItems = ({ setOpen }) => {
           <MenuIcon />
         </IconButton>
       ) : (
-        <Button
-          className={classes.button}
-          onClick={() => {
-            setShowLogin(true);
-          }}
-          variant="contained"
-          color="primary"
-        >
-          {truthy(keys.journey)}
-        </Button>
+        <Link href={"/signup"}>
+          <Button
+            className={classes.button}
+            onClick={() => {
+              // setShowLogin(true);
+            }}
+            variant="contained"
+            color="primary"
+          >
+            {truthy(keys.journey)}
+          </Button>
+        </Link>
       )}
     </div>
   );

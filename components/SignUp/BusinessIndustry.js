@@ -10,10 +10,9 @@ import Navigation from "./Navigation";
 
 function BusinessIndustry({
   values,
-  handleChange,
+
   handleDirectChange,
-  step,
-  setStep,
+
   handleErrors,
   errors,
 }) {
@@ -71,8 +70,6 @@ function BusinessIndustry({
 
   useEffect(() => {}, [errors]);
 
-  const Ref = useRef(null);
-
   const classes = useStyles();
 
   return (
@@ -98,9 +95,7 @@ function BusinessIndustry({
         />
 
         <Navigation
-          errors={errors}
           values={values}
-          setStep={setStep}
           handleErrors={handleErrors}
           validation={validateIndustry}
         />

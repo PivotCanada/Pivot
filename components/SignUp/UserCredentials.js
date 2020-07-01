@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 // Validation
 import { validateCredentials } from "../../utils/validation/validateCredentialsV2";
 import { formatEmail } from "../../utils/validation/formatting";
@@ -9,13 +9,14 @@ import { TextField, Button, IconButton } from "@material-ui/core";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 // Components
 import Navigation from "./Navigation";
+import { CarouselContext } from "../UI/Carousel/contexts/CarouselContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    minHeight: "80vh",
+
     alignItems: "center",
   },
   textField: {
@@ -64,6 +65,7 @@ function UserCredentials({
   errors,
 }) {
   const classes = useStyles();
+  const { changeSlide } = useContext(CarouselContext);
 
   return (
     <form
@@ -131,22 +133,28 @@ function UserCredentials({
           variant="outlined"
         /> */}
       </div>
-      <div className={classes.buttonContainer}>
+      {/* <div className={classes.buttonContainer}>
         <IconButton
-          onClick={(e) => {
+          onClick={async () => {
             values.email = formatEmail(values.email);
-            incrementForm(
-              e,
+            const valid = await incrementForm(
               values,
               handleErrors,
-              validateCredentials,
-              setStep
+              validateCredentials
             );
+            if (valid) {
+              changeSlide(1);
+            }
           }}
         >
           <ArrowForwardIcon className={classes.arrow} />
         </IconButton>
-      </div>
+      </div> */}
+      <Navigation
+        values={values}
+        handleErrors={handleErrors}
+        validation={validateCredentials}
+      />
     </form>
   );
 }
