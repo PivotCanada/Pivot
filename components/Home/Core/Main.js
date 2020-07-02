@@ -19,9 +19,9 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    minHeight: "100vh",
-    marginTop: 0,
-    marginBottom: 75,
+    minHeight: "100%",
+    marginTop: 100,
+    marginBottom: 25,
     width: "100vw",
   },
   innerWrapper: {

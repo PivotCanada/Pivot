@@ -21,7 +21,7 @@ const Main = ({ image, children }) => {
       flexShrink: 1,
       flexBasis: 1,
       transform: `translate${direction}(${-100 * index}%)`,
-      transition: "0.2s ease-in-out",
+      transition: "0.4s ease",
       backgroundImage: `url(${image})`,
     },
   }));

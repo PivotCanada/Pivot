@@ -5,6 +5,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import { IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 // Components
 import Main from "./Main";
 // Contexts
@@ -47,19 +49,56 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontFamily: "Noto Sans, sans-serif",
     fontWeight: 700,
-    fontSize: 14,
+    fontSize: 18,
     textAlign: "center",
     margin: 0,
     marginLeft: 10,
     marginTop: 0,
   },
+  arrowForwardIosIcon: {
+    position: "fixed",
+    top: "50%",
+    right: "5%",
+    color: "white",
+  },
+  arrowBackIosIcon: {
+    position: "fixed",
+    top: "50%",
+    left: "5%",
+    color: "white",
+  },
 }));
 
-const Modal = ({ open, setOpen, story, fetch = false }) => {
+const Modal = ({ data, open, setOpen, story, fetch = false }) => {
   const { user } = useContext(UserContext);
+
   const { width, setWidth } = useWidth();
   const [profile, setProfile] = useState();
+  const [next, setNext] = useState(true);
+  const [previous, setPrevious] = useState(true);
+  const [index, setIndex] = useState(0);
   const classes = useStyles();
+
+  // TODO : each modal is referencing its data prop, is it making m copies if there are m modals?
+
+  const getIndex = () => {
+    const i = data.indexOf(profile);
+    setIndex(i);
+    setNext(i !== data.length - 1);
+    setPrevious(i !== 0);
+  };
+
+  const nextUser = () => {
+    const next = data[index + 1];
+    setProfile(next);
+  };
+
+  const previousUser = () => {
+    const prev = data[index - 1];
+    setProfile(prev);
+  };
+
+  // nextUser();
 
   const initializeUser = async (fetch) => {
     if (fetch) {
@@ -81,6 +120,10 @@ const Modal = ({ open, setOpen, story, fetch = false }) => {
     setWidth(window.innerWidth);
   }, []);
 
+  useEffect(() => {
+    getIndex();
+  }, [profile]);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -97,19 +140,35 @@ const Modal = ({ open, setOpen, story, fetch = false }) => {
           open={open}
           fullWidth={true}
           className={classes.dialog}
-          maxWidth={"lg"}
+          maxWidth={"sm"}
           onClose={handleClose}
         >
           <DialogActions className={classes.dialogActions}>
             <h2 className={classes.header}>
-              {sameUser(user, profile) ? "My Journey: " : null}{" "}
+              {sameUser(user, profile) ? "My Journey: " : null}
               {profile.business}
             </h2>
             <IconButton className={classes.close} onClick={handleClose}>
               <CloseIcon />
             </IconButton>
           </DialogActions>
-          {width > 800 ? <Main story={profile} /> : null}
+          {next ? (
+            <IconButton
+              className={classes.arrowForwardIosIcon}
+              onClick={nextUser}
+            >
+              <ArrowForwardIosIcon />
+            </IconButton>
+          ) : null}
+          {previous ? (
+            <IconButton
+              className={classes.arrowBackIosIcon}
+              onClick={previousUser}
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+          ) : null}
+          <Main story={profile} />
         </Dialog>
       </ProfileStore>
     );

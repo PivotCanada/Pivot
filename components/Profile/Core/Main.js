@@ -23,11 +23,12 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
-      flexDirection: width < 600 ? "column" : "row",
-      alignItems: width < 600 ? "center" : "start",
+      flexDirection: width < 600 ? "column" : "column",
+      alignItems: width < 600 ? "center" : "center",
       width: "100%",
-      height: "100%",
-      marginTop: 25,
+      minHeight: "100%",
+
+      marginTop: 20,
     },
 
     container: {
@@ -36,8 +37,8 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
       flexDirection: "column",
       justifyContent: "start",
       alignItems: "center",
-      width: width < 600 ? "90%" : "50%",
-      marginLeft: width < 600 ? 0 : "7%",
+      width: width < 600 ? "90%" : "90%",
+      marginLeft: width < 600 ? 0 : 0,
     },
   }));
 
@@ -68,6 +69,10 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
     fetchPosts();
     fetchLikes();
   }, [identical]);
+
+  useEffect(() => {
+    setContent("story");
+  }, [story]);
 
   if (story) {
     return (

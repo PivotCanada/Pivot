@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import Router from "next/router";
+import Cookie from "js-cookie";
 // Validation
 
 // Material UI

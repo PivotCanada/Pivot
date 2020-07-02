@@ -1,37 +1,20 @@
-import { useEffect, useContext } from "react";
-// Validation
-import { validateCredentials } from "../../utils/validation/validateCredentials";
-import { formatEmail } from "../../utils/validation/formatting";
-import { incrementForm } from "../../utils/validation/incrementForm";
+import Link from "next/link";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField, Button, IconButton } from "@material-ui/core";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import { Button } from "@material-ui/core";
+
 // Components
 import Navigation from "./Navigation";
-//Contexts
-import { ModalContext } from "../../contexts/ModalContext";
-import { CarouselContext } from "../UI/Carousel/contexts/CarouselContext";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  wrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-
     alignItems: "center",
-  },
-  textField: {
-    width: "17rem",
-    margin: 15,
-    flexGrow: 1,
-    flexShrink: 1,
-  },
-  innerWrapper: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    overflow: "scroll",
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 5,
   },
   header: {
     textAlign: "center",
@@ -48,17 +31,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     fontFamily: "Open Sans, sans-serif",
   },
-
-  button: {
-    marginTop: "3rem",
-    marginBottom: "3rem",
-  },
-
-  buttonContainer: {
-    display: "flex",
-    marginTop: 10,
-  },
-
   loginButton: {
     color: "blue",
     textTransform: "none",
@@ -66,26 +38,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function UserCredentials({
-  values,
-  handleChange,
-  setStep,
-  handleErrors,
-  errors,
-}) {
-  const { setShowOnboard } = useContext(ModalContext);
-  const { changeSlide } = useContext(CarouselContext);
+function UserConsent() {
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      //   onSubmit={(e) => {
-      //     e.preventDefault();
-      //     values.email = formatEmail(values.email);
-      //     incrementForm(e, values, handleErrors, validateCredentials, setStep);
-      //   }}
-    >
+    <form className={classes.wrapper}>
       <h1 className={classes.header}>Wait a Sec!</h1>
       <p className={classes.text}>
         We will be reviewing your data, before reaching out to you. We will keep
@@ -93,18 +50,13 @@ function UserCredentials({
       </p>
       <p>
         Already have an account?
-        <Button
-          onClick={() => {
-            setShowOnboard(false);
-          }}
-          className={classes.loginButton}
-        >
-          Sign In
-        </Button>
+        <Link href="/login">
+          <Button className={classes.loginButton}>Login In</Button>
+        </Link>
       </p>
       <Navigation type="next" />
     </form>
   );
 }
 
-export default UserCredentials;
+export default UserConsent;

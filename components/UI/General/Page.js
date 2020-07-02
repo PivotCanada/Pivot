@@ -28,7 +28,7 @@ export default function Page({ children }) {
   return (
     <div>
       <AppBar />
-      <div style={{ marginTop: 100 }}>
+      <div style={{ marginTop: 65 }}>
         {user ? (
           <ProfileModal
             open={showProfile}

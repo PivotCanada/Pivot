@@ -1,7 +1,6 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 // Validation
 import { validateIndustry } from "../../utils/validation/validateIndustry";
-import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
@@ -10,21 +9,19 @@ import Navigation from "./Navigation";
 
 function BusinessIndustry({
   values,
-
   handleDirectChange,
-
   handleErrors,
   errors,
 }) {
   const useStyles = makeStyles((theme) => ({
-    root: {
+    wrapper: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      minHeight: "80vh",
-
-      overflow: "scroll",
+      backgroundColor: "white",
+      padding: 20,
+      borderRadius: 5,
     },
     textField: {
       width: "17rem",
@@ -32,7 +29,7 @@ function BusinessIndustry({
       flexGrow: 1,
       flexShrink: 1,
     },
-    innerWrapper: {
+    container: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "flex-start",
@@ -73,14 +70,8 @@ function BusinessIndustry({
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      onSubmit={(e) => {
-        e.preventDefault();
-        incrementForm(e, values, handleErrors, validateIndustry, setStep);
-      }}
-    >
-      <div className={classes.innerWrapper}>
+    <form className={classes.wrapper}>
+      <div className={classes.container}>
         <h1 className={classes.header}>Industry</h1>
         <p className={classes.text}>
           {values.industry === ""

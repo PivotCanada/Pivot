@@ -12,7 +12,7 @@ import Image from "./Image";
 // Stores
 import { ProfileStore } from "../Contexts/ProfileContext";
 
-function Preview({ story }) {
+function Preview({ data, story }) {
   const useStyles = makeStyles((theme) => ({
     card: {
       display: "flex",
@@ -152,7 +152,7 @@ function Preview({ story }) {
   if (story !== null) {
     return (
       <Card className={classes.card}>
-        <Modal story={story} open={open} setOpen={setOpen} />
+        <Modal data={data} story={story} open={open} setOpen={setOpen} />
         <CardContent className={classes.innerWrapper}>
           <Image story={story} setOpen={setOpen} />
           <div className={classes.content}>
@@ -190,14 +190,6 @@ function Preview({ story }) {
                   className={classes.chip}
                 />
               </div>
-              {/* <Button
-              color="primary"
-              variant="contained"
-              className={classes.button}
-              onClick={() => setOpen(true)}
-            >
-              View
-            </Button> */}
             </div>
           </div>
         </CardContent>

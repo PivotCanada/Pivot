@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import Router from "next/router";
+import Cookie from "js-cookie";
 // Validation
 import { validateDetails } from "../../utils/validation/validateDetails";
 import { incrementForm } from "../../utils/validation/incrementForm";
@@ -20,8 +21,9 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    minHeight: "80vh",
-    overflow: "scroll",
+    backgroundColor: "white",
+    padding: 35,
+    borderRadius: 5,
   },
   textField: {
     width: "17rem",
@@ -90,7 +92,7 @@ function Submit({ values, submitting, setSubmitting }) {
 
   const onSumbit = () => {
     setSubmitting(true);
-    // NOTE : reroute to `/home` upon sucessful login
+    // NOTE : reroute to `/` upon sucessful login
     // TODO : configure functionality here for `persisted state` later on ...
     signup(data).then((response) => {
       console.log(response);
@@ -102,13 +104,16 @@ function Submit({ values, submitting, setSubmitting }) {
         }).then((response) => {
           if (response.status === "success") {
             // NOTE : set `token`, `user`, `authenticated` state, in UserContext, upon sucessful login
-            setToken(response.data.token);
-            setUser(response.data.user);
+            let token = response.data.token;
+            let user = response.data.user;
+            Cookie.set("token", token);
+            setToken(token);
+            setUser(user);
             setAuthenticated(true);
             setShowOnboard(false);
             setShowLogin(false);
             console.log(response.data);
-            Router.push("/");
+            Router.push(`/profiles/${user._id}`);
           } else {
             console.log(response);
             setError({ value: true, message: response.message });
@@ -126,12 +131,8 @@ function Submit({ values, submitting, setSubmitting }) {
   };
 
   useEffect(() => {
-    console.log(lastElement());
-
     if (lastElement()) {
       onSumbit();
-    } else {
-      console.log("not yet");
     }
   }, [index]);
 

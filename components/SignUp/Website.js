@@ -10,8 +10,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    width: "100vw",
-    overflow: "scroll",
   },
   textField: {
     width: "17rem",

@@ -44,7 +44,7 @@ function Preview({ user, pageOpen }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   // const [callback, setCallback] = useState(null);
-  // const { initializeUser } = useContext(ProfileContext);
+  const { initializeUser } = useContext(ProfileContext);
 
   // const [displayType, setDisplayType] = useState("modal");
 
@@ -63,12 +63,8 @@ function Preview({ user, pageOpen }) {
 
       <div
         onClick={async () => {
-          Router.push(`/profiles/${user._id}`);
-          // if (initializeUser) {
-          //   await initializeUser(user._id);
-          // } else {
-          // setOpen(true);
-          // }
+          // Router.push(`/profiles/${user._id}`);
+          await initializeUser(user._id);
         }}
         className={classes.wrapper}
       >

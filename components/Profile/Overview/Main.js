@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     margin: 0,
     padding: 0,
-    marginLeft: "5%",
+    marginLeft: 0,
   },
 }));
 
@@ -34,7 +34,7 @@ function Main({ width, story, posts }) {
       height: "100%",
       margin: 0,
       padding: 0,
-      marginLeft: width < 600 ? 0 : "5%",
+      marginLeft: width < 600 ? 0 : 0,
     },
   }));
 
@@ -55,12 +55,12 @@ function Main({ width, story, posts }) {
       <Details profile={story} />
       <Chips profile={story} />
 
-      {width > 600 ? (
+      {/* {width > 600 ? (
         <UserList users={followers} title={"followers"} width={250} />
       ) : null}
       {width > 600 ? (
         <UserList users={following} title={"following"} width={250} />
-      ) : null}
+      ) : null} */}
     </div>
   );
 }

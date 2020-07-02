@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 // Validation
 import { validateDetails } from "../../utils/validation/validateDetails";
-import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@material-ui/core";
@@ -10,12 +9,14 @@ import { TextField } from "@material-ui/core";
 import Navigation from "./Navigation";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  wrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    overflow: "scroll",
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 5,
   },
   textField: {
     width: "17rem",
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexShrink: 1,
   },
-  innerWrapper: {
+  container: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-start",
@@ -58,19 +59,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function BusinessDetails({ values, handleChange, handleErrors, errors }) {
-  useEffect(() => {}, [errors]);
-
   const classes = useStyles();
 
   return (
-    <form
-      className={classes.root}
-      onSubmit={(e) => {
-        e.preventDefault();
-        incrementForm(e, values, handleErrors, validateDetails, setStep);
-      }}
-    >
-      <div className={classes.innerWrapper}>
+    <form className={classes.wrapper}>
+      <div className={classes.container}>
         <h1 className={classes.header}>Your Business</h1>
         <p className={classes.text}>Tell us about your business</p>
         <TextField

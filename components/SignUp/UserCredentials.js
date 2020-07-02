@@ -1,23 +1,20 @@
-import { useEffect, useContext } from "react";
 // Validation
 import { validateCredentials } from "../../utils/validation/validateCredentialsV2";
-import { formatEmail } from "../../utils/validation/formatting";
-import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button, IconButton } from "@material-ui/core";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 // Components
 import Navigation from "./Navigation";
-import { CarouselContext } from "../UI/Carousel/contexts/CarouselContext";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  wrapper: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-
     alignItems: "center",
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 5,
   },
   textField: {
     width: "17rem",
@@ -25,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexShrink: 1,
   },
-  innerWrapper: {
+  container: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -45,40 +42,16 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     fontFamily: "Open Sans, sans-serif",
   },
-
-  button: {
-    marginTop: "3rem",
-    marginBottom: "3rem",
-  },
-
-  buttonContainer: {
-    display: "flex",
-    marginTop: 10,
-  },
 }));
 
-function UserCredentials({
-  values,
-  handleChange,
-  setStep,
-  handleErrors,
-  errors,
-}) {
+function UserCredentials({ values, handleChange, handleErrors, errors }) {
   const classes = useStyles();
-  const { changeSlide } = useContext(CarouselContext);
 
   return (
-    <form
-      className={classes.root}
-      //   onSubmit={(e) => {
-      //     e.preventDefault();
-      //     values.email = formatEmail(values.email);
-      //     incrementForm(e, values, handleErrors, validateCredentials, setStep);
-      //   }}
-    >
+    <form className={classes.wrapper}>
       <h1 className={classes.header}>Who Are You?</h1>
       <p className={classes.text}>Tell us about yourself to get started</p>
-      <div className={classes.innerWrapper}>
+      <div className={classes.container}>
         <TextField
           className={classes.textField}
           type="email"
@@ -88,7 +61,6 @@ function UserCredentials({
           onChange={(e) => handleChange(e)}
           error={errors.email ? true : false}
           helperText={errors.email}
-          // variant="outlined"
         />
         <TextField
           className={classes.textField}
@@ -99,7 +71,6 @@ function UserCredentials({
           onChange={(e) => handleChange(e)}
           error={errors.password ? true : false}
           helperText={errors.password}
-          // variant="outlined"
         />
         <TextField
           className={classes.textField}
@@ -109,7 +80,6 @@ function UserCredentials({
           onChange={(e) => handleChange(e)}
           error={errors.firstname ? true : false}
           helperText={errors.firstname}
-          // variant="outlined"
         />
         <TextField
           className={classes.textField}
@@ -119,37 +89,8 @@ function UserCredentials({
           onChange={(e) => handleChange(e)}
           error={errors.lastname ? true : false}
           helperText={errors.lastname}
-          // variant="outlined"
         />
-
-        {/* <TextField
-          className={classes.textField}
-          name="role"
-          value={values.role}
-          label="Role at Company"
-          onChange={(e) => handleChange(e)}
-          error={errors.role ? true : false}
-          helperText={errors.role}
-          variant="outlined"
-        /> */}
       </div>
-      {/* <div className={classes.buttonContainer}>
-        <IconButton
-          onClick={async () => {
-            values.email = formatEmail(values.email);
-            const valid = await incrementForm(
-              values,
-              handleErrors,
-              validateCredentials
-            );
-            if (valid) {
-              changeSlide(1);
-            }
-          }}
-        >
-          <ArrowForwardIcon className={classes.arrow} />
-        </IconButton>
-      </div> */}
       <Navigation
         values={values}
         handleErrors={handleErrors}

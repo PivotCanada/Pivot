@@ -30,8 +30,10 @@ function BusinessWebsite({
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      minHeight: "80vh",
-      overflow: "scroll",
+
+      backgroundColor: "white",
+      padding: 35,
+      borderRadius: 5,
     },
     textField: {
       width: "17rem",

@@ -34,8 +34,8 @@ function Image({ story, setOpen }) {
   return (
     <div
       onClick={() => {
-        Router.push(`/profiles/${story._id}`);
-        // setOpen(true);
+        // Router.push(`/profiles/${story._id}`);
+        setOpen(true);
       }}
       className={classes.imageContainer}
     >

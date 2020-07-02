@@ -82,6 +82,8 @@ const NavItems = ({ setOpen }) => {
     setWidth(window.innerWidth);
   }, []);
 
+  useEffect(() => {}, [authenticated]);
+
   return (
     <div className={classes.wrapper}>
       <ProfileLink width={width} keys={keys} />

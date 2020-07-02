@@ -37,7 +37,9 @@ const Container = ({ display, callback, data }) => {
     return (
       <div className={classes.root}>
         {profiles.map((user) => {
-          return <Card display={display} key={user._id} story={user} />;
+          return (
+            <Card data={data} display={display} key={user._id} story={user} />
+          );
         })}
       </div>
     );

@@ -10,9 +10,7 @@ import Navigation from "./Navigation";
 
 function BusinessDetails({
   values,
-  handleChange,
   handleDirectChange,
-  step,
   setStep,
   handleErrors,
   errors,
@@ -23,8 +21,9 @@ function BusinessDetails({
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      minHeight: "80vh",
-      overflow: "scroll",
+      backgroundColor: "white",
+      padding: 20,
+      borderRadius: 5,
     },
     textField: {
       width: "17rem",
