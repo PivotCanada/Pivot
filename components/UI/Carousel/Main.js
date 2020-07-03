@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
-import Item from "./Item";
+import Stepper from "./Stepper";
 // Contexts
 import { CarouselStore } from "./contexts/CarouselContext";
 // Hooks
@@ -16,6 +16,7 @@ const Main = ({ direction, children }) => {
     Wrapper: {
       height: "95vh",
       overflowY: "hidden",
+      zIndex: 0,
     },
   }));
 
@@ -42,7 +43,8 @@ const Main = ({ direction, children }) => {
 
   return (
     <CarouselStore direction={direction} elements={elements}>
-      <div className={classes.Wrapper}>{children}</div>;
+      <Stepper />
+      <div className={classes.Wrapper}>{children}</div>
     </CarouselStore>
   );
 };

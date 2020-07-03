@@ -4,26 +4,32 @@ import { makeStyles } from "@material-ui/core/styles";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 import { Button } from "@material-ui/core";
-
+//  Components
+import Circle from "./Circle";
 // Contexts
 import { CarouselContext } from "./contexts/CarouselContext";
 
-const Main = ({ image, children }) => {
-  const { changeSlide, index, direction } = useContext(CarouselContext);
+const Main = () => {
+  const { index, elements } = useContext(CarouselContext);
 
   const useStyles = makeStyles((theme) => ({
     Wrapper: {
       display: "flex",
-      minHeight: "100%",
+      flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      flexGrow: 1,
-      flexShrink: 1,
-      flexBasis: 1,
-      transform: `translate${direction}(${-100 * index}%)`,
-      transition: "0.4s ease",
-      backgroundImage: `url(${image})`,
-      zIndex: 0,
+      position: "fixed",
+      right: "5%",
+      minHeight: "100vh",
+      zIndex: 3,
+    },
+    circle: {
+      border: "1px solid black",
+      borderRadius: "50%",
+      height: 20,
+      width: 20,
+      marginTop: 5,
+      marginBottom: 5,
     },
   }));
 
@@ -31,15 +37,16 @@ const Main = ({ image, children }) => {
 
   useEffect(() => {}, [index]);
 
+  const range = (i, end) => {
+    if (i === end) return [i];
+    return [i, ...range(i + 1, end)];
+  };
+
   return (
     <div className={classes.Wrapper}>
-      {children}
-      {/* <Button variant="contained" onClick={() => changeSlide(1)}>
-        Next
-      </Button>
-      <Button variant="contained" onClick={() => changeSlide(-1)}>
-        Prev
-      </Button> */}
+      {range(0, elements).map((i) => (
+        <Circle key={i} reference={i} />
+      ))}
     </div>
   );
 };

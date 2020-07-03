@@ -136,7 +136,7 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
         setOpen={setOpen}
       >
         <Dialog
-          scroll="paper"
+          scroll="body"
           open={open}
           fullWidth={true}
           className={classes.dialog}
