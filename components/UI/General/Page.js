@@ -8,7 +8,7 @@ import { ModalContext } from "../../../contexts/ModalContext";
 // Hooks
 import useValidate from "../../../hooks/useValidate";
 
-export default function Page({ children }) {
+export default function Page({ children, top = 65 }) {
   const { showProfile, setShowProfile } = useContext(ModalContext);
   const { user, setUser, setAuthenticated, setLoading } = useContext(
     UserContext
@@ -28,7 +28,7 @@ export default function Page({ children }) {
   return (
     <div>
       <AppBar />
-      <div style={{ marginTop: 65 }}>
+      <div style={{ marginTop: top }}>
         {user ? (
           <ProfileModal
             open={showProfile}

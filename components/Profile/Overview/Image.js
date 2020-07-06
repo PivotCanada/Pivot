@@ -1,10 +1,11 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 
-function Image({ image, size }) {
+function Image({ image, size, right = 0 }) {
   const useStyles = makeStyles((theme) => ({
     imageContainer: {
       display: "flex",
+      marginRight: right,
       width: size,
       height: size,
       maxWidth: size,

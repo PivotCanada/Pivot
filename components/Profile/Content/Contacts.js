@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import UserList from "../Overview/UserList";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
+import { ProfileContext } from "../Contexts/ProfileContext";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -30,8 +31,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Contacts({ story, pageOpen }) {
   const classes = useStyles();
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
+  const { followers, setFollowers, following, setFollowing } = useContext(
+    ProfileContext
+  );
 
   useEffect(() => {
     fetchUsers(story.followed_by, setFollowers);

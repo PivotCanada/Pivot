@@ -16,9 +16,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+
     backgroundColor: "white",
     borderRadius: 10,
     margin: 0,
+  },
+  text: {
+    fontFamily: "Open Sans, sans-serif",
+    fontWeight: 700,
+    marginTop: 20,
+    width: "50%",
+    textAlign: "center",
   },
 }));
 
@@ -30,6 +38,9 @@ const Main = ({ content, display, profiles, posts }) => {
     case "posts":
       return (
         <div className={classes.wrapper}>
+          <p className={classes.text}>
+            Follow the Sustainability Journey of fellow SMEs
+          </p>
           {authenticated && display ? <Create /> : null}
           <Posts display={display} data={posts} />
         </div>
@@ -37,6 +48,9 @@ const Main = ({ content, display, profiles, posts }) => {
     case "stories":
       return (
         <div className={classes.wrapper}>
+          <p className={classes.text}>
+            Discover Sustainability Stories and Connect with Fellow SMEs
+          </p>
           <Profiles display={display} data={profiles} />
         </div>
       );

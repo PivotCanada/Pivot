@@ -9,10 +9,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
+    width: "100%",
+    maxWidth: 800,
     marginRight: "auto",
     marginTop: 60,
     marginBottom: 75,
-    width: "65vw",
+
     flexWrap: "wrap",
   },
 }));

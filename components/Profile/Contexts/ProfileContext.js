@@ -7,13 +7,22 @@ export const ProfileStore = ({
   open,
   setOpen,
   children,
+  page = false,
 }) => {
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+
   return (
     <ProfileContext.Provider
       value={{
         initializeUser,
         open,
         setOpen,
+        page,
+        followers,
+        setFollowers,
+        following,
+        setFollowing,
       }}
     >
       {children}

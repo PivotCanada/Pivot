@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 // Components
 import Page from "../../components/UI/General/Page";
 import Main from "../../components/Profile/Core/Main";
-import Modal from "../../components/Profile/Core/Modal";
 import LoginModal from "../../components/Login/Modal";
 import SignUpModal from "../../components/SignUp/Modal";
 import DeleteModal from "../../components/Delete/Modal";
@@ -10,16 +9,17 @@ import DeleteModal from "../../components/Delete/Modal";
 import { ProfileStore } from "../../components/Profile/Contexts/ProfileContext";
 
 const Profile = ({ user }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   useEffect(() => {}, [user]);
 
   return (
-    <Page>
-      <Modal story={null} open={open} setOpen={setOpen} />
-      <DeleteModal />
-      <LoginModal />
-      <SignUpModal />
-      <Main pageOpen={setOpen} story={user} initialContent={"posts"} />
+    <Page top={100}>
+      <ProfileStore page={true}>
+        <DeleteModal />
+        <LoginModal />
+        <SignUpModal />
+        <Main pageOpen={setOpen} story={user} initialContent={"posts"} />
+      </ProfileStore>
     </Page>
   );
 };

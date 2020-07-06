@@ -26,6 +26,7 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
       flexDirection: width < 600 ? "column" : "column",
       alignItems: width < 600 ? "center" : "center",
       width: "100%",
+
       minHeight: "100%",
 
       marginTop: 20,
@@ -37,6 +38,7 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
       flexDirection: "column",
       justifyContent: "start",
       alignItems: "center",
+      maxWidth: 800,
       width: width < 600 ? "90%" : "90%",
       marginLeft: width < 600 ? 0 : 0,
     },

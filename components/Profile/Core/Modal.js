@@ -9,9 +9,10 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 // Components
 import Main from "./Main";
+import ModalNav from "./ModalNav";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
-import { ProfileStore } from "../Contexts/ProfileContext";
+import { ProfileStore, ProfileContext } from "../Contexts/ProfileContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 // Utils
@@ -82,14 +83,17 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
   // TODO : each modal is referencing its data prop, is it making m copies if there are m modals?
 
   const getIndex = () => {
-    const i = data.indexOf(profile);
-    setIndex(i);
-    setNext(i !== data.length - 1);
-    setPrevious(i !== 0);
+    if (data) {
+      const i = data.indexOf(profile);
+      setIndex(i);
+      setNext(i !== data.length - 1);
+      setPrevious(i !== 0);
+    }
   };
 
   const nextUser = () => {
     const next = data[index + 1];
+
     setProfile(next);
   };
 
@@ -102,6 +106,7 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
 
   const initializeUser = async (fetch) => {
     if (fetch) {
+      console.log(fetch);
       await fetchUser(fetch).then((response) => {
         if (response.status === "success") {
           setProfile(response.data);
@@ -134,6 +139,7 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
         initializeUser={initializeUser}
         open={open}
         setOpen={setOpen}
+        page={true}
       >
         <Dialog
           scroll="body"
@@ -152,22 +158,12 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
               <CloseIcon />
             </IconButton>
           </DialogActions>
-          {next ? (
-            <IconButton
-              className={classes.arrowForwardIosIcon}
-              onClick={nextUser}
-            >
-              <ArrowForwardIosIcon />
-            </IconButton>
-          ) : null}
-          {previous ? (
-            <IconButton
-              className={classes.arrowBackIosIcon}
-              onClick={previousUser}
-            >
-              <ArrowBackIosIcon />
-            </IconButton>
-          ) : null}
+          <ModalNav
+            next={next}
+            previous={previous}
+            nextUser={nextUser}
+            previousUser={previousUser}
+          />
           <Main story={profile} />
         </Dialog>
       </ProfileStore>

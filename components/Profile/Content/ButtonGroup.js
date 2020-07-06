@@ -26,7 +26,7 @@ const Main = ({ setContent }) => {
           style={{ textTransform: "none" }}
           onClick={() => setContent("posts")}
         >
-          Posts
+          Journey
         </Button>
         <Button
           style={{ textTransform: "none" }}
@@ -38,7 +38,7 @@ const Main = ({ setContent }) => {
           style={{ textTransform: "none" }}
           onClick={() => setContent("contacts")}
         >
-          Contacts
+          Network
         </Button>
       </ButtonGroup>
     </div>

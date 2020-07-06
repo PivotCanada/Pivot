@@ -9,7 +9,8 @@ import Details from "../Overview/Details";
 // Contexts
 import { ProfileContext } from "../Contexts/ProfileContext";
 // Utils
-import { format } from "./utils/format";
+import fetchUsers from "../utils/fetchUsers";
+import fetchUser from "../../../utils/general/fetchUser";
 
 function Preview({ user, pageOpen }) {
   const useStyles = makeStyles((theme) => ({
@@ -44,7 +45,8 @@ function Preview({ user, pageOpen }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   // const [callback, setCallback] = useState(null);
-  const { initializeUser } = useContext(ProfileContext);
+  const { initializeUser, page } = useContext(ProfileContext);
+  const [data, setData] = useState([]);
 
   // const [displayType, setDisplayType] = useState("modal");
 
@@ -60,9 +62,15 @@ function Preview({ user, pageOpen }) {
   return (
     <div className={classes.card}>
       {/* <Modal open={open} setOpen={setOpen} fetch={user._id} /> */}
-
+      {page ? (
+        <Modal data={data} story={user} open={open} setOpen={setOpen} />
+      ) : null}
       <div
         onClick={async () => {
+          console.log(user._id);
+          if (page) {
+            setOpen(true);
+          }
           // Router.push(`/profiles/${user._id}`);
           await initializeUser(user._id);
         }}

@@ -13,7 +13,7 @@ const ProfileLink = ({ width, keys }) => {
     link: {
       display: width < 600 ? "none" : "flex",
       marginRight: 25,
-      marginLeft: 10,
+
       color: "black",
       fontFamily: "Open Sans, sans serif",
       fontWeight: 700,
@@ -40,7 +40,7 @@ const ProfileLink = ({ width, keys }) => {
     return (
       <Link href={`/profiles/${user._id}`}>
         <div className={classes.wrapper}>
-          <Image image={user.photo} size={25} />
+          <Image right={12} image={user.photo} size={25} />
           <h3 className={classes.link}>
             {user.firstname} {user.lastname}
           </h3>
