@@ -5,14 +5,12 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import { IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 // Components
 import Main from "./Main";
 import ModalNav from "./ModalNav";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
-import { ProfileStore, ProfileContext } from "../Contexts/ProfileContext";
+import { ProfileStore } from "../Contexts/ProfileContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 // Utils
