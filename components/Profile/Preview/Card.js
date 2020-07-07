@@ -62,17 +62,11 @@ function Preview({ user, pageOpen }) {
   return (
     <div className={classes.card}>
       {/* <Modal open={open} setOpen={setOpen} fetch={user._id} /> */}
-      {page ? (
-        <Modal data={data} story={user} open={open} setOpen={setOpen} />
-      ) : null}
+
       <div
         onClick={async () => {
-          console.log(user._id);
-          if (page) {
-            setOpen(true);
-          }
           // Router.push(`/profiles/${user._id}`);
-          await initializeUser(user._id);
+          initializeUser(user._id);
         }}
         className={classes.wrapper}
       >

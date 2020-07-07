@@ -72,17 +72,21 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
   const { user } = useContext(UserContext);
 
   const { width, setWidth } = useWidth();
-  const [profile, setProfile] = useState();
+  const [profile, setProfile] = useState({});
   const [next, setNext] = useState(true);
   const [previous, setPrevious] = useState(true);
   const [index, setIndex] = useState(0);
+
   const classes = useStyles();
 
   // TODO : each modal is referencing its data prop, is it making m copies if there are m modals?
 
-  const getIndex = () => {
+  const createIds = async () => data.map((i) => i._id);
+
+  const getIndex = async (profile) => {
     if (data) {
-      const i = data.indexOf(profile);
+      const ids = data.map((i) => i._id);
+      const i = ids.indexOf(profile._id);
       setIndex(i);
       setNext(i !== data.length - 1);
       setPrevious(i !== 0);
@@ -104,10 +108,9 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
 
   const initializeUser = async (fetch) => {
     if (fetch) {
-      console.log(fetch);
-      await fetchUser(fetch).then((response) => {
+      await fetchUser(fetch).then(async (response) => {
         if (response.status === "success") {
-          setProfile(response.data);
+          await setProfile(response.data);
         }
       });
     } else {
@@ -117,14 +120,21 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
 
   useEffect(() => {
     initializeUser(fetch);
-  }, [story, fetch]);
+  }, [fetch]);
+
+  useEffect(() => {
+    console.log("------------------");
+    console.log(data);
+    console.log(index);
+    console.log(profile);
+  }, [index]);
 
   useEffect(() => {
     setWidth(window.innerWidth);
   }, []);
 
   useEffect(() => {
-    getIndex();
+    getIndex(profile);
   }, [profile]);
 
   const handleClose = () => {
