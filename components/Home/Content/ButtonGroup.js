@@ -10,8 +10,8 @@ const Main = ({ setDisplaySearch, display, setContent }) => {
   const classes = useStyles();
   const { keys, truthy } = useLanguage({
     posts: {
-      english: "Posts",
-      french: "des Postes",
+      english: "Journeys",
+      french: "des Voyages",
     },
     stories: {
       english: "Stories",

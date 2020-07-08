@@ -104,6 +104,8 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
     setProfile(prev);
   };
 
+  useEffect(() => {}, [data]);
+
   // nextUser();
 
   const initializeUser = async (fetch) => {
@@ -138,6 +140,8 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
   }, [profile]);
 
   const handleClose = () => {
+    getIndex(story);
+    setProfile(story);
     setOpen(false);
   };
 
@@ -147,7 +151,7 @@ const Modal = ({ data, open, setOpen, story, fetch = false }) => {
         initializeUser={initializeUser}
         open={open}
         setOpen={setOpen}
-        page={true}
+        page={false}
       >
         <Dialog
           scroll="body"

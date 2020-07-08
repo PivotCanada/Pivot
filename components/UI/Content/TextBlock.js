@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     alignItems: "center",
     backgroundColor: "white",
-    width: "45%",
+    width: "70%",
   },
   subheader: {
     textAlign: "center",

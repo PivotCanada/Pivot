@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Card from "./Card";
+import { UserContext } from "../../../contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 const Container = ({ display, callback, data }) => {
   const classes = useStyles();
   const [profiles, setProfiles] = useState([]);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (callback) {
@@ -31,7 +33,14 @@ const Container = ({ display, callback, data }) => {
         }
       });
     } else {
-      setProfiles(data);
+      if (user) {
+        console.log(user);
+        let filtered = data.filter((profile) => profile._id !== user._id);
+        console.log(filtered);
+        setProfiles(filtered);
+      } else {
+        setProfiles(data);
+      }
     }
   }, [data]);
 
@@ -40,7 +49,12 @@ const Container = ({ display, callback, data }) => {
       <div className={classes.root}>
         {profiles.map((user) => {
           return (
-            <Card data={data} display={display} key={user._id} story={user} />
+            <Card
+              data={profiles}
+              display={display}
+              key={user._id}
+              story={user}
+            />
           );
         })}
       </div>

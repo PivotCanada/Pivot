@@ -71,17 +71,16 @@ const ActionCall = ({ width, header, text, buttonText, about, discover }) => {
     <div className={classes.wrapper}>
       <h1 className={classes.header}>{header}</h1>
       <p className={classes.text}>{text}</p>
-      <Button
-        onClick={() => {
-          setShowOnboard(true);
-          setShowLogin(true);
-        }}
-        color="primary"
-        className={classes.button}
-        variant="contained"
-      >
-        {buttonText}
-      </Button>
+      <Link href={"/signup"}>
+        <Button
+          onClick={() => {}}
+          color="primary"
+          className={classes.button}
+          variant="contained"
+        >
+          {buttonText}
+        </Button>
+      </Link>
       <div
         style={{ display: "flex", width: 200, justifyContent: "space-between" }}
       >

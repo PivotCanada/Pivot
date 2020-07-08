@@ -8,11 +8,12 @@ import Image from "../Overview/Image";
 import Details from "../Overview/Details";
 // Contexts
 import { ProfileContext } from "../Contexts/ProfileContext";
+import { UserContext } from "../../../contexts/UserContext";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
 import fetchUser from "../../../utils/general/fetchUser";
 
-function Preview({ user, pageOpen }) {
+function Preview({ profile, pageOpen }) {
   const useStyles = makeStyles((theme) => ({
     card: {
       display: "flex",
@@ -46,14 +47,14 @@ function Preview({ user, pageOpen }) {
   const [open, setOpen] = useState(false);
   // const [callback, setCallback] = useState(null);
   const { initializeUser, page } = useContext(ProfileContext);
-  const [data, setData] = useState([]);
+  const { user } = useContext(UserContext);
+  const [same, setSame] = useState(false);
 
   // const [displayType, setDisplayType] = useState("modal");
 
   useEffect(() => {
-    try {
-    } catch (error) {
-      console.log(error);
+    if (user._id === profile._id) {
+      setSame(true);
     }
   }, []);
 
@@ -65,13 +66,16 @@ function Preview({ user, pageOpen }) {
 
       <div
         onClick={async () => {
-          // Router.push(`/profiles/${user._id}`);
-          initializeUser(user._id);
+          if (page || same) {
+            Router.push(`/profiles/${profile._id}`);
+          } else {
+            initializeUser(profile._id);
+          }
         }}
         className={classes.wrapper}
       >
-        <Image image={user.photo} size={55} />
-        <Details profile={user} small={true} />
+        <Image image={profile.photo} size={55} />
+        <Details profile={profile} small={true} />
       </div>
     </div>
   );

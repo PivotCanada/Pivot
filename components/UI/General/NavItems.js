@@ -17,7 +17,7 @@ import useWidth from "../../../hooks/useWidth";
 
 const NavItems = ({ setOpen }) => {
   const { width, setWidth } = useWidth();
-  const { authenticated } = useContext(UserContext);
+  const { authenticated, loading } = useContext(UserContext);
 
   const useStyles = makeStyles(() => ({
     wrapper: {
@@ -82,47 +82,51 @@ const NavItems = ({ setOpen }) => {
     setWidth(window.innerWidth);
   }, []);
 
-  useEffect(() => {}, [authenticated]);
+  useEffect(() => {}, [authenticated, loading]);
 
-  return (
-    <div className={classes.wrapper}>
-      <ProfileLink width={width} keys={keys} />
-      <h3 onClick={() => changeLanguage()} className={classes.link}>
-        {truthy(keys.language)}
-      </h3>
-      <Link href={"/"}>
-        <h3 className={classes.link}>{keys.discover}</h3>
-      </Link>
-      <Link href={"/about"}>
-        <h3 className={classes.link}>{keys.about}</h3>
-      </Link>
-      {/* <Search /> */}
-      {authenticated ? (
-        <IconButton
-          onClick={() => setOpen(true)}
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="menu"
-        >
-          <MenuIcon />
-        </IconButton>
-      ) : (
-        <Link href={"/signup"}>
-          <Button
-            className={classes.button}
-            onClick={() => {
-              // setShowLogin(true);
-            }}
-            variant="contained"
-            color="primary"
-          >
-            {truthy(keys.journey)}
-          </Button>
+  if (loading) {
+    return null;
+  } else {
+    return (
+      <div className={classes.wrapper}>
+        <ProfileLink width={width} keys={keys} />
+        <h3 onClick={() => changeLanguage()} className={classes.link}>
+          {truthy(keys.language)}
+        </h3>
+        <Link href={"/"}>
+          <h3 className={classes.link}>{keys.discover}</h3>
         </Link>
-      )}
-    </div>
-  );
+        <Link href={"/about"}>
+          <h3 className={classes.link}>{keys.about}</h3>
+        </Link>
+        {/* <Search /> */}
+        {authenticated && !loading ? (
+          <IconButton
+            onClick={() => setOpen(true)}
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+        ) : (
+          <Link href={"/signup"}>
+            <Button
+              className={classes.button}
+              onClick={() => {
+                // setShowLogin(true);
+              }}
+              variant="contained"
+              color="primary"
+            >
+              {truthy(keys.journey)}
+            </Button>
+          </Link>
+        )}
+      </div>
+    );
+  }
 };
 
 export default NavItems;

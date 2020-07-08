@@ -78,34 +78,30 @@ const ModalNav = ({ nextUser, previousUser, next, previous }) => {
 
   // nextUser();
 
-  if (page) {
-    return (
-      <div>
-        {next ? (
-          <IconButton
-            className={classes.arrowForwardIosIcon}
-            onClick={() => {
-              nextUser();
-            }}
-          >
-            <ArrowForwardIosIcon />
-          </IconButton>
-        ) : null}
-        {previous ? (
-          <IconButton
-            className={classes.arrowBackIosIcon}
-            onClick={() => {
-              previousUser();
-            }}
-          >
-            <ArrowBackIosIcon />
-          </IconButton>
-        ) : null}
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <div>
+      {next ? (
+        <IconButton
+          className={classes.arrowForwardIosIcon}
+          onClick={() => {
+            nextUser();
+          }}
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
+      ) : null}
+      {previous ? (
+        <IconButton
+          className={classes.arrowBackIosIcon}
+          onClick={() => {
+            previousUser();
+          }}
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+      ) : null}
+    </div>
+  );
 };
 
 export default ModalNav;

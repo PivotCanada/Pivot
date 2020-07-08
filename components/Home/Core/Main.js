@@ -74,7 +74,7 @@ const Main = () => {
 
   return (
     <div className={classes.root}>
-      <Snackbar open={open} setOpen={setOpen} message={"Success"} />
+      {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
       <div className={classes.innerWrapper}>
         <Search
           displaySearch={displaySearch}

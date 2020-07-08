@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
     marginTop: 40,
-    minHeight: "60vh",
+    minHeight: "90vh",
     overflow: "scroll",
   },
   textField: {

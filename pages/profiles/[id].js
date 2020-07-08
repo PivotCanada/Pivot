@@ -5,6 +5,7 @@ import Main from "../../components/Profile/Core/Main";
 import LoginModal from "../../components/Login/Modal";
 import SignUpModal from "../../components/SignUp/Modal";
 import DeleteModal from "../../components/Delete/Modal";
+import Modal from "../../components/Profile/Core/Modal";
 // Stores
 import { ProfileStore } from "../../components/Profile/Contexts/ProfileContext";
 

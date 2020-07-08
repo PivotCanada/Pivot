@@ -7,6 +7,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 // Components
 import SideDrawer from "./SideDrawer";
 import NavItems from "./NavItems";
+// Contexts
+import { UserContext } from "../../../contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {

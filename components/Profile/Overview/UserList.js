@@ -42,7 +42,7 @@ const UserList = ({ users, title, width, pageOpen }) => {
           style={{ width: width ? "100%" : width }}
         >
           {users.map((user) => {
-            return <Card key={user._id} user={user} pageOpen={pageOpen} />;
+            return <Card key={user._id} profile={user} pageOpen={pageOpen} />;
           })}
         </div>
       </div>

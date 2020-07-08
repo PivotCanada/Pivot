@@ -13,7 +13,7 @@ import { fetchUserPosts } from "../utils/fetchUserPosts";
 import { sameUser } from "../utils/sameUser";
 import { fetchUserLikes } from "../utils/fetchUserLikes";
 // Stores
-import { ProfileStore } from "../Contexts/ProfileContext";
+import { ProfileContext } from "../Contexts/ProfileContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 
@@ -46,6 +46,7 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
 
   const classes = useStyles();
   const { user } = useContext(UserContext);
+  const { page } = useContext(ProfileContext);
   const identical = sameUser(user, story);
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -73,7 +74,11 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   }, [identical]);
 
   useEffect(() => {
-    setContent("story");
+    if (page) {
+      setContent("posts");
+    } else {
+      setContent("story");
+    }
   }, [story]);
 
   if (story) {

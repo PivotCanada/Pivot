@@ -19,8 +19,8 @@ function useValidate(setUser, setAuthenticated, setLoading) {
         } else {
           setUser(null);
           setAuthenticated(false);
-          setLoading(false);
           Cookie.remove("token");
+          setLoading(false);
         }
       });
     } else {

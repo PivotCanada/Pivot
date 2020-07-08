@@ -38,7 +38,10 @@ const Main = ({ content, display, profiles, posts }) => {
     case "posts":
       return (
         <div className={classes.wrapper}>
-          <p className={classes.text}>
+          <p
+            className={classes.text}
+            style={{ display: display ? "block" : "none" }}
+          >
             Follow the Sustainability Journey of fellow SMEs
           </p>
           {authenticated && display ? <Create /> : null}
@@ -48,7 +51,10 @@ const Main = ({ content, display, profiles, posts }) => {
     case "stories":
       return (
         <div className={classes.wrapper}>
-          <p className={classes.text}>
+          <p
+            className={classes.text}
+            style={{ display: display ? "block" : "none" }}
+          >
             Discover Sustainability Stories and Connect with Fellow SMEs
           </p>
           <Profiles display={display} data={profiles} />

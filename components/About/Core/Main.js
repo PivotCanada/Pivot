@@ -13,10 +13,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    minHeight: "100vh",
+    justifyContent: "center",
+    minHeight: "80vh",
     minWidth: "100vw",
     margin: 0,
     marginTop: 100,
+    marginBottom: 50,
   },
 
   container: {

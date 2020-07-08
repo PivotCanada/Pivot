@@ -19,7 +19,8 @@ const Main = () => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-
+      justifyContent: "center",
+      height: "90vh",
       width: "100vw",
       margin: 0,
     },
@@ -77,19 +78,18 @@ const Main = () => {
   }, []);
 
   return (
-    <Carousel direction={"Y"} />
-    // <div className={classes.wrapper}>
-    //   {/* <div className={classes.container}>
-    //     <ActionCall
-    //       width={width}
-    //       header={keys.header}
-    //       text={keys.text}
-    //       buttonText={truthy(keys.buttonText)}
-    //       about={keys.about}
-    //       discover={keys.discover}
-    //     />
-    //   </div> */}
-    // </div>
+    <div className={classes.wrapper}>
+      <div className={classes.container}>
+        <ActionCall
+          width={width}
+          header={keys.header}
+          text={keys.text}
+          buttonText={truthy(keys.buttonText)}
+          about={keys.about}
+          discover={keys.discover}
+        />
+      </div>
+    </div>
   );
 };
 
