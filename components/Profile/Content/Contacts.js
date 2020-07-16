@@ -31,9 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
 function Contacts({ story, pageOpen }) {
   const classes = useStyles();
-  const { followers, setFollowers, following, setFollowing } = useContext(
-    ProfileContext
-  );
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+  // const { followers, setFollowers, following, setFollowing } = useContext(
+  //   ProfileContext
+  // );
 
   useEffect(() => {
     fetchUsers(story.followed_by, setFollowers);

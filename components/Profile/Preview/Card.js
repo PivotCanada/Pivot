@@ -9,6 +9,7 @@ import Details from "../Overview/Details";
 // Contexts
 import { ProfileContext } from "../Contexts/ProfileContext";
 import { UserContext } from "../../../contexts/UserContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
 import fetchUser from "../../../utils/general/fetchUser";
@@ -44,19 +45,19 @@ function Preview({ profile, pageOpen }) {
   }));
 
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
   // const [callback, setCallback] = useState(null);
-  const { initializeUser, page } = useContext(ProfileContext);
+  // const { initializeUser, page } = useContext(ProfileContext);
   const { user } = useContext(UserContext);
+  const { setId } = useContext(ModalContext);
   const [same, setSame] = useState(false);
 
   // const [displayType, setDisplayType] = useState("modal");
 
-  useEffect(() => {
-    if (user._id === profile._id) {
-      setSame(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user._id === profile._id) {
+  //     setSame(true);
+  //   }
+  // }, []);
 
   // const checkModal = (displayType) => displayType === "modal";
 
@@ -66,10 +67,10 @@ function Preview({ profile, pageOpen }) {
 
       <div
         onClick={async () => {
-          if (page || same) {
+          if (same) {
             Router.push(`/profiles/${profile._id}`);
           } else {
-            initializeUser(profile._id);
+            setId(profile._id);
           }
         }}
         className={classes.wrapper}

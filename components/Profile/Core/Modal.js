@@ -80,12 +80,14 @@ const Modal = () => {
   };
 
   const initializeUser = async (id) => {
-    await fetchUser(id).then(async (response) => {
-      if (response.status === "success") {
-        console.log(response);
-        await setProfile(response.data);
-      }
-    });
+    if (id) {
+      await fetchUser(id).then(async (response) => {
+        if (response.status === "success") {
+          console.log(response);
+          await setProfile(response.data);
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -106,6 +108,7 @@ const Modal = () => {
           <CloseIcon />
         </IconButton>
       </DialogActions>
+      <ModalNav />
       <Main story={profile} />
     </Dialog>
   );

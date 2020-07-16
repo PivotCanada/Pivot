@@ -1,5 +1,3 @@
-// import { useState, createContext } from "react";
-
 // export const ModalContext = createContext(null);
 
 // export const ModalStore = ({ children }) => {
@@ -32,13 +30,46 @@
 //   );
 // };
 
-import { useState, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 
 export const ModalContext = createContext(null);
 
 export const ModalStore = ({ initializeUser = () => {}, children }) => {
+  const [ids, setIds] = useState([]);
+  const [index, setIndex] = useState([]);
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState("5ef298230ba02e0017851005");
+  const [id, setId] = useState("");
+  const [next, setNext] = useState(true);
+  const [previous, setPrevious] = useState(true);
+
+  const getIndex = async (id) => {
+    const i = ids.indexOf(id);
+
+    setIndex(i);
+    setNext(i !== ids.length - 1);
+    setPrevious(i !== 0);
+  };
+
+  const nextUser = () => {
+    const i = ids.indexOf(id);
+    const next = ids[i + 1];
+    setId(next);
+  };
+
+  const previousUser = () => {
+    const i = ids.indexOf(id);
+    const prev = ids[i - 1];
+    setId(prev);
+  };
+
+  useEffect(() => {
+    getIndex(id);
+  }, [id]);
+
+  useEffect(() => {
+    // This needs to accomdate batches
+    setId(ids[0]);
+  }, [ids]);
 
   return (
     <ModalContext.Provider
@@ -48,6 +79,12 @@ export const ModalStore = ({ initializeUser = () => {}, children }) => {
         setOpen,
         id,
         setId,
+        next,
+        previous,
+        nextUser,
+        previousUser,
+        ids,
+        setIds,
       }}
     >
       {children}

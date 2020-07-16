@@ -10,6 +10,7 @@ import Snackbar from "../../UI/General/Snackbar";
 import Modal from "../../Profile/Core/Modal";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 import { SearchContext } from "../../../contexts/SearchContext";
 // Utils
 import { fetchAllUsers } from "../utils/fetchAllUsers";
@@ -45,6 +46,7 @@ const Main = () => {
   const [profiles, setProfiles] = useState([]);
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
+  const { ids, setIds, setId } = useContext(ModalContext);
   const { display, setDisplay } = useContext(SearchContext);
 
   const remove = (list, item) => {
@@ -52,6 +54,14 @@ const Main = () => {
       list = list.filter((i) => i._id !== item._id);
     }
     return list;
+  };
+
+  const func = () => {
+    if (trigger) {
+      callback.then((res) => {
+        setProfiles([...profiles, res]);
+      });
+    }
   };
 
   useEffect(() => {
@@ -62,6 +72,7 @@ const Main = () => {
     fetchAllUsers().then((response) => {
       if (response.status === "success") {
         const users = remove(response.data, user);
+        setIds(users.map((user) => user._id));
         setProfiles(users);
       }
     });

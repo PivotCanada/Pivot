@@ -12,6 +12,7 @@ import Main from "./Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ProfileContext } from "../Contexts/ProfileContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 // Utils
@@ -69,8 +70,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ModalNav = ({ nextUser, previousUser, next, previous }) => {
-  const { page } = useContext(ProfileContext);
+const ModalNav = () => {
+  const { nextUser, previousUser, next, previous } = useContext(ModalContext);
 
   const classes = useStyles();
 

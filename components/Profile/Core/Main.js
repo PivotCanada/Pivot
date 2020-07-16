@@ -46,38 +46,37 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
 
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  // const { profile } = useContext(UserContext);
-  // const identical = sameUser(user, story);
-  // const [posts, setPosts] = useState([]);
-  // const [likes, setLikes] = useState([]);
-  // const [content, setContent] = useState(initialContent);
+  const { profile } = useContext(UserContext);
+  const identical = sameUser(user, story);
+  const [posts, setPosts] = useState([]);
+  const [likes, setLikes] = useState([]);
+  const [content, setContent] = useState(initialContent);
 
-  // const fetchLikes = async () => {
-  //   setLikes(await (await fetchUserLikes(story.likes)).reverse());
-  // };
+  const fetchLikes = async () => {
+    setLikes(await (await fetchUserLikes(story.likes)).reverse());
+  };
 
-  // const fetchPosts = async () => {
-  //   await fetchUserPosts(story._id).then((response) => {
-  //     if (response.status === "success") {
-  //       setPosts(response.data.reverse());
-  //     }
-  //   });
-  // };
+  const fetchPosts = async () => {
+    await fetchUserPosts(story._id).then((response) => {
+      if (response.status === "success") {
+        setPosts(response.data.reverse());
+      }
+    });
+  };
 
   useEffect(() => {
     setWidth(window.innerWidth);
   }, []);
 
-  // useEffect(() => {
-  //   fetchPosts();
-  //   fetchLikes();
-  // }, [identical]);
+  useEffect(() => {
+    fetchPosts();
+    fetchLikes();
+  }, [identical]);
 
   if (story) {
     return (
       <div className={classes.wrapper}>
-        <p>{story.firstname}</p>
-        {/* <Overview width={width} story={story} posts={posts.length} />
+        <Overview width={width} story={story} posts={posts.length} />
         <div className={classes.container}>
           <ButtonGroup setContent={setContent} />
           {identical ? <CreatePost fetchPosts={fetchPosts} /> : null}
@@ -87,10 +86,10 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
             // TODO : Optimize
             fetchLikes={fetchLikes}
             fetchPosts={fetchPosts}
-            pageOpen={pageOpen}
             posts={posts}
             likes={likes}
-          /> */}
+          />
+        </div>
       </div>
     );
   }
