@@ -7,6 +7,7 @@ import Content from "../Content/Main";
 import ButtonGroup from "../Content/ButtonGroup";
 import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
+import Modal from "../../Profile/Core/Modal";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { SearchContext } from "../../../contexts/SearchContext";
@@ -75,6 +76,7 @@ const Main = () => {
   return (
     <div className={classes.root}>
       {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
+      <Modal />
       <div className={classes.innerWrapper}>
         <Search
           displaySearch={displaySearch}

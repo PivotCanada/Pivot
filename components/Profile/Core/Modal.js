@@ -10,6 +10,7 @@ import Main from "./Main";
 import ModalNav from "./ModalNav";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 import { ProfileStore } from "../Contexts/ProfileContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
@@ -68,121 +69,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Modal = ({ data, open, setOpen, story, fetch = false }) => {
+const Modal = () => {
   const { user } = useContext(UserContext);
-
-  const { width, setWidth } = useWidth();
+  const { open, setOpen, id } = useContext(ModalContext);
   const [profile, setProfile] = useState({});
-  const [next, setNext] = useState(true);
-  const [previous, setPrevious] = useState(true);
-  const [index, setIndex] = useState(0);
-
   const classes = useStyles();
 
-  // TODO : each modal is referencing its data prop, is it making m copies if there are m modals?
-
-  const createIds = async () => data.map((i) => i._id);
-
-  const getIndex = async (profile) => {
-    if (data) {
-      const ids = data.map((i) => i._id);
-      const i = ids.indexOf(profile._id);
-      setIndex(i);
-      setNext(i !== data.length - 1);
-      setPrevious(i !== 0);
-    }
-  };
-
-  const nextUser = () => {
-    const next = data[index + 1];
-
-    setProfile(next);
-  };
-
-  const previousUser = () => {
-    const prev = data[index - 1];
-    setProfile(prev);
-  };
-
-  useEffect(() => {}, [data]);
-
-  // nextUser();
-
-  const initializeUser = async (fetch) => {
-    if (fetch) {
-      await fetchUser(fetch).then(async (response) => {
-        if (response.status === "success") {
-          await setProfile(response.data);
-        }
-      });
-    } else {
-      setProfile(story);
-    }
-  };
-
-  useEffect(() => {
-    initializeUser(fetch);
-  }, [fetch]);
-
-  useEffect(() => {
-    console.log("------------------");
-    console.log(data);
-    console.log(index);
-    console.log(profile);
-  }, [index]);
-
-  useEffect(() => {
-    setWidth(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    getIndex(profile);
-  }, [profile]);
-
   const handleClose = () => {
-    getIndex(story);
-    setProfile(story);
     setOpen(false);
   };
 
-  if (profile) {
-    return (
-      <ProfileStore
-        initializeUser={initializeUser}
-        open={open}
-        setOpen={setOpen}
-        page={false}
-      >
-        <Dialog
-          scroll="body"
-          open={open}
-          fullWidth={true}
-          className={classes.dialog}
-          maxWidth={"sm"}
-          onClose={handleClose}
-        >
-          <DialogActions className={classes.dialogActions}>
-            <h2 className={classes.header}>
-              {sameUser(user, profile) ? "My Journey: " : null}
-              {profile.business}
-            </h2>
-            <IconButton className={classes.close} onClick={handleClose}>
-              <CloseIcon />
-            </IconButton>
-          </DialogActions>
-          <ModalNav
-            next={next}
-            previous={previous}
-            nextUser={nextUser}
-            previousUser={previousUser}
-          />
-          <Main story={profile} />
-        </Dialog>
-      </ProfileStore>
-    );
-  } else {
-    return null;
-  }
+  const initializeUser = async (id) => {
+    await fetchUser(id).then(async (response) => {
+      if (response.status === "success") {
+        console.log(response);
+        await setProfile(response.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    initializeUser(id);
+  }, [id]);
+
+  return (
+    <Dialog
+      scroll="body"
+      open={open}
+      fullWidth={true}
+      className={classes.dialog}
+      maxWidth={"sm"}
+      onClose={handleClose}
+    >
+      <DialogActions className={classes.dialogActions}>
+        <IconButton className={classes.close} onClick={handleClose}>
+          <CloseIcon />
+        </IconButton>
+      </DialogActions>
+      <Main story={profile} />
+    </Dialog>
+  );
 };
 
 export default Modal;

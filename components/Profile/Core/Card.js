@@ -7,10 +7,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
 import RoomIcon from "@material-ui/icons/Room";
 // Components
-import Modal from "./Modal";
 import Image from "./Image";
-// Stores
-import { ProfileStore } from "../Contexts/ProfileContext";
+// Context
+import { ModalContext } from "../../../contexts/ModalContext";
 
 function Preview({ data, story }) {
   const useStyles = makeStyles((theme) => ({
@@ -130,33 +129,18 @@ function Preview({ data, story }) {
       maxWidth: 300,
       marginTop: 10,
     },
-    button: {
-      padding: 10,
-      paddingLeft: 60,
-      paddingRight: 60,
-      width: 100,
-
-      textTransform: "none",
-    },
-    arrow: {
-      display: "flex",
-      alignItems: "center",
-    },
-    arrowIcon: {},
   }));
-  const [open, setOpen] = useState(false);
+
   const classes = useStyles();
-  const def =
-    "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
+  const { open, setOpen } = useContext(ModalContext);
 
   useEffect(() => {}, [story, data]);
 
   if (story !== null) {
     return (
       <Card className={classes.card}>
-        <Modal data={data} story={story} open={open} setOpen={setOpen} />
         <CardContent className={classes.innerWrapper}>
-          <Image story={story} setOpen={setOpen} />
+          <Image story={story} />
           <div className={classes.content}>
             <div className={classes.contentInnerWrapper}>
               <div className={classes.details}>
@@ -166,7 +150,6 @@ function Preview({ data, story }) {
                 {story.firstname} {story.lastname}
               </h2>
 
-              {/* <p className={classes.description}>{format(story.achievements)}</p> */}
               <div className={classes.chipArray}>
                 <Chip
                   size="small"

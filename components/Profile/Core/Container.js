@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Card from "./Card";
+// Context
 import { UserContext } from "../../../contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "auto",
     marginTop: 60,
     marginBottom: 75,
-
     flexWrap: "wrap",
   },
 }));

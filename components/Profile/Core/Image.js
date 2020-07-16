@@ -4,8 +4,9 @@ import Router from "next/router";
 import { makeStyles } from "@material-ui/core/styles";
 // Contexts
 import { ProfileContext } from "../Contexts/ProfileContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 
-function Image({ story, setOpen }) {
+function Image({ story }) {
   const useStyles = makeStyles((theme) => ({
     imageContainer: {
       display: "flex",
@@ -27,6 +28,7 @@ function Image({ story, setOpen }) {
   }));
 
   const classes = useStyles();
+  const { setOpen, setId } = useContext(ModalContext);
 
   const def =
     "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
@@ -36,6 +38,7 @@ function Image({ story, setOpen }) {
       onClick={() => {
         // Router.push(`/profiles/${story._id}`);
         setOpen(true);
+        setId(story._id);
       }}
       className={classes.imageContainer}
     >
