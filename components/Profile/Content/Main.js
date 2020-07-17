@@ -1,9 +1,16 @@
+import { useContext, useEffect } from "react";
 // Components
 import Posts from "./Posts";
 import Story from "./Story";
 import Contacts from "./Contacts";
+// Context
+import { ModalContext } from "../../../contexts/ModalContext";
 
 const Main = ({ story, content, posts, likes, pageOpen }) => {
+  const { id } = useContext(ModalContext);
+
+  useEffect(() => {}, [id]);
+
   switch (content) {
     case "story":
       return <Story story={story} />;

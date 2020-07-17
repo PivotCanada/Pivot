@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Modal = () => {
   const { user } = useContext(UserContext);
-  const { open, setOpen, id } = useContext(ModalContext);
+  const { open = false, setOpen, id } = useContext(ModalContext);
   const [profile, setProfile] = useState({});
   const classes = useStyles();
 

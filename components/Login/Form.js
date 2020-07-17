@@ -191,8 +191,8 @@ function LoginForm() {
                   setToken(token);
                   setUser(user);
                   setAuthenticated(true);
-                  setShowOnboard(false);
-                  setShowLogin(false);
+                  // setShowOnboard(false);
+                  // setShowLogin(false);
                   //   setLoading(false);
                   Router.push(`/profiles/${user._id}`);
                   setError({

@@ -16,6 +16,7 @@ import { fetchUserLikes } from "../utils/fetchUserLikes";
 import { ProfileContext } from "../Contexts/ProfileContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
+import { ModalContext } from "../../../contexts/ModalContext";
 
 const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   const { width, setWidth } = useWidth();
@@ -47,6 +48,7 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   const classes = useStyles();
   const { user } = useContext(UserContext);
   const { profile } = useContext(UserContext);
+  const { id } = useContext(ModalContext);
   const identical = sameUser(user, story);
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState([]);
@@ -69,9 +71,13 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
   }, []);
 
   useEffect(() => {
+    setContent("story");
+  }, [id]);
+
+  useEffect(() => {
     fetchPosts();
     fetchLikes();
-  }, [identical]);
+  }, [identical, story]);
 
   if (story) {
     return (
