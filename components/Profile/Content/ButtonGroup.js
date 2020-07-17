@@ -15,7 +15,7 @@ const Main = ({ setContent }) => {
 
   return (
     <div className={classes.wrapper}>
-      <ButtonGroup color="primary" aria-label="outlined secondary button group">
+      <ButtonGroup color="primary">
         <Button
           style={{ textTransform: "none" }}
           onClick={() => setContent("story")}

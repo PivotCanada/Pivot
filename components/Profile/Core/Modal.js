@@ -9,13 +9,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import Main from "./Main";
 import ModalNav from "./ModalNav";
 // Contexts
-import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
-import { ProfileStore } from "../Contexts/ProfileContext";
-// Hooks
-import useWidth from "../../../hooks/useWidth";
 // Utils
-import { sameUser } from "../utils/sameUser";
 import fetchUser from "../../../utils/general/fetchUser";
 
 const useStyles = makeStyles((theme) => ({
@@ -70,10 +65,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Modal = () => {
-  const { user } = useContext(UserContext);
-  const { open = false, setOpen, id } = useContext(ModalContext);
-  const [profile, setProfile] = useState({});
   const classes = useStyles();
+  const { open = false, setOpen, id } = useContext(ModalContext);
+  // TODO : Put this in Modal context ?
+  const [profile, setProfile] = useState({});
 
   const handleClose = () => {
     setOpen(false);
@@ -83,7 +78,6 @@ const Modal = () => {
     if (id) {
       await fetchUser(id).then(async (response) => {
         if (response.status === "success") {
-          console.log(response);
           await setProfile(response.data);
         }
       });

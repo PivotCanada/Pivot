@@ -15,12 +15,13 @@ const Profile = ({ user }) => {
 
   return (
     <Page top={100}>
-      <ProfileStore page={true}>
-        <DeleteModal />
+      {/* <ProfileStore page={true}> */}
+      {/* <DeleteModal />
         <LoginModal />
-        <SignUpModal />
-        <Main pageOpen={setOpen} story={user} initialContent={"posts"} />
-      </ProfileStore>
+        <SignUpModal /> */}
+      <Modal />
+      <Main pageOpen={setOpen} story={user} initialContent={"posts"} />
+      {/* </ProfileStore> */}
     </Page>
   );
 };

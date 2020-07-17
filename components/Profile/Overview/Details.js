@@ -23,15 +23,6 @@ const Details = ({ profile, small }) => {
       width: "100%",
       margin: 0,
     },
-    bio: {
-      color: "black",
-      fontFamily: "Open Sans, sans-serif",
-      fontWeight: 500,
-      fontSize: 13,
-      width: "100%",
-      marginTop: 10,
-      lineHeight: 1.5,
-    },
   }));
 
   const classes = useStyles();
@@ -41,12 +32,6 @@ const Details = ({ profile, small }) => {
       <h2 className={classes.name}>
         {profile.firstname} {profile.lastname}
       </h2>
-      {/* {small ? null : (
-        <h2 className={classes.bio}>
-          Entreprenuer, Engineer. Building the next genration of electric
-          motors.
-        </h2>
-      )} */}
     </div>
   );
 };

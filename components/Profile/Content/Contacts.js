@@ -1,11 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import UserList from "../Overview/UserList";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
-import { ProfileContext } from "../Contexts/ProfileContext";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -29,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Contacts({ story, pageOpen }) {
+function Contacts({ story }) {
   const classes = useStyles();
+
+  // TODO : Put into Modal Context ?
+
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
-  // const { followers, setFollowers, following, setFollowing } = useContext(
-  //   ProfileContext
-  // );
 
   useEffect(() => {
     fetchUsers(story.followed_by, setFollowers);
@@ -45,8 +44,8 @@ function Contacts({ story, pageOpen }) {
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.header}>Contacts</h1>
-      <UserList pageOpen={pageOpen} users={followers} title={"followers"} />
-      <UserList pageOpen={pageOpen} users={following} title={"following"} />
+      <UserList users={followers} title={"followers"} />
+      <UserList users={following} title={"following"} />
     </div>
   );
 }

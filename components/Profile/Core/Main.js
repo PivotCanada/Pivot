@@ -12,13 +12,13 @@ import { UserContext } from "../../../contexts/UserContext";
 import { fetchUserPosts } from "../utils/fetchUserPosts";
 import { sameUser } from "../utils/sameUser";
 import { fetchUserLikes } from "../utils/fetchUserLikes";
-// Stores
-import { ProfileContext } from "../Contexts/ProfileContext";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 import { ModalContext } from "../../../contexts/ModalContext";
 
-const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
+const Main = ({ story, initialContent = "story" }) => {
+  // TODO : Rework if changing Profile page ...
+
   const { width, setWidth } = useWidth();
 
   const useStyles = makeStyles((theme) => ({
@@ -27,9 +27,7 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
       flexDirection: width < 600 ? "column" : "column",
       alignItems: width < 600 ? "center" : "center",
       width: "100%",
-
       minHeight: "100%",
-
       marginTop: 20,
     },
 
@@ -47,9 +45,9 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
 
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  const { profile } = useContext(UserContext);
-  const { id } = useContext(ModalContext);
-  const identical = sameUser(user, story);
+
+  // TODO : Put this in Context ?
+
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState([]);
   const [content, setContent] = useState(initialContent);
@@ -72,12 +70,9 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
 
   useEffect(() => {
     setContent("story");
-  }, [id]);
-
-  useEffect(() => {
     fetchPosts();
     fetchLikes();
-  }, [identical, story]);
+  }, [story]);
 
   if (story) {
     return (
@@ -85,11 +80,13 @@ const Main = ({ pageOpen = () => {}, story, initialContent = "story" }) => {
         <Overview width={width} story={story} posts={posts.length} />
         <div className={classes.container}>
           <ButtonGroup setContent={setContent} />
-          {identical ? <CreatePost fetchPosts={fetchPosts} /> : null}
+          {/* TODO : Change if we rework Profile */}
+          {sameUser(user, story) ? (
+            <CreatePost fetchPosts={fetchPosts} />
+          ) : null}
           <Content
             story={story}
             content={content}
-            // TODO : Optimize
             fetchLikes={fetchLikes}
             fetchPosts={fetchPosts}
             posts={posts}

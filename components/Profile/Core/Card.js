@@ -34,23 +34,6 @@ function Preview({ data, story }) {
       flexWrap: "wrap",
       padding: 0,
     },
-    imageContainer: {
-      display: "flex",
-      width: "300px",
-      height: "200px",
-      alignItems: "center",
-
-      "&:hover": {
-        opacity: 0.5,
-        cursor: "pointer",
-      },
-    },
-    image: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-      borderRadius: 4,
-    },
 
     content: {
       display: "flex",
@@ -132,11 +115,10 @@ function Preview({ data, story }) {
   }));
 
   const classes = useStyles();
-  const { open, setOpen } = useContext(ModalContext);
 
   useEffect(() => {}, [story, data]);
 
-  if (story !== null) {
+  if (story) {
     return (
       <Card className={classes.card}>
         <CardContent className={classes.innerWrapper}>
@@ -149,7 +131,6 @@ function Preview({ data, story }) {
               <h2 className={classes.author}>
                 {story.firstname} {story.lastname}
               </h2>
-
               <div className={classes.chipArray}>
                 <Chip
                   size="small"
@@ -181,7 +162,7 @@ function Preview({ data, story }) {
       </Card>
     );
   } else {
-    return <Card className={classes.card} />;
+    return null;
   }
 }
 

@@ -34,18 +34,11 @@ function Main({ width, story, posts }) {
       height: "100%",
       margin: 0,
       padding: 0,
-      marginLeft: width < 600 ? 0 : 0,
+      marginLeft: 0,
     },
   }));
 
   const classes = useStyles();
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
-
-  useEffect(() => {
-    fetchUsers(story.followed_by.slice(0, 6), setFollowers);
-    fetchUsers(story.following.slice(0, 6), setFollowing);
-  }, [story]);
 
   return (
     <div className={classes.wrapper}>
@@ -54,13 +47,6 @@ function Main({ width, story, posts }) {
       <Follow profile={story} />
       <Details profile={story} />
       <Chips profile={story} />
-
-      {/* {width > 600 ? (
-        <UserList users={followers} title={"followers"} width={250} />
-      ) : null}
-      {width > 600 ? (
-        <UserList users={following} title={"following"} width={250} />
-      ) : null} */}
     </div>
   );
 }

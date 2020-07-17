@@ -7,7 +7,7 @@ import Card from "./Card";
 import { UserContext } from "../../../contexts/UserContext";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  wrapper: {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-evenly",
@@ -34,9 +34,7 @@ const Container = ({ display, callback, data }) => {
       });
     } else {
       if (user) {
-        console.log(user);
         let filtered = data.filter((profile) => profile._id !== user._id);
-        console.log(filtered);
         setProfiles(filtered);
       } else {
         setProfiles(data);
@@ -46,7 +44,7 @@ const Container = ({ display, callback, data }) => {
 
   if (display) {
     return (
-      <div className={classes.root}>
+      <div className={classes.wrapper}>
         {profiles.map((user) => {
           return (
             <Card
