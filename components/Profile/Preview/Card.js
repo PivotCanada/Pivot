@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 function Preview({ profile }) {
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  const { setId } = useContext(ModalContext);
+  const { setId, open, setOpen } = useContext(ModalContext);
   const [same, setSame] = useState(false);
 
   useEffect(() => {
@@ -55,6 +55,10 @@ function Preview({ profile }) {
           if (same) {
             Router.push(`/profiles/${profile._id}`);
           } else {
+            setId(profile._id);
+            if (!open) {
+              setOpen(true);
+            }
             setId(profile._id);
           }
         }}

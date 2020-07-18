@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 // Components
 import Page from "../../components/UI/General/Page";
 import Main from "../../components/Profile/Core/Main";
@@ -6,12 +6,23 @@ import LoginModal from "../../components/Login/Modal";
 import SignUpModal from "../../components/SignUp/Modal";
 import DeleteModal from "../../components/Delete/Modal";
 import Modal from "../../components/Profile/Core/Modal";
-// Stores
-import { ProfileStore } from "../../components/Profile/Contexts/ProfileContext";
+// Contexts
+import { ModalContext } from "../../contexts/ModalContext";
 
 const Profile = ({ user }) => {
-  const [open, setOpen] = useState(true);
-  useEffect(() => {}, [user]);
+  const { setIds, ids } = useContext(ModalContext);
+
+  const removeDuplicates = (array) =>
+    array.reduce((accum, item) => {
+      return accum.includes(item) ? accum : [...accum, item];
+    }, []);
+
+  const concatenateUsers = () =>
+    removeDuplicates([...user.followed_by, ...user.following]);
+
+  useEffect(() => {
+    setIds(concatenateUsers());
+  }, [user]);
 
   return (
     <Page top={100}>
@@ -20,7 +31,7 @@ const Profile = ({ user }) => {
         <LoginModal />
         <SignUpModal /> */}
       <Modal />
-      <Main pageOpen={setOpen} story={user} initialContent={"posts"} />
+      <Main story={user} initialContent={"posts"} />
       {/* </ProfileStore> */}
     </Page>
   );

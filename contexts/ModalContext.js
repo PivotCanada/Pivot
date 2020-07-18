@@ -63,6 +63,10 @@ export const ModalStore = ({ initializeUser = () => {}, children }) => {
   };
 
   useEffect(() => {
+    console.log(id);
+  }, [id]);
+
+  useEffect(() => {
     getIndex(id);
   }, [id]);
 
