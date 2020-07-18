@@ -20,13 +20,12 @@ const Main = ({ reference }) => {
 
   const useStyles = makeStyles((theme) => ({
     Wrapper: {
-      border: "1px solid black",
       borderRadius: "50%",
       height: 20,
       width: 20,
       marginTop: 5,
       marginBottom: 5,
-      backgroundColor: active ? "black" : "none",
+      backgroundColor: active ? "white" : "grey",
     },
   }));
 

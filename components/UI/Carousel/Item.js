@@ -13,6 +13,7 @@ const Main = ({ image, children }) => {
 
   const useStyles = makeStyles((theme) => ({
     Wrapper: {
+      position: "relative",
       display: "flex",
       minHeight: "100%",
       alignItems: "center",
@@ -22,7 +23,21 @@ const Main = ({ image, children }) => {
       flexBasis: 1,
       transform: `translate${direction}(${-100 * index}%)`,
       transition: "0.4s ease",
-      backgroundImage: `url(${image})`,
+    },
+
+    innerWrapper: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    },
+
+    image: {
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: "100%",
+
+      filter: "brightness(50%)",
       zIndex: 0,
     },
   }));
@@ -33,7 +48,10 @@ const Main = ({ image, children }) => {
 
   return (
     <div className={classes.Wrapper}>
-      {children}
+      <img className={classes.image} src={image} />
+      <div className={classes.innerWrapper} style={{ zIndex: 2 }}>
+        {children}
+      </div>
       {/* <Button variant="contained" onClick={() => changeSlide(1)}>
         Next
       </Button>

@@ -132,29 +132,35 @@ function Preview({ data, story }) {
                 {story.firstname} {story.lastname}
               </h2>
               <div className={classes.chipArray}>
-                <Chip
-                  size="small"
-                  icon={<RoomIcon />}
-                  label={story.location}
-                  className={classes.chip}
-                />
-                <a
-                  style={{ textDecoration: "none" }}
-                  href={"https://" + story.website}
-                  target="_blank"
-                >
+                {story.location ? (
                   <Chip
                     size="small"
-                    icon={<PublicIcon />}
-                    label={story.website}
+                    icon={<RoomIcon />}
+                    label={story.location}
                     className={classes.chip}
                   />
-                </a>
-                <Chip
-                  label={story.industry}
-                  size="small"
-                  className={classes.chip}
-                />
+                ) : null}
+                {story.website ? (
+                  <a
+                    style={{ textDecoration: "none" }}
+                    href={"https://" + story.website}
+                    target="_blank"
+                  >
+                    <Chip
+                      size="small"
+                      icon={<PublicIcon />}
+                      label={story.website}
+                      className={classes.chip}
+                    />
+                  </a>
+                ) : null}
+                {story.industry ? (
+                  <Chip
+                    label={story.industry}
+                    size="small"
+                    className={classes.chip}
+                  />
+                ) : null}
               </div>
             </div>
           </div>

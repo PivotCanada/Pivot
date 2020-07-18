@@ -9,7 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 // Components
 // Contexts
 import { UserContext } from "../../contexts/UserContext";
-import { ModalContext } from "../../contexts/ModalContext";
 import { CarouselContext } from "../UI/Carousel/contexts/CarouselContext";
 // Utils
 import { authenticate } from "../../utils/authentication/authenticate";
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+
     padding: 35,
     borderRadius: 5,
   },
@@ -40,16 +39,17 @@ const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: "center",
     margin: 0,
-    fontWeight: 500,
+    fontSize: 50,
+    color: "white",
+    fontWeight: 700,
     fontFamily: "Open Sans, sans-serif",
   },
   text: {
     textAlign: "center",
-    width: "17rem",
-    margin: 0,
-    marginTop: 35,
+    margin: 25,
+    color: "white",
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 22,
     fontFamily: "Open Sans, sans-serif",
   },
   email: {
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Submit({ values, submitting, setSubmitting }) {
   const { setUser, setAuthenticated, setToken } = useContext(UserContext);
-  const { setShowLogin, setShowOnboard } = useContext(ModalContext);
+
   const { lastElement, index } = useContext(CarouselContext);
   const [error, setError] = useState({ value: false, message: "" });
   const data = {
@@ -110,8 +110,7 @@ function Submit({ values, submitting, setSubmitting }) {
             setToken(token);
             setUser(user);
             setAuthenticated(true);
-            setShowOnboard(false);
-            setShowLogin(false);
+
             console.log(response.data);
             Router.push(`/profiles/${user._id}`);
           } else {

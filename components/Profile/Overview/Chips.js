@@ -35,27 +35,33 @@ const Chips = ({ profile }) => {
 
   return (
     <div className={classes.chipArray}>
-      <Chip
-        icon={<RoomIcon />}
-        label={profile.location}
-        className={classes.chip}
-      />
-      <a
-        style={{ textDecoration: "none" }}
-        href={"https://" + profile.website}
-        target="_blank"
-      >
+      {profile.location ? (
         <Chip
-          icon={<PublicIcon />}
-          label={profile.website}
+          icon={<RoomIcon />}
+          label={profile.location}
           className={classes.chip}
         />
+      ) : null}
+      {profile.website ? (
+        <a
+          style={{ textDecoration: "none" }}
+          href={"https://" + profile.website}
+          target="_blank"
+        >
+          <Chip
+            icon={<PublicIcon />}
+            label={profile.website}
+            className={classes.chip}
+          />
+        </a>
+      ) : null}
+      {profile.industry ? (
         <Chip
           icon={<StoreIcon />}
           label={profile.industry}
           className={classes.chip}
         />
-      </a>
+      ) : null}
     </div>
   );
 };

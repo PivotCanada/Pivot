@@ -29,8 +29,7 @@ const Main = ({ direction, children }) => {
   const classes = useStyles();
 
   const handleElements = () => {
-    let n = React.Children.count(children);
-    return n;
+    return React.Children.count(children);
   };
 
   useEffect(() => {

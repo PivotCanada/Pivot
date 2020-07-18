@@ -21,15 +21,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    width: "50%",
     padding: 35,
     borderRadius: 5,
   },
   textField: {
-    width: "17rem",
+    width: "25rem",
     marginTop: 20,
     flexGrow: 1,
     flexShrink: 1,
+    background: "white",
+    borderRadius: 7,
   },
   innerWrapper: {
     display: "flex",
@@ -40,15 +42,17 @@ const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: "center",
     margin: 0,
-    fontWeight: 500,
+    fontSize: 50,
+    color: "white",
+    fontWeight: 700,
     fontFamily: "Open Sans, sans-serif",
   },
   text: {
     textAlign: "center",
-    width: "17rem",
     margin: 25,
+    color: "white",
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 22,
     fontFamily: "Open Sans, sans-serif",
   },
 
@@ -77,9 +81,12 @@ function Achievements({
         incrementForm(e, values, handleErrors, validateDetails, setStep);
       }}
     >
-      <h1 className={classes.header}>Achievements</h1>
+      <h1 className={classes.header}>
+        What Are Your Sustainability Related Achievements That You Are Proud Of?
+      </h1>
       <p className={classes.text}>
-        Share your sustainability related achievements so far
+        Please document what you have achieved so far in pursuit of your
+        sustainability goals.
       </p>
       <div className={classes.innerWrapper}>
         <TextField
@@ -87,9 +94,7 @@ function Achievements({
           name="achievements"
           value={values.achievements}
           label="Tell Us Your Achievements!"
-          multiline
-          rows={10}
-          variant="outlined"
+          variant="filled"
           onChange={(e) => handleChange(e)}
           error={errors.achievements ? true : false}
           helperText={errors.achievements}

@@ -14,15 +14,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+
     padding: 35,
     borderRadius: 5,
   },
   textField: {
-    width: "17rem",
+    width: "25rem",
     marginTop: 20,
     flexGrow: 1,
     flexShrink: 1,
+    background: "white",
+    borderRadius: 7,
   },
   innerWrapper: {
     display: "flex",
@@ -33,15 +35,18 @@ const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: "center",
     margin: 0,
-    fontWeight: 500,
+    fontSize: 50,
+    color: "white",
+    fontWeight: 700,
     fontFamily: "Open Sans, sans-serif",
   },
   text: {
     textAlign: "center",
-    width: "17rem",
+
     margin: 25,
+    color: "white",
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 22,
     fontFamily: "Open Sans, sans-serif",
   },
 
@@ -70,20 +75,21 @@ function Achievements({
         incrementForm(e, values, handleErrors, validateGoals, setStep);
       }}
     >
-      <h1 className={classes.header}>Goals</h1>
-      <p className={classes.text}>What are your sustainability goals?</p>
+      <h1 className={classes.header}>What Are My Sustainability Goals</h1>
+      <p className={classes.text}>
+        Think about the 1-2 important goals that you have been pursuing to
+        become more sustainable.
+      </p>
       <div className={classes.innerWrapper}>
         <TextField
           className={classes.textField}
           name="goals"
           value={values.goals}
           label="What are your Goals!"
-          multiline
-          rows={10}
-          variant="outlined"
+          variant="filled"
           onChange={(e) => handleChange(e)}
           error={errors.goals ? true : false}
-          helperText={errors.goals}
+          // helperText={errors.goals}
         />
       </div>
       <Navigation

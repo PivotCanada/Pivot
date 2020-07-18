@@ -69,9 +69,9 @@ const Main = () => {
       setOpen(true);
     }
 
-    fetchAllUsers().then((response) => {
+    fetchAllUsers().then(async (response) => {
       if (response.status === "success") {
-        const users = remove(response.data, user);
+        const users = await remove(response.data, user);
         setIds(users.map((user) => user._id));
         setProfiles(users);
       }
@@ -82,7 +82,7 @@ const Main = () => {
         setPosts(response.data.reverse());
       }
     });
-  }, [user]);
+  }, []);
 
   return (
     <div className={classes.root}>

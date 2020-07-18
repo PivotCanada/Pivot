@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  arrow: {
+    color: "white",
+  },
 }));
 
 const Navigation = ({

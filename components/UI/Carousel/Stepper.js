@@ -24,7 +24,7 @@ const Main = () => {
       zIndex: 3,
     },
     circle: {
-      border: "1px solid black",
+      border: "1px solid white",
       borderRadius: "50%",
       height: 20,
       width: 20,

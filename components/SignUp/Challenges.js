@@ -21,15 +21,18 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    width: "70%",
+
     padding: 35,
     borderRadius: 5,
   },
   textField: {
-    width: "17rem",
+    width: "25rem",
     marginTop: 20,
     flexGrow: 1,
     flexShrink: 1,
+    background: "white",
+    borderRadius: 7,
   },
   innerWrapper: {
     display: "flex",
@@ -40,15 +43,17 @@ const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: "center",
     margin: 0,
-    fontWeight: 500,
+    fontSize: 50,
+    color: "white",
+    fontWeight: 700,
     fontFamily: "Open Sans, sans-serif",
   },
   text: {
     textAlign: "center",
-    width: "17rem",
     margin: 25,
+    color: "white",
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 22,
     fontFamily: "Open Sans, sans-serif",
   },
 
@@ -77,9 +82,13 @@ function Achievements({
         incrementForm(e, values, handleErrors, validateChallanges, setStep);
       }}
     >
-      <h1 className={classes.header}>Challenges</h1>
+      <h1 className={classes.header}>
+        What are the Major Challenges that you faced in the pursuit of your
+        sustainability goals?
+      </h1>
       <p className={classes.text}>
-        What challenges do you face in becoming more sustainable?
+        Please document the challenges that you encountered; which you overcame
+        and those that you still face.
       </p>
       <div className={classes.innerWrapper}>
         <TextField
@@ -87,12 +96,10 @@ function Achievements({
           name="challenges"
           value={values.challenges}
           label="Tell Us Your Challanges!"
-          multiline
-          rows={10}
-          variant="outlined"
+          variant="filled"
           onChange={(e) => handleChange(e)}
           error={errors.challenges ? true : false}
-          helperText={errors.challenges}
+          // helperText={errors.challenges}
         />
       </div>
       <Navigation

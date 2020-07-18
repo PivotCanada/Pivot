@@ -10,7 +10,7 @@ import Modal from "../../components/Profile/Core/Modal";
 import { ModalContext } from "../../contexts/ModalContext";
 
 const Profile = ({ user }) => {
-  const { setIds, ids } = useContext(ModalContext);
+  const { setIds } = useContext(ModalContext);
 
   const removeDuplicates = (array) =>
     array.reduce((accum, item) => {

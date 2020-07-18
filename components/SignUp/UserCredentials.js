@@ -12,15 +12,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+
     padding: 20,
     borderRadius: 5,
   },
   textField: {
-    width: "17rem",
+    width: "25rem",
     margin: 15,
     flexGrow: 1,
     flexShrink: 1,
+    background: "white",
+    borderRadius: 7,
   },
   container: {
     display: "flex",
@@ -31,15 +33,17 @@ const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: "center",
     margin: 0,
-    fontWeight: 500,
+    fontSize: 50,
+    color: "white",
+    fontWeight: 700,
     fontFamily: "Open Sans, sans-serif",
   },
   text: {
     textAlign: "center",
-    width: "17rem",
-    margin: 40,
+    margin: 25,
+    color: "white",
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 22,
     fontFamily: "Open Sans, sans-serif",
   },
 }));
@@ -57,6 +61,7 @@ function UserCredentials({ values, handleChange, handleErrors, errors }) {
           type="email"
           name="email"
           value={values.email}
+          variant={"filled"}
           label="Email"
           onChange={(e) => handleChange(e)}
           error={errors.email ? true : false}
@@ -67,6 +72,7 @@ function UserCredentials({ values, handleChange, handleErrors, errors }) {
           type="password"
           name="password"
           value={values.password}
+          variant={"filled"}
           label="Password"
           onChange={(e) => handleChange(e)}
           error={errors.password ? true : false}
@@ -76,19 +82,21 @@ function UserCredentials({ values, handleChange, handleErrors, errors }) {
           className={classes.textField}
           name="firstname"
           value={values.firstname}
+          variant={"filled"}
           label="First Name"
           onChange={(e) => handleChange(e)}
           error={errors.firstname ? true : false}
-          helperText={errors.firstname}
+          // helperText={errors.firstname}
         />
         <TextField
           className={classes.textField}
           name="lastname"
           value={values.lastname}
+          variant={"filled"}
           label="Last Name"
           onChange={(e) => handleChange(e)}
           error={errors.lastname ? true : false}
-          helperText={errors.lastname}
+          // helperText={errors.lastname}
         />
       </div>
       <Navigation

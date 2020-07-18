@@ -21,15 +21,17 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    width: "80%",
     padding: 35,
     borderRadius: 5,
   },
   textField: {
-    width: "17rem",
+    width: "25rem",
     marginTop: 20,
     flexGrow: 1,
     flexShrink: 1,
+    background: "white",
+    borderRadius: 7,
   },
   innerWrapper: {
     display: "flex",
@@ -40,18 +42,19 @@ const useStyles = makeStyles((theme) => ({
   header: {
     textAlign: "center",
     margin: 0,
-    fontWeight: 500,
+    fontSize: 50,
+    color: "white",
+    fontWeight: 700,
     fontFamily: "Open Sans, sans-serif",
   },
   text: {
     textAlign: "center",
-    width: "17rem",
     margin: 25,
+    color: "white",
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: 22,
     fontFamily: "Open Sans, sans-serif",
   },
-
   button: {
     marginTop: "3rem",
     marginBottom: "3rem",
@@ -77,10 +80,12 @@ function Achievements({
         incrementForm(e, values, handleErrors, validateWish, setStep);
       }}
     >
-      <h1 className={classes.header}>Wishes</h1>
+      <h1 className={classes.header}>
+        What are your Wishes to meet your Sustainability goals
+      </h1>
       <p className={classes.text}>
-        What abilities & resources do you wish you had to make you business
-        become more sustainable
+        Please document what you wish you for to make it possible to achieve
+        higher levels of your sustainablity goals.
       </p>
       <div className={classes.innerWrapper}>
         <TextField
@@ -88,9 +93,7 @@ function Achievements({
           name="wish"
           value={values.wish}
           label="Let Us Know Your Wishes!"
-          multiline
-          rows={10}
-          variant="outlined"
+          variant="filled"
           onChange={(e) => handleChange(e)}
           error={errors.wish ? true : false}
           helperText={errors.wish}
