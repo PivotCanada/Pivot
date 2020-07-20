@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Author = ({ author }) => {
+const Author = ({ author, date }) => {
   const classes = useStyles();
 
   return (

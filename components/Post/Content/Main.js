@@ -2,10 +2,11 @@
 import { makeStyles } from "@material-ui/core/styles";
 
 // Components
-import Author from "./Author";
+
 import Primary from "./Primary";
 import Chips from "./Chips";
 import Actions from "./Actions/Main";
+import Overview from "./Overview";
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -24,7 +25,8 @@ function Preview({ post, setOpen }) {
 
   return (
     <div className={classes.content}>
-      <Author author={post.author} />
+      <Overview author={post.author} date={post.created_at} />
+
       <Primary text={post.text} />
       <Chips tags={post.tags} />
       <Actions post={post} setOpen={setOpen} />

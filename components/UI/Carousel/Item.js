@@ -29,13 +29,18 @@ const Main = ({ image, children }) => {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
+      flexGrow: 1,
+      flexShrink: 1,
+      flexBasis: 1,
     },
 
     image: {
       position: "absolute",
+      objectFit: "cover",
       left: 0,
       top: 0,
       width: "100%",
+      height: "100%",
 
       filter: "brightness(50%)",
       zIndex: 0,
@@ -52,12 +57,6 @@ const Main = ({ image, children }) => {
       <div className={classes.innerWrapper} style={{ zIndex: 2 }}>
         {children}
       </div>
-      {/* <Button variant="contained" onClick={() => changeSlide(1)}>
-        Next
-      </Button>
-      <Button variant="contained" onClick={() => changeSlide(-1)}>
-        Prev
-      </Button> */}
     </div>
   );
 };

@@ -45,7 +45,7 @@ function Preview({ profile }) {
   const [same, setSame] = useState(false);
 
   useEffect(() => {
-    setSame(user._id === profile._id);
+    setSame(user && user._id === profile._id);
   }, []);
 
   return (

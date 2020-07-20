@@ -14,7 +14,7 @@ const Main = ({ direction, children }) => {
 
   const useStyles = makeStyles((theme) => ({
     Wrapper: {
-      height: "95vh",
+      height: "100vh",
       overflowY: "hidden",
       zIndex: 0,
     },
