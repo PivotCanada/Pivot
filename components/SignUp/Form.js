@@ -12,6 +12,7 @@ import Achievements from "./Achievements";
 import Challenges from "./Challenges";
 import Wish from "./Wish";
 import Review from "./Review";
+import ProfileImage from "./ProfileImage";
 
 import Carousel from "../UI/Carousel/Main";
 import Item from "../UI/Carousel/Item";
@@ -62,9 +63,14 @@ function Form() {
       goals: "",
       challenges: "",
       wish: "",
+      photo: {},
     },
     () => {}
   );
+
+  useEffect(() => {
+    console.log(values.photo);
+  }, [values.photo]);
 
   return (
     <Carousel direction={"Y"}>
@@ -85,6 +91,15 @@ function Form() {
           handleErrors={handleErrors}
         />
       </Item>
+      <Item image={images[1]}>
+        <ProfileImage
+          values={values}
+          handleChange={handleDirectChange}
+          errors={errors}
+          handleErrors={handleErrors}
+        />
+      </Item>
+      {/* 
       <Item image={images[2]}>
         <Goals
           values={values}
@@ -95,8 +110,8 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      </Item>
-      <Item image={images[3]}>
+      </Item> */}
+      {/* <Item image={images[3]}>
         <Achievements
           values={values}
           handleChange={handleChange}
@@ -106,8 +121,8 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      </Item>
-      <Item image={images[4]}>
+      </Item> */}
+      {/* <Item image={images[4]}>
         <Challenges
           values={values}
           handleChange={handleChange}
@@ -117,8 +132,8 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      </Item>
-      <Item image={images[5]}>
+      </Item> */}
+      {/* <Item image={images[5]}>
         <Wish
           values={values}
           handleChange={handleChange}
@@ -128,7 +143,7 @@ function Form() {
           step={step}
           setStep={setStep}
         />
-      </Item>
+      </Item> */}
       {/* <Item image={images[2]}>
         <BusinessDetails
           values={values}

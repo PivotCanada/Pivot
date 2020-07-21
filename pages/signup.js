@@ -1,12 +1,12 @@
 // Components
 import Page from "../components/UI/General/Page";
-import Form from "../components/SignUp/Form";
+import Form from "../components/SignUp/TestForm";
 
 const SignUp = () => {
   return (
-    <Page>
-      <Form />
-    </Page>
+    // <Page top="10%">
+    <Form />
+    // </Page>
   );
 };
 

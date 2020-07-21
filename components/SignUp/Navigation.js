@@ -30,6 +30,7 @@ const Navigation = ({
   handleErrors,
   validation,
   type = "both",
+  callback = () => {},
 }) => {
   const displayPrevious = () => type === "both" || type === "previous";
   const displayNext = () => type === "both" || type === "next";
@@ -41,7 +42,10 @@ const Navigation = ({
     if (validation) {
       valid = await incrementForm(values, handleErrors, validation);
     }
-    if (valid) changeSlide(1);
+    if (valid) {
+      await callback();
+      changeSlide(1);
+    }
   };
 
   const previous = () => changeSlide(-1);

@@ -90,6 +90,22 @@ function Submit({ values, submitting, setSubmitting }) {
     wish: values.wish,
   };
 
+  const uploadImage = async (image, user) => {
+    if (image) {
+      const form_data = new FormData();
+      form_data.append("upload", image, image.name);
+      let res = await fetch(
+        `http://localhost:5000/api/users/avatar/${user._id}`,
+        {
+          method: "PUT",
+          body: form_data,
+        }
+      );
+      let data = await res;
+      console.log(data);
+    }
+  };
+
   const onSumbit = () => {
     setSubmitting(true);
     // NOTE : reroute to `/` upon sucessful login
@@ -101,11 +117,12 @@ function Submit({ values, submitting, setSubmitting }) {
         authenticate({
           email: data.email,
           password: data.password,
-        }).then((response) => {
+        }).then(async (response) => {
           if (response.status === "success") {
             // NOTE : set `token`, `user`, `authenticated` state, in UserContext, upon sucessful login
             let token = response.data.token;
             let user = response.data.user;
+
             Cookie.set("token", token);
             setToken(token);
             setUser(user);

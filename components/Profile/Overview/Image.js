@@ -23,12 +23,9 @@ function Image({ image, size, right = 0 }) {
   }));
   const classes = useStyles();
 
-  const default_image =
-    "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
-
   return (
     <div className={classes.imageContainer}>
-      <img className={classes.image} src={image ? image : default_image} />
+      <img className={classes.image} src={image} />
     </div>
   );
 }

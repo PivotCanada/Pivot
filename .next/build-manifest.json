@@ -28,7 +28,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/profiles/[id]": [
+    "/signup": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

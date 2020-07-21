@@ -8,6 +8,7 @@ import Activity from "./Activity";
 import Image from "./Image";
 import Chips from "./Chips";
 import Details from "./Details";
+import Modal from "./Modal";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
 
@@ -42,6 +43,7 @@ function Main({ width, story, posts }) {
 
   return (
     <div className={classes.wrapper}>
+      {/* <Modal /> */}
       <Image image={story.photo} size={150} />
       <Activity profile={story} posts={posts} />
       <Follow profile={story} />

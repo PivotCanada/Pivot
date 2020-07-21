@@ -6,41 +6,46 @@ export const validateCredentials = async (values) => {
   let valid = true;
 
   if (isEmpty(values.email)) {
-    errors.email = "Required";
+    errors.email = "required";
     valid = false;
   }
 
   if (!isEmpty(values.email)) {
     if (!validateEmail(values.email)) {
-      errors.email = "This Email is Not Valid";
+      errors.email = "this email is not valid";
       valid = false;
     } else {
       await exists(values.email).then((response) => {
         if (response.data) {
-          errors.email = "This Email is Already in Use";
+          errors.email = "this email is already in use";
           valid = false;
         }
       });
     }
   }
 
-  // if (contains(values.password, " ")) {
-  //   errors.password = "Password Cannot Contain Spaces";
-  //   valid = false;
-  // }
+  if (contains(values.password, " ")) {
+    errors.password = "password cannot contain spaces";
+    valid = false;
+  }
 
-  // if (isEmpty(values.password)) {
-  //   errors.password = "Required";
-  //   valid = false;
-  // }
+  if (isEmpty(values.password)) {
+    errors.password = "required";
+    valid = false;
+  }
 
   if (isEmpty(values.firstname)) {
-    errors.firstname = "Required";
+    errors.firstname = "required";
     valid = false;
   }
 
   if (isEmpty(values.lastname)) {
-    errors.lastname = "Required";
+    errors.lastname = "required";
+    valid = false;
+  }
+
+  if (!values.consent) {
+    errors.consent = "You must agree to the";
     valid = false;
   }
 

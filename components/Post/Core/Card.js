@@ -6,7 +6,7 @@ import Modal from "../Edit/Modal";
 import Image from "../../Profile/Overview/Image";
 import Content from "../Content/Main";
 
-const Card = ({ post }) => {
+const Card = ({ post, displayLink = true }) => {
   const useStyles = makeStyles(() => ({
     card: {
       display: "flex",
@@ -26,21 +26,41 @@ const Card = ({ post }) => {
       flexWrap: "wrap",
       padding: 0,
     },
+    linkWrapper: {
+      textDecoration: "none",
+      "&:hover": {
+        opacity: 0.6,
+      },
+    },
   }));
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
   if (post) {
-    return (
-      <div className={classes.card}>
-        <Modal open={open} setOpen={setOpen} post={post} />
-        <div className={classes.wrapper}>
-          <Image image={post.author.photo} size={55} />
-          <Content post={post} setOpen={setOpen} />
+    if (displayLink) {
+      return (
+        <a className={classes.linkWrapper} href={`/posts/${post._id}`}>
+          <div className={classes.card}>
+            <Modal open={open} setOpen={setOpen} post={post} />
+            <div className={classes.wrapper}>
+              <Image image={post.author.photo} size={55} />
+              <Content post={post} setOpen={setOpen} />
+            </div>
+          </div>
+        </a>
+      );
+    } else {
+      return (
+        <div className={classes.card}>
+          <Modal open={open} setOpen={setOpen} post={post} />
+          <div className={classes.wrapper}>
+            <Image image={post.author.photo} size={55} />
+            <Content post={post} setOpen={setOpen} />
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 };
 

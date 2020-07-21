@@ -26,7 +26,17 @@ export default function Page({ children, top = 65 }) {
   return (
     <div>
       <AppBar />
-      <div style={{ marginTop: top }}>{children}</div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: top,
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 }
