@@ -1,235 +1,253 @@
-import { useForm } from "../../hooks/useForm";
-import Cookie from "js-cookie";
-import { validateLogin } from "./utils/validateLogin";
-import { authenticate } from "../../utils/authentication/authenticate";
-import { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../contexts/UserContext";
-import { ModalContext } from "../../contexts/ModalContext";
-import { formatEmail } from "../../utils/validation/formatting";
+import { useState, useContext, useEffect } from "react";
 import Router from "next/router";
+import Cookie from "js-cookie";
+// Validation
+import { validateLogin } from "./utils/validateLogin";
+// Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Link from "next/link";
+import { TextField, Button, IconButton } from "@material-ui/core";
+
+// Hooks
+import { useForm } from "../../hooks/useForm";
+// Contexts
+import { UserContext } from "../../contexts/UserContext";
+// Utils
+
+import { authenticate } from "../../utils/authentication/authenticate";
+import { formatEmail } from "../../utils/validation/formatting";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  wrapper: {
+    width: "100%",
+
     display: "flex",
-    flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
-    marginTop: 40,
-    minHeight: "90vh",
-    overflow: "scroll",
+    borderRadius: 5,
+    backgroundColor: "white",
   },
   textField: {
-    width: "17rem",
-    margin: "1rem",
+    width: 275,
+    marginBottom: 17,
     flexGrow: 1,
     flexShrink: 1,
   },
-  innerWrapper: {
+  container: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-evenly",
+    backgroundColor: "white",
+    borderRadius: 10,
+
+    width: 275,
+  },
+  containerLeft: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
+    width: "50%",
+    height: "100vh",
+  },
+  containerRight: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
     alignItems: "center",
-    minHeight: "10rem",
+    width: "50%",
+
+    width: "50%",
+    height: "100vh",
   },
-  header: {
-    textAlign: "center",
-    fontFamily: "Open Sans, sans-serif",
-    fontWeight: 500,
+  image: {
+    objectFit: "cover",
+    height: "100%",
   },
+  innerContainer: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: 350,
+  },
+  // header: {
+  //   textAlign: "left",
+  //   width: "100%",
+  //   margin: 0,
+  //   fontSize: 28,
+  //   color: "black",
+  //   fontWeight: 700,
+  //   marginBottom: 10,
+  //   fontFamily: "Noto Sans, sans-serif",
+  // },
   text: {
-    textAlign: "center",
-    width: "15rem",
-    marginBottom: "1rem",
-  },
+    textAlign: "left",
+    margin: 0,
+    width: "100%",
 
+    color: "#A1A1A1",
+    fontWeight: 500,
+    fontSize: 16,
+    fontFamily: "Open Sans, sans-serif",
+    marginBottom: 25,
+  },
+  inputElement: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  inputHeader: {
+    color: "black",
+    fontWeight: 700,
+    margin: 0,
+    marginBottom: 5,
+    fontSize: 11,
+    fontFamily: "Open Sans, sans-serif",
+  },
   button: {
-    marginTop: 25,
-    marginBottom: 15,
     textTransform: "none",
-    paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 25,
-    paddingRight: 25,
-    fontSize: 18,
-    fontFamily: "Poppins, serif",
+    fontWeight: 700,
+    fontSize: 15,
+    fontFamily: "Open Sans, sans-serif",
+    width: 275,
+    marginTop: 15,
   },
+  icon: {
+    width: "60px",
+    height: "auto",
+    marginBottom: 15,
+  },
+  checkbox: {
+    fontWeight: 500,
+    fontSize: 12,
+    fontFamily: "Open Sans, sans-serif",
+    margin: 0,
+  },
+  checkboxError: {
+    fontWeight: 500,
+    fontSize: 12,
+    color: "red",
+    margin: 0,
 
-  signupButton: {
+    fontFamily: "Open Sans, sans-serif",
+  },
+  link: {
+    textDecoration: "none",
     color: "blue",
-    textTransform: "none",
-    marginLeft: 5,
+    "&:hover": {
+      opacity: 0.6,
+    },
   },
 }));
 
-function LoginForm() {
+function UserCredentials({}) {
   const classes = useStyles();
-  const [error, setError] = useState({
-    value: false,
-    message: "",
-  });
-
-  const {
-    setUser,
-    token,
-    setAuthenticated,
-    setToken,
-    authenticated,
-  } = useContext(UserContext);
-
-  const { setShowOnboard, setShowLogin } = useContext(ModalContext);
-
-  const {
-    errors,
-    values,
-    submitting,
-    setSubmitting,
-    handleChange,
-    handleErrors,
-  } = useForm({
+  const { setUser, setAuthenticated, setToken, setLoading } = useContext(
+    UserContext
+  );
+  const { errors, values, handleChange, handleErrors } = useForm({
     email: "",
     password: "",
-    firstname: "",
-    lastname: "",
-    location: "",
   });
+  const [error, setError] = useState({});
 
-  useEffect(() => {
-    // NOTE : reroute to `/home` upon sucessful login
-    if (token !== null && token !== undefined) {
-      Cookie.set("token", token);
-    } else {
-      Cookie.remove("token");
+  const login = async () => {
+    values.email = formatEmail(values.email);
+    authenticate(values).then(async (response) => {
+      if (response.status === "success") {
+        console.log(response);
+        const user = response.data.user;
+        const token = response.data.token;
+        Cookie.set("token", token);
+        setToken(token);
+        setUser(user);
+        setAuthenticated(true);
+        setLoading(false);
+        // setError({
+        //   value: false,
+        //   message: "",
+        // });
+        Router.push("/");
+      } else {
+        setToken(null);
+        setAuthenticated(false);
+        setError({
+          value: true,
+          message: response.message,
+        });
+      }
+    });
+  };
+
+  const handleSubmit = async () => {
+    let valid = await handleErrors(values, validateLogin);
+    if (valid) {
+      login();
     }
-  }, [token]);
+  };
 
-  // TODO : Abstract `Loading` into a seperate component
+  // NOTE : reroute to `/` upon sucessful login
+  // TODO : configure functionality here for `persisted state` later on ...
 
-  // TODO : Abstract `Error` into a seperate component
-
-  if (error.value) {
-    return <p className={classes.root}>{error.message}</p>;
-  } else {
-    return (
-      <form
-        className={classes.root}
-        // onSubmit={async (e) => {
-        //   e.preventDefault();
-
-        //   // NOTE : With conditional logic, dependent on handleErros return value, async isn= neccessary since function must first
-        //   //        await the response of handleErrors before procceding onto next statement, etc ...
-        //   values.email = formatEmail(values.email);
-        //   if (await handleErrors(values, validateLogin)) {
-        //     authenticate(values).then((response) => {
-        //       if (response.status === "success") {
-        //         // NOTE : set `token`, `user`, `authenticated` state, in UserContext, upon sucessful login
-        //         setToken(response.data.token);
-        //         setUser(response.data.user);
-        //         setAuthenticated(true);
-        //         setLoading(false);
-        //         Router.push("/home");
-        //         setError({
-        //           value: false,
-        //           message: "",
-        //         });
-        //       } else {
-        //         setToken(null);
-        //         setAuthenticated(false);
-        //         setError({
-        //           value: true,
-        //           message: response.message,
-        //         });
-        //         setSubmitting(false);
-        //       }
-        //     });
-        //   }
-        // }}
-      >
-        <h1 className={classes.header}>Welcome Back!</h1>
-        <div className={classes.innerWrapper}>
-          <TextField
-            className={classes.textField}
-            type="email"
-            name="email"
-            value={values.email}
-            label="Email"
-            onChange={(e) => handleChange(e)}
-            error={errors.email ? true : false}
-            helperText={errors.email}
+  return (
+    <form className={classes.wrapper}>
+      <div className={classes.containerLeft}>
+        <img
+          className={classes.image}
+          src="https://images.unsplash.com/photo-1549448380-10cbfd2c1e94?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80"
+        />
+      </div>
+      <div className={classes.containerRight}>
+        <div className={classes.container}>
+          <img
+            className={classes.icon}
+            src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
+            alt="icon"
           />
-          <TextField
-            className={classes.textField}
-            type="password"
-            name="password"
-            value={values.password}
-            label="Password"
-            onChange={(e) => handleChange(e)}
-            error={errors.password ? true : false}
-            helperText={errors.password}
-          />
+          {/* <h1 className={classes.header}>Welcome</h1> */}
+          <p className={classes.text}>
+            Welcome back, continue your journey, or{" "}
+            <a className={classes.link} href="/signup">
+              Sign up
+            </a>{" "}
+            and begin yours
+          </p>
+          <div className={classes.inputElement}>
+            <h2 className={classes.inputHeader}>Email</h2>
+            <TextField
+              className={classes.textField}
+              type="email"
+              name="email"
+              value={values.email}
+              variant={"outlined"}
+              size={"small"}
+              onChange={(e) => handleChange(e)}
+              error={errors.email ? true : false}
+              helperText={errors.email}
+            />
+          </div>
+          <div className={classes.inputElement}>
+            <h2 className={classes.inputHeader}>Password</h2>
+            <TextField
+              className={classes.textField}
+              type="password"
+              name="password"
+              value={values.password}
+              variant={"outlined"}
+              size={"small"}
+              onChange={(e) => handleChange(e)}
+              error={errors.password ? true : false}
+              helperText={errors.password}
+            />
+          </div>
+
+          <Button
+            className={classes.button}
+            variant={"contained"}
+            color={"primary"}
+            onClick={handleSubmit}
+          >
+            Login
+          </Button>
         </div>
-
-        <Button
-          className={classes.button}
-          color="primary"
-          variant="contained"
-          onClick={async () => {
-            // TODO : Find out why this needs to be wrapped in an async ?
-            // TODO : Determine if this design straetgy is okay -> using async function, even when no async is necessary ?
-            values.email = formatEmail(values.email);
-            if (await handleErrors(values, validateLogin)) {
-              //   setLoading(true);
-              authenticate(values).then((response) => {
-                console.log(response);
-                if (response.status === "success") {
-                  const user = response.data.user;
-                  const token = response.data.token;
-                  // NOTE : set `token`, `user`, `authenticated` state, in UserContext, upon sucessful login
-                  setToken(token);
-                  setUser(user);
-                  setAuthenticated(true);
-                  // setShowOnboard(false);
-                  // setShowLogin(false);
-                  //   setLoading(false);
-                  Router.push(`/profiles/${user._id}`);
-                  setError({
-                    value: false,
-                    message: "",
-                  });
-                } else {
-                  setToken(null);
-                  setAuthenticated(false);
-                  setError({
-                    value: true,
-                    message: response.message,
-                  });
-                  //   setLoading(false);
-                }
-              });
-            }
-          }}
-        >
-          Login
-        </Button>
-        <p>
-          Don't have an account?
-          <Link href="/signup">
-            <Button
-              onClick={() => {
-                setShowOnboard(true);
-              }}
-              className={classes.signupButton}
-            >
-              Create One
-            </Button>
-          </Link>
-        </p>
-      </form>
-    );
-  }
+      </div>
+    </form>
+  );
 }
 
-export default LoginForm;
+export default UserCredentials;

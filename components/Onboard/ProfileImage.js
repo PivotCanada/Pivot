@@ -73,7 +73,7 @@ function ChangeImage({ values, handleChange, setStep }) {
       const form_data = new FormData();
       form_data.append("upload", file, file.name);
       let res = await fetch(
-        `http://localhost:5000/api/users/avatar/${user._id}`,
+        `https://pivotinfo.herokuapp.com/api/users/avatar/${user._id}`,
         {
           method: "PUT",
           body: form_data,

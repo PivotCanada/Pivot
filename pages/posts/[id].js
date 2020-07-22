@@ -31,6 +31,7 @@ const Post = ({ post }) => {
             key="description"
           />
         </Head>
+
         <Card post={post} displayLink={false} />
       </div>
     </Page>

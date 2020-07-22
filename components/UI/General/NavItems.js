@@ -17,7 +17,7 @@ import useWidth from "../../../hooks/useWidth";
 
 const NavItems = ({ setOpen }) => {
   const { width, setWidth } = useWidth();
-  const { authenticated, loading } = useContext(UserContext);
+  const { user, authenticated, loading } = useContext(UserContext);
 
   const useStyles = makeStyles(() => ({
     wrapper: {
@@ -82,7 +82,7 @@ const NavItems = ({ setOpen }) => {
     setWidth(window.innerWidth);
   }, []);
 
-  useEffect(() => {}, [authenticated, loading]);
+  useEffect(() => {}, [user, authenticated, loading]);
 
   if (loading) {
     return null;
