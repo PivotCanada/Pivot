@@ -1,43 +1,33 @@
 import { useEffect, useRef } from "react";
 // Validation
-import { validateDetails } from "../../utils/validation/validateDetails";
+import { validateLocation } from "../../utils/validation/validateLocation";
 import { incrementForm } from "../../utils/validation/incrementForm";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
-
 // Components
 import Location from "./Location";
-import Industry from "./Industry";
-import Years from "./Years";
-import Website from "./Website";
 import Navigation from "./Navigation";
 
-function BusinessWebsite({
+function BusinessDetails({
   values,
-  handleChange,
   handleDirectChange,
-  step,
   setStep,
   handleErrors,
   errors,
 }) {
-  useEffect(() => {}, [errors]);
-
   const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-
       backgroundColor: "white",
-      padding: 35,
+      padding: 20,
       borderRadius: 5,
     },
     textField: {
       width: "17rem",
-      marginTop: "2rem",
+      margin: 15,
       flexGrow: 1,
       flexShrink: 1,
     },
@@ -60,10 +50,9 @@ function BusinessWebsite({
       marginBottom: 75,
       fontWeight: 500,
       fontSize: 16,
-      color: values.website === "" ? "black" : "green",
+      color: values.location === "" ? "black" : "green",
       fontFamily: "Open Sans, sans-serif",
     },
-
     button: {
       marginTop: "3rem",
       marginBottom: "3rem",
@@ -76,6 +65,9 @@ function BusinessWebsite({
     },
   }));
 
+  useEffect(() => {}, [errors]);
+
+  const Ref = useRef(null);
   const classes = useStyles();
 
   return (
@@ -83,29 +75,29 @@ function BusinessWebsite({
       className={classes.root}
       onSubmit={(e) => {
         e.preventDefault();
-        incrementForm(e, values, handleErrors, validateDetails, setStep);
+        incrementForm(e, values, handleErrors, validateLocation, setStep);
       }}
     >
       <div className={classes.innerWrapper}>
-        <h1 className={classes.header}>Company Website</h1>
+        <h1 className={classes.header}>Where is Your Business?</h1>
         <p className={classes.text}>
-          {values.website === "" || !values.hasSite
-            ? "What's your website?"
-            : values.website}
+          {values.location === "" ? "Select a city" : values.location}
         </p>
-        <Website
+
+        <Location
           handleChange={handleDirectChange}
           errors={errors}
           values={values}
         />
-        <Navigation
+
+        {/* <Navigation
           values={values}
           handleErrors={handleErrors}
-          validation={validateDetails}
-        />
+          validation={validateLocation}
+        /> */}
       </div>
     </form>
   );
 }
 
-export default BusinessWebsite;
+export default BusinessDetails;

@@ -12,6 +12,7 @@ import { ModalStore } from "../contexts/ModalContext";
 import { UserStore } from "../contexts/UserContext";
 import { LanguageStore } from "../contexts/LanguageContext";
 import { SearchStore } from "../contexts/SearchContext";
+import { FormStore } from "../contexts/FormContext";
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -30,11 +31,13 @@ const MyApp = ({ Component, pageProps }) => {
         <ModalStore>
           <UserStore>
             <SearchStore>
-              <ThemeProvider theme={theme}>
-                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                <CssBaseline />
-                <Component {...pageProps} />
-              </ThemeProvider>
+              <FormStore>
+                <ThemeProvider theme={theme}>
+                  {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                  <CssBaseline />
+                  <Component {...pageProps} />
+                </ThemeProvider>
+              </FormStore>
             </SearchStore>
           </UserStore>
         </ModalStore>

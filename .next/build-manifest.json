@@ -28,6 +28,22 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
+    "/login": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/logout": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/next/dist/pages/_error": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/profiles/[id]": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/signup": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"

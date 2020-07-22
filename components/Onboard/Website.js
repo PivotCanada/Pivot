@@ -9,10 +9,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
   },
   textField: {
-    width: "17rem",
+    width: 275,
     margin: 0,
     flexGrow: 1,
     flexShrink: 1,
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
   container: {
     display: "flex",
-    margin: 35,
+    marginTop: 15,
     justifyContent: "space-between",
     width: 200,
   },
@@ -41,9 +40,12 @@ const Website = ({ handleChange, values, errors }) => {
         className={classes.textField}
         name="website"
         value={values.website}
-        label="Website"
         onChange={(e) => handleChange("website", e.target.value)}
         disabled={!values.hasSite}
+        error={errors.website ? true : false}
+        helperText={errors.website}
+        size={"small"}
+        variant={"outlined"}
       />
 
       <div className={classes.container}>

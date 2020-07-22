@@ -36,7 +36,10 @@ const ProfileLink = ({ width, keys }) => {
   const { user, authenticated } = useContext(UserContext);
   const { setShowOnboard, setShowLogin } = useContext(ModalContext);
 
-  if (user) {
+  const complete = () =>
+    user.business && user.location && user.website && user.industry;
+
+  if (user && complete()) {
     return (
       <Link href={`/profiles/${user._id}`}>
         <div className={classes.wrapper}>

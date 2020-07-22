@@ -450,9 +450,8 @@ const industries = [
 
 const useStyles = makeStyles((theme) => ({
   textField: {
-    width: "17rem",
+    width: 275,
     margin: 0,
-    marginTop: "2rem",
   },
 }));
 
@@ -478,7 +477,8 @@ function Industry({ values, handleChange, handleErrors, errors }) {
           className={classes.textField}
           error={errors.industry ? true : false}
           helperText={errors.industry}
-          label={"Industry"}
+          variant={"outlined"}
+          size={"small"}
         />
       )}
     />

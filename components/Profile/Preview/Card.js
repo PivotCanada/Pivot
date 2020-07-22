@@ -45,30 +45,34 @@ function Preview({ profile }) {
   const [same, setSame] = useState(false);
 
   useEffect(() => {
-    setSame(user && user._id === profile._id);
+    if (user) {
+      setSame(user && user._id === profile._id);
+    }
   }, []);
 
-  return (
-    <div className={classes.card}>
-      <div
-        onClick={async () => {
-          if (same) {
-            Router.push(`/profiles/${profile._id}`);
-          } else {
-            setId(profile._id);
-            if (!open) {
-              setOpen(true);
+  if (user) {
+    return (
+      <div className={classes.card}>
+        <div
+          onClick={async () => {
+            if (same) {
+              Router.push(`/profiles/${profile._id}`);
+            } else {
+              setId(profile._id);
+              if (!open) {
+                setOpen(true);
+              }
+              setId(profile._id);
             }
-            setId(profile._id);
-          }
-        }}
-        className={classes.wrapper}
-      >
-        <Image image={profile.photo} size={55} />
-        <Details profile={profile} small={true} />
+          }}
+          className={classes.wrapper}
+        >
+          <Image image={profile.photo} size={55} />
+          <Details profile={profile} small={true} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default Preview;

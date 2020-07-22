@@ -7,9 +7,10 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { ModalContext } from "../../contexts/ModalContext";
+import { UserContext } from "../../contexts/UserContext";
+import { FormContext } from "../../contexts/FormContext";
 import { useEffect, useContext, useState, useRef } from "react";
-import useWitdh from "../../hooks/useWidth";
+import useWidth from "../../hooks/useWidth";
 import Form from "./Form";
 
 import Button from "@material-ui/core/Button";
@@ -17,11 +18,7 @@ import Button from "@material-ui/core/Button";
 // import useWidth from "../../hooks/useWidth";
 
 export default function TransitionsModal(props) {
-  const [fullScreen, setFullScreen] = useState(false);
-  const [top, setTop] = useState(10);
-  const [onboard, setOnboard] = useState(true);
-
-  const { width, setWidth } = useWitdh();
+  const { width, setWidth } = useWidth();
 
   useEffect(() => {
     setWidth(window.innerWidth);
@@ -62,45 +59,41 @@ export default function TransitionsModal(props) {
   }));
 
   const classes = useStyles();
-  const Ref = useRef(0);
-  const { showOnboard, setShowOnboard, setShowLogin } = useContext(
-    ModalContext
-  );
-
-  const handleOpen = () => {
-    setShowLogin(true);
-    setShowOnboard(true);
-  };
+  const [onboard, setOnboard] = useState(false);
+  const { user } = useContext(UserContext);
 
   const handleClose = () => {
-    setShowLogin(false);
-    setShowOnboard(false);
+    setOnboard(false);
   };
 
-  useEffect(() => {}, [showOnboard]);
+  const complete = () =>
+    user.business && user.location && user.website && user.industry;
+
+  useEffect(() => {
+    if (user) {
+      if (!complete()) {
+        setOnboard(true);
+      }
+    }
+  }, [user]);
 
   return (
     <Dialog
       scroll="body"
       fullWidth={true}
-      fullScreen={width < 800}
       maxWidth={"sm"}
-      open={showOnboard}
+      open={onboard}
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
     >
       <DialogActions className={classes.action}>
         <img
-          ref={Ref}
           className={classes.icon}
           src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
           alt="icon"
         />
-        <IconButton className={classes.closeButton} onClick={handleClose}>
-          <CloseIcon />
-        </IconButton>
       </DialogActions>
-      <Form />
+      <Form setOnboard={setOnboard} />
     </Dialog>
   );
 }

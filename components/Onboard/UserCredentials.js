@@ -8,6 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { TextField, Button, IconButton } from "@material-ui/core";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
+// Components
+import Navigation from "./Navigation";
 // Contexts
 import { UserContext } from "../../contexts/UserContext";
 // Utils
@@ -208,12 +210,7 @@ function UserCredentials({
             alt="icon"
           />
           {/* <h1 className={classes.header}>Welcome</h1> */}
-          <p className={classes.text}>
-            Begin Your Journey, or{" "}
-            <a className={classes.link} href="/login">
-              Login
-            </a>
-          </p>
+          <p className={classes.text}>Begin Your Journey</p>
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeader}>First Name</h2>
             <TextField

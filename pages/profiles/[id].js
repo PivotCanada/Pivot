@@ -2,9 +2,6 @@ import { useEffect, useState, useContext } from "react";
 // Components
 import Page from "../../components/UI/General/Page";
 import Main from "../../components/Profile/Core/Main";
-import LoginModal from "../../components/Login/Modal";
-import SignUpModal from "../../components/SignUp/Modal";
-import DeleteModal from "../../components/Delete/Modal";
 import Modal from "../../components/Profile/Core/Modal";
 // Contexts
 import { ModalContext } from "../../contexts/ModalContext";
@@ -26,13 +23,8 @@ const Profile = ({ user }) => {
 
   return (
     <Page top={100}>
-      {/* <ProfileStore page={true}> */}
-      {/* <DeleteModal />
-        <LoginModal />
-        <SignUpModal /> */}
       <Modal />
       <Main story={user} initialContent={"posts"} />
-      {/* </ProfileStore> */}
     </Page>
   );
 };

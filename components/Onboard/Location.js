@@ -9,7 +9,6 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: "17rem",
-    marginBottom: 30,
   },
 }));
 
@@ -57,9 +56,10 @@ function Location({
             }
           }}
           className={classes.textField}
-          label={"City"}
           error={errors.location ? true : false}
           helperText={errors.location}
+          variant={"outlined"}
+          size={"small"}
         />
       )}
     />
