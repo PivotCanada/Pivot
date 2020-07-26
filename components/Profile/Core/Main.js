@@ -69,12 +69,12 @@ const Main = ({ story, initialContent = "story" }) => {
   }, []);
 
   useEffect(() => {
-    setContent("story");
     fetchPosts();
     fetchLikes();
   }, [story]);
 
   if (story) {
+    // console.log(story);
     return (
       <div className={classes.wrapper}>
         <Overview width={width} story={story} posts={posts.length} />

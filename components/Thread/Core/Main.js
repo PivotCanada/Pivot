@@ -2,16 +2,13 @@ import { useEffect, useState, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
-import ButtonGroup from "../Content/ButtonGroup";
-import CreatePost from "../../Post/Create/MainProfile";
-import Overview from "../Overview/Main";
-import Content from "../Content/Main";
+import Card from "../../Post/Core/Card";
+import Create from "../../Post/Create/Main";
+import Container from "../../Post/Core/Container";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 // Utils
-import { fetchUserPosts } from "../utils/fetchUserPosts";
-import { sameUser } from "../utils/sameUser";
-import { fetchUserLikes } from "../utils/fetchUserLikes";
+import { fetchPosts } from "../utils/fetchPosts";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -38,50 +35,44 @@ const Main = ({ post }) => {
       justifyContent: "start",
       alignItems: "center",
       maxWidth: 800,
-      width: width < 600 ? "90%" : "90%",
-      marginLeft: width < 600 ? 0 : 0,
     },
   }));
 
   const classes = useStyles();
   const { user } = useContext(UserContext);
-
-  // TODO : Put this in Context ?
-
-  const [posts, setPosts] = useState([]);
-  const [likes, setLikes] = useState([]);
   const [children, setChildren] = useState([]);
-  const [content, setContent] = useState(initialContent);
 
-  const fetchLikes = async () => {
-    setLikes(await (await fetchUserLikes(story.likes)).reverse());
-  };
-
-  const fetchPosts = async () => {
-    await fetchUserPosts(story._id).then((response) => {
-      if (response.status === "success") {
-        setPosts(response.data.reverse());
-      }
-    });
-  };
+  // const fetchPosts = async () => {
+  //   await fetchUserPosts(story._id).then((response) => {
+  //     if (response.status === "success") {
+  //       setPosts(response.data.reverse());
+  //     }
+  //   });
+  // };
 
   useEffect(() => {
+    console.log(post);
+    fetchPosts(post.children, setChildren);
     setWidth(window.innerWidth);
-  }, []);
+  }, [post]);
+
+  // useEffect(() => {
+  //   setContent("story");
+  //   fetchPosts();
+  //   fetchLikes();
+  // }, [story]);
 
   useEffect(() => {
-    setContent("story");
-    fetchPosts();
-    fetchLikes();
-  }, [story]);
+    console.log(children);
+  }, [children]);
 
-  if (story) {
+  if (post) {
     return (
       <div className={classes.wrapper}>
-        <Overview width={width} story={story} posts={posts.length} />
         <div className={classes.container}>
+          <Create role={"child"} context={post._id} />
           <Card post={post} displayLink={false} />
-          <Container children={children} />
+          <Container data={children} />
         </div>
       </div>
     );

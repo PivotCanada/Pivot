@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Router from "next/router";
 import Cookie from "js-cookie";
+import Link from "next/link";
 // Validation
 import { validateCredentials } from "../../utils/validation/validateCredentials";
 // Material UI
@@ -109,6 +110,10 @@ const useStyles = makeStyles((theme) => ({
     width: "60px",
     height: "auto",
     marginBottom: 15,
+    "&:hover": {
+      opacity: 0.4,
+      cursor: "pointer",
+    },
   },
   checkbox: {
     fontWeight: 500,
@@ -197,22 +202,25 @@ function UserCredentials({
       <div className={classes.containerLeft}>
         <img
           className={classes.image}
-          src="https://cdn.dribbble.com/users/76454/screenshots/9784895/media/99055843781d38d05707edfb6e16b86b.png"
+          src="https://images.unsplash.com/photo-1526546334624-2afe5b01088d?ixlib=rb-1.2.1&auto=format&fit=crop&w=944&q=80"
         />
       </div>
       <div className={classes.containerRight}>
         <div className={classes.container}>
-          <img
-            className={classes.icon}
-            src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
-            alt="icon"
-          />
+          <Link href="/">
+            <img
+              className={classes.icon}
+              src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
+              alt="icon"
+            />
+          </Link>
           {/* <h1 className={classes.header}>Welcome</h1> */}
           <p className={classes.text}>
-            Begin Your Journey, or{" "}
+            Begin your journey, or{" "}
             <a className={classes.link} href="/login">
               Login
-            </a>
+            </a>{" "}
+            and get back to defining history
           </p>
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeader}>First Name</h2>
@@ -312,7 +320,7 @@ function UserCredentials({
             color={"primary"}
             onClick={handleSubmit}
           >
-            Create Account
+            Begin My Journey
           </Button>
         </div>
       </div>

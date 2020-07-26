@@ -31,6 +31,8 @@ const Main = ({ display = true, callback, data, profile }) => {
     }
   }, [data]);
 
+  console.log(data);
+
   useEffect(() => {}, [posts]);
   if (display) {
     return (

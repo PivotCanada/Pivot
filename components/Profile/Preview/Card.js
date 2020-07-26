@@ -50,7 +50,7 @@ function Preview({ profile }) {
     }
   }, []);
 
-  if (user) {
+  if (profile) {
     return (
       <div className={classes.card}>
         <div

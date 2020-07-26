@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import Router from "next/router";
 import Cookie from "js-cookie";
+import Link from "next/link";
 // Validation
 import { validateLogin } from "./utils/validateLogin";
 // Material UI
@@ -111,6 +112,10 @@ const useStyles = makeStyles((theme) => ({
     width: "60px",
     height: "auto",
     marginBottom: 15,
+    "&:hover": {
+      opacity: 0.4,
+      cursor: "pointer",
+    },
   },
   checkbox: {
     fontWeight: 500,
@@ -194,11 +199,13 @@ function UserCredentials({}) {
       </div>
       <div className={classes.containerRight}>
         <div className={classes.container}>
-          <img
-            className={classes.icon}
-            src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
-            alt="icon"
-          />
+          <Link href="/">
+            <img
+              className={classes.icon}
+              src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
+              alt="icon"
+            />
+          </Link>
           {/* <h1 className={classes.header}>Welcome</h1> */}
           <p className={classes.text}>
             Welcome back, continue your journey, or{" "}
@@ -242,7 +249,7 @@ function UserCredentials({}) {
             color={"primary"}
             onClick={handleSubmit}
           >
-            Login
+            Continue My Journey
           </Button>
         </div>
       </div>

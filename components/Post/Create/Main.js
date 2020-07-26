@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Router from "next/router";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -13,6 +13,7 @@ import { ModalContext } from "../../../contexts/ModalContext";
 
 // Utils
 import { createPost } from "./utils/createPost";
+import { addChild } from "./utils/addChild";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 
@@ -55,13 +56,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Main = ({ fetchPosts }) => {
+const Main = ({ role, context }) => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
   const [tags, setTags] = useState([]);
   const { user } = useContext(UserContext);
   const { setShowCreate } = useContext(ModalContext);
+
+  useEffect(() => {
+    console.log(role);
+    console.log(context);
+  }, [role]);
 
   const onSubmit = async (text) => {
     setLoading(true);
@@ -75,47 +81,64 @@ const Main = ({ fetchPosts }) => {
         photo: user.photo,
       },
       tags: tags,
+      role: role,
+      context: context,
     };
 
-    await createPost(post).then((response) => {
-      console.log(response);
+    await createPost(post).then(async (response) => {
       if (response.status === "success") {
+        let post = response.data;
+        if (role === "child") {
+          await addChild(context, post._id).then((response) => {
+            console.log(response);
+          });
+        }
         // fetchPosts();
         setLoading(false);
-        Router.push(`/profiles/${user._id}`);
+
+        Router.reload();
       } else {
         setLoading(false);
       }
     });
   };
 
-  return (
-    <div className={classes.root}>
-      <div className={classes.innerWrapper}>
-        <UserCard user={user} />
-        <TextField
-          multiline
-          rows={4}
-          className={classes.textField}
-          variant="outlined"
-          type="text"
-          label="What's on your mind?"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <Industry tags={tags} setTags={setTags} />
-        <Button
-          disabled={text.length === 0}
-          variant={"contained"}
-          color={"primary"}
-          className={classes.button}
-          onClick={() => onSubmit(text)}
-        >
-          Create
-        </Button>
+  const onChange = (text) => {
+    setText(text);
+    if (text.includes("i")) {
+      console.log(text.split("#"));
+    }
+  };
+
+  if (context) {
+    return (
+      <div className={classes.root}>
+        <div className={classes.innerWrapper}>
+          <UserCard user={user} />
+          <TextField
+            multiline
+            rows={4}
+            className={classes.textField}
+            variant="outlined"
+            type="text"
+            label="What's on your mind?"
+            value={text}
+            onChange={(e) => onChange(e.target.value)}
+          />
+          <Industry tags={tags} setTags={setTags} />
+          <Button
+            disabled={text.length === 0}
+            variant={"contained"}
+            color={"primary"}
+            className={classes.button}
+            onClick={() => onSubmit(text)}
+          >
+            Create
+          </Button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Main;

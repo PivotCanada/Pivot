@@ -164,13 +164,17 @@ function Preview({ user }) {
   const classes = useStyles();
   const def =
     "https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80";
-  return (
-    <div className={classes.card}>
-      <div className={classes.imageContainer}>
-        <img className={classes.image} src={user.photo ? user.photo : def} />
+  if (user) {
+    return (
+      <div className={classes.card}>
+        <div className={classes.imageContainer}>
+          <img className={classes.image} src={user.photo ? user.photo : def} />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 }
 
 export default Preview;

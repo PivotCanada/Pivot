@@ -19,6 +19,9 @@ const industries = [
   {
     name: "Question",
   },
+  {
+    name: "Miscellaneous",
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({

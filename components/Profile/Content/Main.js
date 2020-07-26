@@ -8,7 +8,7 @@ const Main = ({ story, content, posts, likes, pageOpen }) => {
     case "story":
       return <Story story={story} />;
     case "posts":
-      return <Posts posts={posts} header={"Posts"} />;
+      return <Posts posts={posts} header={"Journey"} />;
     case "likes":
       return <Posts posts={likes} header={"Likes"} />;
     case "contacts":

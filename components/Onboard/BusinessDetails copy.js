@@ -118,6 +118,14 @@ function BusinessDetails({ values, handleChange, handleErrors, errors }) {
         >
           Next
         </Button>
+        <Button
+          className={classes.button}
+          variant={"contained"}
+          color={"primary"}
+          onClick={() => setDisplayCustom(true)}
+        >
+          Original Options
+        </Button>
       </div>
     </form>
   );

@@ -12,7 +12,7 @@ const Follow = ({ profile }) => {
   const [loading, setLoading] = useState(true);
   const { onFollow, followed, sameUser } = useFollow(user, profile, setLoading);
 
-  useEffect(() => {}, []);
+  useEffect(() => {}, [user, profile]);
 
   if (!authenticated || sameUser) {
     return null;

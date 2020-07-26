@@ -4,7 +4,11 @@ import BusinessDetails from "./BusinessDetails";
 import BusinessIndustry from "./BusinessIndustry";
 import BusinessWebsite from "./BusinessWebsite";
 import BusinessLocation from "./BusinessLocation";
+import BusinessMotivation from "./BusinessMotivation";
 import ProfileImage from "./ProfileImage";
+import Achievements from "./Achievements";
+import Goals from "./Goals";
+import Challanges from "./Challenges";
 import Finish from "./Finish";
 
 function Form({ setOnboard }) {
@@ -27,9 +31,17 @@ function Form({ setOnboard }) {
       years: "",
       hasSite: true,
       website: "",
+      achievements: "",
+      goals: "",
+      challenges: "",
+      motivation: "",
     },
     () => {}
   );
+
+  useEffect(() => {
+    console.log(values.motivation);
+  }, [values.motivation]);
 
   switch (step) {
     case 1:
@@ -81,7 +93,7 @@ function Form({ setOnboard }) {
       );
     case 5:
       return (
-        <ProfileImage
+        <BusinessMotivation
           values={values}
           handleChange={handleChange}
           handleDirectChange={handleDirectChange}
@@ -92,6 +104,55 @@ function Form({ setOnboard }) {
         />
       );
     case 6:
+      return (
+        <ProfileImage
+          values={values}
+          handleChange={handleChange}
+          handleDirectChange={handleDirectChange}
+          errors={errors}
+          handleErrors={handleErrors}
+          step={step}
+          setStep={setStep}
+        />
+      );
+    case 7:
+      return (
+        <Achievements
+          values={values}
+          handleChange={handleChange}
+          handleDirectChange={handleDirectChange}
+          errors={errors}
+          handleErrors={handleErrors}
+          step={step}
+          setStep={setStep}
+        />
+      );
+    case 8:
+      return (
+        <Goals
+          values={values}
+          handleChange={handleChange}
+          handleDirectChange={handleDirectChange}
+          errors={errors}
+          handleErrors={handleErrors}
+          step={step}
+          setStep={setStep}
+        />
+      );
+    case 9:
+      return (
+        <Challanges
+          values={values}
+          handleChange={handleChange}
+          handleDirectChange={handleDirectChange}
+          errors={errors}
+          handleErrors={handleErrors}
+          step={step}
+          setStep={setStep}
+        />
+      );
+
+    case 10:
       return <Finish setOnboard={setOnboard} />;
   }
 }

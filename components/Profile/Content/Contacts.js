@@ -43,7 +43,7 @@ function Contacts({ story }) {
 
   return (
     <div className={classes.wrapper}>
-      <h1 className={classes.header}>Contacts</h1>
+      <h1 className={classes.header}>Network</h1>
       <UserList users={followers} title={"followers"} />
       <UserList users={following} title={"following"} />
     </div>

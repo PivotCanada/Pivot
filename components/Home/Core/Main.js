@@ -56,6 +56,14 @@ const Main = () => {
     return list;
   };
 
+  const isRepost = (post) => post.context !== null && post.role === "parent";
+  const isComment = (post) => post.context !== null && post.role === "child";
+  const isPost = (post) => !isRepost(post) && !isComment(post);
+
+  const filterPosts = (posts) => {
+    return posts.filter((post) => !isComment(post));
+  };
+
   const func = () => {
     if (trigger) {
       callback.then((res) => {
@@ -79,7 +87,9 @@ const Main = () => {
 
     fetchAllPosts().then((response) => {
       if (response.status === "success") {
-        setPosts(response.data.reverse());
+        let posts = response.data.reverse();
+        posts = filterPosts(posts);
+        setPosts(posts);
       }
     });
   }, []);

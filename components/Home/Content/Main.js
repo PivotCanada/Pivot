@@ -7,6 +7,8 @@ import Profiles from "../../Profile/Core/Container";
 import Create from "../../Post/Create/MainProfile";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
+// Hooks
+import useLanguage from "../../../hooks/useLanguage";
 // Utils
 import { fetchAllUsers } from "../utils/fetchAllUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
@@ -33,6 +35,17 @@ const useStyles = makeStyles((theme) => ({
 const Main = ({ content, display, profiles, posts }) => {
   const classes = useStyles();
   const { authenticated } = useContext(UserContext);
+  const { keys, truthy, changeLanguage } = useLanguage({
+    stories: {
+      english: "Discover Sustainability Stories and Connect with Fellow SMEs",
+      french:
+        "Découvrez des histoires de développement durable et connectez-vous avec d'autres PME",
+    },
+    journies: {
+      english: "Follow the Sustainability Journey of fellow SMEs",
+      french: "Suivez le parcours de développement durable des autres PME",
+    },
+  });
 
   switch (content) {
     case "posts":
@@ -42,7 +55,7 @@ const Main = ({ content, display, profiles, posts }) => {
             className={classes.text}
             style={{ display: display ? "block" : "none" }}
           >
-            Follow the Sustainability Journey of fellow SMEs
+            {keys.journies}
           </p>
           {authenticated && display ? <Create /> : null}
           <Posts display={display} data={posts} />
@@ -55,7 +68,7 @@ const Main = ({ content, display, profiles, posts }) => {
             className={classes.text}
             style={{ display: display ? "block" : "none" }}
           >
-            Discover Sustainability Stories and Connect with Fellow SMEs
+            {keys.stories}
           </p>
           <Profiles display={display} data={profiles} />
         </div>

@@ -7,6 +7,9 @@ import Button from "@material-ui/core/Button";
 // Components
 import UserCard from "./UserCard";
 import Industry from "./Industry";
+import Dialog from "./Dialog";
+import Tags from "./Tags";
+
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -91,6 +94,7 @@ const Main = () => {
   const [show, setShow] = useState(false);
   const { user } = useContext(UserContext);
   const { setShowCreate } = useContext(ModalContext);
+  const [open, setOpen] = useState(false);
 
   const onSubmit = async (text) => {
     setLoading(true);
@@ -117,8 +121,17 @@ const Main = () => {
     });
   };
 
+  const onChange = (e) => {
+    setText(e.target.value);
+    if (e.target.value.includes("#")) {
+      console.log(e.target.value.split("#")[1]);
+      setOpen(true);
+    }
+  };
+
   return (
     <div className={classes.root}>
+      <Dialog open={open} setOpen={setOpen} />
       <div className={classes.innerWrapper}>
         <div className={classes.cardWrapper}>
           <UserCard user={user} />
@@ -131,7 +144,7 @@ const Main = () => {
               label="What's on your mind?"
               value={text}
               onChange={(e) => {
-                setText(e.target.value);
+                onChange(e);
 
                 if (e.target.value.length > 0) {
                   setShow(true);
@@ -144,7 +157,7 @@ const Main = () => {
               style={{ display: show ? "flex" : "none" }}
               className={classes.innerinnerWrapper}
             >
-              <Industry tags={tags} setTags={setTags} />
+              <Tags tags={tags} setTags={setTags} />
               <Button
                 disabled={text.length === 0}
                 variant={"contained"}

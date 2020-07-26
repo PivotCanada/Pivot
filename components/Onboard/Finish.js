@@ -92,7 +92,7 @@ function BusinessIndustry({}) {
         </p>
 
         <p className={classes.text}>
-          Begin your journey by exploring what others are up to.
+          Begin your journey by exploring and following others.
         </p>
 
         <Button

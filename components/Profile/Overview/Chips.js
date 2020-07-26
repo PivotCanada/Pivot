@@ -1,3 +1,4 @@
+import { useState } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import PublicIcon from "@material-ui/icons/Public";
@@ -32,14 +33,30 @@ const useStyles = makeStyles((theme) => ({
 
 const Chips = ({ profile }) => {
   const classes = useStyles();
+  const [location, setLocation] = useState("");
+  const [industry, setIndustry] = useState("");
 
   return (
     <div className={classes.chipArray}>
       {profile.location ? (
         <Chip
           icon={<RoomIcon />}
-          label={profile.location}
+          label={location}
+          onClick={() => {
+            setLocation(location ? "" : profile.location);
+          }}
           className={classes.chip}
+        />
+      ) : null}
+
+      {profile.industry ? (
+        <Chip
+          icon={<StoreIcon />}
+          label={industry}
+          className={classes.chip}
+          onClick={() => {
+            setIndustry(industry ? "" : profile.industry);
+          }}
         />
       ) : null}
       {profile.website ? (
@@ -50,17 +67,10 @@ const Chips = ({ profile }) => {
         >
           <Chip
             icon={<PublicIcon />}
-            label={profile.website}
+            // label={profile.website}
             className={classes.chip}
           />
         </a>
-      ) : null}
-      {profile.industry ? (
-        <Chip
-          icon={<StoreIcon />}
-          label={profile.industry}
-          className={classes.chip}
-        />
       ) : null}
     </div>
   );

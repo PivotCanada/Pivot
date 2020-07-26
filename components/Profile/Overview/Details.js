@@ -11,7 +11,9 @@ const Details = ({ profile, small }) => {
       height: "100%",
       padding: 0,
       margin: 0,
-      marginTop: small ? 10 : 30,
+
+      marginTop: small ? 10 : 15,
+      // marginBottom: small ? 10 : 15,
     },
 
     name: {

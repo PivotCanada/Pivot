@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Preview({ post, setOpen }) {
+function Preview({ post, setOpen, setOpenRepost }) {
   const classes = useStyles();
 
   return (
@@ -29,7 +29,7 @@ function Preview({ post, setOpen }) {
 
       <Primary text={post.text} />
       <Chips tags={post.tags} />
-      <Actions post={post} setOpen={setOpen} />
+      <Actions post={post} setOpen={setOpen} setOpenRepost={setOpenRepost} />
     </div>
   );
 }

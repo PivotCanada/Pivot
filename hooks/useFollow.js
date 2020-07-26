@@ -1,8 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+// Contexts
+import { ModalContext } from "../contexts/ModalContext";
+import { UserContext } from "../contexts/UserContext";
 
 const Follow = (user, profile, setLoading) => {
   const [followed, setFollowed] = useState(false);
   const [sameUser, setSameUser] = useState(false);
+  const { id } = useContext(ModalContext);
+  const { setUser } = useContext(UserContext);
 
   const checkSame = (user, profile) => {
     if (user) {
@@ -14,8 +19,11 @@ const Follow = (user, profile, setLoading) => {
 
   const checkFollowed = async (user, profile) => {
     if (user) {
+      setFollowed(false);
       user.following.forEach((id) => {
         if (id === profile._id) {
+          console.log(true);
+          console.log(user.following);
           setFollowed(true);
         }
       });
@@ -30,7 +38,7 @@ const Follow = (user, profile, setLoading) => {
       console.log(response);
       if (response.status === "success") {
         // TODO : FIX THIS !!!
-        // setUser(response.data);
+        setUser(response.data);
         followed_by(user, profile, followed).then(async (response) => {
           console.log(response);
           if (response.status === "success") {
@@ -89,7 +97,11 @@ const Follow = (user, profile, setLoading) => {
   useEffect(() => {
     checkFollowed(user, profile);
     checkSame(user, profile);
-  }, [user]);
+  }, [id, profile]);
+
+  useEffect(() => {
+    console.log(id);
+  }, [id]);
 
   return { checkFollowed, checkSame, onFollow, followed, sameUser };
 };

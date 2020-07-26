@@ -1,5 +1,5 @@
-import { useContext, useEffect, useState, useCallback } from "react";
-import { UserContext } from "../../../contexts/UserContext";
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../../../../contexts/UserContext";
 import { Button } from "@material-ui/core";
 import Router from "next/router";
 
@@ -7,9 +7,7 @@ import Router from "next/router";
 
 const Follow = ({ profile }) => {
   const { user, setUser, authenticated } = useContext(UserContext);
-
   const [followed, setFollowed] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   // TODO : FIX THIS !!!
 
@@ -25,24 +23,27 @@ const Follow = ({ profile }) => {
 
   const checkFollowed = async (user, profile) => {
     if (user) {
-      user.following.forEach((u) => {
-        if (u._id === profile._id) {
+      await user.following.forEach((u) => {
+        console.log(u === profile._id);
+        console.log(u);
+        console.log(profile._id);
+        if (u === profile._id) {
+          console.log(u._id === profile._id);
+          console.log(u.id);
+          console.log(profile.id);
           setFollowed(true);
         }
       });
-      setLoading(false);
     }
   };
 
   const onSubmit = async (user, profile, followed) => {
-    console.log(followed);
     setFollowed((f) => !f);
 
     await follow(user, profile, followed).then(async (response) => {
-      console.log(response);
       if (response.status === "success") {
-        // TODO : FIX THIS !!!
-        // setUser(response.data);
+        const user = response.data;
+        setUser(user);
         followed_by(user, profile, followed).then(async (response) => {
           console.log(response);
           if (response.status === "success") {
@@ -120,7 +121,7 @@ const Follow = ({ profile }) => {
 
   useEffect(() => {
     checkFollowed(user, profile);
-  }, [user]);
+  }, [user, profile]);
 
   if (!authenticated || sameUser) {
     return null;

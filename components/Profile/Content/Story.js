@@ -47,10 +47,10 @@ function Story({ story }) {
   return (
     <div className={classes.wrapper}>
       <h1 className={classes.header}>Story</h1>
+      <h2 className={classes.subheader}>Our Motivation</h2>
+      <p className={classes.text}>{story.motivation}</p>
       <h2 className={classes.subheader}>Our Challenges</h2>
       <p className={classes.text}>{story.challenges}</p>
-      <h2 className={classes.subheader}>Our Wish</h2>
-      <p className={classes.text}>{story.wish}</p>
       <h2 className={classes.subheader}>Our Achievements</h2>
       <p className={classes.text}>{story.achievements}</p>
       <h2 className={classes.subheader}>Our Goals</h2>

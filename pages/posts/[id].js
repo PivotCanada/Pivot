@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 // Components
 import Page from "../../components/UI/General/Page";
-import Card from "../../components/Post/Core/Card";
+import Main from "../../components/Thread/Core/Main";
 // Contexts
 
 const Post = ({ post }) => {
@@ -32,7 +32,7 @@ const Post = ({ post }) => {
           />
         </Head>
 
-        <Card post={post} displayLink={false} />
+        <Main post={post} />
       </div>
     </Page>
   );

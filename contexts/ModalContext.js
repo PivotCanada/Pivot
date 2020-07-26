@@ -36,7 +36,7 @@ export const ModalContext = createContext(null);
 
 export const ModalStore = ({ initializeUser = () => {}, children }) => {
   const [ids, setIds] = useState([]);
-  const [index, setIndex] = useState([]);
+  const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
   const [next, setNext] = useState(true);

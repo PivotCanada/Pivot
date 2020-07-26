@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Modal from "../Edit/Modal";
+import ModalRepost from "../Repost/Core/Modal";
 import Image from "../../Profile/Overview/Image";
 import Content from "../Content/Main";
+import { fetchPost } from "../utils/fetchPost";
 
 const Card = ({ post, displayLink = true }) => {
   const useStyles = makeStyles(() => ({
@@ -13,7 +15,7 @@ const Card = ({ post, displayLink = true }) => {
       flexDirection: "column",
       borderRadius: 3,
       border: "1px solid #cccccc",
-      width: "100%",
+      minWidth: 500,
       maxWidth: 500,
       padding: 20,
       marginBottom: 25,
@@ -26,6 +28,17 @@ const Card = ({ post, displayLink = true }) => {
       flexWrap: "wrap",
       padding: 0,
     },
+    repostwrapper: {
+      marginTop: 20,
+      display: "flex",
+      flexDirection: "row",
+      width: "100%",
+      height: "100%",
+      flexWrap: "wrap",
+      padding: 20,
+      border: "1px solid #cccccc",
+      borderRadius: 3,
+    },
     linkWrapper: {
       textDecoration: "none",
       "&:hover": {
@@ -36,27 +49,77 @@ const Card = ({ post, displayLink = true }) => {
 
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [openRepost, setOpenRepost] = useState(false);
+  const [repost, setRepost] = useState({});
+
+  const isRepost = () => post.context && post.role === "parent";
+
+  const isEmpty = (object) => Object.keys(object).length === 0;
+
+  const fetchRepost = async () => {
+    if (await isRepost()) {
+      await fetchPost(post.context).then(async (response) => {
+        console.log(response.data);
+        if (response.status === "success") {
+          setRepost(response.data);
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    const func = async () => await fetchRepost();
+    func();
+  }, [post]);
+
+  useEffect(() => {
+    console.log(repost);
+  }, [repost]);
 
   if (post) {
     if (displayLink) {
-      return (
-        <a className={classes.linkWrapper} href={`/posts/${post._id}`}>
-          <div className={classes.card}>
-            <Modal open={open} setOpen={setOpen} post={post} />
-            <div className={classes.wrapper}>
-              <Image image={post.author.photo} size={55} />
-              <Content post={post} setOpen={setOpen} />
+      if (!isEmpty(repost)) {
+        return (
+          <a className={classes.linkWrapper} href={`/posts/${post._id}`}>
+            <div className={classes.card}>
+              <Modal open={open} setOpen={setOpen} post={post} />
+              <div className={classes.wrapper}>
+                <Image image={post.author.photo} size={55} />
+                <Content post={post} setOpen={setOpen} />
+              </div>
+              <div className={classes.repostwrapper}>
+                <Image image={repost.author.photo} size={55} />
+                <Content post={repost} setOpen={setOpen} />
+              </div>
             </div>
-          </div>
-        </a>
-      );
+          </a>
+        );
+      } else {
+        return (
+          <a className={classes.linkWrapper} href={`/posts/${post._id}`}>
+            <div className={classes.card}>
+              <Modal open={open} setOpen={setOpen} post={post} />
+
+              <div className={classes.wrapper}>
+                <Image image={post.author.photo} size={55} />
+                <Content post={post} setOpen={setOpen} />
+              </div>
+            </div>
+          </a>
+        );
+      }
     } else {
       return (
         <div className={classes.card}>
           <Modal open={open} setOpen={setOpen} post={post} />
+          <ModalRepost open={openRepost} setOpen={setOpenRepost} post={post} />
           <div className={classes.wrapper}>
             <Image image={post.author.photo} size={55} />
-            <Content post={post} setOpen={setOpen} />
+            <Content
+              post={post}
+              setOpen={setOpen}
+              setOpenRepost={setOpenRepost}
+            />
           </div>
         </div>
       );
