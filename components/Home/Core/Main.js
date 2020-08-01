@@ -7,7 +7,7 @@ import Content from "../Content/Main";
 import ButtonGroup from "../Content/ButtonGroup";
 import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
-import Modal from "../../Profile/Core/Modal";
+import Modal from "../../Post/Core/Modal";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -80,7 +80,7 @@ const Main = () => {
     fetchAllUsers().then(async (response) => {
       if (response.status === "success") {
         const users = await remove(response.data, user);
-        setIds(users.map((user) => user._id));
+
         setProfiles(users);
       }
     });
@@ -89,6 +89,7 @@ const Main = () => {
       if (response.status === "success") {
         let posts = response.data.reverse();
         posts = filterPosts(posts);
+        setIds(posts.map((post) => post._id));
         setPosts(posts);
       }
     });

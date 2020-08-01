@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Modal from "../Edit/Modal";
 import ModalRepost from "../Repost/Core/Modal";
 import Image from "../../Profile/Overview/Image";
+import Author from "../Content/Author";
 import Content from "../Content/Main";
 import { fetchPost } from "../utils/fetchPost";
 
@@ -38,12 +39,6 @@ const Card = ({ post, displayLink = true }) => {
       padding: 20,
       border: "1px solid #cccccc",
       borderRadius: 3,
-    },
-    linkWrapper: {
-      textDecoration: "none",
-      "&:hover": {
-        opacity: 0.6,
-      },
     },
   }));
 
@@ -80,32 +75,28 @@ const Card = ({ post, displayLink = true }) => {
     if (displayLink) {
       if (!isEmpty(repost)) {
         return (
-          <a className={classes.linkWrapper} href={`/posts/${post._id}`}>
-            <div className={classes.card}>
-              <Modal open={open} setOpen={setOpen} post={post} />
-              <div className={classes.wrapper}>
-                <Image image={post.author.photo} size={55} />
-                <Content post={post} setOpen={setOpen} />
-              </div>
-              <div className={classes.repostwrapper}>
-                <Image image={repost.author.photo} size={55} />
-                <Content post={repost} setOpen={setOpen} />
-              </div>
+          <div className={classes.card}>
+            <Modal open={open} setOpen={setOpen} post={post} />
+            <div className={classes.wrapper}>
+              <Image image={post.author.photo} size={55} />
+              <Content post={post} setOpen={setOpen} />
             </div>
-          </a>
+            <div className={classes.repostwrapper}>
+              <Image image={repost.author.photo} size={55} />
+
+              <Content post={repost} setOpen={setOpen} />
+            </div>
+          </div>
         );
       } else {
         return (
-          <a className={classes.linkWrapper} href={`/posts/${post._id}`}>
-            <div className={classes.card}>
-              <Modal open={open} setOpen={setOpen} post={post} />
-
-              <div className={classes.wrapper}>
-                <Image image={post.author.photo} size={55} />
-                <Content post={post} setOpen={setOpen} />
-              </div>
+          <div className={classes.card}>
+            <Modal open={open} setOpen={setOpen} post={post} />
+            <div className={classes.wrapper}>
+              <Image image={post.author.photo} size={55} />
+              <Content post={post} setOpen={setOpen} />
             </div>
-          </a>
+          </div>
         );
       }
     } else {

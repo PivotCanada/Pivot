@@ -3,24 +3,28 @@ import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Author from "./Author";
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: { width: "100%", display: "flex" },
-  date: {
-    color: "black",
-    opacity: 0.7,
-    fontFamily: "Open Sans, sans-serif",
-    fontWeight: 700,
-    fontSize: 12,
-    padding: 0,
-    margin: 0,
-    width: "100%",
-    textAlign: "right",
-    marginBottom: 10,
-    marginTop: 5,
-  },
-}));
-
 const Overview = ({ author, date }) => {
+  const useStyles = makeStyles((theme) => ({
+    wrapper: {
+      width: "100%",
+      display: "flex",
+      marginTop: 10,
+      justifyContent: "space-between",
+    },
+    date: {
+      color: "grey",
+      opacity: 0.7,
+      fontFamily: "Open Sans, sans-serif",
+      fontWeight: 700,
+      fontSize: 10,
+      padding: 0,
+      margin: 0,
+      width: "100%",
+      textAlign: "right",
+      marginBottom: 5,
+    },
+  }));
+
   const classes = useStyles();
 
   const formatDate = (dateObject) => {
