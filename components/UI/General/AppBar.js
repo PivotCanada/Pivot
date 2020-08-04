@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     height: 65,
     paddingBottom: 1,
-    boxShadow: "0px 2px 6px 2px rgba(194,194,194,1)",
+    // boxShadow: "0px 2px 6px 2px rgba(194,194,194,1)",
+    boxShadow: "none",
   },
   toolbar: {
     display: "flex",
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     width: "60px",
     height: "auto",
-    marginLeft: "10px",
+    marginLeft: 20,
     "&:hover": {
       opacity: 0.6,
       cursor: "pointer",

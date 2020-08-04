@@ -18,8 +18,11 @@ const Card = ({ post, displayLink = true }) => {
       border: "1px solid #cccccc",
       minWidth: 500,
       maxWidth: 500,
+
       padding: 20,
+      margin: 0,
       marginBottom: 25,
+      backgroundColor: "white",
     },
     wrapper: {
       display: "flex",

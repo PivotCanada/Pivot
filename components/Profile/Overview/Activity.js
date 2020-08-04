@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     marginTop: 20,
-    width: 250,
+    width: 210,
     justifyContent: "space-between",
   },
   container: {

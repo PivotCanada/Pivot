@@ -12,7 +12,7 @@ const ProfileLink = ({ width, keys }) => {
   const useStyles = makeStyles(() => ({
     link: {
       display: width < 600 ? "none" : "flex",
-      marginRight: 25,
+      // marginRight: 25,
 
       color: "black",
       fontFamily: "Open Sans, sans serif",
@@ -43,10 +43,10 @@ const ProfileLink = ({ width, keys }) => {
     return (
       <Link href={`/profiles/${user._id}`}>
         <div className={classes.wrapper}>
-          <Image right={12} image={user.photo} size={25} />
-          <h3 className={classes.link}>
+          <Image right={0} image={user.photo} size={25} />
+          {/* <h3 className={classes.link}>
             {user.firstname} {user.lastname}
-          </h3>
+          </h3> */}
         </div>
       </Link>
     );

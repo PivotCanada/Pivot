@@ -13,7 +13,6 @@ const Main = ({ display = true, callback, data, profile }) => {
       minHeight: "100vh",
       marginTop: profile ? 0 : 40,
       marginBottom: 75,
-      width: profile ? "100%" : "90vw",
     },
   }));
 

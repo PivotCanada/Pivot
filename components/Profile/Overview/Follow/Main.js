@@ -136,7 +136,7 @@ const Follow = ({ profile }) => {
           marginTop: 20,
           width: "100%",
           fontFamily: "Noto Sans, sans-serif",
-          fontWeight: 500,
+          fontWeight: 700,
           borderRadius: 2,
         }}
         onClick={() => onSubmit(user, profile, followed)}

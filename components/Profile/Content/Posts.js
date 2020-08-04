@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    width: "100%",
   },
   header: {
     textDecoration: "none",
@@ -18,8 +17,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     width: "100%",
     margin: 0,
-    marginBottom: 25,
-    marginTop: 30,
   },
 }));
 
@@ -28,7 +25,7 @@ function Posts({ posts, header }) {
 
   return (
     <div className={classes.wrapper}>
-      <h1 className={classes.header}>{header}</h1>
+      {/* <h1 className={classes.header}>{header}</h1> */}
       <Container callback={false} data={posts} profile={true} />
     </div>
   );

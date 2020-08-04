@@ -1,7 +1,7 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 
-const Details = ({ profile, small }) => {
+const Location = ({ profile, small }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
@@ -11,22 +11,19 @@ const Details = ({ profile, small }) => {
       width: 210,
       padding: 0,
       margin: 0,
-
-      marginTop: small ? 10 : 20,
+      marginTop: 2.5,
 
       // marginBottom: small ? 10 : 15,
     },
 
-    name: {
-      color: "black",
+    location: {
+      color: "grey",
       textAlign: small ? "center" : "left",
       fontFamily: "Noto Sans, sans-serif",
       fontWeight: small ? 400 : 700,
       fontSize: small ? 11 : 13,
       width: "100%",
-
       margin: 0,
-      padding: 0,
     },
   }));
 
@@ -34,11 +31,9 @@ const Details = ({ profile, small }) => {
 
   return (
     <div className={classes.wrapper}>
-      <h2 className={classes.name}>
-        {profile.firstname} {profile.lastname}
-      </h2>
+      <h2 className={classes.location}>{profile.location}</h2>
     </div>
   );
 };
 
-export default Details;
+export default Location;

@@ -25,9 +25,10 @@ const Follow = ({ profile }) => {
           width: 100,
           textTransform: "none",
           marginTop: 20,
-          width: "100%",
+          fontSize: 12,
+          width: 210,
           fontFamily: "Noto Sans, sans-serif",
-          fontWeight: 500,
+          fontWeight: 700,
           borderRadius: 2,
         }}
         onClick={() => onFollow(user, profile)}

@@ -2,9 +2,11 @@ import { useEffect, useState, useContext } from "react";
 // Components
 import Page from "../../components/UI/General/Page";
 import Main from "../../components/Profile/Core/Main";
-import Modal from "../../components/Profile/Core/Modal";
+import Modal from "../../components/Post/Core/Modal";
 // Contexts
 import { ModalContext } from "../../contexts/ModalContext";
+// Utils
+import { fetchUserPosts } from "../../components/Profile/utils/fetchUserPosts";
 
 const Profile = ({ user }) => {
   const { setIds } = useContext(ModalContext);
@@ -18,11 +20,15 @@ const Profile = ({ user }) => {
     removeDuplicates([...user.followed_by, ...user.following]);
 
   useEffect(() => {
-    setIds(concatenateUsers());
+    // setIds(concatenateUsers());
+    fetchUserPosts(user._id).then((response) => console.log(response));
+    // setIds(getUserPostIds());
+
+    console.log(user);
   }, [user]);
 
   return (
-    <Page top={100}>
+    <Page>
       <Modal />
       <Main story={user} initialContent={"posts"} />
     </Page>

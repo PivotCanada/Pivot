@@ -8,34 +8,26 @@ import Activity from "./Activity";
 import Image from "./Image";
 import Chips from "./Chips";
 import Details from "./Details";
+import Location from "./Location";
+import Description from "./Description";
 import Modal from "./Modal";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    width: 250,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    height: "100%",
-    margin: 0,
-    padding: 0,
-    marginLeft: 0,
-  },
-}));
-
 function Main({ width, story, posts }) {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
-      width: 250,
       display: "flex",
+      position: "fixed",
       flexDirection: "column",
       alignItems: "center",
-      height: "100%",
+      height: "100vh",
       margin: 0,
-      padding: 0,
+
       marginLeft: 0,
+      backgroundColor: "white",
+      width: 300,
+      paddingTop: 30,
     },
   }));
 
@@ -44,11 +36,13 @@ function Main({ width, story, posts }) {
   return (
     <div className={classes.wrapper}>
       {/* <Modal /> */}
-      <Image image={story.photo} size={150} />
+      <Image image={story.photo} size={70} />
       <Activity profile={story} posts={posts} />
       <Follow profile={story} />
       <Details profile={story} />
-      <Chips profile={story} />
+      <Location profile={story} />
+      <Description />
+      {/* <Chips profile={story} /> */}
     </div>
   );
 }

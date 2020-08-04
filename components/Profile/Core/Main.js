@@ -8,13 +8,13 @@ import Overview from "../Overview/Main";
 import Content from "../Content/Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 // Utils
 import { fetchUserPosts } from "../utils/fetchUserPosts";
 import { sameUser } from "../utils/sameUser";
 import { fetchUserLikes } from "../utils/fetchUserLikes";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
-import { ModalContext } from "../../../contexts/ModalContext";
 
 const Main = ({ story, initialContent = "story" }) => {
   // TODO : Rework if changing Profile page ...
@@ -24,27 +24,24 @@ const Main = ({ story, initialContent = "story" }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
-      flexDirection: width < 600 ? "column" : "column",
-      alignItems: width < 600 ? "center" : "center",
       width: "100%",
       minHeight: "100%",
-      marginTop: 20,
     },
 
     container: {
-      right: 0,
       display: "flex",
       flexDirection: "column",
       justifyContent: "start",
       alignItems: "center",
-      maxWidth: 800,
-      width: width < 600 ? "90%" : "90%",
-      marginLeft: width < 600 ? 0 : 0,
+
+      marginLeft: 325,
+      marginTop: 25,
     },
   }));
 
   const classes = useStyles();
   const { user } = useContext(UserContext);
+  const { setIds } = useContext(ModalContext);
 
   // TODO : Put this in Context ?
 
@@ -56,9 +53,12 @@ const Main = ({ story, initialContent = "story" }) => {
     setLikes(await (await fetchUserLikes(story.likes)).reverse());
   };
 
+  const extractIds = (list) => list.map((obj) => obj._id);
+
   const fetchPosts = async () => {
     await fetchUserPosts(story._id).then((response) => {
       if (response.status === "success") {
+        setIds(extractIds(response.data));
         setPosts(response.data.reverse());
       }
     });
@@ -79,11 +79,11 @@ const Main = ({ story, initialContent = "story" }) => {
       <div className={classes.wrapper}>
         <Overview width={width} story={story} posts={posts.length} />
         <div className={classes.container}>
-          <ButtonGroup setContent={setContent} />
+          {/* <ButtonGroup setContent={setContent} /> */}
           {/* TODO : Change if we rework Profile */}
-          {sameUser(user, story) ? (
+          {/* {sameUser(user, story) ? (
             <CreatePost fetchPosts={fetchPosts} />
-          ) : null}
+          ) : null} */}
           <Content
             story={story}
             content={content}
