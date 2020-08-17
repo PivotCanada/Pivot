@@ -9,6 +9,7 @@ import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
 import Modal from "../../Post/Core/Modal";
 import Overview from "../../Profile/Overview/Main";
+import Filter from "../../Filter/Core/Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -111,6 +112,7 @@ const Main = () => {
           display={display}
           setContent={setContent}
         /> */}
+        <Filter setPosts={setPosts} />
         <Content
           display={display}
           content={content}
