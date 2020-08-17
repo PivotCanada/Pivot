@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -35,22 +36,28 @@ const useStyles = makeStyles((theme) => ({
 const Activity = ({ profile, posts }) => {
   const classes = useStyles();
 
-  return (
-    <div className={classes.wrapper}>
-      <div className={classes.container}>
-        <p className={classes.value}>{profile.following.length}</p>
-        <p className={classes.header}>following</p>
+  useEffect(() => {}, [profile]);
+
+  if (profile) {
+    return (
+      <div className={classes.wrapper}>
+        <div className={classes.container}>
+          <p className={classes.value}>{profile.following.length}</p>
+          <p className={classes.header}>following</p>
+        </div>
+        <div className={classes.container}>
+          <p className={classes.value}>{posts}</p>
+          <p className={classes.header}>posts</p>
+        </div>
+        <div className={classes.container}>
+          <p className={classes.value}>{profile.followed_by.length}</p>
+          <p className={classes.header}>followers</p>
+        </div>
       </div>
-      <div className={classes.container}>
-        <p className={classes.value}>{posts}</p>
-        <p className={classes.header}>posts</p>
-      </div>
-      <div className={classes.container}>
-        <p className={classes.value}>{profile.followed_by.length}</p>
-        <p className={classes.header}>followers</p>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Activity;

@@ -8,9 +8,10 @@ const Main = ({ display = true, callback, data, profile }) => {
   const useStyles = makeStyles(() => ({
     root: {
       display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      minHeight: "100vh",
+      flexDirection: "row",
+      justifyContent: "space-evenly",
+      flexWrap: "wrap",
+      width: "100vw",
       marginTop: profile ? 0 : 40,
       marginBottom: 75,
     },

@@ -23,8 +23,9 @@ const ProfileLink = ({ width, keys }) => {
 
     wrapper: {
       display: "flex",
-      justifyContent: "space-between",
+
       alignItems: "center",
+
       "&:hover": {
         opacity: 0.5,
         cursor: "pointer",
@@ -44,6 +45,7 @@ const ProfileLink = ({ width, keys }) => {
       <Link href={`/profiles/${user._id}`}>
         <div className={classes.wrapper}>
           <Image right={0} image={user.photo} size={25} />
+
           {/* <h3 className={classes.link}>
             {user.firstname} {user.lastname}
           </h3> */}

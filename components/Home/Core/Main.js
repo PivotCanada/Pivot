@@ -8,6 +8,7 @@ import ButtonGroup from "../Content/ButtonGroup";
 import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
 import Modal from "../../Post/Core/Modal";
+import Overview from "../../Profile/Overview/Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -22,7 +23,6 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     alignItems: "center",
     minHeight: "100%",
-    marginTop: 100,
     marginBottom: 25,
     width: "100vw",
   },
@@ -42,7 +42,7 @@ const Main = () => {
   const [displaySearch, setDisplaySearch] = useState(true);
   // Get rid of this
   const [open, setOpen] = useState(false);
-  const [content, setContent] = useState("stories");
+  const [content, setContent] = useState("posts");
   const [profiles, setProfiles] = useState([]);
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
@@ -99,17 +99,18 @@ const Main = () => {
     <div className={classes.root}>
       {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
       <Modal />
+
       <div className={classes.innerWrapper}>
-        <Search
+        {/* <Search
           displaySearch={displaySearch}
           setDisplay={setDisplay}
           display={display}
-        />
-        <ButtonGroup
+        /> */}
+        {/* <ButtonGroup
           setDisplaySearch={setDisplaySearch}
           display={display}
           setContent={setContent}
-        />
+        /> */}
         <Content
           display={display}
           content={content}
@@ -117,6 +118,7 @@ const Main = () => {
           posts={posts}
         />
       </div>
+
       <FloatingActionButton />
     </div>
   );

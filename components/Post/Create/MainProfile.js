@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Router from "next/router";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,6 +9,7 @@ import UserCard from "./UserCard";
 import Industry from "./Industry";
 import Dialog from "./Dialog";
 import Tags from "./Tags";
+import MicroLink from "../Content/MicroLink";
 
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
@@ -16,6 +17,7 @@ import { ModalContext } from "../../../contexts/ModalContext";
 
 // Utils
 import { createPost } from "./utils/createPost";
+import { addChild } from "./utils/addChild";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 
@@ -27,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #e0e0e0",
     borderRadius: 5,
     padding: 20,
-    marginTop: 50,
-    marginBottom: 10,
+    marginTop: 10,
+
     width: "100%",
-    maxWidth: 500,
+    maxWidth: 650,
   },
   textField: {
     width: "100%",
@@ -86,15 +88,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Main = () => {
+const Main = ({ role, context }) => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
+  const [link, setLink] = useState("");
   const [tags, setTags] = useState([]);
   const [show, setShow] = useState(false);
   const { user } = useContext(UserContext);
   const { setShowCreate } = useContext(ModalContext);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    console.log(role);
+    console.log(context);
+  }, [role, link]);
 
   const onSubmit = async (text) => {
     setLoading(true);
@@ -108,25 +116,62 @@ const Main = () => {
         photo: user.photo,
       },
       tags: tags,
+      role: role,
+      context: context,
     };
 
-    await createPost(post).then((response) => {
-      console.log(response);
+    await createPost(post).then(async (response) => {
       if (response.status === "success") {
+        let post = response.data;
+        if (role === "child") {
+          await addChild(context, post._id).then((response) => {
+            console.log(response);
+          });
+        }
+        // fetchPosts();
         setLoading(false);
-        Router.push(`/profiles/${user._id}`);
+
+        Router.reload();
       } else {
         setLoading(false);
       }
     });
   };
 
-  const onChange = (e) => {
-    setText(e.target.value);
-    if (e.target.value.includes("#")) {
-      console.log(e.target.value.split("#")[1]);
-      setOpen(true);
+  const onChange = async (e) => {
+    examineContent(e.target.value);
+
+    // if (e.target.value.includes("#")) {
+    //   console.log(e.target.value.split("#")[1]);
+    //   setOpen(true);
+    // }
+  };
+
+  const examineContent = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    var link = "";
+
+    if (text.match(urlRegex) !== null) {
+      link = text.match(urlRegex)[0];
+      setLink(link);
     }
+
+    if (link !== "") {
+      setText(formatText(text));
+    } else {
+      setText(text);
+    }
+  };
+
+  const formatText = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    var formatted_text = text;
+
+    if (text.match(urlRegex) !== null) {
+      formatted_text = text.replace(text.match(urlRegex), "");
+    }
+
+    return formatted_text;
   };
 
   return (
@@ -157,6 +202,7 @@ const Main = () => {
               style={{ display: show ? "flex" : "none" }}
               className={classes.innerinnerWrapper}
             >
+              {link ? <MicroLink link={link} /> : null}
               <Tags tags={tags} setTags={setTags} />
               <Button
                 disabled={text.length === 0}

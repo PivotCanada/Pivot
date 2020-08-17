@@ -51,12 +51,12 @@ const Main = ({ content, display, profiles, posts }) => {
     case "posts":
       return (
         <div className={classes.wrapper}>
-          <p
+          {/* <p
             className={classes.text}
             style={{ display: display ? "block" : "none" }}
           >
             {keys.journies}
-          </p>
+          </p> */}
           {authenticated && display ? <Create /> : null}
           <Posts display={display} data={posts} />
         </div>

@@ -4,9 +4,10 @@ import { Button, ButtonGroup } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    width: "100%",
+    width: 500,
+
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
   },
 }));
 
@@ -15,7 +16,14 @@ const Main = ({ setContent }) => {
 
   return (
     <div className={classes.wrapper}>
-      <ButtonGroup color="primary">
+      <ButtonGroup fullWidth={true} color="primary">
+        {/* if user profile then display */}
+        <Button
+          style={{ textTransform: "none" }}
+          onClick={() => setContent("explore")}
+        >
+          Explore
+        </Button>
         <Button
           style={{ textTransform: "none" }}
           onClick={() => setContent("story")}

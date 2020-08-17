@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    width: "100%",
+    width: 500,
   },
 
   header: {

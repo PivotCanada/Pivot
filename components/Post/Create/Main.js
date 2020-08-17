@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 // Components
 import UserCard from "./UserCard";
 import Industry from "./Industry";
+import MicroLink from "../Content/MicroLink";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -60,6 +61,7 @@ const Main = ({ role, context }) => {
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [text, setText] = useState("");
+  const [link, setLink] = useState("");
   const [tags, setTags] = useState([]);
   const { user } = useContext(UserContext);
   const { setShowCreate } = useContext(ModalContext);
@@ -67,7 +69,7 @@ const Main = ({ role, context }) => {
   useEffect(() => {
     console.log(role);
     console.log(context);
-  }, [role]);
+  }, [role, link]);
 
   const onSubmit = async (text) => {
     setLoading(true);
@@ -103,11 +105,39 @@ const Main = ({ role, context }) => {
     });
   };
 
-  const onChange = (text) => {
-    setText(text);
-    if (text.includes("i")) {
-      console.log(text.split("#"));
+  const examineContent = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    var link = "";
+
+    if (text.match(urlRegex) !== null) {
+      link = text.match(urlRegex)[0];
+      setLink(link);
     }
+
+    if (link !== "") {
+      setText(formatText(text));
+    } else {
+      setText(text);
+    }
+  };
+
+  const formatText = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    var formatted_text = text;
+
+    if (text.match(urlRegex) !== null) {
+      formatted_text = text.replace(text.match(urlRegex), "");
+    }
+
+    return formatted_text;
+  };
+
+  const onChange = (text) => {
+    examineContent(text);
+    console.log(text);
+    // if (text.includes("i")) {
+    //   console.log(text.split("#"));
+    // }
   };
 
   if (context) {
@@ -125,6 +155,7 @@ const Main = ({ role, context }) => {
             value={text}
             onChange={(e) => onChange(e.target.value)}
           />
+          {link ? <MicroLink link={link} /> : null}
           <Industry tags={tags} setTags={setTags} />
           <Button
             disabled={text.length === 0}

@@ -66,8 +66,7 @@ export default function TransitionsModal(props) {
     setOnboard(false);
   };
 
-  const complete = () =>
-    user.business && user.location && user.website && user.industry;
+  const complete = () => user.business && user.location && user.industry;
 
   useEffect(() => {
     if (user) {

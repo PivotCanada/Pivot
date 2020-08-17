@@ -10,6 +10,7 @@ import Chips from "./Chips";
 import Actions from "./Actions/Main";
 import Overview from "./Overview";
 import Title from "./Title";
+import MicroLink from "./MicroLink";
 
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     margin: 0,
     marginLeft: 10,
-    width: "70%",
+    width: "80%",
   },
   linkWrapper: {
     textDecoration: "none",
@@ -30,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
       opacity: 0.6,
       cursor: "pointer",
     },
+    padding: 0,
+    margin: 0,
   },
 }));
 
@@ -40,6 +43,8 @@ function Preview({ post, setOpenRepost }) {
   return (
     <div className={classes.content}>
       <Overview author={post.author} date={post.created_at} />
+      {post.link ? <MicroLink link={post.link} /> : null}
+
       <div
         onClick={() => {
           setOpen(true);

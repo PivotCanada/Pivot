@@ -8,6 +8,7 @@ import Image from "../../Profile/Overview/Image";
 import Author from "../Content/Author";
 import Content from "../Content/Main";
 import { fetchPost } from "../utils/fetchPost";
+import Microlink from "@microlink/react";
 
 const Card = ({ post, displayLink = true }) => {
   const useStyles = makeStyles(() => ({
@@ -16,11 +17,12 @@ const Card = ({ post, displayLink = true }) => {
       flexDirection: "column",
       borderRadius: 3,
       border: "1px solid #cccccc",
-      minWidth: 500,
+      minWidth: 650,
       maxWidth: 500,
-
       padding: 20,
       margin: 0,
+      maxHeight: 800,
+
       marginBottom: 25,
       backgroundColor: "white",
     },
@@ -28,9 +30,10 @@ const Card = ({ post, displayLink = true }) => {
       display: "flex",
       flexDirection: "row",
       width: "100%",
-      height: "100%",
       flexWrap: "wrap",
+
       padding: 0,
+      margin: 0,
     },
     repostwrapper: {
       marginTop: 20,
@@ -86,7 +89,6 @@ const Card = ({ post, displayLink = true }) => {
             </div>
             <div className={classes.repostwrapper}>
               <Image image={repost.author.photo} size={55} />
-
               <Content post={repost} setOpen={setOpen} />
             </div>
           </div>

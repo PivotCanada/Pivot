@@ -55,11 +55,14 @@ const Main = ({ story, initialContent = "story" }) => {
 
   const extractIds = (list) => list.map((obj) => obj._id);
 
+  const filterPosts = (posts) => posts.filter((post) => post.role !== "child");
+
   const fetchPosts = async () => {
     await fetchUserPosts(story._id).then((response) => {
       if (response.status === "success") {
-        setIds(extractIds(response.data));
-        setPosts(response.data.reverse());
+        let posts = filterPosts(response.data);
+        setIds(extractIds(posts).reverse());
+        setPosts(posts.reverse());
       }
     });
   };
@@ -79,11 +82,11 @@ const Main = ({ story, initialContent = "story" }) => {
       <div className={classes.wrapper}>
         <Overview width={width} story={story} posts={posts.length} />
         <div className={classes.container}>
-          {/* <ButtonGroup setContent={setContent} /> */}
+          <ButtonGroup setContent={setContent} />
           {/* TODO : Change if we rework Profile */}
-          {/* {sameUser(user, story) ? (
+          {sameUser(user, story) ? (
             <CreatePost fetchPosts={fetchPosts} />
-          ) : null} */}
+          ) : null}
           <Content
             story={story}
             content={content}

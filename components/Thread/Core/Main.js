@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Card from "../../Post/Core/Card";
-import Create from "../../Post/Create/Main";
+import Create from "../../Post/Create/MainProfile";
 import Container from "../../Post/Core/Container";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
@@ -84,8 +84,9 @@ const Main = () => {
     return (
       <div className={classes.wrapper}>
         <div className={classes.container}>
-          <Create role={"child"} context={post._id} />
           <Card post={post} displayLink={false} />
+          {user ? <Create role={"child"} context={post._id} /> : null}
+
           <Container data={children} />
         </div>
       </div>

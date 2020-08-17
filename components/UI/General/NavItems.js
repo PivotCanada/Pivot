@@ -93,14 +93,14 @@ const NavItems = ({ setOpen }) => {
         {/* <h3 onClick={() => changeLanguage()} className={classes.link}>
           {truthy(keys.language)}
         </h3> */}
-        {/* <Link href={"/"}>
+        <Link href={"/"}>
           <h3 className={classes.link}>{keys.discover}</h3>
-        </Link> */}
-        {/* <Link href={"/about"}>
+        </Link>
+        <Link href={"/about"}>
           <h3 className={classes.link}>{keys.about}</h3>
-        </Link> */}
+        </Link>
         {/* <Search /> */}
-        {/* {authenticated && !loading ? (
+        {authenticated && !loading ? (
           <IconButton
             onClick={() => setOpen(true)}
             edge="start"
@@ -123,7 +123,7 @@ const NavItems = ({ setOpen }) => {
               {truthy(keys.journey)}
             </Button>
           </Link>
-        )} */}
+        )}
       </div>
     );
   }

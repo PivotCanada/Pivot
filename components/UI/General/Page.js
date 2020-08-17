@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from "react";
 // Components
 import AppBar from "./AppBar";
 import ProfileModal from "../../Profile/Core/Modal";
+import Overview from "../../Profile/Overview/Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 // Hooks
 import useValidate from "../../../hooks/useValidate";
+// import Overview from "../../Post/Content/Overview";
 
 export default function Page({ children, top = 65 }) {
   const { user, setUser, setAuthenticated, setLoading } = useContext(
@@ -30,8 +32,8 @@ export default function Page({ children, top = 65 }) {
         style={{
           display: "flex",
           marginTop: top,
-          width: "100%",
-          height: "100%",
+          minWidth: "100vw - 300",
+          minHeight: "100%",
           justifyContent: "center",
         }}
       >
