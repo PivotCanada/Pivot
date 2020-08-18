@@ -7,6 +7,7 @@ import Posts from "../../Post/Core/Container";
 import Profiles from "../../Profile/Core/Container";
 import Create from "../../Post/Create/MainProfile";
 import Chips from "../Content/Chips";
+import Tags from "../Content/Tags";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 // Hooks
@@ -42,14 +43,19 @@ const useStyles = makeStyles((theme) => ({
 
 const Main = ({ setPosts }) => {
   const classes = useStyles();
-
-  const tags = [{ name: "Solar" }, { name: "National Film Board" }];
+  const [tags, setTags] = useState([
+    { name: "Toronto" },
+    { name: "Montreal" },
+    { name: "National Film Board" },
+  ]);
   const [activeTags, setActiveTags] = useState([]);
 
   return (
     <div className={classes.wrapper}>
+      <Tags setTags={setTags} tags={tags} setActiveTags={setActiveTags} />
       <Chips
         tags={tags}
+        setTags={setTags}
         setActiveTags={setActiveTags}
         activeTags={activeTags}
       />

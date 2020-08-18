@@ -117,6 +117,7 @@ const Main = ({ role, context }) => {
       },
       tags: tags,
       role: role,
+      link: link,
       context: context,
     };
 

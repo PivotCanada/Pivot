@@ -26,15 +26,29 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Chips = ({ tags, setActiveTags, activeTags }) => {
+const Chips = ({ tags, setTags, setActiveTags, activeTags }) => {
   const classes = useStyles();
 
   useEffect(() => {}, [activeTags]);
 
+  const handleDelete = (tag) => {
+    setTags((tags) => [...tags.filter((x) => x.name !== tag.name)]);
+    setActiveTags((activeTags) => [
+      ...activeTags.filter((x) => x.name !== tag.name),
+    ]);
+  };
+
   return (
     <div className={classes.wrapper}>
       {tags.map((tag) => {
-        return <Chip setActiveTags={setActiveTags} tag={tag} />;
+        return (
+          <Chip
+            activeTags={activeTags}
+            setActiveTags={setActiveTags}
+            tag={tag}
+            handleDelete={handleDelete}
+          />
+        );
       })}
     </div>
   );

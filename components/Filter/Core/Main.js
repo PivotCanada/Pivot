@@ -15,7 +15,6 @@ const useStyles = makeStyles(() => ({
     minHeight: 200,
     marginBottom: 25,
     width: "100vw",
-    border: "1px solid black",
   },
   innerWrapper: {
     display: "flex",

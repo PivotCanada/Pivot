@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomChip = ({ tag, setActiveTags }) => {
+const CustomChip = ({ tag, setActiveTags, handleDelete }) => {
   const classes = useStyles();
   const [active, setActive] = useState(false);
 
@@ -45,6 +45,7 @@ const CustomChip = ({ tag, setActiveTags }) => {
         await updateActiveTag(tag);
       }}
       color={active ? "primary" : "default"}
+      onDelete={() => handleDelete(tag)}
     />
   );
 };
