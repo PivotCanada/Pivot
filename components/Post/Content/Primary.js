@@ -6,12 +6,14 @@ const useStyles = makeStyles((theme) => ({
   description: {
     textDecoration: "none",
     color: "black",
-    fontFamily: "Alike, serif",
-    fontWeight: 300,
-    fontSize: 16,
+    fontFamily: "Lora, serif",
+    fontWeight: 350,
+    fontSize: 15,
     width: "100%",
     margin: 0,
-    marginTop: 5,
+    marginTop: 15,
+    letterSpacing: 0.8,
+    
   },
 }));
 

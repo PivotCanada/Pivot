@@ -6,6 +6,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import LoopIcon from "@material-ui/icons/Loop";
 import { Fab } from "@material-ui/core";
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 // Components
 
 // Contexts
@@ -19,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     width: 95,
-    marginTop: 25,
+    marginTop: 10,
   },
   fab: {
-    color: "red",
+    color: "grey",
     boxShadow: "none",
-
+    marginLeft: 475,
   }
 }));
 
@@ -78,7 +79,7 @@ const Main = ({ post, setOpen, setOpenRepost }) => {
           color="secondary"
           onClick={() => (user ? like(user, setFav, post) : () => {})}
         >
-          <FavoriteBorderIcon />
+          <BookmarkBorderIcon/>
         </Fab>
       )}
       {user && user._id !== author._id ? (

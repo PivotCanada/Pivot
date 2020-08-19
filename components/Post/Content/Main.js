@@ -55,8 +55,9 @@ function Preview({ post, setOpenRepost }) {
       >
         {/* <Title title={"Rebounce in Employment 2020"} /> */}
         <Primary text={post.text} />
-        <Chips tags={post.tags} />
+        
       </div>
+      
       <Actions post={post} setOpen={setOpen} setOpenRepost={setOpenRepost} />
     </div>
   );

@@ -10,11 +10,11 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          {/* Noto sans */}
+          <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300&display=swap" rel="stylesheet"/>
+
           {/* Google Fonts - Cairo, Alike */}
-          <link
-            href="https://fonts.googleapis.com/css2?family=Alike&family=Cairo:wght@400;700&display=swap"
-            rel="stylesheet"
-          />
+          <link href="https://fonts.googleapis.com/css2?family=Alike&family=Big+Shoulders+Display&family=Cairo:wght@300;400&family=Lora&family=Merriweather:wght@300&family=Montserrat:wght@300&family=Playfair+Display&display=swap" rel="stylesheet"/>
           {/* Google Fonts - Poppins, Open-Sans */}
           <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;500;700&display=swap"

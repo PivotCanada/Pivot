@@ -9,21 +9,31 @@ const Overview = ({ author, date }) => {
     wrapper: {
       width: "100%",
       display: "flex",
-      marginTop: 10,
       alignItems: "center",
+      
     },
     date: {
-      color: "grey",
-      opacity: 0.7,
-      fontFamily: "Open Sans, sans-serif",
-      fontWeight: 700,
-      fontSize: 10,
+      color: "#363636",
+      
+      fontFamily: "Noto Sans JP, sans-serif",
+      fontWeight: 300,
+      letterSpacing: "1.5%",
+      fontSize: 12,
       padding: 0,
       margin: 0,
-      width: "100%",
-      textAlign: "right",
       marginBottom: 5,
     },
+    innerWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      margin: 0,
+      marginLeft: 20,
+      justifyContent: "center",
+      
+      height: 70,
+  
+    }
   }));
 
   const classes = useStyles();
@@ -66,9 +76,11 @@ const Overview = ({ author, date }) => {
 
   return (
     <div className={classes.wrapper}>
-      <Image image={author.photo} size={45} />
+      <Image image={author.photo} size={70} />
+      <div className = {classes.innerWrapper}>
       <Author author={author} />
-      {/* <p className={classes.date}>{formatDate(date)}</p> */}
+      <p className={classes.date}>{formatDate(date)}</p>
+      </div>
     </div>
   );
 };

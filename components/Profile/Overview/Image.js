@@ -14,12 +14,13 @@ function Image({ image, size, right = 0 }) {
       alignItems: "center",
     },
     image: {
-      borderRadius: "50%",
+      borderRadius: 3,
       maxWidth: "100%",
       maxHeight: "100%",
       minWidth: "100%",
       minHeight: "100%",
       objectFit: "cover",
+      
     },
   }));
   const classes = useStyles();

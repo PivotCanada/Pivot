@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 5,
     paddingRight: 5,
     fontFamily: "Cairo, sans-serif",
-    fontWeight: 700,
+    fontWeight: 500,
     borderRadius: 2,
     fontSize: 13,
     "&:hover": {

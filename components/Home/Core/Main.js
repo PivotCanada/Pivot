@@ -112,7 +112,7 @@ const Main = () => {
           display={display}
           setContent={setContent}
         /> */}
-        <Filter setPosts={setPosts} />
+{/* {        <Filter setPosts={setPosts} />} */}
         <Content
           display={display}
           content={content}
