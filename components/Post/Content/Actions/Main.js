@@ -21,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     width: 95,
     marginTop: 25,
   },
+  fab: {
+    color: "red",
+    boxShadow: "none",
+
+  }
 }));
 
 // TODO : FIX
@@ -60,15 +65,17 @@ const Main = ({ post, setOpen, setOpenRepost }) => {
       {fav ? (
         <Fab
           size="small"
-          color="primary"
+          color="secondary"
           onClick={() => unlike(user, setFav, post)}
         >
           <FavoriteIcon />
         </Fab>
       ) : (
         <Fab
+          
+          className = {classes.fab}
           size="small"
-          color="primary"
+          color="secondary"
           onClick={() => (user ? like(user, setFav, post) : () => {})}
         >
           <FavoriteBorderIcon />
