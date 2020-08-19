@@ -3,13 +3,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    color: "grey",
-    fontFamily: "Open Sans, sans-serif",
+    color: "black",
+    fontFamily: "Cairo, sans-serif",
     fontWeight: 700,
-    fontSize: 11,
+    fontSize: 14,
     padding: 0,
     margin: 0,
-    width: "100%",
+    marginLeft: 15,
     textAlign: "left",
     marginBottom: 5,
   },

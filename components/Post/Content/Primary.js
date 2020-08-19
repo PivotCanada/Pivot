@@ -6,9 +6,9 @@ const useStyles = makeStyles((theme) => ({
   description: {
     textDecoration: "none",
     color: "black",
-    fontFamily: "Open Sans, sans serif",
+    fontFamily: "Alike, serif",
     fontWeight: 300,
-    fontSize: 14,
+    fontSize: 16,
     width: "100%",
     margin: 0,
     marginTop: 5,

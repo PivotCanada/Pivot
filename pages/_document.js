@@ -10,6 +10,11 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          {/* Google Fonts - Cairo, Alike */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Alike&family=Cairo:wght@400;700&display=swap"
+            rel="stylesheet"
+          />
           {/* Google Fonts - Poppins, Open-Sans */}
           <link
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&family=Poppins:wght@300;500;700&display=swap"

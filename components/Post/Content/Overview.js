@@ -2,6 +2,7 @@
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Author from "./Author";
+import Image from "../../Profile/Overview/Image";
 
 const Overview = ({ author, date }) => {
   const useStyles = makeStyles((theme) => ({
@@ -9,7 +10,7 @@ const Overview = ({ author, date }) => {
       width: "100%",
       display: "flex",
       marginTop: 10,
-      justifyContent: "space-between",
+      alignItems: "center",
     },
     date: {
       color: "grey",
@@ -65,8 +66,9 @@ const Overview = ({ author, date }) => {
 
   return (
     <div className={classes.wrapper}>
+      <Image image={author.photo} size={45} />
       <Author author={author} />
-      <p className={classes.date}>{formatDate(date)}</p>
+      {/* <p className={classes.date}>{formatDate(date)}</p> */}
     </div>
   );
 };

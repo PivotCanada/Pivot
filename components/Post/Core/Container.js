@@ -9,9 +9,9 @@ const Main = ({ display = true, callback, data, profile }) => {
     root: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-evenly",
+      justifyContent: "space-between",
       flexWrap: "wrap",
-      width: "100vw",
+      width: "70vw",
       marginTop: profile ? 0 : 40,
       marginBottom: 75,
     },

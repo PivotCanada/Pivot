@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     padding: 0,
     margin: 0,
-    marginLeft: 10,
-    width: "80%",
+
+    width: "95%",
   },
   linkWrapper: {
     textDecoration: "none",

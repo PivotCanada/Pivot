@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     width: "100%",
-    marginTop: 15,
+    marginTop: 25,
   },
   chip: {
     margin: 0,
@@ -15,9 +15,10 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     paddingLeft: 5,
     paddingRight: 5,
-    fontFamily: "Open Sans, sans serif",
+    fontFamily: "Cairo, sans-serif",
     fontWeight: 700,
-    fontSize: 10,
+    borderRadius: 2,
+    fontSize: 13,
     "&:hover": {
       opacity: 0.5,
       cursor: "pointer",
@@ -32,12 +33,7 @@ const Chips = ({ tags }) => {
     <div className={classes.wrapper}>
       {tags.map((tag) => {
         return (
-          <Chip
-            size={"small"}
-            key={tag.name}
-            label={tag.name}
-            className={classes.chip}
-          />
+          <Chip key={tag.name} label={tag.name} className={classes.chip} />
         );
       })}
     </div>

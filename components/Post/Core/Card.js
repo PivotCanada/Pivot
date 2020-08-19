@@ -16,12 +16,10 @@ const Card = ({ post, displayLink = true }) => {
       display: "flex",
       flexDirection: "column",
       borderRadius: 3,
-      border: "1px solid #cccccc",
-      minWidth: 650,
+      minWidth: 550,
       maxWidth: 500,
       padding: 20,
       margin: 0,
-      maxHeight: 800,
 
       marginBottom: 25,
       backgroundColor: "white",
@@ -84,11 +82,11 @@ const Card = ({ post, displayLink = true }) => {
           <div className={classes.card}>
             <Modal open={open} setOpen={setOpen} post={post} />
             <div className={classes.wrapper}>
-              <Image image={post.author.photo} size={55} />
+              {/* <Image image={post.author.photo} size={55} /> */}
               <Content post={post} setOpen={setOpen} />
             </div>
             <div className={classes.repostwrapper}>
-              <Image image={repost.author.photo} size={55} />
+              {/* <Image image={repost.author.photo} size={55} /> */}
               <Content post={repost} setOpen={setOpen} />
             </div>
           </div>
@@ -98,7 +96,7 @@ const Card = ({ post, displayLink = true }) => {
           <div className={classes.card}>
             <Modal open={open} setOpen={setOpen} post={post} />
             <div className={classes.wrapper}>
-              <Image image={post.author.photo} size={55} />
+              {/* <Image image={post.author.photo} size={55} /> */}
               <Content post={post} setOpen={setOpen} />
             </div>
           </div>
@@ -110,7 +108,7 @@ const Card = ({ post, displayLink = true }) => {
           <Modal open={open} setOpen={setOpen} post={post} />
           <ModalRepost open={openRepost} setOpen={setOpenRepost} post={post} />
           <div className={classes.wrapper}>
-            <Image image={post.author.photo} size={55} />
+            {/* <Image image={post.author.photo} size={55} /> */}
             <Content
               post={post}
               setOpen={setOpen}
