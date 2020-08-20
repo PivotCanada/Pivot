@@ -3,8 +3,7 @@ import Router from "next/router";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
-import SearchIcon from "@material-ui/icons/Search";
-import CloseIcon from "@material-ui/icons/Close";
+import PostAddIcon from "@material-ui/icons/PostAdd";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -18,10 +17,18 @@ const Main = () => {
   const useStyles = makeStyles((theme) => ({
     floatingActionButton: {
       position: "fixed",
-      bottom: width < 600 ? 20 : 40,
-      right: width < 600 ? 20 : 40,
+      bottom: 20,
+
       fontFamily: "Noto Sans, sans serif",
       textTransform: "none",
+      backgroundColor: "#9E00FF",
+      color: "white",
+      "&:hover": {
+        width: 70,
+        height: 70,
+        transition: "0.3 ease-in-out",
+        backgroundColor: "#9E00FF",
+      },
     },
   }));
 
@@ -43,13 +50,12 @@ const Main = () => {
         // Router.push(`/profiles/${user._id}`)
       }}
       className={classes.floatingActionButton}
-      color="primary"
       aria-label="add"
     >
       {full ? (
         <CloseIcon className={classes.addIcon} />
       ) : (
-        <SearchIcon className={classes.addIcon} />
+        <PostAddIcon className={classes.addIcon} />
       )}
     </Fab>
   );

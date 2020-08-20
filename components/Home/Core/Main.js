@@ -121,7 +121,7 @@ const Main = () => {
         />
       </div>
 
-      {/* <FloatingActionButton /> */}
+      <FloatingActionButton />
     </div>
   );
 };
