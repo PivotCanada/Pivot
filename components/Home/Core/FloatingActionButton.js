@@ -17,9 +17,10 @@ const Main = () => {
   const useStyles = makeStyles((theme) => ({
     floatingActionButton: {
       position: "fixed",
-      top: 32,
-      boxShadow: "none",
 
+      top: 35,
+      boxShadow: "none",
+      border: "3px solid white",
       zIndex: 5,
       fontFamily: "Noto Sans, sans serif",
       textTransform: "none",
