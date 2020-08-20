@@ -17,8 +17,10 @@ const Main = () => {
   const useStyles = makeStyles((theme) => ({
     floatingActionButton: {
       position: "fixed",
-      bottom: 20,
+      top: 32,
+      boxShadow: "none",
 
+      zIndex: 5,
       fontFamily: "Noto Sans, sans serif",
       textTransform: "none",
       backgroundColor: "#9E00FF",
@@ -26,6 +28,7 @@ const Main = () => {
       "&:hover": {
         width: 70,
         height: 70,
+        top: 26,
         transition: "0.3 ease-in-out",
         backgroundColor: "#9E00FF",
       },

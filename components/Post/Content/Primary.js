@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 17,
     width: "100%",
     margin: 0,
-    marginTop: 35,
+    marginTop: 20,
     letterSpacing: 0.8,
     lineHeight: "150%",
   },

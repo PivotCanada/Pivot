@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontFamily: "Poppins, sans-sarif",
     fontWeight: 600,
-    fontSize: 16,
+    fontSize: 14,
     padding: 0,
     margin: 0,
 

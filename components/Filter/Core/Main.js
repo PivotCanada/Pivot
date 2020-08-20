@@ -17,6 +17,7 @@ const useStyles = makeStyles(() => ({
     marginTop: 0,
     width: "100%",
     position: "fixed",
+    opacity: 0.95,
   },
   innerWrapper: {
     display: "flex",

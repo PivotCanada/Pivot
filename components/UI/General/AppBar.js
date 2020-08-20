@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     position: "fixed",
     height: 65,
     padding: 0,
-
+    zIndex: 4,
     paddingBottom: 1,
     // boxShadow: "0px 2px 6px 2px rgba(194,194,194,1)",
     boxShadow: "none",
