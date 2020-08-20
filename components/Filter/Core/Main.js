@@ -14,17 +14,16 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     zIndex: 2,
     marginBottom: 25,
-
+    marginTop: 0,
+    width: "100%",
     position: "fixed",
-    left: 100,
-    top: 65,
   },
   innerWrapper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     backgroundColor: "white",
-    borderRadius: 10,
+
     margin: 0,
   },
 }));
@@ -36,9 +35,7 @@ const Main = ({ setPosts }) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.innerWrapper}>
-        <Content setPosts={setPosts} />
-      </div>
+      <Content setPosts={setPosts} />
     </div>
   );
 };

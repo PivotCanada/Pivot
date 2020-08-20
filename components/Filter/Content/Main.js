@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
 
     backgroundColor: "white",
-    borderRadius: 10,
+    padding: 0,
     margin: 0,
   },
   text: {
@@ -65,13 +65,14 @@ const Main = ({ setPosts }) => {
 
   return (
     <div className={classes.wrapper}>
-      <Tags setTags={setTags} tags={tags} setActiveTags={setActiveTags} />
       <Chips
         tags={tags}
         setTags={setTags}
         setActiveTags={setActiveTags}
         activeTags={activeTags}
       />
+      <Tags setTags={setTags} tags={tags} setActiveTags={setActiveTags} />
+
       {/* <Button
         className={classes.button}
         color={"primary"}

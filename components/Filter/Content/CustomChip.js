@@ -5,9 +5,10 @@ import Chip from "@material-ui/core/Chip";
 
 const useStyles = makeStyles((theme) => ({
   chip: {
-    width: 100,
     margin: 0,
-    marginTop: 10,
+    marginRight: 20,
+    borderRadius: 2,
+    borderWidth: 0,
     padding: 0,
     fontFamily: "Poppins, sans serif",
     fontWeight: 400,
@@ -44,7 +45,8 @@ const CustomChip = ({ tag, setActiveTags, handleDelete }) => {
         setActive(!active);
         await updateActiveTag(tag);
       }}
-      variant={"small"}
+      size={"small"}
+      variant={"outlined"}
       color={active ? "primary" : "default"}
       onDelete={() => handleDelete(tag)}
     />

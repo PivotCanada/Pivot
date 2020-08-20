@@ -15,14 +15,14 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
-    marginTop: 100,
+    alignItems: "center",
+    marginTop: 50,
     margin: 0,
     zIndex: 3,
     backgroundColor: "white",
   },
   textField: {
-    minWidth: "80vw",
+    minWidth: 1000,
     fontFamily: "Noto Sans JP, sans serif",
   },
   innerWrapper: {
@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
 
     alignItems: "center",
-    minHeight: "20rem",
   },
   header: {
     textAlign: "center",
@@ -131,6 +130,7 @@ function Tags({ tags, setTags, setActiveTags }) {
             }}
             className={classes.textField}
             variant="standard"
+            label={"Search"}
           />
         )}
       />

@@ -6,24 +6,14 @@ import Chip from "./CustomChip";
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
-    flexDirection: "column",
+
     flexWrap: "wrap",
+    justifyContent: "flex-start",
+    alignItems: "center",
     width: "100%",
-    marginTop: 15,
-  },
-  chip: {
-    margin: 0,
-    marginRight: 5,
-    padding: 0,
-    paddingLeft: 5,
-    paddingRight: 5,
-    fontFamily: "Open Sans, sans serif",
-    fontWeight: 700,
-    fontSize: 10,
-    "&:hover": {
-      opacity: 0.5,
-      cursor: "pointer",
-    },
+    marginLeft: -9,
+    marginTop: 30,
+    minHeight: 35,
   },
 }));
 
@@ -48,6 +38,7 @@ const Chips = ({ tags, setTags, setActiveTags, activeTags }) => {
             setActiveTags={setActiveTags}
             tag={tag}
             handleDelete={handleDelete}
+            variant={"outlined"}
           />
         );
       })}
