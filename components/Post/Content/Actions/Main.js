@@ -6,7 +6,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import LoopIcon from "@material-ui/icons/Loop";
 import { Fab } from "@material-ui/core";
-import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
+import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 // Components
 
 // Contexts
@@ -18,15 +18,14 @@ import { createPost } from "../../Create/utils/createPost";
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
-    justifyContent: "space-between",
-    width: 95,
+    justifyContent: "flex-end",
+    width: "100%",
     marginTop: 10,
   },
   fab: {
     color: "grey",
     boxShadow: "none",
-    marginLeft: 475,
-  }
+  },
 }));
 
 // TODO : FIX
@@ -73,13 +72,12 @@ const Main = ({ post, setOpen, setOpenRepost }) => {
         </Fab>
       ) : (
         <Fab
-          
-          className = {classes.fab}
+          className={classes.fab}
           size="small"
           color="secondary"
           onClick={() => (user ? like(user, setFav, post) : () => {})}
         >
-          <BookmarkBorderIcon/>
+          <BookmarkBorderIcon />
         </Fab>
       )}
       {user && user._id !== author._id ? (

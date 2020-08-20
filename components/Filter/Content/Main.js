@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
 
     backgroundColor: "white",
     borderRadius: 10,
@@ -34,10 +33,11 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
   },
   button: {
-    fontFamily: "Open Sans, sans-serif",
+    fontFamily: "Poppins, sans-serif",
     fontWeight: 700,
     textTransform: "none",
     marginTop: 20,
+    width: 100,
   },
 }));
 
@@ -50,6 +50,19 @@ const Main = ({ setPosts }) => {
   ]);
   const [activeTags, setActiveTags] = useState([]);
 
+  const func = async () => {
+    await searchPosts({
+      tags: activeTags,
+    }).then((response) => {
+      console.log(response);
+      setPosts(response.data);
+    });
+  };
+
+  useEffect(() => {
+    func();
+  }, [activeTags]);
+
   return (
     <div className={classes.wrapper}>
       <Tags setTags={setTags} tags={tags} setActiveTags={setActiveTags} />
@@ -59,9 +72,8 @@ const Main = ({ setPosts }) => {
         setActiveTags={setActiveTags}
         activeTags={activeTags}
       />
-      <Button
+      {/* <Button
         className={classes.button}
-        variant={"contained"}
         color={"primary"}
         onClick={async () => {
           await searchPosts({
@@ -73,7 +85,7 @@ const Main = ({ setPosts }) => {
         }}
       >
         Filter
-      </Button>
+      </Button> */}
     </div>
   );
 };

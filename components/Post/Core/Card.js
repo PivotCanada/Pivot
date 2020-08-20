@@ -16,8 +16,7 @@ const Card = ({ post, displayLink = true }) => {
       display: "flex",
       flexDirection: "column",
       borderRadius: 3,
-      minWidth: 550,
-      maxWidth: 500,
+      width: 700,
       padding: 20,
       margin: 0,
 
@@ -29,7 +28,7 @@ const Card = ({ post, displayLink = true }) => {
       flexDirection: "row",
       width: "100%",
       flexWrap: "wrap",
-
+      zIndex: 0,
       padding: 0,
       margin: 0,
     },

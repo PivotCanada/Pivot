@@ -24,8 +24,6 @@ const NavItems = ({ setOpen }) => {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-
-      margin: 0,
     },
 
     link: {
@@ -41,28 +39,16 @@ const NavItems = ({ setOpen }) => {
       },
       marginRight: 25,
     },
-    actionLink: {
-      display: width < 600 ? "none" : "flex",
-      color: "black",
-      fontFamily: "Poppins, sans serif",
-      fontWeight: 700,
-      fontSize: 14,
-      textAlign: "center",
-      "&:hover": {
-        opacity: 0.5,
-        cursor: "pointer",
-      },
-      marginRight: 25,
-    },
     button: {
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-
-      backgroundColor: "white",
-
-      height: 65,
-      width: 200,
+      textTransform: "none",
+      paddingTop: 5,
+      paddingBottom: 5,
+      paddingLeft: 10,
+      paddingRight: 10,
+      fontSize: 14,
+      fontWeight: 700,
+      fontSize: 12,
+      fontFamily: "Open Sans, sans serif",
     },
     menuButton: {
       color: "black",
@@ -87,7 +73,7 @@ const NavItems = ({ setOpen }) => {
       french: "Decouvrir",
     },
     journey: {
-      english: "Sign up",
+      english: "Continue My Journey",
       french: "Continue Mon Voyage",
     },
   });
@@ -107,12 +93,12 @@ const NavItems = ({ setOpen }) => {
         {/* <h3 onClick={() => changeLanguage()} className={classes.link}>
           {truthy(keys.language)}
         </h3> */}
-        <Link href={"/"}>
+        {/* <Link href={"/"}>
           <h3 className={classes.link}>{keys.discover}</h3>
         </Link>
         <Link href={"/about"}>
           <h3 className={classes.link}>{keys.about}</h3>
-        </Link>
+        </Link> */}
         {/* <Search /> */}
         {authenticated && !loading ? (
           <IconButton
@@ -125,11 +111,7 @@ const NavItems = ({ setOpen }) => {
             <MenuIcon />
           </IconButton>
         ) : (
-          <Link href={"/signup"}>
-            <div className={classes.button}>
-              <h3 className={classes.actionLink}>{truthy(keys.journey)}</h3>
-            </div>
-          </Link>
+          <Link href={"/signup"}>{truthy(keys.journey)}</Link>
         )}
       </div>
     );

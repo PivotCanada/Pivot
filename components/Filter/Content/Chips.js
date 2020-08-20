@@ -6,6 +6,7 @@ import Chip from "./CustomChip";
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
+    flexDirection: "column",
     flexWrap: "wrap",
     width: "100%",
     marginTop: 15,

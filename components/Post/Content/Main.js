@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
     margin: 0,
 
-    width: "95%",
+    width: "100%",
   },
   linkWrapper: {
     textDecoration: "none",
@@ -55,9 +55,8 @@ function Preview({ post, setOpenRepost }) {
       >
         {/* <Title title={"Rebounce in Employment 2020"} /> */}
         <Primary text={post.text} />
-        
       </div>
-      
+
       <Actions post={post} setOpen={setOpen} setOpenRepost={setOpenRepost} />
     </div>
   );

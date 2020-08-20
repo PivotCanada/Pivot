@@ -12,9 +12,12 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    minHeight: 200,
+    zIndex: 2,
     marginBottom: 25,
-    width: "100vw",
+
+    position: "fixed",
+    left: 100,
+    top: 65,
   },
   innerWrapper: {
     display: "flex",

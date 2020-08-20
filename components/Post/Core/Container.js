@@ -8,11 +8,10 @@ const Main = ({ display = true, callback, data, profile }) => {
   const useStyles = makeStyles(() => ({
     root: {
       display: "flex",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      flexWrap: "wrap",
-      width: "70vw",
-      marginTop: profile ? 0 : 40,
+      flexDirection: "column",
+      alignItems: "center",
+      width: "50vw",
+      marginTop: profile ? 200 : 200,
       marginBottom: 75,
     },
   }));

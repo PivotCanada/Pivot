@@ -6,13 +6,12 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontFamily: "Poppins, sans-sarif",
     fontWeight: 600,
-    fontSize: 13,
+    fontSize: 16,
     padding: 0,
     margin: 0,
-  
+
     textAlign: "left",
     marginBottom: 5,
-     
   },
 }));
 

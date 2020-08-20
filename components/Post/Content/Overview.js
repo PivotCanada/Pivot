@@ -10,15 +10,14 @@ const Overview = ({ author, date }) => {
       width: "100%",
       display: "flex",
       alignItems: "center",
-      
     },
     date: {
       color: "#363636",
-      
+
       fontFamily: "Noto Sans JP, sans-serif",
       fontWeight: 300,
       letterSpacing: "1.5%",
-      fontSize: 12,
+      fontSize: 14,
       padding: 0,
       margin: 0,
       marginBottom: 5,
@@ -30,10 +29,9 @@ const Overview = ({ author, date }) => {
       margin: 0,
       marginLeft: 20,
       justifyContent: "center",
-      
+
       height: 70,
-  
-    }
+    },
   }));
 
   const classes = useStyles();
@@ -76,10 +74,10 @@ const Overview = ({ author, date }) => {
 
   return (
     <div className={classes.wrapper}>
-      <Image image={author.photo} size={70} />
-      <div className = {classes.innerWrapper}>
-      <Author author={author} />
-      <p className={classes.date}>{formatDate(date)}</p>
+      <Image image={author.photo} size={85} />
+      <div className={classes.innerWrapper}>
+        <Author author={author} />
+        <p className={classes.date}>{formatDate(date)}</p>
       </div>
     </div>
   );

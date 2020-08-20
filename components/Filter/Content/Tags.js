@@ -16,11 +16,14 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-
+    marginTop: 100,
     margin: 0,
+    zIndex: 3,
+    backgroundColor: "white",
   },
   textField: {
-    minWidth: 200,
+    minWidth: "80vw",
+    fontFamily: "Noto Sans JP, sans serif",
   },
   innerWrapper: {
     display: "flex",
@@ -128,7 +131,6 @@ function Tags({ tags, setTags, setActiveTags }) {
             }}
             className={classes.textField}
             variant="standard"
-            label="Tags"
           />
         )}
       />

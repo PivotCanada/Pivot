@@ -8,12 +8,12 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontFamily: "Lora, serif",
     fontWeight: 350,
-    fontSize: 15,
+    fontSize: 17,
     width: "100%",
     margin: 0,
-    marginTop: 15,
+    marginTop: 35,
     letterSpacing: 0.8,
-    
+    lineHeight: "150%",
   },
 }));
 

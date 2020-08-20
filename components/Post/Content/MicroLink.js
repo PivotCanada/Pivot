@@ -9,9 +9,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     padding: 0,
     margin: 0,
-    
-    marginTop: 20,
-    
+
+    marginTop: 35,
   },
 }));
 
@@ -20,7 +19,20 @@ const MicroLink = ({ link }) => {
 
   return (
     <div className={classes.wrapper}>
-      {link ? <Microlink url={link} /> : null}
+      {link ? (
+        <Microlink
+          style={{
+            "--microlink-max-width": "100%",
+            height: 500,
+          }}
+          url={link}
+          media="video"
+          // this needs to accomodate various media types
+          size={"large"}
+          autoplay={true}
+          loop={true}
+        />
+      ) : null}
     </div>
   );
 };
