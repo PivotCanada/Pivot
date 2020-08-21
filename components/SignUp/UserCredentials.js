@@ -62,24 +62,29 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "white",
+    opacity: 0.5,
     alignItems: "center",
     width: "50%",
     height: "100vh",
+    zIndex: 2,
   },
   containerRight: {
     display: "flex",
     flexDirection: "column",
     backgroundColor: "black",
+    opacity: 0.7,
     alignItems: "center",
     width: "50%",
     height: "100vh",
+    zIndex: 2,
   },
   image: {
     objectFit: "cover",
     height: "100%",
-    width: "50%",
+    width: "100%",
     position: "fixed",
-    opacity: 0.9
+    opacity: 0.9,
+    zIndex: 0,
   },
   innerContainer: {
     display: "flex",
@@ -272,12 +277,12 @@ function UserCredentials({
             />
           </Link>
     <form className={classes.innerWrapper}>
-    
-      <div className={classes.containerLeft}>
-        { <img
+    { <img
           className={classes.image}
           src="https://images.unsplash.com/photo-1567704308721-a0a4ceb9783f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
-        />} 
+        />}
+      <div className={classes.containerLeft}>
+         
         <div className={classes.formContainerL}>
           
           {/* <h1 className={classes.header}>Welcome</h1> */}
