@@ -24,6 +24,7 @@ const MicroLink = ({ link }) => {
           style={{
             "--microlink-max-width": "100%",
             height: 500,
+            borderRadius: 3,
           }}
           url={link}
           media="video"

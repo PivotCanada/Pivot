@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: 50,
+    marginTop: 0, /*changed this to get the search bar closer to the tags in discover page*. Used to be 100*/
     margin: 0,
     zIndex: 3,
     backgroundColor: "white",
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
   button: {
     marginTop: "3rem",
-    marginBottom: 20,
+    marginBottom: 0,
   },
 
   imageContainer: {

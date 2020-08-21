@@ -15,9 +15,19 @@ import { UserContext } from "../../contexts/UserContext";
 import { signup } from "./utils/signup";
 import { authenticate } from "../../utils/authentication/authenticate";
 import { incrementForm } from "../../utils/validation/incrementForm";
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "left",
+    borderRadius: 5,
+    backgroundColor: "white",
+  },
+  innerWrapper: {
     width: "100%",
     display: "flex",
     alignItems: "center",
@@ -29,8 +39,18 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 17,
     flexGrow: 1,
     flexShrink: 1,
+    border: "1px solid white",
+    borderRadius: 3,
   },
-  container: {
+  formContainerR: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "black",
+    borderRadius: 10,
+    marginTop: 100,
+    width: 275,
+  },
+  formContainerL: {
     display: "flex",
     flexDirection: "column",
     backgroundColor: "white",
@@ -42,22 +62,24 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "white",
+    alignItems: "center",
     width: "50%",
     height: "100vh",
   },
   containerRight: {
     display: "flex",
     flexDirection: "column",
-
+    backgroundColor: "black",
     alignItems: "center",
-    width: "50%",
-
     width: "50%",
     height: "100vh",
   },
   image: {
     objectFit: "cover",
     height: "100%",
+    width: "50%",
+    position: "fixed",
+    opacity: 0.9
   },
   innerContainer: {
     display: "flex",
@@ -75,10 +97,25 @@ const useStyles = makeStyles((theme) => ({
   //   marginBottom: 10,
   //   fontFamily: "Noto Sans, sans-serif",
   // },
+  formHeaderR: {
+    textAlign: "center",
+    color: "white",
+    fontFamily: "Poppins, sans-sarif",
+    fontWeight: 500,
+    fontSize: 50,
+  },
+  formHeaderL: {
+    textAlign: "center",
+    color: "black",
+    fontFamily: "Poppins, sans-sarif",
+    fontWeight: 500,
+    fontSize: 50,
+  },
   text: {
     textAlign: "left",
     margin: 0,
     width: "100%",
+    color: "white",
 
     color: "#A1A1A1",
     fontWeight: 500,
@@ -89,8 +126,18 @@ const useStyles = makeStyles((theme) => ({
   inputElement: {
     display: "flex",
     flexDirection: "column",
+    color: "white",
+    
   },
-  inputHeader: {
+  inputHeaderR: {
+    color: "white",
+    fontWeight: 700,
+    margin: 0,
+    marginBottom: 5,
+    fontSize: 11,
+    fontFamily: "Open Sans, sans-serif",
+  },
+  inputHeaderL: {
     color: "black",
     fontWeight: 700,
     margin: 0,
@@ -101,19 +148,29 @@ const useStyles = makeStyles((theme) => ({
   button: {
     textTransform: "none",
     fontWeight: 700,
-    fontSize: 15,
+    fontSize: 16,
     fontFamily: "Open Sans, sans-serif",
     width: 275,
     marginTop: 15,
+    color: "black",
+    
   },
   icon: {
-    width: "60px",
-    height: "auto",
-    marginBottom: 15,
+    position: "fixed",
+    width: "100px",
+    
+    marginTop: 10,
+    marginLeft: 20,
     "&:hover": {
       opacity: 0.4,
       cursor: "pointer",
     },
+    border: "3px solid red"
+
+  },
+  logo:{
+    marginTop: 20,
+    border: "3px solid red"
   },
   checkbox: {
     fontWeight: 500,
@@ -136,6 +193,12 @@ const useStyles = makeStyles((theme) => ({
       opacity: 0.6,
     },
   },
+  inputR:{
+    color: "white"
+  },
+  inputL:{
+    color: "black"
+  }
 }));
 
 function UserCredentials({
@@ -197,46 +260,50 @@ function UserCredentials({
     });
   };
 
+
+ 
   return (
-    <form className={classes.wrapper}>
-      <div className={classes.containerLeft}>
-        <img
-          className={classes.image}
-          src="https://images.unsplash.com/photo-1526546334624-2afe5b01088d?ixlib=rb-1.2.1&auto=format&fit=crop&w=944&q=80"
-        />
-      </div>
-      <div className={classes.containerRight}>
-        <div className={classes.container}>
-          <Link href="/">
+<div className = {classes.wrapper}>
+    <Link className = {classes.logo}href="/">
             <img
               className={classes.icon}
               src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
               alt="icon"
             />
           </Link>
+    <form className={classes.innerWrapper}>
+    
+      <div className={classes.containerLeft}>
+        { <img
+          className={classes.image}
+          src="https://images.unsplash.com/photo-1567704308721-a0a4ceb9783f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+        />} 
+        <div className={classes.formContainerL}>
+          
           {/* <h1 className={classes.header}>Welcome</h1> */}
-          <p className={classes.text}>
-            Begin your journey, or{" "}
-            <a className={classes.link} href="/login">
+          <p className={classes.formHeaderL}>
               Login
-            </a>{" "}
-            and get back to defining history
           </p>
           <div className={classes.inputElement}>
-            <h2 className={classes.inputHeader}>First Name</h2>
+            <h2 className={classes.inputHeaderL}>First Name</h2>
+            
             <TextField
+              inputProps={{ className: classes.inputL}}
               className={classes.textField}
               size="small"
               name="firstname"
               value={values.firstname}
+              color = "#fffffff"
               variant={"outlined"}
               onChange={(e) => handleChange(e)}
               error={errors.firstname ? true : false}
               helperText={errors.firstname}
             />
+            
+            
           </div>
           <div className={classes.inputElement}>
-            <h2 className={classes.inputHeader}>Last Name</h2>
+            <h2 className={classes.inputHeaderL}>Last Name</h2>
             <TextField
               size="small"
               name="lastname"
@@ -249,7 +316,121 @@ function UserCredentials({
             />
           </div>
           <div className={classes.inputElement}>
-            <h2 className={classes.inputHeader}>Email</h2>
+            <h2 className={classes.inputHeaderL}>Email</h2>
+            <TextField
+              className={classes.textField}
+              type="email"
+              name="email"
+              size="small"
+              color="white"
+              value={values.email}
+              variant={"outlined"}
+              onChange={(e) => handleChange(e)}
+              error={errors.email ? true : false}
+              helperText={errors.email}
+            />
+          </div>
+          <div className={classes.inputElement}>
+            <h2 className={classes.inputHeaderL}>Password</h2>
+            <TextField
+              className={classes.textField}
+              type="password"
+              name="password"
+              size="small"
+              value={values.password}
+              variant={"outlined"}
+              onChange={(e) => handleChange(e)}
+              error={errors.password ? true : false}
+              helperText={errors.password}
+            />
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  name="consent"
+                  checked={values.consent}
+                  color="primary"
+                  onChange={() =>
+                    handleDirectChange("consent", !values.consent)
+                  }
+                />
+              }
+            />
+            {!errors.consent ? (
+              <p className={classes.checkbox}>
+                Creating an account means you’re okay with our {""}
+                <a
+                  className={classes.link}
+                  target="_blank"
+                  href="https://dribbble.com/terms"
+                >
+                  Terms of Service
+                </a>
+              </p>
+            ) : (
+              <p className={classes.checkboxError}>
+                {errors.consent}{" "}
+                <a
+                  className={classes.link}
+                  target="_blank"
+                  href="https://dribbble.com/terms"
+                >
+                  Terms of Service
+                </a>
+              </p>
+            )}
+          </div>
+
+          <Button
+            className={classes.button}
+            variant={"outlined"}
+            color={"primary"}
+            onClick={handleSubmit}
+          >
+            Continue
+          </Button>
+        </div>
+      </div>
+
+
+      <div className={classes.containerRight}>
+      
+        <div className={classes.formContainerR}>
+          
+          {/* <h1 className={classes.header}>Welcome</h1> */}
+          <p className={classes.formHeaderR}>
+              Sign Up
+          </p>
+          <div className={classes.inputElement}>
+            <h2 className={classes.inputHeaderR}>First Name</h2>
+            <TextField
+              inputProps={{ className: classes.inputR}}
+              className={classes.textField}
+              size="small"
+              name="firstname"
+              value={values.firstname}
+              variant={"outlined"}
+              onChange={(e) => handleChange(e)}
+              error={errors.firstname ? true : false}
+              helperText={errors.firstname}
+            />
+          </div>
+          <div className={classes.inputElement}>
+            <h2 className={classes.inputHeaderR}>Last Name</h2>
+            <TextField
+              size="small"
+              name="lastname"
+              className={classes.textField}
+              value={values.lastname}
+              variant={"outlined"}
+              onChange={(e) => handleChange(e)}
+              error={errors.lastname ? true : false}
+              helperText={errors.lastname}
+            />
+          </div>
+          <div className={classes.inputElement}>
+            <h2 className={classes.inputHeaderR}>Email</h2>
             <TextField
               className={classes.textField}
               type="email"
@@ -263,7 +444,7 @@ function UserCredentials({
             />
           </div>
           <div className={classes.inputElement}>
-            <h2 className={classes.inputHeader}>Password</h2>
+            <h2 className={classes.inputHeaderR}>Password</h2>
             <TextField
               className={classes.textField}
               type="password"
@@ -325,6 +506,7 @@ function UserCredentials({
         </div>
       </div>
     </form>
+    </div>
   );
 }
 

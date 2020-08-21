@@ -23,6 +23,7 @@ const Card = ({ post, displayLink = true }) => {
 
       marginBottom: 25,
       backgroundColor: "white",
+      
     },
     wrapper: {
       display: "flex",

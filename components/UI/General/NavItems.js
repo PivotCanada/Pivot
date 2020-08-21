@@ -60,7 +60,7 @@ const NavItems = ({ setOpen }) => {
       alignItems: "center",
 
       backgroundColor: "white",
-
+      
       height: 65,
       width: 200,
     },

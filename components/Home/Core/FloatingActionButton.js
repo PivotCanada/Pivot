@@ -3,7 +3,9 @@ import Router from "next/router";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
-import PostAddIcon from "@material-ui/icons/PostAdd";
+import SearchIcon from "@material-ui/icons/Search";
+import CloseIcon from "@material-ui/icons/Close";
+import PostAddIcon from '@material-ui/icons/PostAdd';
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -16,24 +18,23 @@ const Main = () => {
 
   const useStyles = makeStyles((theme) => ({
     floatingActionButton: {
+      background: "#9E00FF",
       position: "fixed",
-
-      top: 35,
-      boxShadow: "none",
-      border: "3px solid white",
-      zIndex: 5,
+      top: 32,
+      zIndex:5,
       fontFamily: "Noto Sans, sans serif",
       textTransform: "none",
-      backgroundColor: "#9E00FF",
-      color: "white",
-      "&:hover": {
-        width: 70,
-        height: 70,
-        top: 26,
-        transition: "0.3 ease-in-out",
-        backgroundColor: "#9E00FF",
-      },
+      border: "3px solid",
+      borderColor: "white",
+      boxShadow: "none",
+      width: 70,
+      height: 70,
+      borderRadius: 5, 
     },
+    icon: {
+      color: "white",
+      
+    }
   }));
 
   const classes = useStyles();
@@ -55,11 +56,16 @@ const Main = () => {
       }}
       className={classes.floatingActionButton}
       aria-label="add"
+      variant = "extended"
+      
     >
       {full ? (
-        <CloseIcon className={classes.addIcon} />
+        <PostAddIcon
+        />
       ) : (
-        <PostAddIcon className={classes.addIcon} />
+        <PostAddIcon className = {classes.icon}
+          fontSize = 'medium'
+        />
       )}
     </Fab>
   );
