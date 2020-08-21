@@ -10,6 +10,7 @@ import RoomIcon from "@material-ui/icons/Room";
 import { IconButton } from "@material-ui/core";
 // Components
 import Modal from "./Modal";
+import Image from "../../Profile/Overview/Image";
 
 const format = (text) => {
   let arr = text.split(" ");
@@ -168,7 +169,7 @@ function Preview({ user }) {
     return (
       <div className={classes.card}>
         <div className={classes.imageContainer}>
-          <img className={classes.image} src={user.photo ? user.photo : def} />
+          <Image image={user.photo} size={57.5} />
         </div>
       </div>
     );

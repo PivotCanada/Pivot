@@ -10,6 +10,8 @@ import Industry from "./Industry";
 import Dialog from "./Dialog";
 import Tags from "./Tags";
 import MicroLink from "../Content/MicroLink";
+import Overview from "./Overview";
+import Chips from "./Chips";
 
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
@@ -25,20 +27,20 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    minHeight: 75,
-    border: "1px solid #e0e0e0",
+    height: "100%",
+
     borderRadius: 5,
     padding: 20,
     marginTop: 10,
 
-    width: "100%",
-    maxWidth: 650,
+    width: 700,
   },
   textField: {
     width: "100%",
     flexGrow: 1,
     flexShrink: 1,
-
+    margin: 0,
+    padding: 0,
     border: "none",
   },
   innerWrapper: {
@@ -60,12 +62,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     alignItems: "start",
     backgroundColor: "white",
-
-    marginLeft: 20,
-    width: "75%",
+    marginTop: 15,
+    width: "100%",
   },
   innerinnerWrapper: {
     display: "flex",
+    flexDirection: "column",
     marginTop: 10,
     flexWrap: "wrap",
 
@@ -84,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 12,
     width: 80,
     height: 30,
-    fontFamily: "Open Sans, sans serif",
+    fontFamily: "Poppins, sans serif",
   },
 }));
 
@@ -94,6 +96,7 @@ const Main = ({ role, context }) => {
   const [text, setText] = useState("");
   const [link, setLink] = useState("");
   const [tags, setTags] = useState([]);
+  const [activeTags, setActiveTags] = useState([]);
   const [show, setShow] = useState(false);
   const { user } = useContext(UserContext);
   const { setShowCreate } = useContext(ModalContext);
@@ -179,42 +182,43 @@ const Main = ({ role, context }) => {
     <div className={classes.root}>
       <Dialog open={open} setOpen={setOpen} />
       <div className={classes.innerWrapper}>
-        <div className={classes.cardWrapper}>
-          <UserCard user={user} />
-          <div className={classes.inputWrapper}>
-            <TextField
-              multiline
-              maxrows={4}
-              className={classes.textField}
-              type="text"
-              label="What's on your mind?"
-              value={text}
-              onChange={(e) => {
-                onChange(e);
+        <Overview author={user} date={new Date()} />
+        <div className={classes.inputWrapper}>
+          <TextField
+            multiline
+            maxrows={4}
+            className={classes.textField}
+            type="text"
+            label="What's on your mind?"
+            value={text}
+            onChange={(e) => {
+              onChange(e);
 
-                if (e.target.value.length > 0) {
-                  setShow(true);
-                } else {
-                  setShow(false);
-                }
-              }}
-            />
-            <div
-              style={{ display: show ? "flex" : "none" }}
-              className={classes.innerinnerWrapper}
+              if (e.target.value.length > 0) {
+                setShow(true);
+              } else {
+                setShow(false);
+              }
+            }}
+          />
+          <div
+            style={{ display: show ? "flex" : "none" }}
+            className={classes.innerinnerWrapper}
+          >
+            {link ? <MicroLink link={link} /> : null}
+
+            <Tags tags={tags} setTags={setTags} />
+            <Chips tags={tags} setTags={setTags} />
+
+            <Button
+              disabled={text.length === 0}
+              variant={"outlined"}
+              color={"primary"}
+              className={classes.button}
+              onClick={() => onSubmit(text)}
             >
-              {link ? <MicroLink link={link} /> : null}
-              <Tags tags={tags} setTags={setTags} />
-              <Button
-                disabled={text.length === 0}
-                variant={"contained"}
-                color={"primary"}
-                className={classes.button}
-                onClick={() => onSubmit(text)}
-              >
-                Create
-              </Button>
-            </div>
+              Create
+            </Button>
           </div>
         </div>
       </div>

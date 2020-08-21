@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 // Components
 import ProfileLink from "./ProfileLink";
-import Search from "./Search";
+
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 import { UserContext } from "../../../contexts/UserContext";
@@ -60,7 +60,7 @@ const NavItems = ({ setOpen }) => {
       alignItems: "center",
 
       backgroundColor: "white",
-      
+
       height: 65,
       width: 200,
     },

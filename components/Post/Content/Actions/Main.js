@@ -7,6 +7,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import LoopIcon from "@material-ui/icons/Loop";
 import { Fab } from "@material-ui/core";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import TurnedInIcon from "@material-ui/icons/TurnedIn";
 // Components
 
 // Contexts
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   fab: {
     color: "grey",
     boxShadow: "none",
+    maringLeft: 3,
   },
 }));
 
@@ -62,13 +64,34 @@ const Main = ({ post, setOpen, setOpenRepost }) => {
 
   return (
     <div className={classes.wrapper}>
+      {user && user._id !== author._id ? (
+        <Fab
+          className={classes.fab}
+          size="small"
+          color="secondary"
+          onClick={() => setOpenRepost(true)}
+        >
+          <LoopIcon />
+        </Fab>
+      ) : null}
+      {user && user._id === author._id ? (
+        <Fab
+          className={classes.fab}
+          size="small"
+          color="secondary"
+          onClick={() => setOpen(true)}
+        >
+          <MoreHorizIcon />
+        </Fab>
+      ) : null}
       {fav ? (
         <Fab
+          className={classes.fab}
           size="small"
           color="secondary"
           onClick={() => unlike(user, setFav, post)}
         >
-          <FavoriteIcon />
+          <TurnedInIcon />
         </Fab>
       ) : (
         <Fab
@@ -80,16 +103,6 @@ const Main = ({ post, setOpen, setOpenRepost }) => {
           <BookmarkBorderIcon />
         </Fab>
       )}
-      {user && user._id !== author._id ? (
-        <Fab size="small" color="primary" onClick={() => setOpenRepost(true)}>
-          <LoopIcon />
-        </Fab>
-      ) : null}
-      {user && user._id === author._id ? (
-        <Fab size="small" color="primary" onClick={() => setOpen(true)}>
-          <MoreHorizIcon />
-        </Fab>
-      ) : null}
     </div>
   );
 };

@@ -2,18 +2,19 @@ import { useEffect, useContext, useState } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
-import Search from "../Search";
+
 import Content from "../Content/Main";
 import ButtonGroup from "../Content/ButtonGroup";
 import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
 import Modal from "../../Post/Core/Modal";
+import CreateModal from "../../Post/Create/Modal";
 import Overview from "../../Profile/Overview/Main";
 import Filter from "../../Filter/Core/Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
-import { SearchContext } from "../../../contexts/SearchContext";
+
 // Utils
 import { fetchAllUsers } from "../utils/fetchAllUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
@@ -48,7 +49,6 @@ const Main = () => {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
   const { ids, setIds, setId } = useContext(ModalContext);
-  const { display, setDisplay } = useContext(SearchContext);
 
   const remove = (list, item) => {
     if (item) {
@@ -100,6 +100,7 @@ const Main = () => {
     <div className={classes.root}>
       {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
       <Modal />
+      <CreateModal />
       <Filter setPosts={setPosts} />
       <div className={classes.innerWrapper}>
         {/* <Search
@@ -113,12 +114,7 @@ const Main = () => {
           setContent={setContent}
         /> */}
 
-        <Content
-          display={display}
-          content={content}
-          profiles={profiles}
-          posts={posts}
-        />
+        <Content content={content} profiles={profiles} posts={posts} />
       </div>
 
       <FloatingActionButton />
