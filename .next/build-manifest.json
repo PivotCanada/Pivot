@@ -27,6 +27,13 @@
     "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
+<<<<<<< HEAD
+=======
+    ],
+    "/login": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+>>>>>>> af5ec37e8a1833af470defce93e2f245802ed13e
     ]
   }
 }
