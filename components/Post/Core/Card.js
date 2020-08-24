@@ -20,7 +20,7 @@ const Card = ({ post, displayLink = true }) => {
       maxWidth: 700,
       padding: 20,
       margin: 0,
-
+      boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
       marginBottom: 25,
       backgroundColor: "white",
       

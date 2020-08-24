@@ -26,16 +26,18 @@ const Main = ({ story, initialContent = "story" }) => {
       display: "flex",
       width: "100%",
       minHeight: "100%",
+      alignItems: "left"
     },
 
     container: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "start",
+      justifyContent: "center",
       alignItems: "center",
-
-      marginLeft: 325,
-      marginTop: 25,
+      width: "100%",
+      height: "100%",
+      marginLeft: 400,
+      marginTop: 100,
     },
   }));
 

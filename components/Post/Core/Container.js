@@ -13,6 +13,7 @@ const Main = ({ display = true, callback, data, profile }) => {
       width: "50vw",
       marginTop: profile ? 200 : 200,
       marginBottom: 75,
+      boxShadow: "5px",
     },
   }));
 
