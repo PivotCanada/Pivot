@@ -46,8 +46,9 @@ const useStyles = makeStyles((theme) => ({
   innerWrapper: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
+    marginTop: 20,
 
+    width: 700,
     backgroundColor: "white",
     borderRadius: 10,
   },
@@ -70,11 +71,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     marginTop: 10,
     flexWrap: "wrap",
-
     justifyContent: "space-between",
     backgroundColor: "white",
-
-    width: "100%",
+    width: 500,
+    marginBottom: 50,
   },
   button: {
     textTransform: "none",
@@ -92,8 +92,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 }));
 
 const Main = ({ role, context }) => {
@@ -185,38 +185,36 @@ const Main = ({ role, context }) => {
   };
 
   return (
-    <div className={classes.root}>
-      <Dialog open={open} setOpen={setOpen} />
-      <div className={classes.innerWrapper}>
-        <Overview author={user} date={new Date()} />
-        <div className={classes.inputWrapper}>
-          <TextField
-            multiline
-            maxrows={4}
-            className={classes.textField}
-            type="text"
-            label="What's on your mind?"
-            value={text}
-            onChange={(e) => {
-              onChange(e);
+    <div className={classes.innerWrapper}>
+      <Overview author={user} date={new Date()} />
+      <div className={classes.inputWrapper}>
+        <TextField
+          multiline
+          maxrows={4}
+          className={classes.textField}
+          type="text"
+          label="What's on your mind?"
+          value={text}
+          onChange={(e) => {
+            onChange(e);
 
-              if (e.target.value.length > 0) {
-                setShow(true);
-              } else {
-                setShow(false);
-              }
-            }}
-          />
-          <div
-            style={{ display: show ? "flex" : "none" }}
-            className={classes.innerinnerWrapper}
-          >
-            {link ? <MicroLink link={link} /> : null}
+            if (e.target.value.length > 0) {
+              setShow(true);
+            } else {
+              setShow(false);
+            }
+          }}
+        />
+        <div
+          style={{ display: show ? "flex" : "none" }}
+          className={classes.innerinnerWrapper}
+        >
+          {link ? <MicroLink link={link} /> : null}
 
-            <Tags tags={tags} setTags={setTags} />
-            <Chips tags={tags} setTags={setTags} />
-            
-            <div className = {classes.buttonContainer}>
+          <Tags tags={tags} setTags={setTags} />
+          <Chips tags={tags} setTags={setTags} />
+
+          <div className={classes.buttonContainer}>
             <Button
               disabled={text.length === 0}
               variant={"outlined"}
@@ -226,9 +224,8 @@ const Main = ({ role, context }) => {
             >
               Post
             </Button>
-            </div>
           </div>
-          </div>
+        </div>
       </div>
     </div>
   );

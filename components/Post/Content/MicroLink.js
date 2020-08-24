@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     padding: 0,
     margin: 0,
-
     marginTop: 20,
   },
 }));

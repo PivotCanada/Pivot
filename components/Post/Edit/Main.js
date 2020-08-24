@@ -149,7 +149,7 @@ const Main = ({ handleClose, post }) => {
       console.log(response);
       if (response.status === "success") {
         setLoading(false);
-        Router.push(`/profiles/${user._id}`);
+        Router.push(`/`);
       } else {
         setLoading(false);
       }
@@ -177,10 +177,11 @@ const Main = ({ handleClose, post }) => {
           onChange={(e) => setText(e.target.value)}
         />
         <Industry tags={tags} setTags={setTags} />
+        {/* need to change to display current tags component */}
         <div className={classes.buttonWrapper}>
           <Button
             disabled={text.length === 0}
-            variant={"contained"}
+            variant={"outlined"}
             color={"primary"}
             className={classes.button}
             onClick={() => onSubmit(text)}
@@ -188,7 +189,7 @@ const Main = ({ handleClose, post }) => {
             Update
           </Button>
           <Button
-            variant={"contained"}
+            variant={"outlined"}
             color={"primary"}
             className={classes.button}
             onClick={() => onDelete()}

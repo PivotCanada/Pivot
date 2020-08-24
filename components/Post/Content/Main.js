@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +11,7 @@ import Actions from "./Actions/Main";
 import Overview from "./Overview";
 import Title from "./Title";
 import MicroLink from "./MicroLink";
+import Modal from "../Edit/Modal";
 
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -39,9 +40,10 @@ const useStyles = makeStyles((theme) => ({
 function Preview({ post, setOpenRepost }) {
   const classes = useStyles();
   const { open = false, setOpen, setId } = useContext(ModalContext);
-
+  const [openEdit, setOpenEdit] = useState(false);
   return (
     <div className={classes.content}>
+      <Modal open={openEdit} setOpen={setOpenEdit} post={post} />
       <Overview author={post.author} date={post.created_at} />
       {post.link ? <MicroLink link={post.link} /> : null}
 
@@ -57,7 +59,11 @@ function Preview({ post, setOpenRepost }) {
         <Primary text={post.text} />
       </div>
 
-      <Actions post={post} setOpen={setOpen} setOpenRepost={setOpenRepost} />
+      <Actions
+        post={post}
+        setOpen={setOpenEdit}
+        setOpenRepost={setOpenRepost}
+      />
     </div>
   );
 }
