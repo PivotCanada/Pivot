@@ -11,7 +11,7 @@ import * as gtag from "../lib/gtag";
 import { ModalStore } from "../contexts/ModalContext";
 import { UserStore } from "../contexts/UserContext";
 import { LanguageStore } from "../contexts/LanguageContext";
-import { SearchStore } from "../contexts/SearchContext";
+import { CreateStore } from "../contexts/CreateContext";
 import { FormStore } from "../contexts/FormContext";
 
 const MyApp = ({ Component, pageProps }) => {
@@ -30,7 +30,7 @@ const MyApp = ({ Component, pageProps }) => {
       <LanguageStore>
         <ModalStore>
           <UserStore>
-            <SearchStore>
+            <CreateStore>
               <FormStore>
                 <ThemeProvider theme={theme}>
                   {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -38,7 +38,7 @@ const MyApp = ({ Component, pageProps }) => {
                   <Component {...pageProps} />
                 </ThemeProvider>
               </FormStore>
-            </SearchStore>
+            </CreateStore>
           </UserStore>
         </ModalStore>
       </LanguageStore>

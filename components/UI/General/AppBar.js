@@ -7,7 +7,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 // Components
 import SideDrawer from "./SideDrawer";
 import NavItems from "./NavItems";
-import ActionButtons from "./ActionButtons";
+
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 

@@ -2,18 +2,16 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+
 import { IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import { ModalContext } from "../../../contexts/ModalContext";
+import { CreateContext } from "../../../contexts/CreateContext";
 import { useEffect, useContext, useState, useRef } from "react";
 import { UserContext } from "../../../contexts/UserContext";
 
-import Main from "./Main";
+import Create from "./MainProfile";
 
-import Button from "@material-ui/core/Button";
+import Main from "./Main";
 
 // import useWidth from "../../hooks/useWidth";
 
@@ -51,44 +49,39 @@ export default function TransitionsModal(props) {
       minWidth: "100%",
       height: "65px",
     },
+    wrapper: {
+      display: "flex",
+      justifyContent: "center",
+      minHeight: 400,
+    },
   }));
 
   const classes = useStyles();
-  const Ref = useRef(0);
-  const { showCreate, setShowCreate } = useContext(ModalContext);
+
+  const { open, setOpen } = useContext(CreateContext);
   const { user } = useContext(UserContext);
 
-  const handleOpen = () => {
-    setShowCreate(true);
-  };
-
   const handleClose = () => {
-    setShowCreate(false);
+    setOpen(false);
   };
-
-  useEffect(() => {}, [showCreate]);
 
   return (
     <Dialog
       scroll="body"
       fullWidth={true}
       maxWidth="md"
-      open={showCreate}
+      open={open}
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
     >
       <DialogActions className={classes.action}>
-        <img
-          ref={Ref}
-          className={classes.icon}
-          src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
-          alt="icon"
-        />
         <IconButton className={classes.closeButton} onClick={handleClose}>
           <CloseIcon />
         </IconButton>
       </DialogActions>
-      <Main />
+      <div className={classes.wrapper}>
+        <Create />
+      </div>
     </Dialog>
   );
 }

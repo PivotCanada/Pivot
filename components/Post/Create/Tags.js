@@ -20,9 +20,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
 
     margin: 0,
+    marginTop: 5,
   },
   textField: {
-    minWidth: 200,
+    width: "100%",
+    fontFamily: "Noto Sans JP, sans serif",
   },
   innerWrapper: {
     display: "flex",
@@ -110,15 +112,16 @@ function Tags({ tags, setTags }) {
       {/* {errors.tags && <p>{errors.tags}</p>} */}
 
       <Autocomplete
-        freeSolo
-        multiple
         id="tags-standard"
         options={results}
         getOptionLabel={(option) => option.name}
-        value={tags}
         onChange={(e, newValue) => {
-          setTags(newValue);
-          console.log(newValue);
+          if (newValue) {
+            setTags((tags) => [
+              ...tags.filter((tag) => tag.name !== newValue.name),
+              newValue,
+            ]);
+          }
         }}
         renderInput={(params) => (
           <TextField
@@ -137,7 +140,7 @@ function Tags({ tags, setTags }) {
             }}
             className={classes.textField}
             variant="standard"
-            label="Tags"
+            label={"Tags"}
           />
         )}
       />

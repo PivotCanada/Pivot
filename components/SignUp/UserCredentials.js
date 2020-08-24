@@ -18,6 +18,10 @@ import { incrementForm } from "../../utils/validation/incrementForm";
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
 import zIndex from "@material-ui/core/styles/zIndex";
+//login imports
+import { validateLogin } from "../Login/utils/validateLogin";
+import { formatEmail } from "../../utils/validation/formatting";
+
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -49,20 +53,21 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     backgroundColor: "rgba(0,0,0,0.7)",
     alignItems: "center",
-    marginTop: "5%",
-    borderRadius: 10,
-    height: "90%",
-    width: "90%",
+    
+    
+    height: "100%",
+    width: "100%",
   },
   formContainerL: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "rgba(255,255,255,0.8)",
+    backgroundColor: "rgba(255,255,255,0.6)",
     alignItems: "center",
-    borderRadius: 10,
-    marginTop: "5%",
-    width: "90%",
-    height: "90%",
+    
+    
+    
+    width: "100%",
+    height: "100%",
     
   },
   containerLeft: {
@@ -112,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontFamily: "Poppins, sans-sarif",
     fontWeight: 500,
+    marginTop:"25%",
     fontSize: 50,
   },
   formHeaderL: {
@@ -119,6 +125,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     fontFamily: "Poppins, sans-sarif",
     fontWeight: 500,
+    marginTop:"25%",
     fontSize: 50,
   },
   text: {
@@ -145,7 +152,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     marginBottom: 5,
     fontSize: 11,
-    fontFamily: "Open Sans, sans-serif",
+    fontFamily: "Poppins, sans-serif",
   },
   inputHeaderL: {
     color: "black",
@@ -153,41 +160,64 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     marginBottom: 5,
     fontSize: 11,
-    fontFamily: "Open Sans, sans-serif",
+    fontFamily: "Poppins, sans-serif",
   },
   button: {
     textTransform: "none",
-    fontWeight: 700,
+    fontWeight: 400,
     fontSize: 16,
-    fontFamily: "Open Sans, sans-serif",
+    fontFamily: "Poppins, sans-serif",
     width: 275,
     marginTop: 15,
-    color: "black",
+    color: "white",
+  },
+  buttonL: {
+    textTransform: "none",
+    fontWeight: 400,
+    fontSize: 14,
+    fontFamily: "Poppins, sans-serif",
+    width: 250,
+    marginTop: 15,
+    color: "#9E00FF",
     
   },
   icon: {
     position: "fixed",
     width: "100px",
-    
+    zIndex: 5,
     marginTop: 10,
     marginLeft: 20,
     "&:hover": {
       opacity: 0.4,
       cursor: "pointer",
     },
-    border: "3px solid red"
+    
 
   },
   logo:{
     marginTop: 20,
-    border: "3px solid red"
+    
   },
-  checkbox: {
+  checkboxR: {
     fontWeight: 500,
     fontSize: 12,
-    fontFamily: "Open Sans, sans-serif",
+    fontFamily: "Poppins, sans-serif",
     margin: 0,
+    color: "white"
   },
+  checkboxL: {
+    fontWeight: 500,
+    fontSize: 12,
+    fontFamily: "Poppins, sans-serif",
+    margin: 0,
+    color: "black"
+  },
+  boxR: {
+  color: "white"
+  },
+  boxL: {
+    color: "black"
+    },
   checkboxError: {
     fontWeight: 500,
     fontSize: 12,
@@ -198,7 +228,7 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textDecoration: "none",
-    color: "blue",
+    color: "yellow",
     "&:hover": {
       opacity: 0.6,
     },
@@ -220,7 +250,7 @@ function UserCredentials({
   errors,
 }) {
   const classes = useStyles();
-  const { setUser, setAuthenticated, setToken } = useContext(UserContext);
+  const { setUser, setAuthenticated, setToken,setLoading } = useContext(UserContext);
 
   const handleSubmit = async () => {
     let valid = await handleErrors(values, validateCredentials);
@@ -228,6 +258,43 @@ function UserCredentials({
       await createUser();
     }
   };
+
+  //for login
+  const handleLogin = async () => {
+    let valid = await handleErrors(values, validateLogin);
+    if (valid) {
+      login();
+    }
+  };
+
+  const login = async () => {
+    values.email = formatEmail(values.email);
+    authenticate(values).then(async (response) => {
+      if (response.status === "success") {
+        console.log(response);
+        const user = response.data.user;
+        const token = response.data.token;
+        Cookie.set("token", token);
+        setToken(token);
+        setUser(user);
+        setAuthenticated(true);
+        setLoading(false);
+        // setError({
+        //   value: false,
+        //   message: "",
+        // });
+        Router.push("/");
+      } else {
+        setToken(null);
+        setAuthenticated(false);
+        setError({
+          value: true,
+          message: response.message,
+        });
+      }
+    });
+  };
+  //---
 
   const createUser = () => {
     const data = {
@@ -275,7 +342,7 @@ function UserCredentials({
  
   return (
 <div className = {classes.wrapper}>
-    <Link className = {classes.logo}href="/">
+<Link href="/">
             <img
               className={classes.icon}
               src="https://pivot.nyc3.digitaloceanspaces.com/Logo.svg"
@@ -288,11 +355,54 @@ function UserCredentials({
           src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2555&q=80"
         />}
       <div className={classes.containerLeft}>
-         
+      
         <div className={classes.formContainerL}>
-          
+        
+        <p className={classes.formHeaderL}>
+              Login
+          </p>
           {/* <h1 className={classes.header}>Welcome</h1> */}
-          <p className={classes.formHeaderL}>
+          
+          <div className={classes.inputElementL}>
+            <h2 className={classes.inputHeaderL}>Email</h2>
+            <TextField
+              className={classes.textField}
+              type="email"
+              name="email"
+              value={values.email}
+              variant={"outlined"}
+              size={"small"}
+              onChange={(e) => handleChange(e)}
+              error={errors.email ? true : false}
+              helperText={errors.email}
+            />
+          </div>
+          <div className={classes.inputElementL}>
+            <h2 className={classes.inputHeaderL}>Password</h2>
+            <TextField
+              className={classes.textField}
+              type="password"
+              name="password"
+              value={values.password}
+              variant={"outlined"}
+              size={"small"}
+              onChange={(e) => handleChange(e)}
+              error={errors.password ? true : false}
+              helperText={errors.password}
+            />
+          </div>
+
+          <Button
+          inputProps = {{className: classes.L}}
+            className={classes.buttonL}
+            variant={"outlined"}
+            color={"primary"}
+            onClick={handleLogin}
+          >
+            Continue My Journey
+          </Button>
+          {/* <h1 className={classes.header}>Welcome</h1> */}
+          {/* {<p className={classes.formHeaderL}>
               Login
           </p>
           <div className={classes.inputElement}>
@@ -364,7 +474,7 @@ function UserCredentials({
                 <Checkbox
                   name="consent"
                   checked={values.consent}
-                  color="primary"
+                  className = {classes.boxL}
                   onChange={() =>
                     handleDirectChange("consent", !values.consent)
                   }
@@ -372,7 +482,7 @@ function UserCredentials({
               }
             />
             {!errors.consent ? (
-              <p className={classes.checkbox}>
+              <p className={classes.checkboxL}>
                 Creating an account means you’re okay with our {""}
                 <a
                   className={classes.link}
@@ -404,7 +514,7 @@ function UserCredentials({
             
           >
             Continue
-          </Button>
+          </Button>} */}
         </div>
       </div>
 
@@ -481,7 +591,7 @@ function UserCredentials({
                 <Checkbox
                   name="consent"
                   checked={values.consent}
-                  color="primary"
+                  className = {classes.boxR}
                   onChange={() =>
                     handleDirectChange("consent", !values.consent)
                   }
@@ -489,7 +599,7 @@ function UserCredentials({
               }
             />
             {!errors.consent ? (
-              <p className={classes.checkbox}>
+              <p className={classes.checkboxR}>
                 Creating an account means you’re okay with our {""}
                 <a
                   className={classes.link}
