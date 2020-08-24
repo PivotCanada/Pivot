@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-between",
     backgroundColor: "white",
 
-    width: "80%",
+    width: "100%",
   },
   button: {
     textTransform: "none",
@@ -83,11 +83,17 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 3,
     paddingLeft: 5,
     paddingRight: 5,
-    fontSize: 12,
-    width: 80,
-    height: 30,
+    fontSize: 15,
+    width: 90,
+    height: 35,
     fontFamily: "Poppins, sans serif",
   },
+  buttonContainer: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    alignItems: "center"
+  }
 }));
 
 const Main = ({ role, context }) => {
@@ -209,7 +215,8 @@ const Main = ({ role, context }) => {
 
             <Tags tags={tags} setTags={setTags} />
             <Chips tags={tags} setTags={setTags} />
-
+            
+            <div className = {classes.buttonContainer}>
             <Button
               disabled={text.length === 0}
               variant={"outlined"}
@@ -217,10 +224,11 @@ const Main = ({ role, context }) => {
               className={classes.button}
               onClick={() => onSubmit(text)}
             >
-              Create
+              Post
             </Button>
+            </div>
           </div>
-        </div>
+          </div>
       </div>
     </div>
   );
