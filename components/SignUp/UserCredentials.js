@@ -17,6 +17,7 @@ import { authenticate } from "../../utils/authentication/authenticate";
 import { incrementForm } from "../../utils/validation/incrementForm";
 import Typography from '@material-ui/core/Typography';
 import Input from '@material-ui/core/Input';
+import zIndex from "@material-ui/core/styles/zIndex";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   innerWrapper: {
     width: "100%",
     display: "flex",
+    flexDirection: "row",
     alignItems: "center",
     borderRadius: 5,
     backgroundColor: "white",
@@ -45,34 +47,36 @@ const useStyles = makeStyles((theme) => ({
   formContainerR: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "black",
+    backgroundColor: "rgba(0,0,0,0.7)",
+    alignItems: "center",
+    marginTop: "5%",
     borderRadius: 10,
-    marginTop: 100,
-    width: 275,
+    height: "90%",
+    width: "90%",
   },
   formContainerL: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "white",
+    backgroundColor: "rgba(255,255,255,0.8)",
+    alignItems: "center",
     borderRadius: 10,
-    marginTop: 100,
-    width: 275,
+    marginTop: "5%",
+    width: "90%",
+    height: "90%",
+    
   },
   containerLeft: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "white",
-    opacity: 0.5,
     alignItems: "center",
     width: "50%",
     height: "100vh",
     zIndex: 2,
   },
+  
   containerRight: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "black",
-    opacity: 0.7,
     alignItems: "center",
     width: "50%",
     height: "100vh",
@@ -83,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100%",
     width: "100%",
     position: "fixed",
-    opacity: 0.9,
+    
     zIndex: 0,
   },
   innerContainer: {
@@ -91,6 +95,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
     width: 350,
+  
   },
   // header: {
   //   textAlign: "left",
@@ -203,7 +208,8 @@ const useStyles = makeStyles((theme) => ({
   },
   inputL:{
     color: "black"
-  }
+  },
+  
 }));
 
 function UserCredentials({
@@ -279,7 +285,7 @@ function UserCredentials({
     <form className={classes.innerWrapper}>
     { <img
           className={classes.image}
-          src="https://images.unsplash.com/photo-1567704308721-a0a4ceb9783f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80"
+          src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2555&q=80"
         />}
       <div className={classes.containerLeft}>
          
@@ -310,6 +316,7 @@ function UserCredentials({
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeaderL}>Last Name</h2>
             <TextField
+              sinputProps={{ className: classes.inputL}}
               size="small"
               name="lastname"
               className={classes.textField}
@@ -323,6 +330,7 @@ function UserCredentials({
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeaderL}>Email</h2>
             <TextField
+            inputProps={{ className: classes.inputL}}
               className={classes.textField}
               type="email"
               name="email"
@@ -338,6 +346,7 @@ function UserCredentials({
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeaderL}>Password</h2>
             <TextField
+              inputProps={{ className: classes.inputL}}
               className={classes.textField}
               type="password"
               name="password"
@@ -392,6 +401,7 @@ function UserCredentials({
             variant={"outlined"}
             color={"primary"}
             onClick={handleSubmit}
+            
           >
             Continue
           </Button>
@@ -424,6 +434,7 @@ function UserCredentials({
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeaderR}>Last Name</h2>
             <TextField
+            inputProps={{ className: classes.inputR}}
               size="small"
               name="lastname"
               className={classes.textField}
@@ -437,6 +448,7 @@ function UserCredentials({
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeaderR}>Email</h2>
             <TextField
+            inputProps={{ className: classes.inputR}}
               className={classes.textField}
               type="email"
               name="email"
@@ -451,6 +463,7 @@ function UserCredentials({
           <div className={classes.inputElement}>
             <h2 className={classes.inputHeaderR}>Password</h2>
             <TextField
+            inputProps={{ className: classes.inputR}}
               className={classes.textField}
               type="password"
               name="password"
@@ -501,6 +514,7 @@ function UserCredentials({
           </div>
 
           <Button
+            inputProps = {{className: classes.R}}
             className={classes.button}
             variant={"contained"}
             color={"primary"}

@@ -179,7 +179,7 @@ function UserCredentials({}) {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleLogin = async () => {
     let valid = await handleErrors(values, validateLogin);
     if (valid) {
       login();
@@ -247,7 +247,7 @@ function UserCredentials({}) {
             className={classes.button}
             variant={"contained"}
             color={"primary"}
-            onClick={handleSubmit}
+            onClick={handleLogin}
           >
             Continue My Journey
           </Button>
