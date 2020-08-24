@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomChip = ({ tag, handleDelete }) => {
+const CustomChip = ({tag, handleDelete }) => {
   const classes = useStyles();
   const [active, setActive] = useState(false);
 
@@ -28,7 +28,8 @@ const CustomChip = ({ tag, handleDelete }) => {
       icon={"none"}
       className={classes.chip}
       size={"small"}
-      variant={"outlined"}
+      color = {"primary"}
+      variant = {"outlined"}
       onDelete={() => handleDelete(tag)}
     />
   );

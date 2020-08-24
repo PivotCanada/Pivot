@@ -1,23 +1,36 @@
 import { createTag } from "./utils/createTag";
 import Button from "@material-ui/core/Button";
-import Chip from "@material-ui/core/Chip";
+import Chip from "../../Filter/Content/CustomChip";
+import { makeStyles } from "@material-ui/core/styles";
+
 
 // TODO: Refactor ...
 // TODO: Format the tag which will be created, etc ...
+const useStyles = makeStyles((theme) => ({
+  button: {
+    textTransform: "none", 
+    marginRight: 15,
+    height: 30,
+    width: 80,
+    fontSize: 10,
+    fontFamily: "Poppins, sans serif"
+  },
+  root: {
+    marginTop: 70,
+    display: "flex",
+    minWidth: 200,
+  }
+}));
 
 function CreateTag({ search, setTags, setSearch, setDisplayCreate }) {
+  const classes = useStyles();
   return (
     <div
-      style={{
-        marginTop: 15,
-        display: "flex",
-
-        minWidth: 200,
-      }}
+      className = {classes.root}
     >
       <Button
-        style={{ textTransform: "none", marginRight: 15 }}
-        variant={"contained"}
+        className = {classes.button}
+       variant={"contained"}
         color={"primary"}
         size={"small"}
         onClick={async () => {
@@ -29,11 +42,11 @@ function CreateTag({ search, setTags, setSearch, setDisplayCreate }) {
           });
         }}
       >
-        Create New Tag
+        Create Tag
       </Button>
       <Chip
-        label={search}
-        onDelete={() => {
+        tag = {{name: search}}
+        handleDelete={() => {
           setSearch("");
           setDisplayCreate(false);
         }}
