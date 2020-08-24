@@ -17,16 +17,17 @@ const useStyles = makeStyles(() => ({
   header: {
     fontFamily: "Poppins, sans serif",
     letterSpacing: 2,
-    fontSize: 48,
+    fontSize: 36,
   },
   subHeader: {
     fontFamily: "Poppins, sans serif",
     letterSpacing: 2,
-    fontSize: 32,
+    fontSize: 26,
+    fontWeight: 400,
   },
   text: {
     fontFamily: "Lora, serif",
-    fontSize: 26,
+    fontSize: 22,
     maxWidth: 2000,
     lineHeight: "200%",
   },
@@ -58,8 +59,7 @@ const Main = () => {
         the large-scale adoption of sustainable business practices throughout
         Canada.
       </p>
-      <h1 className={classes.header}>Objectives</h1>
-      <p className={classes.text}>Research Objectives</p>
+      <h1 className={classes.header}>Research Objectives</h1>
       <ul>
         <p className={classes.text}>
           1. What kinds of narratives lead to the highest levels of engagement
