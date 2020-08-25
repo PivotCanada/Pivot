@@ -25,10 +25,10 @@ const Main = ({ story, initialContent = "story" }) => {
     wrapper: {
       display: "flex",
       flexWrap: "wrap",
-      justifyContent: "flex-start",
+      justifyContent: "center",
       width: "100%",
       minHeight: "100%",
-      alignItems: "flex-start"
+      alignItems: "center"
     },
     innerWrapper: {
       display: "flex",
