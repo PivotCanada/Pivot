@@ -1,15 +1,22 @@
+import Link from "next/link";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Author from "./Author";
 import Image from "../../Profile/Overview/Image";
 
-const Overview = ({ author, date }) => {
+const Overview = ({ id, author, date }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       width: "100%",
       display: "flex",
       alignItems: "center",
+      textDecoration: "none",
+      color: "black",
+      "&:hover": {
+        opacity: 0.6,
+        cursor: "pointer",
+      }
     },
     date: {
       color: "#363636",
@@ -75,13 +82,15 @@ const Overview = ({ author, date }) => {
   };
 
   return (
-    <div className={classes.wrapper}>
+    <Link href={`/profiles/${id}`} >
+    <a className={classes.wrapper} >
       <Image image={author.photo} size={65} />
       <div className={classes.innerWrapper}>
         <Author author={author} />
         <p className={classes.date}>{formatDate(date)}</p>
       </div>
-    </div>
+    </a>
+    </Link>
   );
 };
 

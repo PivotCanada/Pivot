@@ -44,7 +44,7 @@ function Preview({ post, setOpenRepost }) {
   return (
     <div className={classes.content}>
       <Modal open={openEdit} setOpen={setOpenEdit} post={post} />
-      <Overview author={post.author} date={post.created_at} />
+      <Overview id = {post.author._id} author={post.author} date={post.created_at} />
       {post.link ? <MicroLink link={post.link} /> : null}
 
       <div
