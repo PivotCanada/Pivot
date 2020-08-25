@@ -24,9 +24,22 @@ const Main = ({ story, initialContent = "story" }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
+      flexWrap: "wrap",
+      justifyContent: "flex-start",
       width: "100%",
       minHeight: "100%",
-      alignItems: "left"
+      alignItems: "flex-start"
+    },
+    innerWrapper: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "flex-start",
+      width: "35%",
+      height: "12%",
+      marginLeft: 20,
+      marginTop: 30,
+      borderRadius: 5,
+      boxShadow: "0px 2px 10px 0px rgba(0,0,0,0.5)",
     },
 
     container: {
@@ -34,11 +47,41 @@ const Main = ({ story, initialContent = "story" }) => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      width: "100%",
+      width: "80%",
       height: "100%",
-      marginLeft: 400,
-      marginTop: 100,
+      marginTop: 30,
+      marginRight: 20,
+      boxShadow: "0px 2px 10px 0px rgba(0,0,0,0.5)",
+      borderRadius: 5,
     },
+    user: {
+      display: "flex",
+      flexDirection: "column",
+      width: "20%",
+      
+      marginTop: 20,
+
+    },
+    banner: {
+      position: "fixed",
+      width: "100%",
+      height: "20%",
+      backgroundColor: "#e8cc7d",
+      marginTop: 50
+    },
+    group: {
+      display: "flex",
+      width: 120,
+      height: 190, 
+      justifyContent: "space-evenly",
+      alignItems: "center",
+      marginTop: 300,
+      marginLeft: 30,
+      marginRight: 20,
+      boxShadow: "0px 2px 10px 0px rgba(0,0,0,0.5)",
+      borderRadius: 5,
+    }
+    
   }));
 
   const classes = useStyles();
@@ -82,9 +125,16 @@ const Main = ({ story, initialContent = "story" }) => {
     // console.log(story);
     return (
       <div className={classes.wrapper}>
+       
+        <div className = {classes.innerWrapper}>
         <Overview width={width} story={story} posts={posts.length} />
+        
+        </div>
+        <div className = {classes.group}>
+        <ButtonGroup  setContent={setContent} /> 
+        </div>
         <div className={classes.container}>
-          <ButtonGroup setContent={setContent} />
+        
           {/* TODO : Change if we rework Profile */}
           {sameUser(user, story) ? (
             <CreatePost fetchPosts={fetchPosts} />
@@ -97,7 +147,9 @@ const Main = ({ story, initialContent = "story" }) => {
             posts={posts}
             likes={likes}
           />
+          
         </div>
+        
       </div>
     );
   }

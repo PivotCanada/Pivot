@@ -29,7 +29,7 @@ function Main({ width, story, posts }) {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
-      position: "fixed",
+      
       flexDirection: "column",
       alignItems: "center",
       height: "100vh",
@@ -37,7 +37,7 @@ function Main({ width, story, posts }) {
       left: 0,
 
       marginLeft: 0,
-      backgroundColor: "white",
+      
       width: 300,
       paddingTop: 30,
     },
@@ -73,7 +73,10 @@ function Main({ width, story, posts }) {
         {/* <Modal /> */}
         <Image image={profile.photo} size={70} />
         {/* <Activity profile={profile} posts={posts} /> */}
-        <Follow profile={profile} />
+        
+          <Follow profile={profile} />
+        
+        
         <Details profile={profile} />
         <Location profile={profile} />
 
