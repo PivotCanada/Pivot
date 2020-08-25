@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
     flexDirection: "column",
-    width: "100%",
+    width: "70%",
     minHeight: "100vh",
   },
 
