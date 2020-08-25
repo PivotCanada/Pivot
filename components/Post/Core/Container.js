@@ -11,7 +11,7 @@ const Main = ({ display = true, callback, data, profile }) => {
       flexDirection: "column",
       alignItems: "center",
       width: "50vw",
-      marginTop: profile ? 200 : 200,
+      marginTop: profile ? 0 : 200,
       marginBottom: 75,
     },
   }));

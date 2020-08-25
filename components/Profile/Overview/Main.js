@@ -31,15 +31,15 @@ function Main({ width, story, posts }) {
       display: "flex",
       
       flexDirection: "column",
-      alignItems: "center",
-      height: "100vh",
+      alignItems: "flex-start",
+      height: "30vh",
       margin: 0,
       left: 0,
 
-      marginLeft: 0,
+      marginLeft: 20,
       
       width: 300,
-      paddingTop: 30,
+      marginTop: 20,
     },
     link: {
       width: 210,
