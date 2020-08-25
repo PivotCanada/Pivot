@@ -1,7 +1,7 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 
-const Location = ({ profile, small }) => {
+const Industry = ({ profile, small }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
@@ -16,12 +16,12 @@ const Location = ({ profile, small }) => {
       // marginBottom: small ? 10 : 15,
     },
 
-    location: {
-      color: "rgba(255,255,255,0.5)",
+    industry: {
+      color: "rgba(255,255,255,0.7)",
       textAlign: small ? "center" : "left",
       fontFamily: "Poppins, sans-serif",
-      fontWeight: small ? 400 : 400,
-      fontSize: small ? 11 : 12,
+      fontWeight: small ? 400 : 500,
+      fontSize: small ? 11 : 13,
       width: "100%",
       margin: 0,
     },
@@ -31,11 +31,11 @@ const Location = ({ profile, small }) => {
 
   return (
     <div className={classes.wrapper}>
-      <h2 className={classes.location}>{profile.location}</h2>
+      <h2 className={classes.industry}>{profile.industry}</h2>
       
 
     </div>
   );
 };
 
-export default Location;
+export default Industry;

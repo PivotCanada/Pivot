@@ -7,25 +7,26 @@ const Details = ({ profile, small }) => {
       display: "flex",
       flexDirection: "column",
       justifyContent: small ? "center" : "start",
-      width: small ? 55 : 215,
+      width: small ? 55 : 400,
 
       padding: 0,
       margin: 0,
 
-      marginTop: 2.5,
+      
+      borderRadius: 5,
       // marginBottom: small ? 10 : 15,
     },
 
     description: {
-      color: "black",
+      color: "white",
       textAlign: small ? "center" : "left",
-      fontFamily: "Noto Sans, sans-serif",
+      fontFamily: "Lora, sans-serif",
       fontWeight: small ? 400 : 400,
-      fontSize: small ? 11 : 12,
-      width: "90%",
+      fontSize: small ? 11 : 14,
+      width: "100%",
       margin: 0,
-      padding: 0,
-      marginTop: 20,
+      
+      
     },
   }));
 

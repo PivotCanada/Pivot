@@ -12,15 +12,15 @@ const Details = ({ profile, small }) => {
       padding: 0,
       margin: 0,
 
-      marginTop: small ? 10 : 20,
+      
 
       // marginBottom: small ? 10 : 15,
     },
 
     name: {
-      color: "black",
+      color: "white",
       textAlign: small ? "center" : "left",
-      fontFamily: "Noto Sans, sans-serif",
+      fontFamily: "Poppins, sans-serif",
       fontWeight: small ? 400 : 700,
       fontSize: small ? 11 : 13,
       width: "100%",

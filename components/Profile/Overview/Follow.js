@@ -30,9 +30,12 @@ const Follow = ({ profile }) => {
           fontFamily: "Noto Sans, sans-serif",
           fontWeight: 700,
           borderRadius: 2,
+          marginRight: 20
+          
         }}
         onClick={() => onFollow(user, profile)}
         type="button"
+        
       >
         {followed ? "UnFollow" : "Follow"}
       </Button>

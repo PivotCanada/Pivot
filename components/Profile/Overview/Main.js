@@ -17,6 +17,7 @@ import Image from "./Image";
 import Chips from "./Chips";
 import Details from "./Details";
 import Location from "./Location";
+import Industry from "./Industry";
 import Description from "./Description";
 import Modal from "./Modal";
 //Contexts
@@ -24,22 +25,23 @@ import { UserContext } from "../../../contexts/UserContext";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
 import { Button } from "@material-ui/core";
+import {sameUser} from "../utils/sameUser";
 
 function Main({ width, story, posts }) {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
-      
-      flexDirection: "column",
-      alignItems: "flex-start",
-      height: "30vh",
-      margin: 0,
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      alignContent: "center",
+      height: "20vh",
       left: 0,
-
+      width: 600,
       marginLeft: 20,
       
-      width: 300,
-      marginTop: 20,
+      
     },
     link: {
       width: 210,
@@ -53,6 +55,20 @@ function Main({ width, story, posts }) {
         cursor: "pointer",
       },
     },
+    info: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      width: "100%",
+      width: 210,
+      padding: 0,
+      marginTop: 0,
+      marginLeft: 10,
+
+      
+    },
+    
   }));
 
   const classes = useStyles();
@@ -71,16 +87,17 @@ function Main({ width, story, posts }) {
     return (
       <div className={classes.wrapper}>
         {/* <Modal /> */}
-        <Image image={profile.photo} size={70} />
+        <Image image={profile.photo} size={150} />
         {/* <Activity profile={profile} posts={posts} /> */}
+          
         
-          <Follow profile={profile} />
+        <div className = {classes.info}>
+          <Details profile={profile} />
+          <Industry profile = {profile}/>
+          <Location profile={profile} />
+          <Description />
+        </div>
         
-        
-        <Details profile={profile} />
-        <Location profile={profile} />
-
-        <Description />
         {/* <Link href={`/profiles/${profile._id}`}>
           <h2 className={classes.link}>Journey</h2>
         </Link>

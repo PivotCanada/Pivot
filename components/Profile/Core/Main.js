@@ -6,6 +6,8 @@ import ButtonGroup from "../Content/ButtonGroup";
 import CreatePost from "../../Post/Create/MainProfile";
 import Overview from "../Overview/Main";
 import Content from "../Content/Main";
+import Follow from "../Overview/Follow";
+
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -24,8 +26,8 @@ const Main = ({ story, initialContent = "story" }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-start",
+      flexDirection: "column",
+      justifyContent: "center",
       width: "100%",
       minHeight: "100%",
       alignItems: "top",
@@ -34,14 +36,15 @@ const Main = ({ story, initialContent = "story" }) => {
     innerWrapper: {
       
       display: "flex",
-      flexDirection: "column",
+      flexDirection: "row",
       alignItems: "flex-start",
-      width: "20%",
+      alignContent: "space-between",
+      width: "100%",
       height: "100%",
-      marginLeft: 20,
-      borderRight: "1px solid rgba(157, 0, 255,0.5)",
-
+      backgroundColor: "rgba(0,0,0,0.8)" ,
+      justifyContent: "space-between"
       
+
     },
 
     container: {
@@ -50,7 +53,7 @@ const Main = ({ story, initialContent = "story" }) => {
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
-      width: "70%",
+      width: "100%",
       height: "100%",
       
       
@@ -77,13 +80,23 @@ const Main = ({ story, initialContent = "story" }) => {
       
       
       borderRadius: 5,
-    }
+    },
+    image: {
+      height: "100%",
+      
+      background:   "url(`https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2555&q=80`)",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    
+  },
+  
     
   }));
 
   const classes = useStyles();
   const { user } = useContext(UserContext);
   const { setIds } = useContext(ModalContext);
+  const [profile, setProfile] = useState({});
 
   // TODO : Put this in Context ?
 
@@ -118,14 +131,26 @@ const Main = ({ story, initialContent = "story" }) => {
     fetchLikes();
   }, [story]);
 
+  useEffect(() => {
+    if (story) {
+      setProfile(story);
+    } else {
+      setProfile(user);
+    }
+  }, [user, story]);
+
   if (story) {
     // console.log(story);
     return (
       <div className={classes.wrapper}>
        <div className = {classes.banner}/>
         <div className = {classes.innerWrapper}>
-        <Overview width={width} story={story} posts={posts.length} />
-</div>
+          
+          <Overview width={width} story={story} posts={posts.length} />
+          <div className = {classes.button}>
+          {!sameUser(user,profile) ? <Follow profile={profile}/> : null}
+          </div>
+        </div>
         
         <div className={classes.container}>
         <div className = {classes.group}>
