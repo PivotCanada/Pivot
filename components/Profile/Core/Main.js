@@ -24,20 +24,12 @@ const Main = ({ story, initialContent = "story" }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
       display: "flex",
-<<<<<<< HEAD
-      flexWrap: "wrap",
-      justifyContent: "center",
-      width: "100%",
-      minHeight: "100%",
-      alignItems: "center"
-=======
       flexDirection: "row",
       justifyContent: "flex-start",
       width: "100%",
       minHeight: "100%",
       alignItems: "top",
       marginTop: 30,
->>>>>>> profile
     },
     innerWrapper: {
       
@@ -73,13 +65,7 @@ const Main = ({ story, initialContent = "story" }) => {
       marginTop: 20,
 
     },
-    banner: {
-      position: "fixed",
-      width: "100%",
-      height: "20%",
-      backgroundColor: "#e8cc7d",
-      marginTop: 50
-    },
+   
     group: {
       position: "static",
       display: "flex",
