@@ -122,7 +122,7 @@ const Main = ({ story, initialContent = "story" }) => {
     // console.log(story);
     return (
       <div className={classes.wrapper}>
-       
+       <div className = {classes.banner}/>
         <div className = {classes.innerWrapper}>
         <Overview width={width} story={story} posts={posts.length} />
 </div>
