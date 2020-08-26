@@ -29,14 +29,18 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Main = ({ setPosts }) => {
+const Main = ({ setContent, setPosts, setProfiles }) => {
   const classes = useStyles();
 
   const { user } = useContext(UserContext);
 
   return (
     <div className={classes.root}>
-      <Content setPosts={setPosts} />
+      <Content
+        setContent={setContent}
+        setPosts={setPosts}
+        setProfiles={setProfiles}
+      />
     </div>
   );
 };

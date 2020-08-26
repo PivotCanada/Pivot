@@ -8,12 +8,14 @@ import Profiles from "../../Profile/Core/Container";
 import Create from "../../Post/Create/MainProfile";
 import Chips from "../Content/Chips";
 import Tags from "../Content/Tags";
+import ButtonGroup from "./ButtonGroup";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 // Hooks
 import useLanguage from "../../../hooks/useLanguage";
 // Utils
 import { searchPosts } from "../utils/searchPosts";
+import { searchUsers } from "../utils/searchUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Main = ({ setPosts }) => {
+const Main = ({ setPosts, setProfiles, setContent }) => {
   const classes = useStyles();
   const [tags, setTags] = useState([
     { name: "Toronto" },
@@ -59,12 +61,24 @@ const Main = ({ setPosts }) => {
     });
   };
 
+  const filterProfile = async () => {
+    await searchUsers({
+      tags: activeTags,
+    }).then((response) => {
+      console.log(response);
+      setProfiles(response.data);
+    });
+  };
+
   useEffect(() => {
+    //  why u call both these at once :(
+    filterProfile();
     func();
   }, [activeTags]);
 
   return (
     <div className={classes.wrapper}>
+      <ButtonGroup setContent={setContent} />
       <Chips
         tags={tags}
         setTags={setTags}

@@ -97,25 +97,30 @@ const Main = () => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(profiles);
+  }, [profiles]);
+
   return (
     <div className={classes.root}>
       {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
       <Modal />
       <CreateModal />
-      <Filter setPosts={setPosts} />
+
+      <Filter
+        setContent={setContent}
+        setPosts={setPosts}
+        setProfiles={setProfiles}
+      />
       <div className={classes.innerWrapper}>
         {/* <Search
           displaySearch={displaySearch}
           setDisplay={setDisplay}
           display={display}
         /> */}
-        {/* <ButtonGroup
-          setDisplaySearch={setDisplaySearch}
-          display={display}
-          setContent={setContent}
-        /> */}
 
         <Content content={content} profiles={profiles} posts={posts} />
+        <ButtonGroup setContent={setContent} />
       </div>
 
       <FloatingActionButton />

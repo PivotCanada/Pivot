@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: "100%",
     marginLeft: -9,
-    marginTop: 20,
+    marginTop: 10,
     minHeight: 35,
   },
 }));
@@ -24,22 +24,13 @@ const Chips = ({ tags, setTags, setActiveTags, activeTags }) => {
 
   const handleDelete = (tag) => {
     setTags((tags) => [...tags.filter((x) => x.name !== tag.name)]);
-    setActiveTags((activeTags) => [
-      ...activeTags.filter((x) => x.name !== tag.name),
-    ]);
   };
 
   return (
     <div className={classes.wrapper}>
       {tags.map((tag) => {
         return (
-          <Chip
-            activeTags={activeTags}
-            setActiveTags={setActiveTags}
-            tag={tag}
-            handleDelete={handleDelete}
-            variant={"outlined"}
-          />
+          <Chip tag={tag} handleDelete={handleDelete} variant={"outlined"} />
         );
       })}
     </div>
