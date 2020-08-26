@@ -14,6 +14,7 @@ import { UserContext } from "../../../contexts/UserContext";
 import useLanguage from "../../../hooks/useLanguage";
 // Utils
 import { searchPosts } from "../utils/searchPosts";
+import { searchUsers } from "../utils/searchUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
 
 const useStyles = makeStyles((theme) => ({
@@ -60,16 +61,16 @@ const Main = ({ setPosts, setProfiles }) => {
   };
 
   const filterProfile = async () => {
-    await searchPosts({
+    await searchUsers({
       tags: activeTags,
     }).then((response) => {
       console.log(response);
-      setPosts(response.data);
+      setProfiles(response.data);
     });
   };
 
   useEffect(() => {
-    func();
+    filterProfile();
   }, [activeTags]);
 
   return (

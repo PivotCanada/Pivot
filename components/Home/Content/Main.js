@@ -64,12 +64,7 @@ const Main = ({ content, display, profiles, posts }) => {
     case "stories":
       return (
         <div className={classes.wrapper}>
-          <p
-            className={classes.text}
-            style={{ display: display ? "block" : "none" }}
-          >
-            {keys.stories}
-          </p>
+          {/* <p className={classes.text}>{keys.stories}</p> */}
           <Profiles display={display} data={profiles} />
         </div>
       );

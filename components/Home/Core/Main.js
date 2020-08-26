@@ -44,7 +44,7 @@ const Main = () => {
   const [displaySearch, setDisplaySearch] = useState(true);
   // Get rid of this
   const [open, setOpen] = useState(false);
-  const [content, setContent] = useState("posts");
+  const [content, setContent] = useState("stories");
   const [profiles, setProfiles] = useState([]);
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
@@ -95,6 +95,10 @@ const Main = () => {
       }
     });
   }, []);
+
+  useEffect(() => {
+    console.log(profiles);
+  }, [profiles]);
 
   return (
     <div className={classes.root}>

@@ -79,7 +79,7 @@ const Overview = ({ author, date }) => {
       <Image image={author.photo} size={65} />
       <div className={classes.innerWrapper}>
         <Author author={author} />
-        <p className={classes.date}>{formatDate(date)}</p>
+        {/* <p className={classes.date}>{formatDate(date)}</p> */}
       </div>
     </div>
   );

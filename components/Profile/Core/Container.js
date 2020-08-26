@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Card from "./Card";
+import Overview from "../../Post/Content/Overview";
 // Context
 import { UserContext } from "../../../contexts/UserContext";
 
@@ -41,24 +42,16 @@ const Container = ({ display, callback, data }) => {
     }
   }, [data]);
 
-  if (display) {
-    return (
-      <div className={classes.wrapper}>
-        {profiles.map((user) => {
-          return (
-            <Card
-              data={profiles}
-              display={display}
-              key={user._id}
-              story={user}
-            />
-          );
-        })}
-      </div>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <div className={classes.wrapper}>
+      {profiles.map((user) => {
+        return (
+          // <Card data={profiles} display={display} key={user._id} story={user} />
+          <Overview author={user} />
+        );
+      })}
+    </div>
+  );
 };
 
 export default Container;
