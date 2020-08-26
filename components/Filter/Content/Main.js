@@ -59,6 +59,15 @@ const Main = ({ setPosts, setProfiles }) => {
     });
   };
 
+  const filterProfile = async () => {
+    await searchPosts({
+      tags: activeTags,
+    }).then((response) => {
+      console.log(response);
+      setPosts(response.data);
+    });
+  };
+
   useEffect(() => {
     func();
   }, [activeTags]);
