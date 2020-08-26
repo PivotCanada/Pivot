@@ -23,6 +23,8 @@ const Details = ({ profile, small }) => {
       fontFamily: "Lora, sans-serif",
       fontWeight: small ? 400 : 400,
       fontSize: small ? 11 : 14,
+      lineHeight: 1,
+      letterSpacing: 1.5,
       width: "100%",
       margin: 0,
       

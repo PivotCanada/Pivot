@@ -19,6 +19,7 @@ const Details = ({ profile, small }) => {
 
     name: {
       color: "white",
+      letterSpacing: 1.5,
       textAlign: small ? "center" : "left",
       fontFamily: "Poppins, sans-serif",
       fontWeight: small ? 400 : 700,

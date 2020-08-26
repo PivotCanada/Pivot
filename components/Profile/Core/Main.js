@@ -89,7 +89,9 @@ const Main = ({ story, initialContent = "story" }) => {
       backgroundPosition: "center",
     
   },
-  
+  button:{
+
+  }
     
   }));
 
@@ -171,6 +173,9 @@ const Main = ({ story, initialContent = "story" }) => {
         
       </div>
     );
+  }
+  else {
+    return null
   }
 };
 

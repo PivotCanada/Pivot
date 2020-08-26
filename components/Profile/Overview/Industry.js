@@ -18,6 +18,7 @@ const Industry = ({ profile, small }) => {
 
     industry: {
       color: "rgba(255,255,255,0.7)",
+      letterSpacing: 1.5,
       textAlign: small ? "center" : "left",
       fontFamily: "Poppins, sans-serif",
       fontWeight: small ? 400 : 500,

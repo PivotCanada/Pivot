@@ -18,6 +18,7 @@ const Location = ({ profile, small }) => {
 
     location: {
       color: "rgba(255,255,255,0.5)",
+      letterSpacing: 1.5,
       textAlign: small ? "center" : "left",
       fontFamily: "Poppins, sans-serif",
       fontWeight: small ? 400 : 400,
