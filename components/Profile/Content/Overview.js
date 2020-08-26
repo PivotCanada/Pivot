@@ -1,19 +1,29 @@
+import Link from "next/link";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
 import Author from "./Author";
-import Image from "../../Profile/Overview/Image";
+import Image from "../Overview/Image";
 
 const Overview = ({ author, date }) => {
   const useStyles = makeStyles((theme) => ({
     wrapper: {
+      padding: 10,
       width: "100%",
       display: "flex",
-      alignItems: "center",
-    },
-    date: {
-      color: "#363636",
 
+      marginBottom: 20,
+      textDecoration: "none",
+      color: "black",
+      "&:hover": {
+        opacity: 0.6,
+        cursor: "pointer",
+      },
+
+      borderRadius: 2,
+    },
+    description: {
+      color: "#363636",
       fontFamily: "Noto Sans JP, sans-serif",
       fontWeight: 300,
       letterSpacing: "1.5%",
@@ -29,8 +39,8 @@ const Overview = ({ author, date }) => {
       margin: 0,
       marginLeft: 20,
       justifyContent: "center",
-
-      height: 70,
+      width: "85%",
+      minHeight: 80,
     },
   }));
 
@@ -74,14 +84,26 @@ const Overview = ({ author, date }) => {
     return day + ", " + month + " " + day_of_month + ", " + year;
   };
 
+  let text =
+    "Professor Animesh joined the Faculty of Management in 2007. He received his doctorate in Information Systems from R. H. Smith School of Business, University of Maryland and holds an Masters in Information Systems Management from Carnegie Mellon University. He has a Bachelors in Business Studies from Delhi University.";
+
+  const format = (text, bound, length) => {
+    if (text.length > bound) {
+      let list = text.split(" ");
+      return list.slice(0, length).join(" ") + " ...";
+    }
+  };
+
   return (
-    <div className={classes.wrapper}>
-      <Image image={author.photo} size={65} />
-      <div className={classes.innerWrapper}>
-        <Author author={author} />
-        <p className={classes.date}>{formatDate(date)}</p>
-      </div>
-    </div>
+    <Link href={`/profiles/${author._id}`}>
+      <a className={classes.wrapper} href={`/profiles/${author._id}`}>
+        <Image image={author.photo} size={90} />
+        <div className={classes.innerWrapper}>
+          <Author author={author} />
+          <p className={classes.description}>{format(text, 50, 34)}</p>
+        </div>
+      </a>
+    </Link>
   );
 };
 

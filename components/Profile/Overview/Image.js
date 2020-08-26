@@ -20,7 +20,6 @@ function Image({ image, size, right = 0 }) {
       minWidth: "100%",
       minHeight: "100%",
       objectFit: "cover",
-      
     },
   }));
   const classes = useStyles();
