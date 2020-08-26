@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Main = ({ setPosts }) => {
+const Main = ({ setPosts, setProfiles }) => {
   const classes = useStyles();
   const [tags, setTags] = useState([
     { name: "Toronto" },

@@ -101,7 +101,7 @@ const Main = () => {
       {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
       <Modal />
       <CreateModal />
-      <Filter setPosts={setPosts} />
+      <Filter setPosts={setPosts} setProfiles={setProfiles} />
       <div className={classes.innerWrapper}>
         {/* <Search
           displaySearch={displaySearch}

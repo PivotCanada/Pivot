@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // Utils
 
+import { motion } from "framer-motion";
+
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
@@ -38,13 +40,25 @@ const Main = () => {
 
   return (
     <div className={classes.root}>
-      <h1 className={classes.header}>What is Pivot?</h1>
-      <p className={classes.text}>
-        PIVOT is an action-research project conceived by researchers from McGill
-        University (McGill) and the National Film Board of Canada (NFB). It
-        amplifies the voices of small business owners across Canada as they
-        transition to the low-carbon economy.
-      </p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: "easeOut", duration: 4 }}
+      >
+        <h1 className={classes.header}>What is Pivot?</h1>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ ease: "easeOut", duration: 4.8 }}
+      >
+        <p className={classes.text}>
+          PIVOT is an action-research project conceived by researchers from
+          McGill University (McGill) and the National Film Board of Canada
+          (NFB). It amplifies the voices of small business owners across Canada
+          as they transition to the low-carbon economy.
+        </p>
+      </motion.div>
       <p className={classes.text}>
         PIVOT harnesses the power of stories to document—online and in
         real-time—the growing movement of SMEs (small- and medium-size
