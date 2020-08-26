@@ -85,7 +85,7 @@ const Overview = ({ author, date }) => {
   };
 
   let text =
-    "Professor Animesh joined the Faculty of Management in 2007. He received his doctorate in Information Systems from R. H. Smith School of Business, University of Maryland and holds an Masters in Information Systems Management from Carnegie Mellon University. He has a Bachelors in Business Studies from Delhi University.";
+    "Professor Porter joined the Faculty of Management in 2007. He received his doctorate in Information Systems from R. H. Smith School of Business, University of Maryland and holds an Masters in Information Systems Management from Carnegie Mellon University. He has a Bachelors in Business Studies from Delhi University.";
 
   const format = (text, bound, length) => {
     if (text.length > bound) {

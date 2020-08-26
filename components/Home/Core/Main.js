@@ -44,7 +44,7 @@ const Main = () => {
   const [displaySearch, setDisplaySearch] = useState(true);
   // Get rid of this
   const [open, setOpen] = useState(false);
-  const [content, setContent] = useState("stories");
+  const [content, setContent] = useState("posts");
   const [profiles, setProfiles] = useState([]);
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
@@ -105,20 +105,21 @@ const Main = () => {
       {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
       <Modal />
       <CreateModal />
-      <Filter setPosts={setPosts} setProfiles={setProfiles} />
+
+      <Filter
+        setContent={setContent}
+        setPosts={setPosts}
+        setProfiles={setProfiles}
+      />
       <div className={classes.innerWrapper}>
         {/* <Search
           displaySearch={displaySearch}
           setDisplay={setDisplay}
           display={display}
         /> */}
-        {/* <ButtonGroup
-          setDisplaySearch={setDisplaySearch}
-          display={display}
-          setContent={setContent}
-        /> */}
 
         <Content content={content} profiles={profiles} posts={posts} />
+        <ButtonGroup setContent={setContent} />
       </div>
 
       <FloatingActionButton />
