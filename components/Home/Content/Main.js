@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Posts from "../../Post/Core/Container";
 import Profiles from "../../Profile/Core/Container";
 import Create from "../../Post/Create/MainProfile";
+import Container from "../../Profile/Core/Grid";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 // Hooks
@@ -65,7 +66,7 @@ const Main = ({ content, display, profiles, posts }) => {
       return (
         <div className={classes.wrapper}>
           {/* <p className={classes.text}>{keys.stories}</p> */}
-          <Profiles display={display} data={profiles} />
+          <Container display={display} data={profiles} />
         </div>
       );
     default:

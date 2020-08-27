@@ -38,7 +38,7 @@ function Main({ width, story, posts }) {
       alignContent: "center",
       height: "20vh",
       left: 0,
-      width: 600,
+      maxWidth: 600,
       marginLeft: 20,
       
       
