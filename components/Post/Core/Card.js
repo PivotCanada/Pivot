@@ -130,7 +130,7 @@ const Card = ({ post, displayLink = true }) => {
             <LinkedinShareButton url = {window.location.href} title = {"Pivot post"}>
               <LinkedInIcon logoFillColor = "white" fontSize = "large" />
             </LinkedinShareButton>
-            <TwitterShareButton url = {window.location.href} title = {"Pivot post"}>
+            <TwitterShareButton url = {`https://pivot-landing.dalyanparker.vercel.app/ `} title = {"Pivot post"}>
               <TwitterIcon/>
             </TwitterShareButton>
             </div>
