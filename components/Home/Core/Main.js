@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   innerWrapper: {
     display: "flex",
     flexDirection: "column",
-    width: 1000,
+    width: "100%",
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 10,

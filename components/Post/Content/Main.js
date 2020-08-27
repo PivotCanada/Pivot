@@ -13,6 +13,29 @@ import Title from "./Title";
 import MicroLink from "./MicroLink";
 import Modal from "../Edit/Modal";
 
+//sharing
+//sharing
+import {
+  EmailShareButton,
+  FacebookShareButton,
+  InstapaperShareButton,
+  LineShareButton,
+  LinkedinShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  OKShareButton,
+  PinterestShareButton,
+  PocketShareButton,
+  RedditShareButton,
+  TelegramShareButton,
+  TumblrShareButton,
+  TwitterShareButton,
+  ViberShareButton,
+  VKShareButton,
+  WhatsappShareButton,
+  WorkplaceShareButton
+} from "react-share";
+
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 
@@ -64,6 +87,7 @@ function Preview({ post, setOpenRepost }) {
         setOpen={setOpenEdit}
         setOpenRepost={setOpenRepost}
       />
+      
     </div>
   );
 }
