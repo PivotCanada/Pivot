@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const isChild = (role) => {
+  return role === "child";
+};
+
 function Preview({ post, setOpenRepost }) {
   const classes = useStyles();
   const { open = false, setOpen, setId } = useContext(ModalContext);
@@ -64,11 +68,11 @@ function Preview({ post, setOpenRepost }) {
       </div>
       
 
-      <Actions
+      {!isChild(post.role) ? <Actions
         post={post}
         setOpen={setOpenEdit}
         setOpenRepost={setOpenRepost}
-      />
+      /> : null }
       
      
     </div>

@@ -106,7 +106,6 @@ const Main = ({ post, setOpen, setOpenRepost }) => {
         </Fab>
       )}
       <Share post = {post}/>
-
     </div>
   );
 };

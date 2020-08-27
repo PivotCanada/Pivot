@@ -37,6 +37,7 @@ const Main = ({ display = true, callback, data, profile }) => {
     return (
       <div className={classes.root}>
         {posts.map((post) => {
+          console.log(post);
           return <Card key={post._id} post={post} />;
         })}
       </div>
