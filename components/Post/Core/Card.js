@@ -10,31 +10,6 @@ import Content from "../Content/Main";
 import { fetchPost } from "../utils/fetchPost";
 import Microlink from "@microlink/react";
 
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  InstapaperShareButton,
-  LineShareButton,
-  LinkedinShareButton,
-  LivejournalShareButton,
-  MailruShareButton,
-  OKShareButton,
-  PinterestShareButton,
-  PocketShareButton,
-  RedditShareButton,
-  TelegramShareButton,
-  TumblrShareButton,
-  TwitterShareButton,
-  ViberShareButton,
-  VKShareButton,
-  WhatsappShareButton,
-  WorkplaceShareButton
-} from "react-share";
-
-import FacebookIcon from '@material-ui/icons/Facebook';
-import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import TwitterIcon from '@material-ui/icons/Twitter';
-
 const Card = ({ post, displayLink = true }) => {
   const useStyles = makeStyles(() => ({
     card: {
@@ -124,15 +99,6 @@ const Card = ({ post, displayLink = true }) => {
             <div className={classes.wrapper}>
               {/* <Image image={post.author.photo} size={55} /> */}
               <Content post={post} setOpen={setOpen} />
-              <FacebookShareButton url = {window.location.href} title = {"Pivot post"}>
-                <FacebookIcon logoFillColor="white" fontSize = "large"/>
-              </FacebookShareButton>
-            <LinkedinShareButton url = {window.location.href} title = {"Pivot post"}>
-              <LinkedInIcon logoFillColor = "white" fontSize = "large" />
-            </LinkedinShareButton>
-            <TwitterShareButton url = {window.location.href} title = {"Pivot post"}>
-              <TwitterIcon/>
-            </TwitterShareButton>
             </div>
           </div>
         );
