@@ -1,4 +1,4 @@
-export const createTag = async (name) => {
+export const createTag = async (name, type = "") => {
   const res = await fetch(`https://pivotinfo.herokuapp.com/api/tags/create`, {
     method: "POST",
     mode: "cors", // no-cors, *cors, same-origin,
