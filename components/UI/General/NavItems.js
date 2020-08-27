@@ -68,6 +68,9 @@ const NavItems = ({ setOpen }) => {
       color: "black",
       marginTop: 2,
     },
+    icon: {
+      color: "white"
+    }
   }));
 
   const classes = useStyles();
@@ -90,6 +93,7 @@ const NavItems = ({ setOpen }) => {
       english: "Sign up",
       french: "Continue Mon Voyage",
     },
+    
   });
 
   useEffect(() => {
@@ -119,10 +123,10 @@ const NavItems = ({ setOpen }) => {
             onClick={() => setOpen(true)}
             edge="start"
             className={classes.menuButton}
-            color="inherit"
+            
             aria-label="menu"
           >
-            <MenuIcon />
+            <MenuIcon className = {classes.icon}/>
           </IconButton>
         ) : (
           <Link href={"/signup"}>

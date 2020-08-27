@@ -3,6 +3,7 @@ import React from "react";
 import List from "./List";
 // Material UI
 import Drawer from "@material-ui/core/Drawer";
+import Menu from '@material-ui/core/Menu';
 
 const SideDrawer = ({ open, setOpen, anchor }) => {
   const toggleDrawer = (value) => (event) => {
@@ -19,9 +20,17 @@ const SideDrawer = ({ open, setOpen, anchor }) => {
   return (
     <div>
       <React.Fragment key={anchor}>
-        <Drawer anchor={anchor} open={open} onClose={toggleDrawer(false)}>
+        <Menu anchor={anchor}  anchorOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'left',
+    }}
+    open={open} onClose={toggleDrawer(false)}>
           <List anchor={anchor} toggleDrawer={toggleDrawer} />
-        </Drawer>
+        </Menu>
       </React.Fragment>
     </div>
   );
