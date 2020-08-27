@@ -81,7 +81,7 @@ export default function TransitionsModal(props) {
       scroll="body"
       fullWidth={true}
       maxWidth={"sm"}
-      open={onboard}
+      open={true}
       onClose={handleClose}
       aria-labelledby="responsive-dialog-title"
     >
