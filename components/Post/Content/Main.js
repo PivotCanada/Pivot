@@ -13,30 +13,7 @@ import Title from "./Title";
 import MicroLink from "./MicroLink";
 import Modal from "../Edit/Modal";
 
-//social
-import {
-  EmailShareButton,
-  FacebookShareButton,
-  InstapaperShareButton,
-  LineShareButton,
-  LinkedinShareButton,
-  LivejournalShareButton,
-  MailruShareButton,
-  OKShareButton,
-  PinterestShareButton,
-  PocketShareButton,
-  RedditShareButton,
-  TelegramShareButton,
-  TumblrShareButton,
-  TwitterShareButton,
-  ViberShareButton,
-  VKShareButton,
-  WhatsappShareButton,
-  WorkplaceShareButton
-} from "react-share";
 
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
 
 
 // Contexts
@@ -85,12 +62,7 @@ function Preview({ post, setOpenRepost }) {
         {/* <Title title={"Rebounce in Employment 2020"} /> */}
         <Primary text={post.text} />
       </div>
-      <FacebookShareButton url = {"https://pivot-landing.dalyanparker.vercel.app" + "/posts/" + post._id}>
-          <FacebookIcon/>
-      </FacebookShareButton>
-      <TwitterShareButton url = {"https://pivot-landing.dalyanparker.vercel.app" + "/posts/" + post._id}>
-          <TwitterIcon/>
-      </TwitterShareButton>
+      
 
       <Actions
         post={post}
