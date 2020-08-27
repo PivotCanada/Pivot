@@ -20,7 +20,7 @@ const SideDrawer = ({ open, setOpen, anchor }) => {
   return (
     <div>
       <React.Fragment key={anchor}>
-        <Menu anchor={anchor}  anchorOrigin={{
+        <Menu style = {{marginTop: 15}}anchor={anchor}  anchorOrigin={{
       vertical: 'top',
       horizontal: 'right',
     }}
