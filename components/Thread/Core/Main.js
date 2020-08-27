@@ -14,7 +14,7 @@ import { fetchPost } from "../utils/fetchPost";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
 
-const Main = () => {
+const Main = ({postId = null}) => {
   // TODO : Rework if changing Profile page ...
 
   const { width, setWidth } = useWidth();
@@ -41,7 +41,7 @@ const Main = () => {
 
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  const { id } = useContext(ModalContext);
+  const { id, setId } = useContext(ModalContext);
   const [children, setChildren] = useState([]);
   const [post, setPost] = useState({});
 
@@ -53,7 +53,7 @@ const Main = () => {
   //   });
   // };
 
-  const initializeData = async () => {
+  const initializeData = async (id) => {
     await fetchPost(id).then(async (response) => {
       console.log(response);
       setPost(response.data);
@@ -64,9 +64,11 @@ const Main = () => {
   };
 
   useEffect(() => {
-    initializeData();
+   initializeData( postId ? postId : id)
     // setWidth(window.innerWidth);
-  }, [id]);
+
+    console.log(postId)
+  }, [id, postId]);
 
   // useEffect(() => {
   //   setContent("story");

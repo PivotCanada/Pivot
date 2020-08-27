@@ -3,6 +3,7 @@ import Head from "next/head";
 // Components
 import Page from "../../components/UI/General/Page";
 import Main from "../../components/Thread/Core/Main";
+
 // Contexts
 
 const Post = ({ post }) => {
@@ -32,7 +33,7 @@ const Post = ({ post }) => {
           />
         </Head>
 
-        <Main post={post} />
+        <Main postId = {post._id}/>
       </div>
     </Page>
   );
