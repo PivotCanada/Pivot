@@ -99,6 +99,8 @@ const Card = ({ post, displayLink = true }) => {
             <div className={classes.wrapper}>
               {/* <Image image={post.author.photo} size={55} /> */}
               <Content post={post} setOpen={setOpen} />
+
+
             </div>
           </div>
         );

@@ -11,12 +11,14 @@ import Tags from "../Content/Tags";
 import ButtonGroup from "./ButtonGroup";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 // Hooks
 import useLanguage from "../../../hooks/useLanguage";
 // Utils
 import { searchPosts } from "../utils/searchPosts";
 import { searchUsers } from "../utils/searchUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
+
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -51,13 +53,21 @@ const Main = ({ setPosts, setProfiles, setContent }) => {
     { name: "National Film Board" },
   ]);
   const [activeTags, setActiveTags] = useState([]);
+  const {setIds} = useContext(ModalContext);
 
   const func = async () => {
     await searchPosts({
       tags: activeTags,
     }).then((response) => {
-      console.log(response);
-      setPosts(response.data);
+      if (response.status === "success"){
+        console.log(response);
+        let data = response.data;
+        setIds(data.map((post) => post._id));
+        setPosts(data);
+      }
+      else{
+        return;
+      }
     });
   };
 
