@@ -97,11 +97,11 @@ const Follow = (user, profile, setLoading) => {
   useEffect(() => {
     checkFollowed(user, profile);
     checkSame(user, profile);
-  }, [id, profile]);
+  }, [followed]);
 
   useEffect(() => {
     console.log(id);
-  }, [id]);
+  }, [user]);
 
   return { checkFollowed, checkSame, onFollow, followed, sameUser };
 };

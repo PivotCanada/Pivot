@@ -22,7 +22,7 @@ const Main = ({ display = true, callback, data, profile }) => {
   useEffect(() => {
     if (callback) {
       callback().then((response) => {
-        console.log(response);
+
         setPosts(response.data);
       });
     } else {
@@ -30,7 +30,7 @@ const Main = ({ display = true, callback, data, profile }) => {
     }
   }, [data]);
 
-  console.log(data);
+
 
   useEffect(() => {}, [posts]);
   if (display) {

@@ -1,13 +1,14 @@
 import { useEffect, useState, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
+import EditIcon from '@material-ui/icons/Edit';
 // Components
 import ButtonGroup from "../Content/ButtonGroup";
 import CreatePost from "../../Post/Create/MainProfile";
 import Overview from "../Overview/Main";
 import Content from "../Content/Main";
 import Follow from "../Overview/Follow";
-
+import EditModal from "../../editProfile/Modal";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
@@ -17,6 +18,7 @@ import { sameUser } from "../utils/sameUser";
 import { fetchUserLikes } from "../utils/fetchUserLikes";
 // Hooks
 import useWidth from "../../../hooks/useWidth";
+import { Button } from "@material-ui/core";
 
 const Main = ({ story, initialContent = "story" }) => {
   // TODO : Rework if changing Profile page ...
@@ -90,7 +92,31 @@ const Main = ({ story, initialContent = "story" }) => {
     
   },
   button:{
-
+    display: "flex",
+    color: "white",
+    height: 40,
+    
+    alignSelf: "flex-end",
+    marginRight: 20,
+    borderColor: "white",
+    fontSize: 10,
+    
+  },
+  followButton:{
+    display: "flex",
+    color: "#9E00FF",
+    height: 50,
+    marginRight: 20,
+    marginBottom: 20,
+    alignSelf: "flex-start"
+  },
+  buttons: {
+    display: "flex",
+    flexDirection: "column",
+    alignitems: "flex-end",
+    alignContent: "center",
+    justifyContent: "space-around",
+    height: "100%"
   }
     
   }));
@@ -104,6 +130,7 @@ const Main = ({ story, initialContent = "story" }) => {
 
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState([]);
+  const[showEdit,setShowEdit] = useState(false);
   const [content, setContent] = useState(initialContent);
 
   const fetchLikes = async () => {
@@ -147,16 +174,23 @@ const Main = ({ story, initialContent = "story" }) => {
       <div className={classes.wrapper}>
        <div className = {classes.banner}/>
         <div className = {classes.innerWrapper}>
-          
+          <EditModal showEdit = {showEdit} setShowEdit = {setShowEdit}/>
           <Overview width={width} story={story} posts={posts.length} />
-          <div className = {classes.button}>
-          {!sameUser(user,profile) ? <Follow profile={profile}/> : null}
+          <div className = {classes.buttons}>
+          {!sameUser(user,profile) ? <Follow  profile={profile}/> : null}
+          {sameUser(user,profile) ? <Button 
+          variant = "outlined"
+          
+          className = {classes.button} onClick = {() => setShowEdit(true)}><EditIcon/></Button> : null}
+          
           </div>
+          
         </div>
         
         <div className={classes.container}>
         <div className = {classes.group}>
         <ButtonGroup setContent={setContent} /> 
+        
         </div>
           {/* TODO : Change if we rework Profile */}
           

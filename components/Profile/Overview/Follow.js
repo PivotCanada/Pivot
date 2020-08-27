@@ -10,9 +10,12 @@ import useFollow from "../../../hooks/useFollow";
 const Follow = ({ profile }) => {
   const { user, authenticated } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
-  const { onFollow, followed, sameUser } = useFollow(user, profile, setLoading);
+  const { onFollow, followed, sameUser, checkFollowed } = useFollow(user, profile, setLoading);
 
-  useEffect(() => {}, [user, profile]);
+  useEffect(() => {
+    checkFollowed(user, profile);
+    console.log("followed" + followed);
+  }, [user]);
 
   if (!authenticated || sameUser) {
     return null;
@@ -24,18 +27,19 @@ const Follow = ({ profile }) => {
         style={{
           width: 100,
           textTransform: "none",
-          marginTop: 20,
-          fontSize: 12,
+          
+          fontSize: 14,
           width: 210,
           fontFamily: "Noto Sans, sans-serif",
           fontWeight: 700,
           borderRadius: 2,
           marginRight: 20
           
+          
         }}
         onClick={() => onFollow(user, profile)}
         type="button"
-        
+        variant = "outlined"
       >
         {followed ? "UnFollow" : "Follow"}
       </Button>
