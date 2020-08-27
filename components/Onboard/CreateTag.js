@@ -1,6 +1,6 @@
 import { createTag } from "../../utils/general/createTag";
 import Button from "@material-ui/core/Button";
-import Chip from "../../Filter/Content/CustomChip";
+import Chip from "../Filter/Content/CustomChip";
 import { makeStyles } from "@material-ui/core/styles";
 
 // TODO: Refactor ...
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CreateTag({ search, setTags, setSearch, setDisplayCreate }) {
+function CreateTag({ search, onChange, setSearch, setDisplayCreate }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -31,9 +31,9 @@ function CreateTag({ search, setTags, setSearch, setDisplayCreate }) {
         color={"primary"}
         size={"small"}
         onClick={async () => {
-          await createTag(search).then((response) => {
+          await createTag(search, "Industry").then((response) => {
             console.log(response);
-            setTags((tags) => [...tags, response.data]);
+            onChange(response.data.name);
             setSearch("");
             setDisplayCreate(false);
           });
