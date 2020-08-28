@@ -31,6 +31,7 @@ const Overview = ({ author, date }) => {
       padding: 0,
       margin: 0,
       marginBottom: 5,
+      maxWidth: 525,
     },
     innerWrapper: {
       display: "flex",

@@ -50,7 +50,6 @@ function Industry({ values, handleChange, handleErrors, errors }) {
     <div>
       <Autocomplete
         id="tags-standard"
-        value={values.location}
         options={results}
         getOptionLabel={(option) => option.name}
         onChange={(e, newValue) => {

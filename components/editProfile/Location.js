@@ -57,7 +57,6 @@ function Location({
           }}
           className={classes.textField}
           error={errors.location ? true : false}
-          helperText={errors.location}
           variant={"outlined"}
           size={"small"}
         />

@@ -25,7 +25,7 @@ import { UserContext } from "../../../contexts/UserContext";
 // Utils
 import fetchUsers from "../utils/fetchUsers";
 import { Button } from "@material-ui/core";
-import {sameUser} from "../utils/sameUser";
+import { sameUser } from "../utils/sameUser";
 
 function Main({ width, story, posts }) {
   const useStyles = makeStyles((theme) => ({
@@ -40,8 +40,6 @@ function Main({ width, story, posts }) {
       left: 0,
       maxWidth: 600,
       marginLeft: 20,
-      
-      
     },
     link: {
       width: 210,
@@ -61,14 +59,11 @@ function Main({ width, story, posts }) {
       justifyContent: "flex-start",
       alignItems: "flex-start",
       width: "100%",
-      width: 210,
+      width: 300,
       padding: 0,
       marginTop: 0,
       marginLeft: 10,
-
-      
     },
-    
   }));
 
   const classes = useStyles();
@@ -89,15 +84,14 @@ function Main({ width, story, posts }) {
         {/* <Modal /> */}
         <Image image={profile.photo} size={150} />
         {/* <Activity profile={profile} posts={posts} /> */}
-          
-        
-        <div className = {classes.info}>
+
+        <div className={classes.info}>
           <Details profile={profile} />
-          <Industry profile = {profile}/>
+          <Industry profile={profile} />
           <Location profile={profile} />
-          <Description />
+          {/* <Description /> */}
         </div>
-        
+
         {/* <Link href={`/profiles/${profile._id}`}>
           <h2 className={classes.link}>Journey</h2>
         </Link>

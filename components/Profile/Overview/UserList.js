@@ -1,7 +1,7 @@
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 // Components
-import Card from "../Preview/Card";
+import Overview from "../Content/Overview";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -39,7 +39,7 @@ const UserList = ({ users, title, width = "100%" }) => {
         <h3 className={classes.header}>{title}</h3>
         <div className={classes.container} style={{ width: width }}>
           {users.map((user) => {
-            return <Card key={user._id} profile={user} />;
+            return <Overview key={user._id} author={user} />;
           })}
         </div>
       </div>
