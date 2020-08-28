@@ -94,10 +94,15 @@ function BusinessIndustry({
   const classes = useStyles();
   const { user } = useContext(UserContext);
 
+  const formatLocation = (location) => {
+    console.log(location.replace(/,/g, ""));
+    return location.replace(/,/g, "");
+  };
+
   const handleSubmit = async () => {
     let valid = await handleErrors(values, validateLocation);
     if (valid) {
-      await createTag(values.location, "Location");
+      await createTag(formatLocation(values.location), "Location");
       const data = { location: values.location };
       await update(data, user._id);
       setStep((s) => s + 1);
