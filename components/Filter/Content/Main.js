@@ -47,7 +47,10 @@ const useStyles = makeStyles((theme) => ({
 
 const Main = ({ setPosts, setProfiles, setContent }) => {
   const classes = useStyles();
-  const [tags, setTags] = useState([{ name: "Montréal, Quebec, Canada" }]);
+  const [tags, setTags] = useState([
+    { name: "Montréal Quebec Canada" },
+    { name: "Toronto Ontario Canada" },
+  ]);
   const [activeTags, setActiveTags] = useState([]);
   const {setIds} = useContext(ModalContext);
 
