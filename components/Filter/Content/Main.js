@@ -45,11 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Main = ({ setPosts, setProfiles, setContent }) => {
   const classes = useStyles();
-  const [tags, setTags] = useState([
-    { name: "Toronto" },
-    { name: "Montreal" },
-    { name: "National Film Board" },
-  ]);
+  const [tags, setTags] = useState([{ name: "Montréal, Quebec, Canada" }]);
   const [activeTags, setActiveTags] = useState([]);
 
   const func = async () => {

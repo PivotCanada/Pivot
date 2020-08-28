@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 // Components
 import Industry from "./Industry";
+import CreateTag from "./CreateTag";
 // Contexts
 import { UserContext } from "../../contexts/UserContext";
 // Utils
