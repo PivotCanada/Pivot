@@ -55,7 +55,6 @@ function Location({
               setResults([]);
             }
           }}
-          label = {values.location}
           className={classes.textField}
           error={errors.location ? true : false}
           helperText={errors.location}

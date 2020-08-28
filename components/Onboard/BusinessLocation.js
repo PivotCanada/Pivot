@@ -11,6 +11,7 @@ import Navigation from "./Navigation";
 import { UserContext } from "../../contexts/UserContext";
 // Utils
 import { update } from "../../utils/general/update";
+import { createTag } from "../../utils/general/createTag";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -96,6 +97,7 @@ function BusinessIndustry({
   const handleSubmit = async () => {
     let valid = await handleErrors(values, validateLocation);
     if (valid) {
+      await createTag(values.location, "Location");
       const data = { location: values.location };
       await update(data, user._id);
       setStep((s) => s + 1);
