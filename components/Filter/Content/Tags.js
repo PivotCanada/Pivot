@@ -1,22 +1,19 @@
-import { useState, useEffect } from "react";
-
-// import CreateTag from "./CreateTag";
+import { useState, useContext } from "react";
+// Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import { searchTags } from "../utils/searchTags";
-
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-
-import { IconButton } from "@material-ui/core";
-
-// TODO: Refactor ...
+// Components
+import { searchTags } from "../../../utils/general/searchTags";
+// Context
+import { FilterContext } from "../../../contexts/FilterContext";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: 0, /*changed this to get the search bar closer to the tags in discover page*. Used to be 100*/
+    marginTop: 0 /*changed this to get the search bar closer to the tags in discover page*. Used to be 100*/,
     margin: 0,
     zIndex: 3,
     backgroundColor: "white",
@@ -25,82 +22,17 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 1000,
     fontFamily: "Noto Sans JP, sans serif",
   },
-  innerWrapper: {
-    display: "flex",
-    flexDirection: "column",
-
-    alignItems: "center",
-  },
-  header: {
-    textAlign: "center",
-    fontSize: "1.5rem",
-    marginTop: 150,
-    marginBottom: 100,
-  },
-  text: {
-    textAlign: "center",
-
-    marginBottom: "1rem",
-  },
-
-  button: {
-    marginTop: "3rem",
-    marginBottom: 0,
-  },
-
-  imageContainer: {
-    display: "flex",
-    width: 200,
-    height: 200,
-    alignItems: "center",
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
-
-  arrow: {
-    width: 50,
-    height: 50,
-  },
-
-  buttonContainer: {
-    display: "flex",
-    marginTop: 100,
-    width: 200,
-    justifyContent: "space-between",
-  },
 }));
 
-function Tags({ tags, setTags, setActiveTags }) {
-  const industries = [
-    {
-      name: "Challenge",
-    },
-    {
-      name: "Achievement",
-    },
-    {
-      name: "Goal",
-    },
-    {
-      name: "Wish",
-    },
-    {
-      name: "Question",
-    },
-  ];
+function Tags({ setTags, type }) {
   const [search, setSearch] = useState("");
-
   const [results, setResults] = useState([]);
+  const { setActiveTags } = useContext(FilterContext);
 
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      {/* {errors.tags && <p>{errors.tags}</p>} */}
-
       <Autocomplete
         id="tags-standard"
         options={results}
@@ -108,6 +40,10 @@ function Tags({ tags, setTags, setActiveTags }) {
         onChange={(e, newValue) => {
           if (newValue) {
             setTags((tags) => [
+              ...tags.filter((tag) => tag.name !== newValue.name),
+              newValue,
+            ]);
+            setActiveTags((tags) => [
               ...tags.filter((tag) => tag.name !== newValue.name),
               newValue,
             ]);
@@ -120,7 +56,7 @@ function Tags({ tags, setTags, setActiveTags }) {
               setSearch(e.target.value);
               // TODO : Standardize Formatting Here -> Inputed function like callback ...
               if (e.target.value.trim() !== "") {
-                await searchTags(e.target.value).then((response) => {
+                await searchTags(e.target.value, type).then((response) => {
                   console.log(response);
                   setResults(response.data);
                 });
@@ -130,17 +66,10 @@ function Tags({ tags, setTags, setActiveTags }) {
             }}
             className={classes.textField}
             variant="standard"
-            label={"Search"}
+            label={type}
           />
         )}
       />
-
-      {/* <Search
-        search={search}
-        setSearch={setSearch}
-        setResults={setResults}
-        callback={searchTags}
-      /> */}
     </div>
   );
 }

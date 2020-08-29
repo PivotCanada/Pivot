@@ -8,7 +8,7 @@ import LoopIcon from "@material-ui/icons/Loop";
 import { Fab } from "@material-ui/core";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
-import ShareIcon from '@material-ui/icons/Share';
+import ShareIcon from "@material-ui/icons/Share";
 import Share from "./Share";
 // Components
 
@@ -105,7 +105,7 @@ const Main = ({ post, setOpen, setOpenRepost }) => {
           <BookmarkBorderIcon />
         </Fab>
       )}
-      <Share post = {post}/>
+      {/* <Share post = {post}/> */}
     </div>
   );
 };

@@ -62,6 +62,8 @@ export const ModalStore = ({ initializeUser = () => {}, children }) => {
     setId(prev);
   };
 
+  const extractIds = (list) => setIds(list.map((item) => item._id));
+
   useEffect(() => {
     console.log(id);
   }, [id]);
@@ -89,6 +91,7 @@ export const ModalStore = ({ initializeUser = () => {}, children }) => {
         previousUser,
         ids,
         setIds,
+        extractIds,
       }}
     >
       {children}

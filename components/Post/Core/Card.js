@@ -23,7 +23,6 @@ const Card = ({ post, displayLink = true }) => {
       boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
       marginBottom: 25,
       backgroundColor: "white",
-      
     },
     wrapper: {
       display: "flex",
@@ -59,7 +58,6 @@ const Card = ({ post, displayLink = true }) => {
   const fetchRepost = async () => {
     if (await isRepost()) {
       await fetchPost(post.context).then(async (response) => {
-        console.log(response.data);
         if (response.status === "success") {
           setRepost(response.data);
         }
@@ -72,9 +70,7 @@ const Card = ({ post, displayLink = true }) => {
     func();
   }, [post]);
 
-  useEffect(() => {
-    console.log(repost);
-  }, [repost]);
+  useEffect(() => {}, [repost]);
 
   if (post) {
     if (displayLink) {
@@ -99,8 +95,6 @@ const Card = ({ post, displayLink = true }) => {
             <div className={classes.wrapper}>
               {/* <Image image={post.author.photo} size={55} /> */}
               <Content post={post} setOpen={setOpen} />
-
-
             </div>
           </div>
         );

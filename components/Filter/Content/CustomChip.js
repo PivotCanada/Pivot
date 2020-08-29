@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
+// Contexts
+import { FilterContext } from "../../../contexts/FilterContext";
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -20,12 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const CustomChip = ({ tag, setActiveTags, handleDelete }) => {
+const CustomChip = ({ tag, handleDelete }) => {
   const classes = useStyles();
   const [active, setActive] = useState(false);
+  const { activeTags, setActiveTags } = useContext(FilterContext);
 
   const updateActiveTag = (tag) => {
-    if (active) {
+    if (isActive(tag)) {
       setActiveTags((activeTags) => [
         ...activeTags.filter((value) => value.name !== tag.name),
       ]);
@@ -34,20 +37,25 @@ const CustomChip = ({ tag, setActiveTags, handleDelete }) => {
     }
   };
 
+  const isActive = (tag) => {
+    let names = activeTags.map((activeTag) => activeTag.name);
+    return names.includes(tag.name);
+  };
+
+  useEffect(() => {}, [activeTags]);
+
   return (
     <Chip
       size={"small"}
       key={tag.name}
       label={tag.name}
-      icon={"none"}
       className={classes.chip}
       onClick={async () => {
-        setActive(!active);
         await updateActiveTag(tag);
       }}
       size={"small"}
       variant={"outlined"}
-      color={active ? "primary" : "default"}
+      color={isActive(tag) ? "primary" : "default"}
       onDelete={() => handleDelete(tag)}
     />
   );

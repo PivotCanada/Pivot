@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
+// Components
 import Chip from "./CustomChip";
+// Contexts
+import { FilterContext } from "../../../contexts/FilterContext";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     display: "flex",
-
     flexWrap: "wrap",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -17,10 +19,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Chips = ({ tags, setTags, setActiveTags, activeTags }) => {
+const Chips = ({ tags, setTags }) => {
   const classes = useStyles();
-
-  useEffect(() => {}, [activeTags]);
+  const { activeTags, setActiveTags } = useContext(FilterContext);
 
   const handleDelete = (tag) => {
     setTags((tags) => [...tags.filter((x) => x.name !== tag.name)]);
@@ -32,15 +33,7 @@ const Chips = ({ tags, setTags, setActiveTags, activeTags }) => {
   return (
     <div className={classes.wrapper}>
       {tags.map((tag) => {
-        return (
-          <Chip
-            activeTags={activeTags}
-            setActiveTags={setActiveTags}
-            tag={tag}
-            handleDelete={handleDelete}
-            variant={"outlined"}
-          />
-        );
+        return <Chip key={tag.name} tag={tag} handleDelete={handleDelete} />;
       })}
     </div>
   );

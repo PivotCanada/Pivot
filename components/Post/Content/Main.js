@@ -13,9 +13,6 @@ import Title from "./Title";
 import MicroLink from "./MicroLink";
 import Modal from "../Edit/Modal";
 
-
-
-
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
 
@@ -51,8 +48,12 @@ function Preview({ post, setOpenRepost }) {
   return (
     <div className={classes.content}>
       <Modal open={openEdit} setOpen={setOpenEdit} post={post} />
-      <Overview id = {post.author._id} author={post.author} date={post.created_at} />
-      
+      <Overview
+        id={post.author._id}
+        author={post.author}
+        date={post.created_at}
+      />
+
       {post.link ? <MicroLink link={post.link} /> : null}
 
       <div
@@ -66,15 +67,14 @@ function Preview({ post, setOpenRepost }) {
         {/* <Title title={"Rebounce in Employment 2020"} /> */}
         <Primary text={post.text} />
       </div>
-      
 
-      {!isChild(post.role) ? <Actions
-        post={post}
-        setOpen={setOpenEdit}
-        setOpenRepost={setOpenRepost}
-      /> : null }
-      
-     
+      {!isChild(post.role) ? (
+        <Actions
+          post={post}
+          setOpen={setOpenEdit}
+          setOpenRepost={setOpenRepost}
+        />
+      ) : null}
     </div>
   );
 }

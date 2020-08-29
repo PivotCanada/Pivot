@@ -97,9 +97,9 @@ const Main = () => {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(profiles);
-  }, [profiles]);
+  // useEffect(() => {
+  //   // console.log(profiles);
+  // }, [profiles]);
 
   return (
     <div className={classes.root}>

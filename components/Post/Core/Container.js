@@ -22,7 +22,6 @@ const Main = ({ display = true, callback, data, profile }) => {
   useEffect(() => {
     if (callback) {
       callback().then((response) => {
-
         setPosts(response.data);
       });
     } else {
@@ -30,14 +29,11 @@ const Main = ({ display = true, callback, data, profile }) => {
     }
   }, [data]);
 
-
-
   useEffect(() => {}, [posts]);
   if (display) {
     return (
       <div className={classes.root}>
         {posts.map((post) => {
-          console.log(post);
           return <Card key={post._id} post={post} />;
         })}
       </div>
