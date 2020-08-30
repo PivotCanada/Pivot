@@ -50,7 +50,7 @@ const Overview = ({ author, date }) => {
   }));
 
   const classes = useStyles();
-  const { setOpen } = useContext(ProfileModalContext);
+  const { setOpen, setId } = useContext(ProfileModalContext);
 
   const formatDate = (dateObject) => {
     let date = new Date(dateObject);
@@ -101,7 +101,12 @@ const Overview = ({ author, date }) => {
   };
 
   return (
-    <Button onClick={() => setOpen(true)}>
+    <Button
+      onClick={() => {
+        setOpen(true);
+        setId(author._id);
+      }}
+    >
       {/* <Link href={`/profiles/${author._id}`}> */}
       {/* <a className={classes.wrapper} href={`/profiles/${author._id}`}> */}
       <Image image={author.photo} size={90} />

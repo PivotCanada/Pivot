@@ -72,10 +72,10 @@ export const ModalStore = ({ initializeUser = () => {}, children }) => {
     getIndex(id);
   }, [id]);
 
-  useEffect(() => {
-    // This needs to accomdate batches
-    setId(ids[0]);
-  }, [ids]);
+  // useEffect(() => {
+  //   // This needs to accomdate batches
+  //   setId(ids[0]);
+  // }, [ids]);
 
   return (
     <ModalContext.Provider

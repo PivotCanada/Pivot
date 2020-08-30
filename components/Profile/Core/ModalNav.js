@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { IconButton } from "@material-ui/core";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { ModalContext } from "../../../contexts/ModalContext";
+import { ProfileModalContext } from "../../../contexts/ProfileModalContext";
 
 const useStyles = makeStyles((theme) => ({
   arrowForwardIosIcon: {
@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
 
 const ModalNav = () => {
   const classes = useStyles();
-  const { nextUser, previousUser, next, previous } = useContext(ModalContext);
+  const { nextUser, previousUser, next, previous } = useContext(
+    ProfileModalContext
+  );
 
   return (
     <div>

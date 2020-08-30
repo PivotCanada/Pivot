@@ -7,7 +7,7 @@ import Overview from "../Content/Overview";
 // Context
 import { UserContext } from "../../../contexts/UserContext";
 
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -48,7 +48,7 @@ const Container = ({ display, callback, data }) => {
       {profiles.map((user) => {
         return (
           // <Card data={profiles} display={display} key={user._id} story={user} />
-          <Overview author={user} />
+          <Overview key={user._id} author={user} />
         );
       })}
     </div>
