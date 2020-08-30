@@ -14,6 +14,7 @@ import { LanguageStore } from "../contexts/LanguageContext";
 import { CreateStore } from "../contexts/CreateContext";
 import { FormStore } from "../contexts/FormContext";
 import { FilterStore } from "../contexts/FilterContext";
+import { ProfileModalStore } from "../contexts/ProfileModalContext";
 
 const MyApp = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -29,21 +30,23 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <React.Fragment>
       <FilterStore>
-        <LanguageStore>
-          <ModalStore>
-            <UserStore>
-              <CreateStore>
-                <FormStore>
-                  <ThemeProvider theme={theme}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                    <CssBaseline />
-                    <Component {...pageProps} />
-                  </ThemeProvider>
-                </FormStore>
-              </CreateStore>
-            </UserStore>
-          </ModalStore>
-        </LanguageStore>
+        <ProfileModalStore>
+          <LanguageStore>
+            <ModalStore>
+              <UserStore>
+                <CreateStore>
+                  <FormStore>
+                    <ThemeProvider theme={theme}>
+                      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                      <CssBaseline />
+                      <Component {...pageProps} />
+                    </ThemeProvider>
+                  </FormStore>
+                </CreateStore>
+              </UserStore>
+            </ModalStore>
+          </LanguageStore>
+        </ProfileModalStore>
       </FilterStore>
     </React.Fragment>
   );

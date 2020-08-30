@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
-import EditIcon from '@material-ui/icons/Edit';
+import EditIcon from "@material-ui/icons/Edit";
 // Components
 import ButtonGroup from "../Content/ButtonGroup";
 import CreatePost from "../../Post/Create/MainProfile";
@@ -36,89 +36,77 @@ const Main = ({ story, initialContent = "story" }) => {
       marginTop: 30,
     },
     innerWrapper: {
-      
       display: "flex",
       flexDirection: "row",
       alignItems: "flex-start",
       alignContent: "space-between",
       width: "100%",
       height: "100%",
-      backgroundColor: "rgba(0,0,0,0.8)" ,
-      justifyContent: "space-between"
-      
-
+      backgroundColor: "rgba(0,0,0,0.8)",
+      justifyContent: "space-between",
     },
 
     container: {
-      
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
       alignItems: "center",
       width: "100%",
       height: "100%",
-      
-      
-      
-      
     },
     user: {
       display: "flex",
       flexDirection: "column",
       width: "20%",
-      
-      marginTop: 20,
 
+      marginTop: 20,
     },
-   
+
     group: {
       position: "static",
       display: "flex",
       width: 420,
-      height: 55, 
+      height: 55,
       justifyContent: "space-evenly",
       alignItems: "center",
       marginBottom: 30,
-      
-      
+
       borderRadius: 5,
     },
     image: {
       height: "100%",
-      
-      background:   "url(`https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2555&q=80`)",
+
+      background:
+        "url(`https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2555&q=80`)",
       backgroundSize: "cover",
       backgroundPosition: "center",
-    
-  },
-  button:{
-    display: "flex",
-    color: "white",
-    height: 40,
-    
-    alignSelf: "flex-end",
-    marginRight: 20,
-    borderColor: "white",
-    fontSize: 10,
-    
-  },
-  followButton:{
-    display: "flex",
-    color: "#9E00FF",
-    height: 50,
-    marginRight: 20,
-    marginBottom: 20,
-    alignSelf: "flex-start"
-  },
-  buttons: {
-    display: "flex",
-    flexDirection: "column",
-    alignitems: "flex-end",
-    alignContent: "center",
-    justifyContent: "space-around",
-    height: "100%"
-  }
-    
+    },
+    button: {
+      display: "flex",
+      color: "white",
+      height: 40,
+
+      alignSelf: "flex-end",
+      marginRight: 20,
+      borderColor: "white",
+      fontSize: 10,
+    },
+    followButton: {
+      display: "flex",
+      color: "#9E00FF",
+      height: 50,
+      marginRight: 20,
+      marginBottom: 20,
+      alignSelf: "flex-start",
+    },
+    buttons: {
+      display: "flex",
+      flexDirection: "column",
+      alignitems: "flex-end",
+      alignContent: "center",
+      justifyContent: "space-around",
+      height: "100%",
+    },
   }));
 
   const classes = useStyles();
@@ -130,7 +118,7 @@ const Main = ({ story, initialContent = "story" }) => {
 
   const [posts, setPosts] = useState([]);
   const [likes, setLikes] = useState([]);
-  const[showEdit,setShowEdit] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [content, setContent] = useState(initialContent);
 
   const fetchLikes = async () => {
@@ -172,28 +160,30 @@ const Main = ({ story, initialContent = "story" }) => {
     // console.log(story);
     return (
       <div className={classes.wrapper}>
-       <div className = {classes.banner}/>
-        <div className = {classes.innerWrapper}>
-          <EditModal showEdit = {showEdit} setShowEdit = {setShowEdit}/>
+        <div className={classes.banner} />
+        <div className={classes.innerWrapper}>
+          <EditModal showEdit={showEdit} setShowEdit={setShowEdit} />
           <Overview width={width} story={story} posts={posts.length} />
-          <div className = {classes.buttons}>
-          {!sameUser(user,profile) ? <Follow  profile={profile}/> : null}
-          {sameUser(user,profile) ? <Button 
-          variant = "outlined"
-          
-          className = {classes.button} onClick = {() => setShowEdit(true)}><EditIcon/></Button> : null}
-          
+          <div className={classes.buttons}>
+            {/* {!sameUser(user,profile) ? <Follow  profile={profile}/> : null} */}
+            {sameUser(user, profile) ? (
+              <Button
+                variant="outlined"
+                className={classes.button}
+                onClick={() => setShowEdit(true)}
+              >
+                <EditIcon />
+              </Button>
+            ) : null}
           </div>
-          
         </div>
-        
+
         <div className={classes.container}>
-        <div className = {classes.group}>
-        <ButtonGroup setContent={setContent} /> 
-        
-        </div>
+          <div className={classes.group}>
+            <ButtonGroup setContent={setContent} />
+          </div>
           {/* TODO : Change if we rework Profile */}
-          
+
           <Content
             story={story}
             content={content}
@@ -202,14 +192,11 @@ const Main = ({ story, initialContent = "story" }) => {
             posts={posts}
             likes={likes}
           />
-          
         </div>
-        
       </div>
     );
-  }
-  else {
-    return null
+  } else {
+    return null;
   }
 };
 

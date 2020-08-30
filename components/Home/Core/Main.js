@@ -8,13 +8,14 @@ import ButtonGroup from "../Content/ButtonGroup";
 import FloatingActionButton from "./FloatingActionButton";
 import Snackbar from "../../UI/General/Snackbar";
 import Modal from "../../Post/Core/Modal";
+import ProfileModal from "../../Profile/Core/Modal";
 import CreateModal from "../../Post/Create/Modal";
 import Overview from "../../Profile/Overview/Main";
 import Filter from "../../Filter/Core/Main";
 // Contexts
 import { UserContext } from "../../../contexts/UserContext";
 import { ModalContext } from "../../../contexts/ModalContext";
-
+import { ProfileModalContext } from "../../../contexts/ProfileModalContext";
 // Utils
 import { fetchAllUsers } from "../utils/fetchAllUsers";
 import { fetchAllPosts } from "../utils/fetchAllPosts";
@@ -50,6 +51,7 @@ const Main = () => {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(UserContext);
   const { ids, setIds, setId } = useContext(ModalContext);
+  const { profileIds, setProfileIds } = useContext(ProfileModalContext);
 
   const remove = (list, item) => {
     if (item) {
@@ -82,7 +84,7 @@ const Main = () => {
     fetchAllUsers().then(async (response) => {
       if (response.status === "success") {
         const users = await remove(response.data, user);
-
+        setProfileIds(profiles.map((profile) => profile._id));
         setProfiles(users);
       }
     });
@@ -105,6 +107,7 @@ const Main = () => {
     <div className={classes.root}>
       {/* <Snackbar open={open} setOpen={setOpen} message={"Success"} /> */}
       <Modal />
+      <ProfileModal />
       <CreateModal />
 
       <Filter

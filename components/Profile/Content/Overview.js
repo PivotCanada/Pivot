@@ -1,9 +1,13 @@
 import Link from "next/link";
+import { useContext } from "react";
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
+// Contexts
+import { ProfileModalContext } from "../../../contexts/ProfileModalContext";
 // Components
 import Author from "./Author";
 import Image from "../Overview/Image";
+import { Button } from "@material-ui/core";
 
 const Overview = ({ author, date }) => {
   const useStyles = makeStyles((theme) => ({
@@ -46,6 +50,7 @@ const Overview = ({ author, date }) => {
   }));
 
   const classes = useStyles();
+  const { setOpen } = useContext(ProfileModalContext);
 
   const formatDate = (dateObject) => {
     let date = new Date(dateObject);
@@ -96,15 +101,17 @@ const Overview = ({ author, date }) => {
   };
 
   return (
-    <Link href={`/profiles/${author._id}`}>
-      <a className={classes.wrapper} href={`/profiles/${author._id}`}>
-        <Image image={author.photo} size={90} />
-        <div className={classes.innerWrapper}>
-          <Author author={author} />
-          <p className={classes.description}>{format(text, 50, 34)}</p>
-        </div>
-      </a>
-    </Link>
+    <Button onClick={() => setOpen(true)}>
+      {/* <Link href={`/profiles/${author._id}`}> */}
+      {/* <a className={classes.wrapper} href={`/profiles/${author._id}`}> */}
+      <Image image={author.photo} size={90} />
+      <div className={classes.innerWrapper}>
+        <Author author={author} />
+        <p className={classes.description}>{format(text, 50, 34)}</p>
+      </div>
+      {/* </a> */}
+      {/* </Link> */}
+    </Button>
   );
 };
 

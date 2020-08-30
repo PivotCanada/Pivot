@@ -6,11 +6,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import { IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 // Components
-// import Main from "./Main";
-import Main from "../Core/Main";
+import Main from "./Main";
 import ModalNav from "./ModalNav";
 // Contexts
-import { ProfileModalContext } from "../../../contexts/ProfileModalContext";
+import { ModalContext } from "../../../contexts/ModalContext";
 // Utils
 import fetchUser from "../../../utils/general/fetchUser";
 
@@ -67,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Modal = () => {
   const classes = useStyles();
-  const { open = false, setOpen, id } = useContext(ProfileModalContext);
+  const { open = false, setOpen, id } = useContext(ModalContext);
   // TODO : Put this in Modal context ?
   const [profile, setProfile] = useState({});
 
@@ -76,7 +75,6 @@ const Modal = () => {
   };
 
   const initializeUser = async (id) => {
-    console.log(id);
     if (id) {
       await fetchUser(id).then(async (response) => {
         if (response.status === "success") {
@@ -87,7 +85,6 @@ const Modal = () => {
   };
 
   useEffect(() => {
-    console.log(id);
     initializeUser(id);
   }, [id]);
 
@@ -97,7 +94,7 @@ const Modal = () => {
       open={open}
       fullWidth={true}
       className={classes.dialog}
-      maxWidth={"md"}
+      maxWidth={"sm"}
       onClose={handleClose}
     >
       <DialogActions className={classes.dialogActions}>
@@ -106,7 +103,6 @@ const Modal = () => {
         </IconButton>
       </DialogActions>
       <ModalNav />
-      {/* <Main /> */}
       <Main story={profile} />
     </Dialog>
   );

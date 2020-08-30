@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Content from "../Content/Main";
 // Contexts
 import { ModalContext } from "../../../contexts/ModalContext";
+import { ProfileModalContext } from "../../../contexts/ProfileModalContext";
 import { FilterContext } from "../../../contexts/FilterContext";
 // Utils
 
@@ -26,9 +27,10 @@ const Main = ({ setPosts, setProfiles }) => {
   const classes = useStyles();
   const { filterPosts, filterProfiles, activeTags } = useContext(FilterContext);
   const { extractIds } = useContext(ModalContext);
+  const { extractProfileIds } = useContext(ProfileModalContext);
 
   useEffect(() => {
-    filterProfiles(setProfiles);
+    filterProfiles(setProfiles, extractProfileIds);
     filterPosts(setPosts, extractIds);
     console.log("active tags");
     console.log(activeTags);

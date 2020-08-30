@@ -22,12 +22,13 @@ export const FilterStore = ({ children }) => {
     });
   };
 
-  const filterProfiles = async (setProfiles) => {
+  const filterProfiles = async (setProfiles, extractIds) => {
     await searchUsers({
       tags: activeTags,
     }).then((response) => {
       if (response.status === "success") {
         let data = response.data;
+        extractIds(data);
         setProfiles(response.data);
       } else return;
     });
