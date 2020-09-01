@@ -1,5 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-// .gitnignore
+// .gitignore
 # next.js build output
 .next
 # dotenv environment variables file (build for Zeit Now)
