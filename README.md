@@ -8,7 +8,7 @@ Master branch - [https://pivotcanada.vercel.app/](https://pivotcanada.vercel.app
 
 ## Development
 
-Development branch - [https://pivotcanada.vercel.app/](https://pivotcanada.vercel.app/)
+Development branch - [https://pivot-fgqnse9ic.vercel.app/](https://pivot-fgqnse9ic.vercel.app/)
 
 ## Stack
 
