@@ -2,6 +2,10 @@
 
 PIVOT is an engagement project aimed at amplifying the voices of Canadian SMEs Made by the McGill Sustainability Systems Initiative and the NFB.
 
+## Production
+
+Master - [https://pivotcanada.vercel.app/](https://pivotcanada.vercel.app/)
+
 ## Stack
 
 Front-End - Next.js<br />
