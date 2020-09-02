@@ -1,16 +1,20 @@
 # Pivot
 
-This is the official repository for the Pivot application's front end. A custom [\_document](https://nextjs.org/docs/advanced-features/custom-document) is used to inject [tracking snippet](https://developers.google.com/analytics/devguides/collection/gtagjs/) and track [pageviews](https://developers.google.com/analytics/devguides/collection/gtagjs/pages) and [event](https://developers.google.com/analytics/devguides/collection/gtagjs/events).
+PIVOT is an engagement project aimed at amplifying the voices of Canadian SMEs Made by the McGill Sustainability Systems Initiative and the NFB.
 
-## Application
+## Production
 
-dev -> http://localhost:3000/
-prod -> https://pivot-landing.now.sh/
+master - [https://pivotcanada.vercel.app/](https://pivotcanada.vercel.app/)
 
-### Dependencies
+## Development
 
-You might need to install dependencies, try using :
+develop - [https://pivot-fgqnse9ic.vercel.app/](https://pivot-fgqnse9ic.vercel.app/)
 
-```bash
-npm install
-```
+## Stack
+
+Front-End - Next.js<br />
+State - useContext & useReducer ( to be implemented )<br />
+Back-End - Node.js & Express<br />
+Database - MongoDB<br />
+AWS Bucket - Digital Ocean<br />
+Hosting & Deployments - Vercel<br />
