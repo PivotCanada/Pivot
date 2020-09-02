@@ -4,11 +4,11 @@ PIVOT is an engagement project aimed at amplifying the voices of Canadian SMEs M
 
 ## Production
 
-PivotCanada/Pivot/Master - [https://pivotcanada.vercel.app/](https://pivotcanada.vercel.app/)
+PivotCanada/Pivot/master - [https://pivotcanada.vercel.app/](https://pivotcanada.vercel.app/)
 
 ## Development
 
-PivotCanada/Pivot/Develop - [https://pivot-fgqnse9ic.vercel.app/](https://pivot-fgqnse9ic.vercel.app/)
+PivotCanada/Pivot/develop - [https://pivot-fgqnse9ic.vercel.app/](https://pivot-fgqnse9ic.vercel.app/)
 
 ## Stack
 
